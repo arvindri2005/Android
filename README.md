@@ -1,5 +1,5 @@
 # Android
-Android app for anwersha2k23
+Android app for anwesha2k23
 
 make sure to work on a different branch. 
 also pull code from mainWorking branch. and also push the code to mainWorking branch.
