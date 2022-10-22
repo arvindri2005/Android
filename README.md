@@ -1,9 +1,10 @@
 # Android
 Android app for anwesha2k23
+!!Must follow these instructions.
 
-make sure to work on a different branch. 
-also pull code from workingBranch branch. and also push the code to workingBranch branch.
-Don't push code to main branch.
+Fork the repo. Clone it using gitbash. Work on a branch and push your branch to remote repo.(It would be good if you have github desktop for laptop)
 
-Search on Internet about how to pull from specific branches, how to puch a branch and others. 
-Dont mashup the proejct.
+Search on Internet about how to fork a repo and how to pull from specific branches, how to puch a branch.
+Don't mashup the project.
+
+
