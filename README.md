@@ -7,4 +7,6 @@ Fork the repo. Clone it using gitbash. Work on a branch and push your branch to 
 Search on Internet about how to fork a repo and how to pull from specific branches, how to puch a branch.
 Don't mashup the project.
 
+Just checking
+
 
