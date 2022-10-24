@@ -3,22 +3,28 @@ package com.college.anwesha2k23
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.college.anwesha2k23.Gallery
-import com.college.anwesha2k23.Home
-import com.college.anwesha2k23.Profile
+import com.college.anwesha2k23.fragment.Gallery
 import com.college.anwesha2k23.R.*
+import com.college.anwesha2k23.databinding.ActivityMainBinding
+import com.college.anwesha2k23.fragment.Home
+import com.college.anwesha2k23.fragment.Profile
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private  lateinit var bottomNav: BottomNavigationView
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar?.hide() //Hide App title
+
         loadFragment(Home())
-        bottomNav = findViewById(id.bottomNavigation)
+
+        bottomNav = binding.bottomNavigation
         bottomNav.setOnItemSelectedListener {
             when(it.itemId){
                 id.home -> {
