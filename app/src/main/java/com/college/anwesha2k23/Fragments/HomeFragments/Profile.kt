@@ -1,4 +1,4 @@
-package com.college.anwesha2k23.fragment
+package com.college.anwesha2k23.Fragments.HomeFragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

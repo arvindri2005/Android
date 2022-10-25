@@ -1,22 +1,25 @@
-package com.college.anwesha2k23.fragment
+package com.college.anwesha2k23.Fragments.HomeFragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.college.anwesha2k23.databinding.FragmentHomeBinding
+import com.college.anwesha2k23.databinding.FragmentGalleryBinding
 
-class Home : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
+
+class Gallery : Fragment() {
+    private var _binding: FragmentGalleryBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
