@@ -1,4 +1,4 @@
-package com.college.anwesha2k23.Fragments
+package com.college.anwesha2k23.Fragments.SignInFragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.college.anwesha2k23.MainActivity
-import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.FragmentSigninBinding
 
 class SigninFragment : Fragment() {
