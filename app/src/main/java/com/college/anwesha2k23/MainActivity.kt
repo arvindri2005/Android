@@ -3,11 +3,13 @@ package com.college.anwesha2k23
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.college.anwesha2k23.Fragments.HomeFragments.Gallery
+import com.college.anwesha2k23.Fragments.bottom_nav.Gallery
 import com.college.anwesha2k23.R.*
 import com.college.anwesha2k23.databinding.ActivityMainBinding
-import com.college.anwesha2k23.Fragments.HomeFragments.Home
-import com.college.anwesha2k23.Fragments.HomeFragments.Profile
+import com.college.anwesha2k23.Fragments.bottom_nav.Events
+import com.college.anwesha2k23.Fragments.bottom_nav.Home
+import com.college.anwesha2k23.Fragments.bottom_nav.Profile
+
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +39,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 id.profile -> {
                     loadFragment(Profile())
+                    true
+                }
+                id.event -> {
+                    loadFragment(Events())
                     true
                 }
                 else->{

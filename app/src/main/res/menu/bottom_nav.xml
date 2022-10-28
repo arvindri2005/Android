@@ -14,4 +14,9 @@
         android:title="@string/profile"
         android:id="@+id/profile"
         android:icon="@drawable/profile"/>
+
+    <item
+        android:title="Events"
+        android:id="@+id/event"
+        android:icon="@drawable/event"/>
 </menu>

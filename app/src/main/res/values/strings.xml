@@ -19,4 +19,7 @@
     <string name="anweshisback">#anweshisback</string>
     <string name="invalid_id">Invalid ID</string>
     <string name="invalid_credentails">invalid_credentials</string>
+    <string name="event_poster">Event Poster</string>
+    <string name="location_of_event">Location of Event</string>
+    <string name="events">Events</string>
 </resources>
