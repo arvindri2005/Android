@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.signin.Signup">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_marginBottom="100dp"
+        android:layout_height="210dp">
+
+        <ImageView
+            android:id="@+id/anweshalogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/anwesha_portal"
+            android:src="@drawable/anwesha_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.087"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.063" />
+
+        <TextView
+            android:id="@+id/signupText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/register_to"
+            android:textColor="#0D3563"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/anweshalogo"
+            app:layout_constraintTop_toBottomOf="@+id/anweshalogo" />
+
+        <TextView
+            android:id="@+id/anweshatext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/anwesha_portal"
+            android:textColor="@color/black"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/signupText"
+            app:layout_constraintTop_toBottomOf="@+id/signupText"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <TextView
+            android:id="@+id/EmailIdText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="53.19dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/enter_email"
+            android:textColor="#7B8A96"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/anweshatext"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/anweshatext"
+            app:layout_constraintTop_toBottomOf="@+id/anweshatext"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/emailIdText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/contact_number"
+            android:textColor="#7B8A96"
+            android:layout_marginTop="25dp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/EmailIdText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/EmailIdText"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintStart_toStartOf="@+id/emailIdText"
+            app:layout_constraintTop_toBottomOf="@+id/emailIdText"
+            tools:ignore="MissingConstraints">
+
+            <EditText
+                android:id="@+id/Contactnumber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:cursorVisible="true"
+                android:focusable="true"
+                android:fontFamily="@font/inter_bold"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColor="#96A4AF"
+                android:textColorHint="#96A4AF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.411"
+                tools:ignore="LabelFor,MissingConstraints,TextFields" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintStart_toStartOf="@+id/EmailIdText"
+            app:layout_constraintTop_toBottomOf="@+id/EmailIdText"
+            tools:ignore="MissingConstraints">
+
+            <EditText
+                android:id="@+id/EmailId"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:cursorVisible="true"
+                android:focusable="true"
+                android:fontFamily="@font/inter_bold"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textColor="#96A4AF"
+                android:textColorHint="#96A4AF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.411"
+                tools:ignore="LabelFor,MissingConstraints,TextFields" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/AnweshaPasswordText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/password"
+            android:layout_marginTop="25dp"
+            android:textColor="#7B8A96"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/emailIdText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/emailIdText"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintStart_toStartOf="@+id/AnweshaPasswordText"
+            app:layout_constraintTop_toBottomOf="@+id/AnweshaPasswordText"
+            app:passwordToggleEnabled="true"
+            tools:ignore="MissingConstraints">
+
+            <EditText
+                android:id="@+id/AnweshaPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:cursorVisible="true"
+                android:focusable="true"
+                android:fontFamily="@font/inter_bold"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="#96A4AF"
+                android:textColorHint="#96A4AF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.411"
+                tools:ignore="LabelFor,MissingConstraints,TextFields" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/ConfirmPasswordText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/confirm_password"
+            android:textColor="#7B8A96"
+            android:layout_marginTop="25dp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/AnweshaPasswordText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/AnweshaPasswordText"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintStart_toStartOf="@+id/ConfirmPasswordText"
+            app:layout_constraintTop_toBottomOf="@+id/ConfirmPasswordText"
+            app:passwordToggleEnabled="true"
+            tools:ignore="MissingConstraints">
+
+            <EditText
+                android:id="@+id/ConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:cursorVisible="true"
+                android:focusable="true"
+                android:fontFamily="@font/inter_bold"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="#96A4AF"
+                android:textColorHint="#96A4AF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.411"
+                tools:ignore="LabelFor,MissingConstraints,TextFields" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/Alreadyaccounttext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/already_have_an_account"
+            android:textColor="#7B8A96"
+            android:textSize="15sp"
+            android:layout_marginTop="88dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/ConfirmPasswordText"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+
+        <TextView
+            android:id="@+id/signinbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="10dp"
+            android:text="@string/sign_in"
+            android:textSize="18sp"
+            android:textColor="#334C6A"
+            app:layout_constraintStart_toStartOf="@+id/Alreadyaccounttext"
+            app:layout_constraintTop_toBottomOf="@+id/Alreadyaccounttext" />
+
+        <Button
+            android:id="@+id/SignupButton"
+            android:layout_width="350dp"
+            android:layout_height="65dp"
+            android:layout_marginBottom="253dp"
+            android:backgroundTint="#449AFF"
+            android:layout_marginTop="183dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/sign_up"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/coninuewith"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/or_continue_with"
+            android:textColor="#B5B5B5"
+            android:textSize="18sp"
+            android:layout_marginTop="96dp"
+            app:layout_constraintEnd_toEndOf="@+id/SignupButton"
+            app:layout_constraintStart_toStartOf="@+id/SignupButton"
+            app:layout_constraintTop_toBottomOf="@+id/SignupButton" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

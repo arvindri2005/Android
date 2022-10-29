@@ -2,7 +2,7 @@ package com.college.anwesha2k23.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.college.anwesha2k23.Fragments.signin.SigninFragment
+import com.college.anwesha2k23.Fragments.signin.Signin
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.ActivityLoginBinding
 
@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
     private fun showFragment() {
         val fram = supportFragmentManager.beginTransaction()
         fram.replace(
-            R.id.fragment_container, SigninFragment()
+            R.id.login_container, Signin()
         )
         fram.commit()
     }
