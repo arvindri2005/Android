@@ -7,9 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.college.anwesha2k23.MainActivity
+import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.FragmentSigninBinding
 
-class SigninFragment : Fragment() {
+class Signin : Fragment() {
     private lateinit var binding: FragmentSigninBinding
 
     override fun onCreateView(
@@ -24,6 +25,16 @@ class SigninFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.signupbutton.setOnClickListener {
+            loadFragment(Signup())
+        }
+
         return view
+    }
+
+    private fun loadFragment(fragment: Fragment){
+        val fragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
+        fragmentTransaction.replace(R.id.login_container, fragment)
+        fragmentTransaction.commit()
     }
 }
