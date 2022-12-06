@@ -1,4 +1,4 @@
-package com.college.anwesha2k23.Fragments.signin
+package com.college.anwesha2k23.Auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

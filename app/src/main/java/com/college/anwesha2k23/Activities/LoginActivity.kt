@@ -2,7 +2,7 @@ package com.college.anwesha2k23.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.college.anwesha2k23.Fragments.signin.Signin
+import com.college.anwesha2k23.Auth.Signin
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.ActivityLoginBinding
 

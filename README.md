@@ -9,4 +9,4 @@ Don't mashup the project.
 
 Just checking
 
-App Look Like this till now![untitled](https://user-images.githubusercontent.com/70971577/197467323-dc7022b7-ff65-44f9-9362-41ebcbd63b0e.gif)
+Current APK of the app -> 
