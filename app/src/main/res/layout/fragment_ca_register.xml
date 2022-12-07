@@ -30,8 +30,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:contentDescription="@string/anwesha_portal"
-            android:src="@drawable/anwesha_logo"
             android:scaleType="centerCrop"
+            android:src="@drawable/anwesha_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -53,9 +53,9 @@
             android:id="@+id/name"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@drawable/text_input_bg"
             android:hint="@string/full_name"
-            android:layout_marginTop="20dp"
             app:boxBackgroundMode="none"
             app:layout_constraintEnd_toEndOf="@+id/textView2"
             app:layout_constraintStart_toStartOf="@+id/textView2"
@@ -63,17 +63,19 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:inputType="textPersonName"
                 android:layout_height="match_parent"
-                android:padding="10dp"/>
+                android:padding="10dp" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailId"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@drawable/text_input_bg"
             android:hint="@string/email_id"
-            android:layout_marginTop="20dp"
             app:boxBackgroundMode="none"
             app:layout_constraintEnd_toEndOf="@+id/name"
             app:layout_constraintStart_toStartOf="@+id/name"
@@ -82,18 +84,19 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress"
+                android:padding="10dp" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/number"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@drawable/text_input_bg"
             android:hint="@string/contact_number"
             android:paddingTop="5dp"
-            android:layout_marginTop="20dp"
             app:boxBackgroundMode="none"
             app:layout_constraintEnd_toEndOf="@+id/emailId"
             app:layout_constraintStart_toStartOf="@+id/emailId"
@@ -102,18 +105,19 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:padding="10dp" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/college"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@drawable/text_input_bg"
             android:hint="@string/college_name"
             android:paddingTop="5dp"
-            android:layout_marginTop="20dp"
             app:boxBackgroundMode="none"
             app:layout_constraintEnd_toEndOf="@+id/number"
             app:layout_constraintStart_toStartOf="@+id/number"
@@ -122,17 +126,18 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp"/>
+                android:padding="10dp" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/year"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@drawable/text_input_bg"
             android:hint="@string/years_of_study"
             android:paddingTop="5dp"
-            android:layout_marginTop="20dp"
             app:boxBackgroundMode="none"
             app:layout_constraintStart_toStartOf="@+id/college"
             app:layout_constraintTop_toBottomOf="@+id/college">
@@ -140,8 +145,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:padding="10dp" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -157,8 +163,10 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:inputType="textCapCharacters"
                 android:layout_height="match_parent"
                 android:padding="10dp" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -178,18 +186,18 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:padding="10dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/cPassword"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@drawable/text_input_bg"
             android:hint="@string/confirm_password"
             android:paddingTop="5dp"
-            android:layout_marginTop="20dp"
             app:boxBackgroundMode="none"
             app:layout_constraintEnd_toEndOf="@+id/password"
             app:layout_constraintStart_toStartOf="@+id/password"
@@ -199,18 +207,18 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:padding="10dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/registerCA"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:background="@drawable/edittext_rounded"
             android:backgroundTint="#25242D"
             android:fontFamily="@font/poppins_medium"
-            android:layout_marginTop="40dp"
             android:paddingHorizontal="25dp"
             android:paddingVertical="15dp"
             android:text="@string/register"
