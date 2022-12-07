@@ -17,7 +17,7 @@ class CaRegisterFragment : Fragment() {
         binding = FragmentCaRegisterBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.button.setOnClickListener {
+        binding.registerCA.setOnClickListener {
             showFragment()
         }
 

@@ -38,6 +38,6 @@
     <string name="full_name">Full Name</string>
     <string name="college_name">College Name</string>
     <string name="years_of_study">Years of Study</string>
-    <string name="refferal_code">Refferal Code</string>
     <string name="register">Register</string>
+    <string name="referral">Referral Code</string>
 </resources>
