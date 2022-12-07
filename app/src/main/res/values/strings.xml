@@ -30,7 +30,14 @@
     <string name="password_is_incorrect">password is incorrect</string>
     <string name="sign_in">Sign in</string>
     <string name="already_have_an_account">Already have an account</string>
-    <string name="anwesha_is_in_progress">Anwesha\'23 IIT PATNA </string>
+    <string name="anwesha_is_in_progress">Anwesha IIT PATNA </string>
     <string name="aaaaaa">COMING SOON…</string>
     <string name="register_for_campus_ambassador">Register For campus Ambassador</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="gmail_com">gmail.com</string>
+    <string name="full_name">Full Name</string>
+    <string name="college_name">College Name</string>
+    <string name="years_of_study">Years of Study</string>
+    <string name="refferal_code">Refferal Code</string>
+    <string name="register">Register</string>
 </resources>
