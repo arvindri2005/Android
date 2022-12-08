@@ -37,7 +37,7 @@
         android:fontFamily="@font/stoica_brush"
         android:gravity="center_horizontal"
         android:text="@string/anwesha_is_in_progress"
-        android:textColor="#25242D"
+        android:textColor="#800000"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
