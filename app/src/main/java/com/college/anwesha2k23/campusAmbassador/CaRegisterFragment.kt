@@ -2,7 +2,6 @@ package com.college.anwesha2k23.campusAmbassador
 
 import android.content.Context
 import android.os.Bundle
-import android.os.StrictMode
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +11,9 @@ import com.college.anwesha2k23.databinding.FragmentCaRegisterBinding
 import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MODE_SLIDE
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
 
@@ -37,7 +32,7 @@ class CaRegisterFragment : Fragment() {
             val contact = checkValue(binding.number) ?: return@setOnClickListener
             val college = checkValue(binding.college) ?: return@setOnClickListener
             val years = checkValue(binding.year) ?: return@setOnClickListener
-            val referral = checkValue(binding.referral) ?: return@setOnClickListener
+            val referral = binding.referral
             val pass = checkValue(binding.password) ?: return@setOnClickListener
             val confirmPass = checkValue(binding.cPassword) ?: return@setOnClickListener
             if(pass != confirmPass) {
