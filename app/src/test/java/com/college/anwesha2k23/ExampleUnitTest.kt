@@ -1,5 +1,11 @@
 package com.college.anwesha2k23
 
+
+import android.util.Log
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -13,5 +19,24 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+    }
+
+
+    @Test
+    fun postApi() {
+        val client = OkHttpClient()
+        val mediaType = "application/json".toMediaTypeOrNull()
+        val data = "{\n  \"password\" : \"Yourpassword\",\n  \"phone_number\":  \"123456789\" ,\n  \"email_id\"  : \"divitajmera15@gmail.com\",\n  \"full_name\" : \"Your full_name\" ,\n  \"college_name\" : \" Your college_name\" ,\n  \"refferal_code\" : \"181fvdf\"}"
+        val body = data.toRequestBody(mediaType)
+        val request = Request.Builder()
+            .url("https://backend.anwesha.live/campasambassador/register")
+            .post(body)
+            .addHeader("Content-Type", "application/json")
+            .build()
+
+
+        val response = client.newCall(request).execute()
+        println(response.networkResponse.toString())
+        assert(response.isSuccessful)
     }
 }
