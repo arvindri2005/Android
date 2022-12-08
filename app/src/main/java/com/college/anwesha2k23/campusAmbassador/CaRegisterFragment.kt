@@ -1,5 +1,6 @@
 package com.college.anwesha2k23.campusAmbassador
 
+import android.content.Context
 import android.os.Bundle
 import android.os.StrictMode
 import android.view.LayoutInflater
@@ -60,8 +61,14 @@ class CaRegisterFragment : Fragment() {
 
                 try {
                     val response = client.newCall(request).execute()
-                    if (response.isSuccessful)
+                    if (response.isSuccessful) {
+                        val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+                        with(sharedPref.edit()) {
+                            putBoolean(getString(R.string.user_ca_authentication), true)
+                            apply()
+                        }
                         showFragment()
+                    }
                     else
                         Snackbar.make(view, "Could not verify the user!", Snackbar.LENGTH_LONG)
                             .setAnimationMode(ANIMATION_MODE_SLIDE).show()

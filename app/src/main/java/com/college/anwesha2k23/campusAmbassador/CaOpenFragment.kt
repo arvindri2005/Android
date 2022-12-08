@@ -22,15 +22,20 @@ class CaOpenFragment : Fragment() {
         setAnime()
 
         binding.button.setOnClickListener {
-            showFragment()
+            val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+            if ( sharedPref.contains(getString(R.string.user_ca_authentication)) ) {
+                showFragment(CaStatusFragment())
+                return@setOnClickListener
+            }
+            showFragment(CaRegisterFragment())
         }
 
         return view
     }
 
-    private fun showFragment() {
+    private fun showFragment(fragment: Fragment) {
         val fram = activity?.supportFragmentManager?.beginTransaction()
-        fram?.replace(R.id.CaContainer, CaRegisterFragment())
+        fram?.replace(R.id.CaContainer, fragment)
         fram?.addToBackStack("true")
         fram?.commit()
     }

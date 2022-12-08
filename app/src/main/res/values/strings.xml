@@ -42,4 +42,5 @@
     <string name="referral">Referral Code</string>
     <string name="success">You have registered successfully for Campus Ambassador</string>
     <string name="follow_anwesha_on">Follow Anwesha on</string>
+    <string name="user_ca_authentication">Is CA Authenticated</string>
 </resources>
