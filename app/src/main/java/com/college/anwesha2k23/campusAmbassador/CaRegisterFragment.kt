@@ -17,6 +17,15 @@ class CaRegisterFragment : Fragment() {
         binding = FragmentCaRegisterBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        binding.registerCA.setOnClickListener {
+            showFragment()
+        }
+
         return view
+    }
+    private fun showFragment() {
+        val fram = activity?.supportFragmentManager?.beginTransaction()
+        fram?.replace(R.id.CaContainer, CaStatusFragment())
+        fram?.commit()
     }
 }
