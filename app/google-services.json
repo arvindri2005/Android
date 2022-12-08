@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "90653579339",
+    "project_id": "anwesh2k23",
+    "storage_bucket": "anwesh2k23.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90653579339:android:09c578dac3cd94ddcc15ce",
+        "android_client_info": {
+          "package_name": "com.college.anwesha2k23"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90653579339-4dat6o1ub643lsgrp42q5dnup9v7pjlr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDw5Aq2siR0BTd5eM4af7CAY-4cgPDUjOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90653579339-4dat6o1ub643lsgrp42q5dnup9v7pjlr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
