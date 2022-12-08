@@ -40,4 +40,6 @@
     <string name="years_of_study">Years of Study</string>
     <string name="register">Register</string>
     <string name="referral">Referral Code</string>
+    <string name="success">You have registered successfully for Campus Ambassador</string>
+    <string name="follow_anwesha_on">Follow Anwesha on</string>
 </resources>
