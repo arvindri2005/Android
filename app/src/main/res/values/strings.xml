@@ -1,10 +1,8 @@
 <resources>
-    <string name="app_name">Anwesha2k23</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Anwesha</string>
     <string name="home">Home</string>
-    <string name="gallery">Gallery</string>
     <string name="profile">Profile</string>
+
     <string name="anwesha_portal">Anwesha Portal</string>
     <string name="sign_in_to">Sign in to</string>
     <string name="hint">xxxxxxxxx</string>
@@ -44,4 +42,7 @@
     <string name="follow_anwesha_on">Follow Anwesha on</string>
     <string name="user_ca_authentication">Is CA Authenticated</string>
     <string name="instagram">https://www.instagram.com/anwesha.iitp/</string>
+    <string name="time">8:00 PM</string>
+    <string name="eventName">Garba Night</string>
+    <string name="eventTime">29 September 2022</string>
 </resources>

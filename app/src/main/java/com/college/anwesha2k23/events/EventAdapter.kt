@@ -1,4 +1,4 @@
-package com.college.anwesha2k23.adapter
+package com.college.anwesha2k23.events
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.college.anwesha2k23.databinding.EventDesignBinding
-import com.college.anwesha2k23.dataclass.EventList
 
 class EventAdapter(private val eventList: ArrayList<EventList>): RecyclerView.Adapter<EventAdapter.MyViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

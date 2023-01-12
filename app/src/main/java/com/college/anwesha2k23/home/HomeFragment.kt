@@ -1,4 +1,4 @@
-package com.college.anwesha2k23.Fragments.bottom_nav
+package com.college.anwesha2k23.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.college.anwesha2k23.adapter.EventAdapter
-import com.college.anwesha2k23.dataclass.EventList
 import com.college.anwesha2k23.R
-import com.college.anwesha2k23.databinding.FragmentEventsBinding
+import com.college.anwesha2k23.databinding.FragmentHomeBinding
+import com.college.anwesha2k23.events.EventAdapter
+import com.college.anwesha2k23.events.EventList
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 
-class Events : Fragment() {
-    private var _binding: FragmentEventsBinding? = null
-    private val binding get() = _binding!!
+class HomeFragment : Fragment() {
+    private lateinit var binding: FragmentHomeBinding
     private lateinit var adapter: EventAdapter
     private lateinit var newEventView : RecyclerView
     private lateinit var newEventList : ArrayList<EventList>
@@ -25,20 +25,19 @@ class Events : Fragment() {
     private lateinit var eventDate : Array<String>
     private lateinit var eventTime : Array<String>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentEventsBinding.inflate(inflater, container, false)
+    ): View {
+        binding = FragmentHomeBinding.inflate(inflater,container,false)
+
+        val bottomSheet = binding.eventBottomSheet
+        val behavior = BottomSheetBehavior.from(bottomSheet)
+        behavior.peekHeight = 400
+        behavior.state = BottomSheetBehavior.STATE_COLLAPSED
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getUserData()
@@ -50,15 +49,14 @@ class Events : Fragment() {
         newEventView.adapter = adapter
     }
 
-
     private fun getUserData() {
-        newEventList = arrayListOf<EventList>()
+        newEventList = arrayListOf()
         eventPoster = arrayOf(
             R.drawable.poster,
             R.drawable.event
         )
         eventName = arrayOf(
-            "Garba Night",
+            "DJ Night",
             "To be update"
         )
         eventLocation = arrayOf(
@@ -78,4 +76,6 @@ class Events : Fragment() {
             newEventList.add(event)
         }
     }
+
+
 }

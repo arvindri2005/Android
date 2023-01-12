@@ -1,4 +1,4 @@
-package com.college.anwesha2k23.Auth
+package com.college.anwesha2k23.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -18,7 +18,7 @@ class Signup : Fragment() {
          val view = binding.root
 
          binding.signinbutton.setOnClickListener {
-             loadFragment(Signin())
+             loadFragment(SignIn())
          }
 
         return view

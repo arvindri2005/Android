@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -48,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/eventPosterBorder"
-                android:text="8:00 PM"
+                android:text="@string/time"
                 android:textColor="#393636"
                 android:layout_margin="15dp"
                 android:textStyle="bold"
@@ -64,7 +63,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@id/eventPosterBorder"
-                android:text="Garba Night"
+                android:text="@string/eventName"
                 android:textColor="#8C9EFF"
                 android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/eventPosterBorder"
@@ -88,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/eventName"
                 android:layout_toEndOf="@id/path"
-                android:text="Football Ground"
+                android:text="@string/eventName"
                 android:textColor="#393636"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/path"
@@ -103,7 +102,7 @@
                 android:layout_below="@id/path"
                 android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/eventPosterBorder"
-                android:text="29 September 2022"
+                android:text="@string/eventTime"
                 android:textColor="#393636"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/path"

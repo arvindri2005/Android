@@ -1,4 +1,4 @@
-package com.college.anwesha2k23.Auth
+package com.college.anwesha2k23.auth
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,7 @@ import com.college.anwesha2k23.MainActivity
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.FragmentSigninBinding
 
-class Signin : Fragment() {
+class SignIn : Fragment() {
     private lateinit var binding: FragmentSigninBinding
 
     override fun onCreateView(

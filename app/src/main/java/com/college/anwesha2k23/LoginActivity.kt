@@ -1,8 +1,8 @@
-package com.college.anwesha2k23.Activities
+package com.college.anwesha2k23
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.college.anwesha2k23.Auth.Signin
+import com.college.anwesha2k23.auth.SignIn
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.ActivityLoginBinding
 
@@ -15,18 +15,13 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        executefun()
-    }
-
-    private fun executefun(){
         showFragment()
     }
 
     private fun showFragment() {
         val fram = supportFragmentManager.beginTransaction()
         fram.replace(
-            R.id.login_container, Signin()
+            R.id.login_container, SignIn()
         )
         fram.commit()
     }

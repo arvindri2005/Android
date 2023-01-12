@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.college.anwesha2k23.home.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home">
+    </fragment>
+
+    <fragment
+        android:id="@+id/event"
+        android:name="com.college.anwesha2k23.events.EventsFragment"
+        android:label="Events"
+        tools:layout="@layout/fragment_events">
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.college.anwesha2k23.profile.ProfileFragment"
+        android:label="Events"
+        tools:layout="@layout/fragment_profile"/>
+
+
+</navigation>

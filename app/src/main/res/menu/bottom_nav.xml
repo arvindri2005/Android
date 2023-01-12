@@ -6,17 +6,12 @@
         android:icon="@drawable/home"/>
 
     <item
-        android:title="@string/gallery"
-        android:id="@+id/gallery"
-        android:icon="@drawable/gallery"/>
+        android:title="Events"
+        android:id="@+id/event"
+        android:icon="@drawable/event"/>
 
     <item
         android:title="@string/profile"
         android:id="@+id/profile"
         android:icon="@drawable/profile"/>
-
-    <item
-        android:title="Events"
-        android:id="@+id/event"
-        android:icon="@drawable/event"/>
 </menu>
