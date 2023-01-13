@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".home.HomeFragment">
 
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="120dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/eventBottomSheet"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
@@ -53,6 +64,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

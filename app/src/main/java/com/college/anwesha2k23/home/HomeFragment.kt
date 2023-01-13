@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieDrawable
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.FragmentHomeBinding
 import com.college.anwesha2k23.events.EventAdapter
@@ -47,6 +48,14 @@ class HomeFragment : Fragment() {
         newEventView.setHasFixedSize(true)
         adapter = EventAdapter(newEventList)
         newEventView.adapter = adapter
+
+        setAnime()
+    }
+
+    fun setAnime() {
+        binding.animationView.setAnimation(R.raw.map_replace)
+        binding.animationView.repeatCount = LottieDrawable.INFINITE
+        binding.animationView.playAnimation()
     }
 
     private fun getUserData() {
