@@ -45,4 +45,13 @@
     <string name="time">8:00 PM</string>
     <string name="eventName">Garba Night</string>
     <string name="eventTime">29 September 2022</string>
+    <string name="todo">TODO</string>
+    <string name="user_name">Praveen kumar</string>
+    <string name="profile_menu">PROFILE</string>
+    <string name="sponsors_menu">SPONSORS</string>
+    <string name="team_menu">TEAM</string>
+    <string name="feedback_menu">FEEDBACK</string>
+    <string name="about_us_menu">ABOUT US</string>
+    <string name="faq_menu">FAQ</string>
+    <string name="log_out_menu">LOG OUT</string>
 </resources>
