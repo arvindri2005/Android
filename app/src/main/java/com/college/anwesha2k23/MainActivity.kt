@@ -11,6 +11,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.college.anwesha2k23.campusAmbassador.CaActivity
 import com.college.anwesha2k23.databinding.ActivityMainBinding
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -86,6 +87,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.logout -> {
                     signOut()
+                    true
+                }
+                R.id.ca -> {
+                    val intent = Intent(this, CaActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> {
