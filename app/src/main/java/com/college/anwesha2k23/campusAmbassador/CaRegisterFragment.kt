@@ -2,6 +2,7 @@ package com.college.anwesha2k23.campusAmbassador
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +12,11 @@ import com.college.anwesha2k23.databinding.FragmentCaRegisterBinding
 import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MODE_SLIDE
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+
 
 
 class CaRegisterFragment : Fragment() {
@@ -42,20 +44,11 @@ class CaRegisterFragment : Fragment() {
             binding.cPassword.error = null
 
 
-            Thread {
-                val client = OkHttpClient()
-                val mediaType = "application/json".toMediaTypeOrNull()
-                val data =
-                    "{\n  \"password\" : \"${pass}\",\n  \"phone_number\":  \"$contact\" ,\n  \"email_id\"  : \"$email\",\n  \"full_name\" : \"$name\" ,\n  \"college_name\" : \" $college\" ,\n  \"refferal_code\" : \"$referral\" ,\n  \"years_of_study\" : \"$years\"\n}"
-                val body = data.toRequestBody(mediaType)
-                val request = Request.Builder()
-                    .url("https://backend.anwesha.live/campasambassador/register")
-                    .post(body)
-                    .addHeader("Content-Type", "application/json")
-                    .build()
+            CoroutineScope(Dispatchers.IO).launch {
+                val data = CaInfo(contact, name, email, college, referral.editText?.text.toString(), pass)
 
                 try {
-                    val response = client.newCall(request).execute()
+                    val response = CampusApi.campusApi.registerCA(data)
                     if (response.isSuccessful) {
                         val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
                         with(sharedPref.edit()) {
@@ -64,10 +57,12 @@ class CaRegisterFragment : Fragment() {
                         }
                         showFragment()
                     }
-                    else
+                    else {
+
+                        Log.d("Inside register: ", "${response.code()}, ${response.message()}")
                         Snackbar.make(view, "Could not verify the user!", Snackbar.LENGTH_LONG)
                             .setAnimationMode(ANIMATION_MODE_SLIDE).show()
-
+                    }
                 } catch (e: Exception) {
                     Snackbar.make(
                         view,
@@ -76,7 +71,7 @@ class CaRegisterFragment : Fragment() {
                     )
                         .setAnimationMode(ANIMATION_MODE_SLIDE).show()
                 }
-            }.start()
+            }
 
         }
 

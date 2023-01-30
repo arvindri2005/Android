@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".home.HomeFragment">
 
-    
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
         android:layout_width="match_parent"
@@ -22,9 +21,47 @@
         android:id="@+id/eventBottomSheet"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:paddingBottom="50dp"
         android:background="@drawable/bottom_sheet_bg">
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="4dp"
+            android:background="@drawable/edittext_rounded"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/dayOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Day 1" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/dayTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Day 2" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/dayThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Day 3" />
+
+        </com.google.android.material.chip.ChipGroup>
 
         <TextView
             android:id="@+id/eventText"
@@ -40,32 +77,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/chipGroup" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/eventsList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="120dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/eventText"
             tools:listitem="@layout/event_design" />
 
-        <View
-            android:id="@+id/view2"
-            android:layout_width="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_height="4dp"
-            android:background="@drawable/edittext_rounded"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

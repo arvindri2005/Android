@@ -55,4 +55,6 @@
     <string name="faq_menu">FAQ</string>
     <string name="log_out_menu">LOG OUT</string>
     <string name="campuss_ambassador_menu">CAMPUSS AMBASSADOR</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
