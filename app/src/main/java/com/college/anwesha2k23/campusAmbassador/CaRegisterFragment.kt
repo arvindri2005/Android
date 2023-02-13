@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.college.anwesha2k23.R
+import com.college.anwesha2k23.checkValue
 import com.college.anwesha2k23.databinding.FragmentCaRegisterBinding
 import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MODE_SLIDE
 import com.google.android.material.snackbar.Snackbar
@@ -78,15 +79,15 @@ class CaRegisterFragment : Fragment() {
         return view
     }
 
-    private fun checkValue(input: TextInputLayout): String? {
-        val value = input.editText?.text.toString()
-        if(value == "") {
-            input.error = "Required Field!"
-            return null
-        }
-        input.error = null
-        return value
-    }
+//    private fun checkValue(input: TextInputLayout): String? {
+//        val value = input.editText?.text.toString()
+//        if(value == "") {
+//            input.error = "Required Field!"
+//            return null
+//        }
+//        input.error = null
+//        return value
+//    }
 
 
     private fun showFragment() {

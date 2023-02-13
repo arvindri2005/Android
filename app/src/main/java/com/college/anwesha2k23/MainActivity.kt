@@ -1,12 +1,16 @@
 package com.college.anwesha2k23
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -46,7 +50,15 @@ class MainActivity : AppCompatActivity() {
         actionBarToggle.syncState()
         binding.navBar.setOnClickListener {
             drawerLayout.openDrawer(Gravity.LEFT)
+            findViewById<TextView>(R.id.nameText2).text = getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+                .getString(getString(R.string.user_name), "User")
         }
+
+
+
+
+
+
         binding.bottomNavigation.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home->{
@@ -80,6 +92,8 @@ class MainActivity : AppCompatActivity() {
         selectingItems()
 
     }
+
+
 
     private fun loadNotification() {
         val fragmentManager = supportFragmentManager.beginTransaction()
@@ -156,6 +170,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun signOut() {
         Toast.makeText(this, "Logout clicked", Toast.LENGTH_SHORT).show()
+        val sharedPref = getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putBoolean(getString(R.string.user_login_authentication), false)
+            apply()
+        }
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }

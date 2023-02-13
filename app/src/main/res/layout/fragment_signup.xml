@@ -117,6 +117,52 @@
                 tools:ignore="LabelFor,MissingConstraints,TextFields" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/full_name"
+            android:textColor="#7B8A96"
+            android:layout_marginTop="25dp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/EmailIdText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/EmailIdText"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintStart_toStartOf="@+id/full_name"
+            app:layout_constraintTop_toBottomOf="@+id/full_name"
+            tools:ignore="MissingConstraints">
+
+            <EditText
+                android:id="@+id/anwesha_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:cursorVisible="true"
+                android:focusable="true"
+                android:fontFamily="@font/inter_bold"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColor="#96A4AF"
+                android:textColorHint="#96A4AF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.411"
+                tools:ignore="LabelFor,MissingConstraints,TextFields" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -163,7 +209,7 @@
             app:layout_constraintEnd_toEndOf="@+id/emailIdText"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/emailIdText"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout3"

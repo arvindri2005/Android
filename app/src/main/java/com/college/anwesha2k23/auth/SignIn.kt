@@ -1,5 +1,6 @@
 package com.college.anwesha2k23.auth
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.college.anwesha2k23.MainActivity
+import com.college.anwesha2k23.MyDialog
 import com.college.anwesha2k23.R
+import com.college.anwesha2k23.checkValue
 import com.college.anwesha2k23.databinding.FragmentSigninBinding
+import com.college.anwesha2k23.home.HomeFragment
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SignIn : Fragment() {
     private lateinit var binding: FragmentSigninBinding
@@ -20,9 +29,50 @@ class SignIn : Fragment() {
         binding = FragmentSigninBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.LoginButton.setOnClickListener{
-            val intent = Intent(activity, MainActivity::class.java)
+        val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+
+        val intent = Intent(activity, MainActivity::class.java)
+
+        if(sharedPref.getBoolean(getString(R.string.user_login_authentication), true)) {
             startActivity(intent)
+        }
+
+        val myDialog = MyDialog(requireContext())
+
+        // user login using API
+        binding.LoginButton.setOnClickListener{
+
+            val email = checkValue(binding.AnweshaId) ?: return@setOnClickListener
+            val password = checkValue(binding.AnweshaPassword) ?: return@setOnClickListener
+
+            myDialog.showProgressDialog(this@SignIn)
+            CoroutineScope(Dispatchers.Main).launch {
+                val userLogin = UserLoginInfo(email, password)
+
+                try {
+                    val response = UserAuthApi.userAuthApi.userLogin(userLogin)
+
+                    if(response.body()?.success == "true") {
+                        with(sharedPref.edit()) {
+                            putString(getString(R.string.user_name), response.body()?.name)
+                            putBoolean(getString(R.string.user_login_authentication), true)
+                            apply()
+                        }
+                        startActivity(intent)
+                    }
+
+                    else {
+                        Snackbar.make(view, "Could not verify the user!", Snackbar.LENGTH_LONG)
+                            .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+                    }
+                }
+                catch(e: Exception) {
+                    myDialog.showErrorAlertDialog("Oops! It seems like an error... ${e.message}")
+                }
+                myDialog.dismissProgressDialog()
+            }
+
+
         }
 
         binding.signupbutton.setOnClickListener {
