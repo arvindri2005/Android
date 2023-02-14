@@ -11,6 +11,11 @@
         android:icon="@drawable/event"/>
 
     <item
+        android:title="Calendar"
+        android:id="@+id/calendar"
+        android:icon="@drawable/calendar"/>
+
+    <item
         android:title="@string/profile"
         android:id="@+id/profile"
         android:icon="@drawable/profile"/>

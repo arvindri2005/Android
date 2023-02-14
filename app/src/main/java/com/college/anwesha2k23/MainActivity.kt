@@ -31,9 +31,6 @@ import com.google.android.material.navigation.NavigationView
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var drawerLayout: DrawerLayout
-    private lateinit var actionBarToggle: ActionBarDrawerToggle
-    private lateinit var navView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,24 +38,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         loadFragment(HomeFragment())
-        drawerLayout = binding.drawerLayout
-        actionBarToggle = ActionBarDrawerToggle(this, drawerLayout, 0, 0)
-        drawerLayout.addDrawerListener(actionBarToggle)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBarToggle.syncState()
-        binding.navBar.setOnClickListener {
-            drawerLayout.openDrawer(Gravity.LEFT)
-            findViewById<TextView>(R.id.nameText2).text = getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
-                .getString(getString(R.string.user_name), "User")
-        }
-
-
-
-
-
-
         binding.bottomNavigation.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home->{
@@ -89,8 +69,6 @@ class MainActivity : AppCompatActivity() {
         binding.notificationBtn.setOnClickListener {
             loadNotification()
         }
-        selectingItems()
-
     }
 
 
@@ -109,76 +87,13 @@ class MainActivity : AppCompatActivity() {
         fragmentManager.commit()
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        drawerLayout.openDrawer(navView)
-        return true
-    }
-
-    // override the onBackPressed() function to close the Drawer when the back button is clicked
+    // override the onBackPressed() function to return back to home
     override fun onBackPressed() {
-        val nav = binding.bottomNavigation
-        if (this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            this.drawerLayout.closeDrawer(GravityCompat.START)
-        }
-        else if (nav.selectedItemId != R.id.home) {
+        if (nav.selectedItemId != R.id.home) {
             nav.selectedItemId = R.id.home
         }
         else {
             super.onBackPressed()
         }
     }
-
-
-    private fun selectingItems() {
-        binding.navView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.sponsor -> {
-                    Toast.makeText(this, "sponsor clicked", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.Team -> {
-                    Toast.makeText(this, "Team clicked", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.Feedback -> {
-                    Toast.makeText(this, "Feedback clicked", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.FAQ -> {
-                    Toast.makeText(this, "FAQ clicked", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.Abouts -> {
-                    Toast.makeText(this, "Abouts clicked", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.logout -> {
-                    signOut()
-                    true
-                }
-                R.id.ca -> {
-                    val intent = Intent(this, CaActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-                else -> {
-                    false
-                }
-            }
-        }
-    }
-
-    private fun signOut() {
-        Toast.makeText(this, "Logout clicked", Toast.LENGTH_SHORT).show()
-        val sharedPref = getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
-        with(sharedPref.edit()) {
-            putBoolean(getString(R.string.user_login_authentication), false)
-            apply()
-        }
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-    }
-
 }
-
-
