@@ -17,6 +17,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.college.anwesha2k23.auth.SignIn
+import com.college.anwesha2k23.calendar.CalendarFragment
 import com.college.anwesha2k23.campusAmbassador.CaActivity
 import com.college.anwesha2k23.databinding.ActivityMainBinding
 import com.college.anwesha2k23.events.EventsFragment
@@ -48,10 +49,16 @@ class MainActivity : AppCompatActivity() {
                 R.id.event->{
                     loadFragment(EventsFragment())
                     true
-                }R.id.profile->{
+                }
+                R.id.profile->{
                 loadFragment(ProfileFragment())
                 true
-            }
+                }
+                R.id.calendar->{
+                    loadFragment(CalendarFragment())
+                    true
+                }
+
                 else->{
                     loadFragment(HomeFragment())
                     true
@@ -65,9 +72,6 @@ class MainActivity : AppCompatActivity() {
                     //Do Nothing because home fragment is added in back stack
                 }
             }
-        }
-        binding.notificationBtn.setOnClickListener {
-            loadNotification()
         }
     }
 
@@ -89,8 +93,8 @@ class MainActivity : AppCompatActivity() {
 
     // override the onBackPressed() function to return back to home
     override fun onBackPressed() {
-        if (nav.selectedItemId != R.id.home) {
-            nav.selectedItemId = R.id.home
+        if (binding.bottomNavigation.selectedItemId != R.id.home) {
+            binding.bottomNavigation.selectedItemId = R.id.home
         }
         else {
             super.onBackPressed()

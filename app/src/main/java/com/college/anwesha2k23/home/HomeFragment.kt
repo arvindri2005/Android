@@ -21,19 +21,15 @@ import com.college.anwesha2k23.LoginActivity
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.campusAmbassador.CaActivity
 import com.college.anwesha2k23.databinding.FragmentHomeBinding
-import com.college.anwesha2k23.events.EventAdapter
-import com.college.anwesha2k23.events.EventList
+import com.college.anwesha2k23.events.*
 import com.college.anwesha2k23.home.functions.get_events
 import com.college.anwesha2k23.home.functions.nav_items_functions
-import com.college.anwesha2k23.events.EventsViewModel
-import com.college.anwesha2k23.events.SingleEventFragmente
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.navigation.NavigationView
 
 
 class HomeFragment : Fragment() {
-    private var _binding : FragmentHomeBinding? =  null
-    private val binding get()  = _binding!!
+    private lateinit var binding : FragmentHomeBinding
     private lateinit var eventViewModel: EventsViewModel
     private lateinit var adapter: EventAdapter
     private lateinit var newEventView : RecyclerView
@@ -41,8 +37,6 @@ class HomeFragment : Fragment() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarToggle: ActionBarDrawerToggle
     private lateinit var navView: NavigationView
-
-    private lateinit var mContext: Context
 
 
     override fun onCreateView(
