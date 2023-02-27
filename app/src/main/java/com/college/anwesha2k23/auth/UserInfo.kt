@@ -13,7 +13,7 @@ data class UserRegisterInfo(
 )
 
 data class LoginResponse(
-    val success: String,
+    val success: Boolean,
     val name: String
 )
 

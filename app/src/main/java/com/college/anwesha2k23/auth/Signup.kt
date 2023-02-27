@@ -18,57 +18,58 @@ import kotlinx.coroutines.launch
 
 class Signup : Fragment() {
     private lateinit var binding: FragmentSignupBinding
-     override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-         binding = FragmentSignupBinding.inflate(inflater, container, false)
-         val view = binding.root
+        binding = FragmentSignupBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-         binding.signinbutton.setOnClickListener {
-             loadFragment(SignIn())
-         }
+        binding.signinbutton.setOnClickListener {
+            loadFragment(SignIn())
+        }
 
-         val myDialog = MyDialog(requireContext())
+        val myDialog = MyDialog(requireContext())
 
-         binding.SignupButton.setOnClickListener {
+        binding.SignupButton.setOnClickListener {
 
-             val email = checkValue(binding.EmailId) ?: return@setOnClickListener
-             val phone = checkValue(binding.Contactnumber) ?: return@setOnClickListener
-             val password = checkValue(binding.AnweshaPassword) ?: return@setOnClickListener
-             val confirmPassword = checkValue(binding.ConfirmPassword) ?: return@setOnClickListener
-             val name = checkValue(binding.anweshaFullName) ?: return@setOnClickListener
+            val email = checkValue(binding.EmailId) ?: return@setOnClickListener
+            val phone = checkValue(binding.Contactnumber) ?: return@setOnClickListener
+            val password = checkValue(binding.AnweshaPassword) ?: return@setOnClickListener
+            val confirmPassword = checkValue(binding.ConfirmPassword) ?: return@setOnClickListener
+            val name = checkValue(binding.anweshaFullName) ?: return@setOnClickListener
 
-             if(password != confirmPassword) {
-                 binding.ConfirmPassword.error = "Password does not match!"
-                 return@setOnClickListener
-             }
-             binding.ConfirmPassword.error = null
+            if(password != confirmPassword) {
+                binding.ConfirmPassword.error = "Password does not match!"
+                return@setOnClickListener
+            }
+            binding.ConfirmPassword.error = null
 
 
-             myDialog.showProgressDialog(this@Signup)
+            myDialog.showProgressDialog(this@Signup)
 
-             CoroutineScope(Dispatchers.Main).launch {
-                 val registerUser = UserRegisterInfo(email, password, name, phone)
-                 try {
-                     val response = UserAuthApi.userAuthApi.userRegister(registerUser)
+            CoroutineScope(Dispatchers.Main).launch {
+                val registerUser = UserRegisterInfo(email, password, name, phone)
+                try {
+                    val response = UserAuthApi.userAuthApi.userRegister(registerUser)
 
-                     if(response.isSuccessful) {
-                         Snackbar.make(view, "You have successfully Registered!", Snackbar.LENGTH_LONG)
-                             .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
-                         loadFragment(SignIn())
-                     }
+                    if(response.isSuccessful) {
+                        Snackbar.make(view, "You have successfully Registered!", Snackbar.LENGTH_LONG)
+                            .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+                        loadFragment(SignIn())
+                    }
 
-                     else {
-                         Snackbar.make(view, "Could not register!", Snackbar.LENGTH_LONG)
-                             .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
-                     }
-                 }
-                 catch(e: Exception) {
-                     myDialog.showErrorAlertDialog("Oops! It seems like an error... ${e.message}")
-                 }
-             }
-         }
+                    else {
+                        Snackbar.make(view, "Could not register!", Snackbar.LENGTH_LONG)
+                            .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+                    }
+                }
+                catch(e: Exception) {
+                    myDialog.showErrorAlertDialog("Oops! It seems like an error... ${e.message}")
+                }
+                myDialog.dismissProgressDialog()
+            }
+        }
 
         return view
     }

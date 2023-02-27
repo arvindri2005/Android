@@ -52,7 +52,7 @@ class SignIn : Fragment() {
                 try {
                     val response = UserAuthApi.userAuthApi.userLogin(userLogin)
 
-                    if(response.body()?.success == "true") {
+                    if(response.body()?.success == true) {
                         with(sharedPref.edit()) {
                             putString(getString(R.string.user_name), response.body()?.name)
                             putBoolean(getString(R.string.user_login_authentication), true)
@@ -71,6 +71,8 @@ class SignIn : Fragment() {
                 }
                 myDialog.dismissProgressDialog()
             }
+
+//            startActivity(intent)
 
 
         }

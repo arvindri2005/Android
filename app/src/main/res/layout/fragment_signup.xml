@@ -149,7 +149,7 @@
                 android:focusable="true"
                 android:fontFamily="@font/inter_bold"
                 android:importantForAutofill="no"
-                android:inputType="number"
+                android:inputType="text"
                 android:maxLines="1"
                 android:textColor="#96A4AF"
                 android:textColorHint="#96A4AF"
@@ -241,6 +241,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.411"
+
                 tools:ignore="LabelFor,MissingConstraints,TextFields" />
         </com.google.android.material.textfield.TextInputLayout>
 
