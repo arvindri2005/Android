@@ -2,6 +2,9 @@
     <string name="app_name">Anwesha</string>
     <string name="home">Home</string>
     <string name="profile">Profile</string>
+    <dimen name="event_height_per_hour">70dp</dimen>
+    <dimen name="event_height_per_hour2">40dp</dimen>
+
 
     <string name="anwesha_portal">Anwesha Portal</string>
     <string name="sign_in_to">Sign in to</string>
