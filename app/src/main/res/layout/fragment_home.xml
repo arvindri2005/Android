@@ -44,7 +44,7 @@
         android:id="@+id/eventBottomSheet"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:elevation="30dp"
         android:paddingBottom="50dp"
         android:background="@drawable/bottom_sheet_bg">

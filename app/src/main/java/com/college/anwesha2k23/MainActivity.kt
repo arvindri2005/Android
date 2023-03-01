@@ -1,33 +1,16 @@
 package com.college.anwesha2k23
 
-import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.view.GravityCompat
-import androidx.core.view.get
-import androidx.drawerlayout.widget.DrawerLayout
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
-import com.college.anwesha2k23.auth.SignIn
 import com.college.anwesha2k23.calendar.CalendarFragment
-import com.college.anwesha2k23.campusAmbassador.CaActivity
 import com.college.anwesha2k23.databinding.ActivityMainBinding
 import com.college.anwesha2k23.events.EventsFragment
 import com.college.anwesha2k23.home.HomeFragment
 import com.college.anwesha2k23.notification.NotificationFragment
 import com.college.anwesha2k23.profile.ProfileFragment
-
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
-import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,6 +21,13 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Hide the time and battery percent from the status bar
+        // Set the status bar to be transparent
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        window.statusBarColor = Color.TRANSPARENT
+
+
 
         loadFragment(HomeFragment())
         binding.bottomNavigation.setOnItemSelectedListener {

@@ -1,17 +1,26 @@
-package com.college.anwesha2k23.events
+package com.college.anwesha2k23.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.college.anwesha2k23.R
+import com.bumptech.glide.Glide
 import com.college.anwesha2k23.databinding.EventDesignBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
-class EventAdapter(private val eventList: ArrayList<EventList>): RecyclerView.Adapter<EventAdapter.MyViewHolder>(){
+class EventAdapter( private val context: Context): RecyclerView.Adapter<EventAdapter.MyViewHolder>(){
 
     private lateinit var listener: OnItemClickListener
+    private var eventList: kotlin.collections.ArrayList<EventList> = ArrayList()
+
+    fun setEvents(events: kotlin.collections.ArrayList<EventList>){
+        eventList = events
+
+    }
 
     //Interface that will tell what happens when a event is clicked
     interface OnItemClickListener{
@@ -22,7 +31,6 @@ class EventAdapter(private val eventList: ArrayList<EventList>): RecyclerView.Ad
         listener = mListener
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(EventDesignBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -30,19 +38,27 @@ class EventAdapter(private val eventList: ArrayList<EventList>): RecyclerView.Ad
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = eventList[position]
         val animation = AnimationUtils.loadAnimation(holder.itemView.context, android.R.anim.slide_in_left)
-        holder.eventPoster.setImageResource(currentItem.eventPoster)
-        holder.eventName.text = currentItem.eventName
-        holder.eventLocation.text = currentItem.eventLocation
-        holder.eventDate.text = currentItem.eventDate
-        holder.eventTime.text = currentItem.eventTime
-        holder.itemView.startAnimation(animation)
+        Glide.with(context)
+            .load(currentItem.poster)
+            .into(holder.eventPoster)
+        holder.eventName.text = currentItem.name
+        holder.eventLocation.text = currentItem.venue
 
-        //passing the event on click listener
+        val inputString = currentItem.start_time
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("dd MMMM yyyy, HH:mm", Locale.getDefault())
+
+        inputFormat.timeZone = TimeZone.getTimeZone("UTC+5:30") // set input timezone to UTC
+        val date = inputFormat.parse(inputString!!) // parse input string into date object
+        outputFormat.timeZone = TimeZone.getDefault() // set output timezone to default timezone
+        val outputString = outputFormat.format(date!!) // format date object into output string
+        val separatedStrings = outputString.split(",").map { it.trim() }
+        holder.eventDate.text = separatedStrings[0]
+        holder.eventTime.text = separatedStrings[1]
+        holder.itemView.startAnimation(animation)
         holder.itemView.setOnClickListener{
             listener.onItemClicked(currentItem)
         }
-
-
     }
 
     override fun getItemCount(): Int {
@@ -55,8 +71,6 @@ class EventAdapter(private val eventList: ArrayList<EventList>): RecyclerView.Ad
         val eventLocation: TextView = binding.eventLocation
         val eventDate: TextView = binding.eventDate
         val eventTime: TextView = binding.eventTime
-
-
     }
 
 }
