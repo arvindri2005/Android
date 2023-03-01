@@ -19,7 +19,6 @@ class EventAdapter( private val context: Context): RecyclerView.Adapter<EventAda
 
     fun setEvents(events: kotlin.collections.ArrayList<EventList>){
         eventList = events
-
     }
 
     //Interface that will tell what happens when a event is clicked
