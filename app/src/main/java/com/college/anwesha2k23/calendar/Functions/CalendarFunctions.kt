@@ -1,9 +1,14 @@
-package com.college.anwesha2k23.calendar
+package com.college.anwesha2k23.calendar.Functions
 
 import android.content.Context
-import android.graphics.Color
+import android.os.Bundle
 import com.college.anwesha2k23.R
+import com.college.anwesha2k23.calendar.DataFiles.EventData
+import com.college.anwesha2k23.events.SingleEventFragment
+import com.college.anwesha2k23.home.EventList
+import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class CalendarFunctions() {
 
@@ -48,4 +53,26 @@ class CalendarFunctions() {
         return margins
     }
 
+    fun Usefull_data(eventList: ArrayList<EventList>): ArrayList<EventData>{
+        var neweventList : ArrayList<EventData> = ArrayList()
+        for(i in eventList){
+            neweventList.add(EventData(i.id.toString(),i.name.toString(), getTimeFromDate(i.start_time.toString()), getTimeFromDate(i.end_time.toString()), getDayFromDate(i.start_time.toString()), getDayFromDate(i.end_time.toString())) )
+        }
+        return neweventList
+    }
+
+    fun getTimeFromDate(dateTime: String): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        dateFormat.timeZone = TimeZone.getTimeZone("UTC")
+        val date = dateFormat.parse(dateTime)
+        val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+        return timeFormat.format(date)
+    }
+
+    fun getDayFromDate(dateString: String): String {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        val date = inputFormat.parse(dateString)
+        val outputFormat = SimpleDateFormat("dd", Locale.getDefault())
+        return outputFormat.format(date)
+    }
 }

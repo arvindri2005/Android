@@ -1,16 +1,28 @@
-package com.college.anwesha2k23.calendar
+package com.college.anwesha2k23.calendar.Adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.college.anwesha2k23.R
+import com.college.anwesha2k23.calendar.DataFiles.EventData
+import com.college.anwesha2k23.calendar.Functions.CalendarFunctions
+import com.college.anwesha2k23.home.EventList
 import java.text.SimpleDateFormat
 import java.util.*
 
-class EventAdapter(val events: List<EventData>) : RecyclerView.Adapter<EventAdapter.ViewHolder>() {
+class EventAdapter(val events: List<EventData>, val reallist: ArrayList<EventList>) : RecyclerView.Adapter<EventAdapter.ViewHolder>() {
+
+    private lateinit var listener: OnItemClickListener
+
+    interface OnItemClickListener{
+        fun onItemClicked(event: EventList?)
+    }
+
+    fun setOnItemClickListener(mListener: OnItemClickListener){
+        listener = mListener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -21,6 +33,10 @@ class EventAdapter(val events: List<EventData>) : RecyclerView.Adapter<EventAdap
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val event = events[position]
         holder.bind(event)
+
+        holder.itemView.setOnClickListener{
+            listener.onItemClicked(getDataFileByString(event.id.toString(), reallist))
+        }
     }
 
     override fun getItemCount() = events.size
@@ -33,7 +49,6 @@ class EventAdapter(val events: List<EventData>) : RecyclerView.Adapter<EventAdap
 
         fun bind(event: EventData) {
             textViewTitle.text = event.title
-
 
             itemView.layoutParams.height = CalendarFunctions().retHeight(event, itemView.context)
 
@@ -48,12 +63,12 @@ class EventAdapter(val events: List<EventData>) : RecyclerView.Adapter<EventAdap
 
         }
     }
-
-    fun getTimeFromDate(dateTime: String): String {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
-        dateFormat.timeZone = TimeZone.getTimeZone("UTC")
-        val date = dateFormat.parse(dateTime)
-        val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-        return timeFormat.format(date)
+    fun getDataFileByString(id: String, dataList: ArrayList<EventList>): EventList?{
+        for (data in dataList) {
+            if (data.id == id) {
+                return data
+            }
+        }
+        return null
     }
 }
