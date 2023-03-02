@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 
+const val BASE_URL = "https://backend.anwesha.live/"
 class MyDialog(val context: Context) {
 
     val builder = MaterialAlertDialogBuilder(context)
