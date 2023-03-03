@@ -1,6 +1,7 @@
 package com.college.anwesha2k23.home
 
-import com.college.anwesha2k23.auth.BASE_URL
+
+import com.college.anwesha2k23.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit

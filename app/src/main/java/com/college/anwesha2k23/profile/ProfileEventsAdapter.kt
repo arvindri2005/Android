@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.EventDesignBinding
 import com.college.anwesha2k23.databinding.MyEventDesignBinding
+import com.college.anwesha2k23.home.EventList
 import com.college.anwesha2k23.profile.MyEventDetails
 
 class ProfileEventsAdapter(private val eventList: List<MyEventDetails>): RecyclerView.Adapter<ProfileEventsAdapter.MyViewHolder>(){
