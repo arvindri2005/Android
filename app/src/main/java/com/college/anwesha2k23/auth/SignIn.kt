@@ -3,6 +3,7 @@ package com.college.anwesha2k23.auth
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -46,11 +47,13 @@ class SignIn : Fragment() {
             val password = checkValue(binding.AnweshaPassword) ?: return@setOnClickListener
 
             myDialog.showProgressDialog(this@SignIn)
-            CoroutineScope(Dispatchers.Main).launch {
+            CoroutineScope(Dispatchers.IO).launch {
                 val userLogin = UserLoginInfo(email, password)
 
-                try {
-                    val response = UserAuthApi.userAuthApi.userLogin(userLogin)
+//                try {
+
+
+                    val response = UserAuthApi(requireContext()).userAuthApi.userLogin(userLogin)
 
                     if(response.body()?.success == true) {
                         with(sharedPref.edit()) {
@@ -65,10 +68,11 @@ class SignIn : Fragment() {
                         Snackbar.make(view, "Could not verify the user!", Snackbar.LENGTH_LONG)
                             .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
                     }
-                }
-                catch(e: Exception) {
-                    myDialog.showErrorAlertDialog("Oops! It seems like an error... ${e.message}")
-                }
+//                }
+//                catch(e: Exception) {
+//                    myDialog.showErrorAlertDialog("Oops! It seems like an error... ${e.message}")
+//                    Log.e("inside signin: ", "${e.stackTrace}")
+//                }
                 myDialog.dismissProgressDialog()
             }
 

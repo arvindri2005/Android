@@ -1,7 +1,11 @@
 package com.college.anwesha2k23.profile
 
 
+import android.content.Context
+import com.college.anwesha2k23.AddCookiesInterceptor
 import com.college.anwesha2k23.BASE_URL
+import com.college.anwesha2k23.ReceivedCookiesInterceptor
+import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -19,11 +23,15 @@ interface ProfileApi {
 
 }
 
-object UserProfileApi {
+class UserProfileApi(val context: Context) {
     val profileApi: ProfileApi
     init {
+
+        val client = OkHttpClient.Builder().addInterceptor(AddCookiesInterceptor(context)).build()
+
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .client(client)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
         profileApi = retrofit.create(ProfileApi::class.java)

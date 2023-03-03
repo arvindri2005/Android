@@ -51,7 +51,7 @@ class Signup : Fragment() {
             CoroutineScope(Dispatchers.Main).launch {
                 val registerUser = UserRegisterInfo(email, password, name, phone)
                 try {
-                    val response = UserAuthApi.userAuthApi.userRegister(registerUser)
+                    val response = UserAuthApi(requireContext()).userAuthApi.userRegister(registerUser)
 
                     if(response.isSuccessful) {
                         Snackbar.make(view, "You have successfully Registered!", Snackbar.LENGTH_LONG)

@@ -17,6 +17,11 @@ data class LoginResponse(
     val name: String
 )
 
+data class LogoutResponse(
+    val message: String,
+    val status: String
+)
+
 data class RegisterResponse(
     val message: String
 )

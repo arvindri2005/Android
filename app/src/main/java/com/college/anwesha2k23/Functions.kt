@@ -3,12 +3,20 @@ package com.college.anwesha2k23
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
+import android.content.SharedPreferences
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
+import okhttp3.Interceptor
+
+import okhttp3.Response
+import java.io.IOException
+
+
 
 const val BASE_URL = "https://backend.anwesha.live/"
 class MyDialog(val context: Context) {
@@ -85,3 +93,48 @@ class MyDialog(val context: Context) {
     input.error = null
     return value
 }
+
+
+
+class AddCookiesInterceptor(val context: Context) : Interceptor {
+
+    private val sharedPref: SharedPreferences = context.getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+
+    @Throws(IOException::class)
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val builder = chain.request().newBuilder()
+        for (cookie in sharedPref.getStringSet(context.getString(R.string.cookies), HashSet())!!) {
+            builder.addHeader("Cookie", cookie)
+            Log.v(
+                "OkHttp",
+                "Adding Header: $cookie"
+            ) // This is done so I know which headers are being added; this interceptor is used after the normal logging of OkHttp
+        }
+
+        return chain.proceed(builder.build())
+    }
+}
+
+class ReceivedCookiesInterceptor(val context: Context) : Interceptor {
+
+    private val sharedPref: SharedPreferences = context.getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+
+
+    @Throws(IOException::class)
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val originalResponse = chain.proceed(chain.request())
+        if (!originalResponse.headers("Set-Cookie").isEmpty()) {
+            val cookies: HashSet<String> = HashSet()
+            for (header in originalResponse.headers("Set-Cookie")) {
+                cookies.add(header)
+            }
+
+            with(sharedPref.edit()) {
+                putStringSet(context.getString(R.string.cookies), cookies)
+                apply()
+            }
+        }
+        return originalResponse
+    }
+}
+

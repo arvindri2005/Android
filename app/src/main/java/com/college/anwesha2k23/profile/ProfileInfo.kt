@@ -5,10 +5,10 @@ data class ProfileResponse(
     val full_name: String,
     val phone_number: String,
     val email_id: String,
-    val college_name: String,
-    val age: Int,
+    val college_name: String?,
+    val age: Int?,
     val is_email_verified: Boolean,
-    val gender: String,
+    val gender: String?,
     val is_profile_completed: Boolean
 )
 
