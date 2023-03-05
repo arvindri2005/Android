@@ -1,18 +1,33 @@
 package com.college.anwesha2k23.events
 
+import android.app.Activity
+import android.app.Instrumentation.ActivityResult
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Browser
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.college.anwesha2k23.AddCookiesInterceptor
+import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.FragmentSingleEventBinding
 import com.college.anwesha2k23.home.EventList
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.HashSet
 
 
 class SingleEventFragment : Fragment() {
@@ -87,7 +102,27 @@ class SingleEventFragment : Fragment() {
                     }
                 }
                 else{
-                    Toast.makeText(context, "Registration are over", Toast.LENGTH_SHORT).show()
+                    // call solo or team api depending on event and then redirect to payu
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(event.registration_link))
+
+                    val headers = Bundle()
+
+                    val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+
+                    var cookieString: String = ""
+
+                    for(cookie in sharedPref.getStringSet(getString(R.string.cookies), HashSet())!!) {
+                        cookieString += "$cookie; "
+
+                    }
+
+                    headers.putString("Set-Cookie", cookieString)
+
+                    intent.putExtra(Browser.EXTRA_HEADERS, headers)
+
+                    startActivity(intent)
+
+
                 }
             }
 
@@ -99,4 +134,7 @@ class SingleEventFragment : Fragment() {
 
         return binding.root
     }
+
+
+
 }

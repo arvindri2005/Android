@@ -1,6 +1,8 @@
 package com.college.anwesha2k23.home
 
 
+import android.content.Context
+import com.college.anwesha2k23.AddCookiesInterceptor
 import com.college.anwesha2k23.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -13,9 +15,9 @@ interface EventsApi {
     fun getEvents(): Call<MutableList<EventList>>
 }
 
-object EventsApiService {
+class EventsApiService(val context: Context) {
 
-    private val client = OkHttpClient.Builder().build()
+    private val client = OkHttpClient.Builder().addInterceptor(AddCookiesInterceptor(context)).build()
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())

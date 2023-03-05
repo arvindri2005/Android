@@ -102,7 +102,7 @@ class CalendarFragment : Fragment() {
             }
         }
 
-        eventViewModel.makeApiCall()
+        eventViewModel.makeApiCall(requireContext())
     }
 
     fun getEvent_bydate(date: String, reallist: ArrayList<EventList>){

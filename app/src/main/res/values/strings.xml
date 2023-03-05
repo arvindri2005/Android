@@ -63,4 +63,15 @@
     <!--    <string name="BASE_URL">https://backend.anwesha.live/</string>-->
     <string name="user_login_authentication">Is User Logged In</string>
     <string name="cookies">Cookies</string>
+    <string name="user_type">User Type</string>
+
+    <string name="user_types_prompt">Choose a User Type</string>
+    
+    <string-array name="user_types">
+        <item>Student</item>
+        <item>IITP Student</item>
+        <item>Not a Student</item>
+        <item>Alumni</item>
+        <item>Faculty</item>
+    </string-array>
 </resources>
