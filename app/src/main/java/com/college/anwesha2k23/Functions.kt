@@ -21,7 +21,7 @@ import java.io.IOException
 const val BASE_URL = "https://backend.anwesha.live/"
 class MyDialog(val context: Context) {
 
-    val builder = MaterialAlertDialogBuilder(context)
+    private val builder = MaterialAlertDialogBuilder(context)
     lateinit var dialog : androidx.appcompat.app.AlertDialog
 
     fun showProgressDialog(fragment : Fragment, msg: String? = "Please Wait") {

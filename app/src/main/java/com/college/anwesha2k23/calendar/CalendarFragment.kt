@@ -93,7 +93,7 @@ class CalendarFragment : Fragment() {
                 adapter.setOnItemClickListener(object :
                     EventAdapter.OnItemClickListener {
                     override fun onItemClicked(event: EventList?) {          //when any event from the recycler view is clicked
-                        loadSingleEventFragment(event)
+                        loadSingleEventFragment(event!!)
                     }
                 })
                 recyclerViewEvents.adapter = adapter
@@ -111,19 +111,19 @@ class CalendarFragment : Fragment() {
         adapter.setOnItemClickListener(object :
             EventAdapter.OnItemClickListener {
             override fun onItemClicked(event: EventList?) {          //when any event from the recycler view is clicked
-                loadSingleEventFragment(event)
+                loadSingleEventFragment(event!!)
             }
         })
         recyclerViewEvents.adapter = adapter
     }
 
-    private fun loadSingleEventFragment(event: EventList?){
+    private fun loadSingleEventFragment(event: EventList){
         val bundle = Bundle()
         bundle.putSerializable("event", event)
         val fragment = SingleEventFragment()
         fragment.arguments = bundle
         val fragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-        fragmentTransaction.add(R.id.fragmentContainer, fragment)
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }

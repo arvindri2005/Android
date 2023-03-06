@@ -3,11 +3,8 @@ package com.college.anwesha2k23.events
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.college.anwesha2k23.R
-import com.college.anwesha2k23.databinding.EventDesignBinding
 import com.college.anwesha2k23.databinding.MyEventDesignBinding
 import com.college.anwesha2k23.home.EventList
 import com.college.anwesha2k23.profile.MyEventDetails

@@ -1,10 +1,8 @@
 package com.college.anwesha2k23
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.college.anwesha2k23.auth.SignIn
-import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {

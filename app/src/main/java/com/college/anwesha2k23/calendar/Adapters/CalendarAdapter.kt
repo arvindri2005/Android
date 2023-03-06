@@ -9,7 +9,6 @@ import com.college.anwesha2k23.R
 import com.college.anwesha2k23.calendar.DataFiles.EventData
 import com.college.anwesha2k23.calendar.Functions.CalendarFunctions
 import com.college.anwesha2k23.home.EventList
-import java.text.SimpleDateFormat
 import java.util.*
 
 class EventAdapter(val events: List<EventData>, val reallist: ArrayList<EventList>) : RecyclerView.Adapter<EventAdapter.ViewHolder>() {

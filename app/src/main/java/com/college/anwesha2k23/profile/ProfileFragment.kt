@@ -7,15 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.college.anwesha2k23.MyDialog
-import com.college.anwesha2k23.auth.AuthApi
-import com.college.anwesha2k23.auth.UserAuthApi
 import com.college.anwesha2k23.databinding.FragmentProfileBinding
 import com.college.anwesha2k23.events.ProfileEventsAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
 
 
 class ProfileFragment : Fragment() {

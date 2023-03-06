@@ -3,17 +3,15 @@ package com.college.anwesha2k23.auth
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.college.anwesha2k23.MainActivity
 import com.college.anwesha2k23.MyDialog
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.checkValue
 import com.college.anwesha2k23.databinding.FragmentSigninBinding
-import com.college.anwesha2k23.home.HomeFragment
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
@@ -68,15 +66,9 @@ class SignIn : Fragment() {
                         Snackbar.make(view, "Could not verify the user!", Snackbar.LENGTH_LONG)
                             .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
                     }
-//                }
-//                catch(e: Exception) {
-//                    myDialog.showErrorAlertDialog("Oops! It seems like an error... ${e.message}")
-//                    Log.e("inside signin: ", "${e.stackTrace}")
-//                }
                 myDialog.dismissProgressDialog()
             }
 
-//            startActivity(intent)
 
 
         }

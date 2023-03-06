@@ -4,10 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import com.college.anwesha2k23.LoginActivity
 import com.college.anwesha2k23.R
-import com.college.anwesha2k23.campusAmbassador.CaActivity
 import com.college.anwesha2k23.databinding.FragmentHomeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -54,11 +52,6 @@ class nav_items_functions(val binding: FragmentHomeBinding, val context: Context
                         }
                     }
 
-                    true
-                }
-                R.id.ca -> {
-                    val intent = Intent(context, CaActivity::class.java)
-                    context.startActivity(intent)
                     true
                 }
                 else -> {
