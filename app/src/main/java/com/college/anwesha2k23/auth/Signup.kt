@@ -85,12 +85,25 @@ class Signup : Fragment() {
     }
 
     private fun checkSpinnerValue(spinner: Spinner) : String? {
-        val value = spinner.selectedItem.toString()
+
+        var value = spinner.selectedItem.toString()
+
 
         if(value.isBlank()) {
             Toast.makeText(context, "Please Enter the user type", Toast.LENGTH_SHORT).show()
             return null
         }
+
+
+        value = when(value) {
+            "Student" -> "student"
+            "IITP Student" -> "iitp_student"
+            "Not a Student" -> "non-student"
+            "Alumni" -> "alumni"
+            "Faculty" -> "faculty"
+            else -> "non-student"
+        }
+
 
         return value
 
