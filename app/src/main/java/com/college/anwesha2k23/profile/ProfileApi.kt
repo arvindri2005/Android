@@ -4,11 +4,14 @@ package com.college.anwesha2k23.profile
 import android.content.Context
 import com.college.anwesha2k23.AddCookiesInterceptor
 import com.college.anwesha2k23.BASE_URL
+import com.college.anwesha2k23.auth.RegisterResponse
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 
 
 interface ProfileApi {
@@ -18,6 +21,9 @@ interface ProfileApi {
 
     @GET("event/myevents")
     suspend fun getMyEvents() : Response<MyEvents>
+
+    @POST("user/editprofile")
+    suspend fun updateProfile(@Body updateProfile: UpdateProfile) : Response<RegisterResponse>
 
 }
 

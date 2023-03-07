@@ -11,6 +11,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".profile.ProfileFragment">
+
+        <ImageView
+            android:id="@+id/edit_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/edit_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.916"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/profile_image"
             android:layout_width="wrap_content"
@@ -21,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <EditText
             android:id="@+id/profile_name"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -30,6 +42,12 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="20dp"
             android:hint="Username"
+            android:background="@android:color/transparent"
+            android:inputType="none"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:textAlignment="center"
             />
 
@@ -58,7 +76,7 @@
                 android:layout_marginEnd="15dp"
                 android:text="Anwesha ID" />
 
-            <TextView
+            <EditText
                 android:id="@+id/anwesha_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,6 +84,12 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginStart="12dp"
                 android:textColor="@color/Red"
+                android:background="@android:color/transparent"
+                android:inputType="none"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 tools:text="ANWe720bff" />
 
             <TextView
@@ -77,7 +101,7 @@
                 android:layout_marginEnd="15dp"
                 android:text="College Name" />
 
-            <TextView
+            <EditText
                 android:id="@+id/college_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,6 +109,12 @@
                 android:layout_marginTop="105dp"
                 android:layout_marginStart="12dp"
                 android:textColor="@color/Red"
+                android:background="@android:color/transparent"
+                android:inputType="none"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 tools:text="IIT Patna" />
 
         </com.google.android.material.card.MaterialCardView>
@@ -106,7 +136,7 @@
                 android:textColor="#98FFFFFF"
                 android:text="Phone Number" />
 
-            <TextView
+            <EditText
                 android:id="@+id/phone_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -114,6 +144,12 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginStart="12dp"
                 android:textColor="@color/white"
+                android:background="@android:color/transparent"
+                android:inputType="none"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 tools:text="72459348432" />
             <TextView
                 android:layout_width="wrap_content"
@@ -123,16 +159,22 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="15dp"
                 android:textColor="#98FFFFFF"
-                tools:text="test@gmail.com" />
+                android:text="Email" />
 
-            <TextView
+            <EditText
                 android:id="@+id/email_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:layout_marginTop="105dp"
                 android:layout_marginStart="12dp"
                 android:textColor="@color/white"
+                android:background="@android:color/transparent"
+                android:inputType="none"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:text="XXXXXXXXXX" />
         </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
@@ -157,5 +199,39 @@
 
 
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:hint="Age"
+            app:layout_constraintEnd_toStartOf="@+id/profile_name"
+            app:layout_constraintHorizontal_bias="0.56"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+        <EditText
+            android:id="@+id/gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:hint="Gender"
+            app:layout_constraintStart_toEndOf="@+id/profile_name"
+            app:layout_constraintHorizontal_bias="0.56"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

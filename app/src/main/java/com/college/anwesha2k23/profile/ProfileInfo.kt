@@ -29,3 +29,13 @@ data class MyEvents(
     val solo: List<MyEventDetails>,
     val team: List<MyEventDetails>
 )
+
+data class UpdateProfile(
+    val phone_number : String,
+    val full_name : String,
+    val college_name : String? = "",
+    val age : Int? = 0,
+    val user_type : String? = "new_user_type",
+    val instagram_id : String? = "new instagram_id",
+    val facebook_id : String? = "New_facebook_id"
+)

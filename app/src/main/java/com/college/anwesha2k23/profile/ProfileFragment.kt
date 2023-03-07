@@ -1,12 +1,20 @@
 package com.college.anwesha2k23.profile
 
+import android.os.Build
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.FragmentProfileBinding
 import com.college.anwesha2k23.events.ProfileEventsAdapter
 import kotlinx.coroutines.CoroutineScope
@@ -17,6 +25,7 @@ import kotlinx.coroutines.launch
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding?= null
     private val binding get() = _binding!!
+    private var isEditProfile = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +42,13 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.myEvents.adapter = ProfileEventsAdapter(arrayListOf())
+
+
 
 
 
@@ -51,11 +63,13 @@ class ProfileFragment : Fragment() {
                 val userInfo = response.body()!!
                 Log.d("userinfo: ", "${userInfo.anwesha_id}, ${userInfo.full_name}")
                 requireActivity().runOnUiThread ( Runnable {
-                    binding.profileName.text = userInfo.full_name
-                    binding.anweshaId.text = userInfo.anwesha_id
-                    binding.phoneNumber.text = userInfo.phone_number
-                    binding.emailId.text = userInfo.email_id
-                    binding.collegeName.text = userInfo.college_name ?: "XXXXXXXXXXX"
+                    binding.profileName.setText(userInfo.full_name)
+                    binding.anweshaId.setText(userInfo.anwesha_id)
+                    binding.phoneNumber.setText(userInfo.phone_number)
+                    binding.emailId.setText(userInfo.email_id)
+                    binding.collegeName.setText(userInfo.college_name ?: "XXXXXXXXXXX")
+                    binding.age.setText(userInfo.age ?: 0)
+                    binding.gender.setText(userInfo.gender ?: "XXXXXXXX")
                 } )
             }
             else {
@@ -73,5 +87,75 @@ class ProfileFragment : Fragment() {
                 })
             }
         }
+
+        binding.editProfile.setOnClickListener {
+            val animation =
+                AnimationUtils.loadAnimation(context, com.airbnb.lottie.R.anim.abc_fade_in)
+            it.startAnimation(animation)
+            if(isEditProfile) {
+                setEditable(false, binding.profileName, InputType.TYPE_NULL)
+                setEditable(false, binding.phoneNumber, InputType.TYPE_NULL)
+                setEditable(false, binding.emailId, InputType.TYPE_NULL)
+                setEditable(false, binding.collegeName, InputType.TYPE_NULL)
+                CoroutineScope(Dispatchers.IO).launch {
+                    editProfile()
+                    isEditProfile = !isEditProfile
+                    (it as ImageView).setImageDrawable(
+                        ResourcesCompat.getDrawable(
+                            resources,
+                            R.drawable.edit_profile,
+                            resources.newTheme()
+                        )
+                    )
+                }
+
+            }
+            else {
+                (it as ImageView).setImageDrawable(
+                    ResourcesCompat.getDrawable(
+                        resources,
+                        R.drawable.correct,
+                        resources.newTheme()
+                    )
+                )
+                setEditable(true, binding.profileName, InputType.TYPE_CLASS_TEXT)
+                setEditable(true, binding.phoneNumber, InputType.TYPE_CLASS_PHONE)
+                setEditable(true, binding.emailId, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
+                setEditable(true, binding.collegeName, InputType.TYPE_CLASS_TEXT)
+                setEditable(true, binding.age, InputType.TYPE_CLASS_NUMBER)
+                setEditable(true, binding.gender, InputType.TYPE_CLASS_TEXT)
+                isEditProfile = !isEditProfile
+            }
+        }
     }
+
+    private fun setEditable(editable: Boolean, field: EditText, inputType: Int) {
+        field.isClickable = editable
+        field.isFocusable = editable
+        field.isFocusableInTouchMode = editable
+        field.isCursorVisible = editable
+        field.inputType = inputType
+    }
+
+
+    private suspend fun editProfile() {
+        val name = binding.profileName.text.toString()
+        val phone = binding.phoneNumber.text.toString()
+        val college = binding.collegeName.text.toString()
+        val age = binding.age.text.toString().toInt()
+
+        val updateProfile = UpdateProfile(phone, name, college, age)
+
+        val response = UserProfileApi(requireContext()).profileApi.updateProfile(updateProfile)
+
+        if(response.isSuccessful) {
+            Toast.makeText(context, "Profile Updated Successfully", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            Toast.makeText(context, "Could not update profile", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+
 }
