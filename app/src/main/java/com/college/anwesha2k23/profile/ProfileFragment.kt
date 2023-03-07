@@ -2,6 +2,7 @@ package com.college.anwesha2k23.profile
 
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
@@ -68,8 +69,9 @@ class ProfileFragment : Fragment() {
                     binding.phoneNumber.setText(userInfo.phone_number)
                     binding.emailId.setText(userInfo.email_id)
                     binding.collegeName.setText(userInfo.college_name ?: "XXXXXXXXXXX")
-                    binding.age.setText(userInfo.age ?: 0)
-                    binding.gender.setText(userInfo.gender ?: "XXXXXXXX")
+//                    binding.profileAge.setText(userInfo.age ?: 0)
+                    binding.profileAge.setText(userInfo.age.toString().ifBlank { "0" })
+                    binding.profileGender.setText(userInfo.gender ?: "XXXXXXXX")
                 } )
             }
             else {
@@ -97,17 +99,20 @@ class ProfileFragment : Fragment() {
                 setEditable(false, binding.phoneNumber, InputType.TYPE_NULL)
                 setEditable(false, binding.emailId, InputType.TYPE_NULL)
                 setEditable(false, binding.collegeName, InputType.TYPE_NULL)
+                setEditable(false, binding.profileAge, InputType.TYPE_CLASS_NUMBER)
+                setEditable(false, binding.profileGender, InputType.TYPE_CLASS_TEXT)
                 CoroutineScope(Dispatchers.IO).launch {
                     editProfile()
                     isEditProfile = !isEditProfile
-                    (it as ImageView).setImageDrawable(
-                        ResourcesCompat.getDrawable(
-                            resources,
-                            R.drawable.edit_profile,
-                            resources.newTheme()
-                        )
-                    )
+
                 }
+                (it as ImageView).setImageDrawable(
+                    ResourcesCompat.getDrawable(
+                        resources,
+                        R.drawable.edit_profile,
+                        resources.newTheme()
+                    )
+                )
 
             }
             else {
@@ -122,8 +127,8 @@ class ProfileFragment : Fragment() {
                 setEditable(true, binding.phoneNumber, InputType.TYPE_CLASS_PHONE)
                 setEditable(true, binding.emailId, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
                 setEditable(true, binding.collegeName, InputType.TYPE_CLASS_TEXT)
-                setEditable(true, binding.age, InputType.TYPE_CLASS_NUMBER)
-                setEditable(true, binding.gender, InputType.TYPE_CLASS_TEXT)
+                setEditable(true, binding.profileAge, InputType.TYPE_CLASS_NUMBER)
+                setEditable(true, binding.profileGender, InputType.TYPE_CLASS_TEXT)
                 isEditProfile = !isEditProfile
             }
         }
@@ -142,17 +147,18 @@ class ProfileFragment : Fragment() {
         val name = binding.profileName.text.toString()
         val phone = binding.phoneNumber.text.toString()
         val college = binding.collegeName.text.toString()
-        val age = binding.age.text.toString().toInt()
+        val age = binding.profileAge.text.toString().toInt()
 
         val updateProfile = UpdateProfile(phone, name, college, age)
 
         val response = UserProfileApi(requireContext()).profileApi.updateProfile(updateProfile)
 
-        if(response.isSuccessful) {
-            Toast.makeText(context, "Profile Updated Successfully", Toast.LENGTH_SHORT).show()
-        }
-        else {
-            Toast.makeText(context, "Could not update profile", Toast.LENGTH_SHORT).show()
+        requireActivity().runOnUiThread {
+            if (response.isSuccessful) {
+                Toast.makeText(context, "Profile Updated Successfully", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Could not update profile", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
