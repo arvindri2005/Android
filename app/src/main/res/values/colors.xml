@@ -181,6 +181,16 @@
         <item>@color/darkgreen</item>
         <item>@color/darkorange</item>
         <item>@color/darkred</item>
+        <item>@color/Teal</item>
+        <item>@color/Coral</item>
+        <item>@color/DeepPink</item>
+        <item>@color/DeepSkyBlue</item>
+        <item>@color/SlateBlue</item>
+        <item>@color/SlateGray</item>
+        <item>@color/Azure</item>
+        <item>@color/SaddleBrown</item>
+        <item>@color/SandyBrown</item>
+        <item>@color/PaleGoldenrod</item>
     </integer-array>
 
 </resources>

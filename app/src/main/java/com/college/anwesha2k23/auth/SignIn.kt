@@ -32,10 +32,6 @@ class SignIn : Fragment() {
 
         val intent = Intent(activity, MainActivity::class.java)
 
-        if(sharedPref.getBoolean(getString(R.string.user_login_authentication), false)) {
-            startActivity(intent)
-        }
-
         val myDialog = MyDialog(requireContext())
 
         // user login using API

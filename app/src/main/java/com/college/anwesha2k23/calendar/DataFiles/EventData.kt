@@ -6,5 +6,6 @@ data class EventData(
     val startTime: String,
     val endTime: String,
     val startdate: String,
-    val enddate: String
-)
+    val enddate: String,
+    val venue: String
+    )
