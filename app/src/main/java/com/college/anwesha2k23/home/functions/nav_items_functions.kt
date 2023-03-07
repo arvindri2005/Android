@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
-import com.college.anwesha2k23.LoginActivity
+import com.college.anwesha2k23.auth.LoginActivity
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.FragmentHomeBinding
 import kotlinx.coroutines.CoroutineScope

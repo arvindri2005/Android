@@ -2,6 +2,7 @@ package com.college.anwesha2k23.calendar.Functions
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.calendar.DataFiles.EventData
 import com.college.anwesha2k23.events.SingleEventFragment
@@ -11,6 +12,12 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class CalendarFunctions() {
+
+    fun get_events_by_location(filteredList: List<EventData>): Map<String, List<EventData>>{
+        val eventDataByLocationMap: Map<String, List<EventData>> = filteredList.groupBy { it.venue }
+        Log.d("123", eventDataByLocationMap.toString())
+        return eventDataByLocationMap
+    }
 
     fun retHeight(event: EventData, context: Context): Int{
         val eventHeightPerHour = context.resources.getDimension(R.dimen.event_height_per_hour)
@@ -53,19 +60,20 @@ class CalendarFunctions() {
         return margins
     }
 
-    fun Usefull_data(eventList: ArrayList<EventList>): ArrayList<EventData>{
+    fun Usefull_data(eventList: ArrayList<EventList>): List<EventData>{
         var neweventList : ArrayList<EventData> = ArrayList()
         for(i in eventList){
-            neweventList.add(EventData(i.id.toString(),i.name.toString(), getTimeFromDate(i.start_time.toString()), getTimeFromDate(i.end_time.toString()), getDayFromDate(i.start_time.toString()), getDayFromDate(i.end_time.toString())) )
+            neweventList.add(EventData(i.id.toString(),i.name.toString(), getTimeFromDate(i.start_time.toString()), getTimeFromDate(i.end_time.toString()), getDayFromDate(i.start_time.toString()), getDayFromDate(i.end_time.toString()), i.venue.toString()) )
         }
         return neweventList
     }
 
     fun getTimeFromDate(dateTime: String): String {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
-        dateFormat.timeZone = TimeZone.getTimeZone("UTC")
+        dateFormat.timeZone = TimeZone.getTimeZone("UTC+5:30")
         val date = dateFormat.parse(dateTime)
         val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+        timeFormat.timeZone = TimeZone.getTimeZone("UTC")
         return timeFormat.format(date)
     }
 

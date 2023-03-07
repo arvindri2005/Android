@@ -7,7 +7,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_marginVertical="10dp"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginStart="14dp"
         android:layout_marginTop="13dp"
@@ -16,13 +16,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:background="#FFFFFF">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/eventPosterBorder"
                 android:layout_width="130.72dp"
-                android:layout_height="180dp"
+                android:layout_height="160dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
@@ -35,7 +35,7 @@
                 <ImageView
                     android:id="@+id/eventPoster"
                     android:layout_width="130dp"
-                    android:layout_height="180dp"
+                    android:layout_height="160dp"
                     android:contentDescription="@string/event_poster"
                     android:scaleType="fitXY"
                     android:src="@drawable/poster" />
@@ -46,11 +46,13 @@
                 android:id="@+id/eventTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
                 android:layout_toEndOf="@id/eventPosterBorder"
+                android:fontFamily="@font/poppins_medium"
                 android:text="@string/time"
                 android:textColor="#393636"
-                android:layout_margin="15dp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -64,7 +66,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@id/eventPosterBorder"
                 android:text="@string/eventName"
-                android:textColor="#8C9EFF"
+                android:textColor="#2A377D"
                 android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/eventPosterBorder"
                 app:layout_constraintTop_toTopOf="@+id/eventPosterBorder" />
@@ -88,6 +90,7 @@
                 android:layout_below="@id/eventName"
                 android:layout_toEndOf="@id/path"
                 android:text="@string/eventName"
+                android:layout_marginLeft="10dp"
                 android:textColor="#393636"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/path"
@@ -104,7 +107,7 @@
                 android:layout_toEndOf="@id/eventPosterBorder"
                 android:text="@string/eventTime"
                 android:textColor="#393636"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/path"
                 app:layout_constraintTop_toBottomOf="@+id/eventLocation" />
         </androidx.constraintlayout.widget.ConstraintLayout>

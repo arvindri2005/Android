@@ -104,6 +104,7 @@
             android:id="@+id/chipGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2">
@@ -111,18 +112,23 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/dayOne"
                 android:layout_width="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="5dp"
                 android:layout_height="wrap_content"
                 android:text="Day 1" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/dayTwo"
                 android:layout_width="wrap_content"
+                android:layout_marginHorizontal="5dp"
                 android:layout_height="wrap_content"
                 android:text="Day 2" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/dayThree"
                 android:layout_width="wrap_content"
+                android:layout_marginHorizontal="5dp"
                 android:layout_height="wrap_content"
                 android:text="Day 3" />
 
@@ -149,12 +155,11 @@
             android:id="@+id/eventsList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="135dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/eventText"
             tools:listitem="@layout/event_design" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

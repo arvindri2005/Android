@@ -1,26 +1,88 @@
 package com.college.anwesha2k23.calendar.Adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.HorizontalScrollView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.college.anwesha2k23.R
+import com.college.anwesha2k23.calendar.CustomItemDecoration
 import com.college.anwesha2k23.calendar.DataFiles.EventData
 import com.college.anwesha2k23.calendar.Functions.CalendarFunctions
 import com.college.anwesha2k23.home.EventList
+import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
-class EventAdapter(val events: List<EventData>, val reallist: ArrayList<EventList>) : RecyclerView.Adapter<EventAdapter.ViewHolder>() {
+class EventAdapter(val reallist: ArrayList<EventList>, private val onItemClickListener: OnItemClickListener) :
+    RecyclerView.Adapter<EventAdapter.ViewHolder>() {
+    var events: MutableList<EventData> = mutableListOf()
+    var eventList: List<List<EventData>> = emptyList()
+    var locationlist: List<String> = emptyList()
 
-    private lateinit var listener: OnItemClickListener
-
-    interface OnItemClickListener{
-        fun onItemClicked(event: EventList?)
+    interface OnItemClickListener {
+        fun onItemClick(verticalItem: EventList)
     }
 
-    fun setOnItemClickListener(mListener: OnItemClickListener){
-        listener = mListener
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.vertical_rv, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val location: String = locationlist[position]
+        val events: List<EventData> = eventList[position]
+        Log.d("12345", events.toString())
+        holder.bind(location, events)
+    }
+
+    override fun getItemCount() = eventList.size
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        private val tv_location = itemView.findViewById<TextView>(R.id.LocationName)
+        private val verticalRecyclerView: RecyclerView =
+            itemView.findViewById(R.id.rv_events)
+
+        fun bind(location: String, event: List<EventData>) {
+            tv_location.text = location
+            val verticalAdapter = VerticalAdapter(event, reallist, object : VerticalAdapter.OnItemClickListener {
+                override fun onItemClick(verticalItem: EventList) {
+                    onItemClickListener.onItemClick(verticalItem)
+                }
+            })
+
+            verticalRecyclerView.layoutManager =
+                LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
+            verticalRecyclerView.isNestedScrollingEnabled = false
+            verticalRecyclerView.adapter = verticalAdapter
+
+        }
+    }
+
+    fun setList(list: MutableList<EventData>, ls1: List<List<EventData>>,ls2: List<String>) {
+        events.clear()
+        events = list
+        eventList = ls1
+        locationlist = ls2
+        notifyDataSetChanged()
+    }
+
+}
+class VerticalAdapter(
+    val data: List<EventData>,
+    val reallist: ArrayList<EventList>,
+    private val onItemClickListener: OnItemClickListener
+) : RecyclerView.Adapter<VerticalAdapter.ViewHolder>() {
+
+    var sorted_data: List<EventData> = data.sortedBy { it.startTime.split(":").first().toInt() }
+
+    interface OnItemClickListener {
+        fun onItemClick(verticalItem: EventList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,24 +92,23 @@ class EventAdapter(val events: List<EventData>, val reallist: ArrayList<EventLis
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val event = events[position]
-        holder.bind(event)
-
-        holder.itemView.setOnClickListener{
-            listener.onItemClicked(getDataFileByString(event.id.toString(), reallist))
-        }
+        holder.bind(sorted_data[position])
     }
 
-    override fun getItemCount() = events.size
+    override fun getItemCount(): Int {
+        return sorted_data.size
+    }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val textViewTitle = itemView.findViewById<TextView>(R.id.textView4)
+        private val titleTextView: TextView = itemView.findViewById(R.id.tv_event_title)
         private val light = itemView.findViewById<View>(R.id.view_light)
         private val dark = itemView.findViewById<View>(R.id.view_dark)
 
         fun bind(event: EventData) {
-            textViewTitle.text = event.title
+            itemView.setOnClickListener {
+                onItemClickListener.onItemClick(getDataFileByString(event.id, reallist)!!)
+            }
+            titleTextView.text = event.title
 
             itemView.layoutParams.height = CalendarFunctions().retHeight(event, itemView.context)
 
@@ -59,10 +120,10 @@ class EventAdapter(val events: List<EventData>, val reallist: ArrayList<EventLis
             view.setBackgroundColor(randomColor)
             view2.setBackgroundColor(randomColor)
             view.alpha = 0.1f
-
         }
     }
-    fun getDataFileByString(id: String, dataList: ArrayList<EventList>): EventList?{
+
+    private fun getDataFileByString(id: String, dataList: ArrayList<EventList>): EventList? {
         for (data in dataList) {
             if (data.id == id) {
                 return data
