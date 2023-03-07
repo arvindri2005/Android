@@ -1,11 +1,12 @@
 package com.college.anwesha2k23.auth
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.college.anwesha2k23.MyDialog
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.checkValue
@@ -38,6 +39,8 @@ class Signup : Fragment() {
             val password = checkValue(binding.AnweshaPassword) ?: return@setOnClickListener
             val confirmPassword = checkValue(binding.ConfirmPassword) ?: return@setOnClickListener
             val name = checkValue(binding.anweshaFullName) ?: return@setOnClickListener
+            val college = checkValue(binding.anweshaCollegeName) ?: return@setOnClickListener
+            val userType = checkSpinnerValue(binding.anweshaUserType) ?: return@setOnClickListener
 
             if(password != confirmPassword) {
                 binding.ConfirmPassword.error = "Password does not match!"
@@ -49,9 +52,9 @@ class Signup : Fragment() {
             myDialog.showProgressDialog(this@Signup)
 
             CoroutineScope(Dispatchers.Main).launch {
-                val registerUser = UserRegisterInfo(email, password, name, phone)
+                val registerUser = UserRegisterInfo(email, password, name, phone, college, userType)
                 try {
-                    val response = UserAuthApi.userAuthApi.userRegister(registerUser)
+                    val response = UserAuthApi(requireContext()).userAuthApi.userRegister(registerUser)
 
                     if(response.isSuccessful) {
                         Snackbar.make(view, "You have successfully Registered!", Snackbar.LENGTH_LONG)
@@ -78,5 +81,30 @@ class Signup : Fragment() {
         val fragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
         fragmentTransaction.replace(R.id.login_container, fragment)
         fragmentTransaction.commit()
+    }
+
+    private fun checkSpinnerValue(spinner: Spinner) : String? {
+
+        var value = spinner.selectedItem.toString()
+
+
+        if(value.isBlank()) {
+            Toast.makeText(context, "Please Enter the user type", Toast.LENGTH_SHORT).show()
+            return null
+        }
+
+
+        value = when(value) {
+            "Student" -> "student"
+            "IITP Student" -> "iitp_student"
+            "Not a Student" -> "non-student"
+            "Alumni" -> "alumni"
+            "Faculty" -> "faculty"
+            else -> "non-student"
+        }
+
+
+        return value
+
     }
 }

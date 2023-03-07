@@ -9,14 +9,7 @@
         android:id="@+id/home"
         android:name="com.college.anwesha2k23.home.HomeFragment"
         android:label="@string/home"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_home_to_profile"
-            app:destination="@id/profile" />
-        <action
-            android:id="@+id/action_home_to_event"
-            app:destination="@id/event" />
-    </fragment>
+        tools:layout="@layout/fragment_home"/>
 
 
     <fragment

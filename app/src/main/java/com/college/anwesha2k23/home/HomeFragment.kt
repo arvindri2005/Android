@@ -1,9 +1,11 @@
 package com.college.anwesha2k23.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -12,15 +14,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.LottieDrawable
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.FragmentHomeBinding
 import com.college.anwesha2k23.events.SingleEventFragment
 import com.college.anwesha2k23.home.functions.nav_items_functions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import java.text.SimpleDateFormat
+import java.util.*
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment()  {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var eventViewModel: EventsViewModel
     private lateinit var eventRecyclerView: RecyclerView
@@ -28,6 +31,7 @@ class HomeFragment : Fragment() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarToggle: ActionBarDrawerToggle
     private lateinit var adapter: EventAdapter
+
 
 
     override fun onCreateView(
@@ -41,13 +45,33 @@ class HomeFragment : Fragment() {
         drawerLayout.addDrawerListener(actionBarToggle)
         actionBarToggle.syncState()
 
+
+        val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+
+
         binding.navBar.setOnClickListener {
+            requireActivity().findViewById<TextView>(R.id.nameText2).text = sharedPref.getString(getString(R.string.user_name), "User")
+
             drawerLayout.openDrawer(GravityCompat.START)
         }
         val bottomSheet = binding.eventBottomSheet
         val behavior = BottomSheetBehavior.from(bottomSheet)
         behavior.peekHeight = 1000
-        behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+
+        binding.map.setOnClickListener {
+            behavior.peekHeight = 200
+        }
+
+        //Handle click when venues are clicked
+        binding.firstImage.setOnClickListener {
+            behavior.peekHeight = 1000
+            venueClicked("First Image")
+
+        }
+        binding.secondImage.setOnClickListener {
+            behavior.peekHeight = 1000
+            venueClicked("Second Image")
+        }
 
 
         nav_items_functions(binding, requireActivity()).selectingItems()
@@ -55,23 +79,46 @@ class HomeFragment : Fragment() {
         return binding.root
 
     }
+
+    private fun venueClicked(venue: String) {
+
+        Toast.makeText(context, "$venue clicked", Toast.LENGTH_SHORT).show()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         loadEvents()
 
-        setAnime()
-
+//      Day wise event loading
         binding.dayOne.setOnClickListener{
-            Toast.makeText(context, "Day 1 is clicked", Toast.LENGTH_SHORT).show()
-            //On click it will refresh the recycler view and show the list of event happening on that day
+            loadDayEvents("17")
         }
         binding.dayTwo.setOnClickListener{
-            Toast.makeText(context, "Day 2 is clicked", Toast.LENGTH_SHORT).show()
+            loadDayEvents("18")
         }
         binding.dayThree.setOnClickListener{
-            Toast.makeText(context, "Day 3 is clicked", Toast.LENGTH_SHORT).show()
+            loadDayEvents("19")
         }
+    }
+
+    private fun loadDayEvents(day: String) {
+        val dayEvent  = ArrayList<EventList>()
+        for (i in newEventList){
+            val da = getDayFromDate(i.start_time!!)
+            if(day == da ){
+                dayEvent.add(i)
+            }
+        }
+        adapter.setEvents(dayEvent)
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun getDayFromDate(dateString: String): String {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        val date = inputFormat.parse(dateString)
+        val outputFormat = SimpleDateFormat("dd", Locale.getDefault())
+        return outputFormat.format(date!!)
     }
 
     private fun loadEvents() {
@@ -85,6 +132,7 @@ class HomeFragment : Fragment() {
     private fun getEvents() {
         eventViewModel.getEventListObserver().observe(viewLifecycleOwner) {
             if (it != null) {
+                newEventList = it
                 adapter.setEvents(it)
                 adapter.notifyDataSetChanged()
                 adapter.setOnItemClickListener(object : EventAdapter.OnItemClickListener {
@@ -97,7 +145,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        eventViewModel.makeApiCall()
+        eventViewModel.makeApiCall(requireContext())
     }
 
     private fun loadSingleEventFragment(event: EventList){
@@ -109,11 +157,15 @@ class HomeFragment : Fragment() {
         fragmentTransaction.replace(R.id.fragmentContainer, fragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
+
     }
 
-    private fun setAnime() {
-        binding.animationView.setAnimation(R.raw.map_replace)
-        binding.animationView.repeatCount = LottieDrawable.INFINITE
-        binding.animationView.playAnimation()
-    }
+
+
+
+//    private fun setAnime() {
+//        binding.animationView.setAnimation(R.raw.map_replace)
+//        binding.animationView.repeatCount = LottieDrawable.INFINITE
+//        binding.animationView.playAnimation()
+//    }
 }

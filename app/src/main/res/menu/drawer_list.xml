@@ -6,10 +6,6 @@
         android:id="@+id/sponsor"
         android:icon="@drawable/sponsor"
         android:title="@string/sponsors_menu" />
-    <item
-        android:id="@+id/ca"
-        android:icon="@drawable/marketing"
-        android:title="@string/campuss_ambassador_menu" />
 
     <item
         android:id="@+id/Team"

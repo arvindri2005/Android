@@ -6,11 +6,6 @@
         android:icon="@drawable/home"/>
 
     <item
-        android:title="Events"
-        android:id="@+id/event"
-        android:icon="@drawable/event"/>
-
-    <item
         android:title="Calendar"
         android:id="@+id/calendar"
         android:icon="@drawable/calendar"/>

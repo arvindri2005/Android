@@ -5,7 +5,7 @@ import java.io.Serializable
 data class EventList(
     val id: String? = null,
     val name: String? = null,
-//    val organizer:String? = null,
+    val organizer: List<List<String>>? = null,
     val venue: String? = null,
     val description: String? = null,
     val start_time: String? = null,

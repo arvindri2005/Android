@@ -1,13 +1,18 @@
 package com.college.anwesha2k23.profile
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.college.anwesha2k23.R
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.college.anwesha2k23.databinding.FragmentProfileBinding
+import com.college.anwesha2k23.events.ProfileEventsAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding?= null
@@ -31,7 +36,42 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.profileName.text = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
-            .getString(getString(R.string.user_name), "User")
+        binding.myEvents.adapter = ProfileEventsAdapter(arrayListOf())
+
+
+
+
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            // user login first
+
+            val response = UserProfileApi(requireContext()).profileApi.getProfile()
+            if(response.isSuccessful) {
+                val userInfo = response.body()!!
+                Log.d("userinfo: ", "${userInfo.anwesha_id}, ${userInfo.full_name}")
+                requireActivity().runOnUiThread ( Runnable {
+                    binding.profileName.text = userInfo.full_name
+                    binding.anweshaId.text = userInfo.anwesha_id
+                    binding.phoneNumber.text = userInfo.phone_number
+                    binding.emailId.text = userInfo.email_id
+                    binding.collegeName.text = userInfo.college_name ?: "XXXXXXXXXXX"
+                } )
+            }
+            else {
+                requireActivity().runOnUiThread ( Runnable {
+                    Toast.makeText(context, "error found: ${response.message()}", Toast.LENGTH_SHORT).show()
+                } )
+            }
+
+            val response2 = UserProfileApi(requireContext()).profileApi.getMyEvents()
+            if(response2.isSuccessful) {
+                val eventsInfo = response2.body()!!
+                requireActivity().runOnUiThread(Runnable {
+                    binding.myEvents.adapter = ProfileEventsAdapter(eventsInfo.solo)
+
+                })
+            }
+        }
     }
 }

@@ -3,16 +3,15 @@ package com.college.anwesha2k23.auth
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.college.anwesha2k23.MainActivity
 import com.college.anwesha2k23.MyDialog
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.checkValue
 import com.college.anwesha2k23.databinding.FragmentSigninBinding
-import com.college.anwesha2k23.home.HomeFragment
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
@@ -33,7 +32,7 @@ class SignIn : Fragment() {
 
         val intent = Intent(activity, MainActivity::class.java)
 
-        if(sharedPref.getBoolean(getString(R.string.user_login_authentication), true)) {
+        if(sharedPref.getBoolean(getString(R.string.user_login_authentication), false)) {
             startActivity(intent)
         }
 
@@ -46,11 +45,13 @@ class SignIn : Fragment() {
             val password = checkValue(binding.AnweshaPassword) ?: return@setOnClickListener
 
             myDialog.showProgressDialog(this@SignIn)
-            CoroutineScope(Dispatchers.Main).launch {
+            CoroutineScope(Dispatchers.IO).launch {
                 val userLogin = UserLoginInfo(email, password)
 
-                try {
-                    val response = UserAuthApi.userAuthApi.userLogin(userLogin)
+//                try {
+
+
+                    val response = UserAuthApi(requireContext()).userAuthApi.userLogin(userLogin)
 
                     if(response.body()?.success == true) {
                         with(sharedPref.edit()) {
@@ -65,14 +66,9 @@ class SignIn : Fragment() {
                         Snackbar.make(view, "Could not verify the user!", Snackbar.LENGTH_LONG)
                             .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
                     }
-                }
-                catch(e: Exception) {
-                    myDialog.showErrorAlertDialog("Oops! It seems like an error... ${e.message}")
-                }
                 myDialog.dismissProgressDialog()
             }
 
-//            startActivity(intent)
 
 
         }
