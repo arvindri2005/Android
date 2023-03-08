@@ -15,7 +15,7 @@ class CalendarFunctions() {
 
     fun get_events_by_location(filteredList: List<EventData>): Map<String, List<EventData>>{
         val eventDataByLocationMap: Map<String, List<EventData>> = filteredList.groupBy { it.venue }
-        Log.d("123", eventDataByLocationMap.toString())
+        Log.d("checker", eventDataByLocationMap.toString())
         return eventDataByLocationMap
     }
 
