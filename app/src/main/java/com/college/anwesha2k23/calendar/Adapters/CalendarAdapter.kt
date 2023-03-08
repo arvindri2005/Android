@@ -36,7 +36,7 @@ class EventAdapter(val reallist: ArrayList<EventList>, private val onItemClickLi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val location: String = locationlist[position]
         val events: List<EventData> = eventList[position]
-        Log.d("12345", events.toString())
+        Log.d("checker", events.toString())
         holder.bind(location, events)
     }
 
@@ -59,6 +59,11 @@ class EventAdapter(val reallist: ArrayList<EventList>, private val onItemClickLi
             verticalRecyclerView.layoutManager =
                 LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
             verticalRecyclerView.isNestedScrollingEnabled = false
+
+                val margins = CalendarFunctions().cal_margin(event, itemView.context)
+
+                val decoration = CustomItemDecoration(margins)
+                verticalRecyclerView.addItemDecoration(decoration)
             verticalRecyclerView.adapter = verticalAdapter
 
         }

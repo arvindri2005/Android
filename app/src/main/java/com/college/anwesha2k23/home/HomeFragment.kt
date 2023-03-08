@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.college.anwesha2k23.R
+import com.college.anwesha2k23.TicketBook.PassesFragment
 import com.college.anwesha2k23.databinding.FragmentHomeBinding
 import com.college.anwesha2k23.events.SingleEventFragment
 import com.college.anwesha2k23.home.functions.nav_items_functions
@@ -32,8 +33,6 @@ class HomeFragment : Fragment()  {
     private lateinit var actionBarToggle: ActionBarDrawerToggle
     private lateinit var adapter: EventAdapter
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,7 +46,6 @@ class HomeFragment : Fragment()  {
 
 
         val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
-
 
         binding.navBar.setOnClickListener {
             requireActivity().findViewById<TextView>(R.id.nameText2).text = sharedPref.getString(getString(R.string.user_name), "User")
@@ -71,6 +69,10 @@ class HomeFragment : Fragment()  {
         binding.secondImage.setOnClickListener {
             behavior.peekHeight = 1000
             venueClicked("Second Image")
+        }
+
+        binding.festPasses.setOnClickListener {
+            loadFragment(PassesFragment())
         }
 
 
@@ -146,6 +148,12 @@ class HomeFragment : Fragment()  {
         }
 
         eventViewModel.makeApiCall(requireContext())
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        val fragmentManager = requireActivity().supportFragmentManager.beginTransaction()
+        fragmentManager.replace(R.id.fragmentContainer, fragment)
+        fragmentManager.commit()
     }
 
     private fun loadSingleEventFragment(event: EventList){

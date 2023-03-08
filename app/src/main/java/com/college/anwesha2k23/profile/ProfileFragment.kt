@@ -49,14 +49,7 @@ class ProfileFragment : Fragment() {
 
         binding.myEvents.adapter = ProfileEventsAdapter(arrayListOf())
 
-
-
-
-
-
-
         CoroutineScope(Dispatchers.IO).launch {
-
             // user login first
 
             val response = UserProfileApi(requireContext()).profileApi.getProfile()

@@ -93,104 +93,21 @@ class CalendarFragment : Fragment() {
         eventViewModel.getEventListObserver().observe(viewLifecycleOwner) {
             if (it != null) {
                 newEventList = it
-                newEventList.add(
-                    EventList(
-                        "abcde",
-                        "TEST 1 ",
-                        emptyList(),
-                        "IIT PATNA",
-                        "",
-                        "2023-03-16T18:25:00Z",
-                        "2023-03-16T23:25:00Z"
-                    )
-                )
-                newEventList.add(
-                    EventList(
-                        "abcdf",
-                        "TEST 9 ",
-                        emptyList(),
-                        "IIT PATNA",
-                        "",
-                        "2023-03-16T02:25:00Z",
-                        "2023-03-16T06:25:00Z"
-                    )
-                )
-                newEventList.add(
-                    EventList(
-                        "abcdg",
-                        "TEST 2",
-                        emptyList(),
-                        "FOOD COURT",
-                        "",
-                        "2023-03-16T18:25:00Z",
-                        "2023-03-16T19:25:00Z"
-                    )
-                )
-                newEventList.add(
-                    EventList(
-                        "abcdh",
-                        "TEST 3",
-                        emptyList(),
-                        "IIT PATNA",
-                        "",
-                        "2023-03-17T18:25:00Z",
-                        "2023-03-17T19:25:00Z"
-                    )
-                )
-                newEventList.add(
-                    EventList(
-                        "abcdi",
-                        "TEST 4",
-                        emptyList(),
-                        "FOOD COURT",
-                        "",
-                        "2023-03-17T18:25:00Z",
-                        "2023-03-17T19:25:00Z"
-                    )
-                )
-                newEventList.add(
-                    EventList(
-                        "abcdj",
-                        "TEST 3",
-                        emptyList(),
-                        "IIT PATNA",
-                        "",
-                        "2023-03-18T18:25:00Z",
-                        "2023-03-18T19:25:00Z"
-                    )
-                )
                 binding.visibleFrag.visibility = View.VISIBLE
                 binding.deliveryShimmer.stopShimmer()
                 binding.deliveryShimmer.visibility = View.GONE
                 adapter = EventAdapter(newEventList, object : EventAdapter.OnItemClickListener {
                     override fun onItemClick(verticalItem: EventList) {
-                        Log.d("12345", verticalItem.toString())
+                        Log.d("checker", verticalItem.toString())
                         loadSingleEventFragment(verticalItem)
                     }
                 })
 
                 usefull_list = CalendarFunctions().Usefull_data(newEventList)
-
-//                sortedEvents = events.sortedBy { it.startTime.split(":").first().toInt() }
-
-                Log.d("abcd", it.toString())
-//                val margins = CalendarFunctions().cal_margin(sortedEvents, requireActivity())
-//
-//                val decoration = CustomItemDecoration(margins)
-//                recyclerViewEvents.addItemDecoration(decoration)
+                Log.d("checker", it.toString())
                 recyclerViewEvents.adapter = adapter
 
                 getEvent_bydate("16", newEventList)
-
-//                val filteredList = usefull_list.filter { it.startdate == date.toString()}
-//                adapter = EventAdapter(filteredList, newEventList)
-////                adapter.setOnItemClickListener(object :
-////                    EventAdapter.OnItemClickListener {
-////                    override fun onItemClicked(event: EventList?) {          //when any event from the recycler view is clicked
-////                        loadSingleEventFragment(event)
-////                    }
-////                })
-//                recyclerViewEvents.adapter = adapter
             } else {
                 Toast.makeText(context, "Error in getting Events", Toast.LENGTH_SHORT).show()
             }
