@@ -8,6 +8,8 @@ import android.os.Handler
 import android.os.Looper
 import com.college.anwesha2k23.auth.LoginActivity
 import com.college.anwesha2k23.databinding.ActivitySplashBinding
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 
 class splashActivity : AppCompatActivity() {
 
@@ -19,6 +21,9 @@ class splashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        FirebaseAnalytics.getInstance(this);
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
 
         val sharedPref = getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
 
