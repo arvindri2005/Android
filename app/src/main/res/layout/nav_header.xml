@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/user_name"
+        tools:text="@string/user_name"
         android:textColor="@color/black"
         android:textSize="22.24sp"
         android:textStyle="bold"
@@ -56,7 +56,7 @@
         android:textColor="#979797"
         android:textSize="15.52sp"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/anwesha_id"
+        tools:text="@string/anwesha_id"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/nameText2" />
 

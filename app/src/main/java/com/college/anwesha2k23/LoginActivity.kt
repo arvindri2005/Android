@@ -1,8 +1,8 @@
-package com.college.anwesha2k23.auth
+package com.college.anwesha2k23
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.college.anwesha2k23.R
+import com.college.anwesha2k23.auth.SignIn
 import com.college.anwesha2k23.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -15,6 +15,8 @@ class LoginActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         showFragment()
+
+
     }
 
     private fun showFragment() {

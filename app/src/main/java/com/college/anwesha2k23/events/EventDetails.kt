@@ -1,7 +1,5 @@
 package com.college.anwesha2k23.events
 
-import retrofit2.http.Query
-
 data class SoloRegistration(
     val message: String,
     val payment_details: PaymentDetails

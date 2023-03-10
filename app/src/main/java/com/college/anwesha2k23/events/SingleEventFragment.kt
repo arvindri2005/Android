@@ -1,7 +1,5 @@
 package com.college.anwesha2k23.events
 
-import android.app.Activity
-import android.app.Instrumentation.ActivityResult
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -13,29 +11,33 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.college.anwesha2k23.AddCookiesInterceptor
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.FragmentSingleEventBinding
 import com.college.anwesha2k23.home.EventList
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import java.net.URL
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.HashSet
 
 
 class SingleEventFragment : Fragment() {
     private lateinit var binding : FragmentSingleEventBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNavigationView?.visibility = View.GONE
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNavigationView?.visibility = View.VISIBLE
     }
 
     override fun onCreateView(
@@ -134,7 +136,5 @@ class SingleEventFragment : Fragment() {
 
         return binding.root
     }
-
-
 
 }

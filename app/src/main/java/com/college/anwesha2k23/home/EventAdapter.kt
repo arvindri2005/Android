@@ -47,7 +47,7 @@ class EventAdapter( private val context: Context): RecyclerView.Adapter<EventAda
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
         val outputFormat = SimpleDateFormat("dd MMMM yyyy, HH:mm", Locale.getDefault())
 
-        inputFormat.timeZone = TimeZone.getTimeZone("UTC+5:30") // set input timezone to UTC
+        inputFormat.timeZone = TimeZone.getTimeZone("UTC") // set input timezone to UTC
         val date = inputFormat.parse(inputString!!) // parse input string into date object
         outputFormat.timeZone = TimeZone.getDefault() // set output timezone to default timezone
         val outputString = outputFormat.format(date!!) // format date object into output string
