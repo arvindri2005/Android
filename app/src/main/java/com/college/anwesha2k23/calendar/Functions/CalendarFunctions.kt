@@ -10,6 +10,7 @@ import com.college.anwesha2k23.home.EventList
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.min
 
 class CalendarFunctions() {
 
@@ -18,7 +19,6 @@ class CalendarFunctions() {
         Log.d("checker", eventDataByLocationMap.toString())
         return eventDataByLocationMap
     }
-
     fun retHeight(event: EventData, context: Context): Int{
         val eventHeightPerHour = context.resources.getDimension(R.dimen.event_height_per_hour)
         val timeSlotHeight = eventHeightPerHour
@@ -32,31 +32,38 @@ class CalendarFunctions() {
         val top = (startHour * hourHeight).toInt()
         val bottom = (endHour * hourHeight).toInt()
 
-        return (bottom-top)
+        if (event.startdate == event.enddate){
+            return bottom-top
+        }else{
+            return hourHeight.toInt()
+        }
     }
 
     fun cal_margin(sortedEvents: List<EventData>, context: Context): ArrayList<Int>{
         val margins = ArrayList<Int>()
-        for (i in 0..sortedEvents.size-1){
+        for (i in 0..sortedEvents.size - 1){
             val eventHeightPerHour = context.resources.getDimension(R.dimen.event_height_per_hour)
+            val eventHeightPerMinute = eventHeightPerHour/60
             val timeSlotHeight = eventHeightPerHour
+            val minuteHeight = eventHeightPerMinute.toFloat()
 
             val hourHeight = timeSlotHeight.toFloat() // assume each time slot is one hour
-            val startHour = sortedEvents[i].startTime.split(":").first().toInt() - 9
-            val endHour = sortedEvents[i].endTime.split(":").first().toInt() - 9
-
+            val startHour = (sortedEvents[i].startTime.split(":").first().toInt()*60) + (sortedEvents[i].startTime.split(":").last().toInt())
+            val endHour = sortedEvents[i].endTime.split(":").first().toInt()*60 +  (sortedEvents[i].endTime.split(":").last().toInt())
 
             var top = 0;
-            if (i==0){
-                top = (startHour * hourHeight).toInt()
+            if (i > 0 && sortedEvents[i].startdate == sortedEvents[i].enddate){
+                val startHourPrev = sortedEvents[i-1].endTime.split(":").first().toInt()*60  + (sortedEvents[i-1].endTime.split(":").last().toInt())
+                top = ((startHour * minuteHeight)- (startHourPrev* minuteHeight)).toInt()
             }else{
-                val startHourPrev = sortedEvents[i-1].endTime.split(":").first().toInt() - 9
-                top = (startHour * hourHeight).toInt() - (startHourPrev*hourHeight).toInt()
+                top = (startHour * minuteHeight).toInt()
             }
-            val bottom = (endHour * hourHeight).toInt()
+            val bottom = (endHour * minuteHeight).toInt()
 
             margins.add(top)
         }
+        Log.d("123 margin", margins.size.toString())
+
         return margins
     }
 
