@@ -56,6 +56,7 @@ class SignIn : Fragment() {
                             apply()
                         }
                         startActivity(intent)
+                        requireActivity().finish()
                     }
 
                     else {
@@ -79,6 +80,7 @@ class SignIn : Fragment() {
     private fun loadFragment(fragment: Fragment){
         val fragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
         fragmentTransaction.replace(R.id.login_container, fragment)
+        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
 }

@@ -1,33 +1,29 @@
 package com.college.anwesha2k23.profile
 
-import android.os.Build
+import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import android.widget.EditText
-import android.widget.ImageView
+import android.view.animation.LinearInterpolator
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import com.college.anwesha2k23.R
+import androidx.recyclerview.widget.DefaultItemAnimator
 import com.college.anwesha2k23.databinding.FragmentProfileBinding
-import com.college.anwesha2k23.events.ProfileEventsAdapter
+import com.yuyakaido.android.cardstackview.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class ProfileFragment : Fragment() {
-    private var _binding: FragmentProfileBinding?= null
+class ProfileFragment(context : Context) : Fragment(),CardStackListener {
+    private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private var isEditProfile = false
-
+    private lateinit var cardStackView : CardStackView
+    private var position = 0
+    private val manager by lazy { CardStackLayoutManager(context, this) }
+    private  var  adapter : CardStackAdapter = CardStackAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -40,121 +36,123 @@ class ProfileFragment : Fragment() {
     ): View {
         container?.removeAllViews()
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        cardStackView = _binding!!.cardStackView
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.myEvents.adapter = ProfileEventsAdapter(arrayListOf())
+        //binding.myEvents.adapter = ProfileEventsAdapter(arrayListOf())
 
         CoroutineScope(Dispatchers.IO).launch {
+
             // user login first
 
             val response = UserProfileApi(requireContext()).profileApi.getProfile()
-            if(response.isSuccessful) {
+            if (response.isSuccessful) {
                 val userInfo = response.body()!!
                 Log.d("userinfo: ", "${userInfo.anwesha_id}, ${userInfo.full_name}")
-                requireActivity().runOnUiThread ( Runnable {
-                    binding.profileName.setText(userInfo.full_name)
-                    binding.anweshaId.setText(userInfo.anwesha_id)
-                    binding.phoneNumber.setText(userInfo.phone_number)
-                    binding.emailId.setText(userInfo.email_id)
-                    binding.collegeName.setText(userInfo.college_name ?: "XXXXXXXXXXX")
-//                    binding.profileAge.setText(userInfo.age ?: 0)
-                    binding.profileAge.setText(userInfo.age.toString().ifBlank { "0" })
-                    binding.profileGender.setText(userInfo.gender ?: "XXXXXXXX")
-                } )
-            }
-            else {
-                requireActivity().runOnUiThread ( Runnable {
-                    Toast.makeText(context, "error found: ${response.message()}", Toast.LENGTH_SHORT).show()
-                } )
+                requireActivity().runOnUiThread(Runnable {
+                    binding.profileName.text = userInfo.full_name
+                    binding.anweshaId.text = userInfo.anwesha_id
+                    binding.phoneNumber.text = userInfo.phone_number
+                    binding.emailId.text = userInfo.email_id
+                    binding.collegeName.text = userInfo.college_name ?: "XXXXXXXXXXX"
+                })
+            } else {
+                requireActivity().runOnUiThread(Runnable {
+                    Toast.makeText(
+                        context,
+                        "error found: ${response.message()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                })
             }
 
             val response2 = UserProfileApi(requireContext()).profileApi.getMyEvents()
-            if(response2.isSuccessful) {
+            if (response2.isSuccessful) {
                 val eventsInfo = response2.body()!!
+                Log.e("PRINT", eventsInfo.toString())
+                //TODO delete recycler view
                 requireActivity().runOnUiThread(Runnable {
-                    binding.myEvents.adapter = ProfileEventsAdapter(eventsInfo.solo)
-
+                    // binding.myEvents.adapter = ProfileEventsAdapter(eventsInfo.solo)
+                    adapter = CardStackAdapter(eventsInfo.solo)
+                    setupStackedCards()
                 })
             }
+
         }
+    }
+    //Demo data to test stacked view
+    val demo = arrayListOf<MyEventDetails>(
+        MyEventDetails(
+            "1",
+            "HELL TURN",
+            "06:00",
+            "12:00",
+            "IIT PATNA",
+            "no tags",
+            true,
+            "snksandksank",
+            true
+        ),
+        MyEventDetails(
+            "2",
+            "VERVE",
+            "08:00",
+            "14:00",
+            "IIT PATNA",
+            "no tags",
+            true,
+            "snksandksank",
+            true
+        )
+    )
 
-        binding.editProfile.setOnClickListener {
-            val animation =
-                AnimationUtils.loadAnimation(context, com.airbnb.lottie.R.anim.abc_fade_in)
-            it.startAnimation(animation)
-            if(isEditProfile) {
-                setEditable(false, binding.profileName, InputType.TYPE_NULL)
-                setEditable(false, binding.phoneNumber, InputType.TYPE_NULL)
-                setEditable(false, binding.emailId, InputType.TYPE_NULL)
-                setEditable(false, binding.collegeName, InputType.TYPE_NULL)
-                setEditable(false, binding.profileAge, InputType.TYPE_CLASS_NUMBER)
-                setEditable(false, binding.profileGender, InputType.TYPE_CLASS_TEXT)
-                CoroutineScope(Dispatchers.IO).launch {
-                    editProfile()
-                    isEditProfile = !isEditProfile
+    //Functions to handle Stacked Cards
 
-                }
-                (it as ImageView).setImageDrawable(
-                    ResourcesCompat.getDrawable(
-                        resources,
-                        R.drawable.edit_profile,
-                        resources.newTheme()
-                    )
-                )
-
-            }
-            else {
-                (it as ImageView).setImageDrawable(
-                    ResourcesCompat.getDrawable(
-                        resources,
-                        R.drawable.correct,
-                        resources.newTheme()
-                    )
-                )
-                setEditable(true, binding.profileName, InputType.TYPE_CLASS_TEXT)
-                setEditable(true, binding.phoneNumber, InputType.TYPE_CLASS_PHONE)
-                setEditable(true, binding.emailId, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
-                setEditable(true, binding.collegeName, InputType.TYPE_CLASS_TEXT)
-                setEditable(true, binding.profileAge, InputType.TYPE_CLASS_NUMBER)
-                setEditable(true, binding.profileGender, InputType.TYPE_CLASS_TEXT)
-                isEditProfile = !isEditProfile
+    fun setupStackedCards(){
+        manager.setStackFrom(StackFrom.Top)
+        manager.setVisibleCount(3)
+        manager.setTranslationInterval(10.0f)
+        manager.setScaleInterval(0.8f)
+        manager.setSwipeThreshold(0.3f)
+        manager.setMaxDegree(20.0f)
+        manager.setDirections(Direction.HORIZONTAL)
+        manager.setCanScrollHorizontal(true)
+        manager.setCanScrollVertical(false)
+        manager.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
+        manager.setOverlayInterpolator(LinearInterpolator())
+        cardStackView.layoutManager = manager
+        cardStackView.adapter = adapter
+        cardStackView.itemAnimator.apply {
+            if (this is DefaultItemAnimator) {
+                supportsChangeAnimations = false
             }
         }
     }
-
-    private fun setEditable(editable: Boolean, field: EditText, inputType: Int) {
-        field.isClickable = editable
-        field.isFocusable = editable
-        field.isFocusableInTouchMode = editable
-        field.isCursorVisible = editable
-        field.inputType = inputType
-    }
-
-
-    private suspend fun editProfile() {
-        val name = binding.profileName.text.toString()
-        val phone = binding.phoneNumber.text.toString()
-        val college = binding.collegeName.text.toString()
-        val age = binding.profileAge.text.toString().toInt()
-
-        val updateProfile = UpdateProfile(phone, name, college, age)
-
-        val response = UserProfileApi(requireContext()).profileApi.updateProfile(updateProfile)
-
-        requireActivity().runOnUiThread {
-            if (response.isSuccessful) {
-                Toast.makeText(context, "Profile Updated Successfully", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(context, "Could not update profile", Toast.LENGTH_SHORT).show()
-            }
-        }
+    override fun onCardDragging(direction: Direction?, ratio: Float) {
 
     }
+
+    override fun onCardSwiped(direction: Direction?) {
+
+    }
+
+    override fun onCardRewound() {
+    }
+
+    override fun onCardCanceled() {
+    }
+
+    override fun onCardAppeared(view: View?, position: Int) {
+    }
+
+    override fun onCardDisappeared(view: View?, position: Int) {
+        this.position++
+    }
+
 
 
 }

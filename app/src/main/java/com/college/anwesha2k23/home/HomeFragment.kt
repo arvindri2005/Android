@@ -1,5 +1,6 @@
 package com.college.anwesha2k23.home
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -56,18 +57,30 @@ class HomeFragment : Fragment()  {
         val behavior = BottomSheetBehavior.from(bottomSheet)
         behavior.peekHeight = 1000
 
+        val slideDown = ValueAnimator.ofInt(1000, 200)
+        slideDown.duration = 500
+        slideDown.addUpdateListener {
+            behavior.peekHeight = it.animatedValue as Int
+        }
+
+        val slideUp = ValueAnimator.ofInt(200, 1000)
+        slideUp.duration = 500
+        slideUp.addUpdateListener {
+            behavior.peekHeight = it.animatedValue as Int
+        }
+
         binding.map.setOnClickListener {
-            behavior.peekHeight = 200
+            slideDown.start()
         }
 
         //Handle click when venues are clicked
         binding.firstImage.setOnClickListener {
-            behavior.peekHeight = 1000
+            slideUp.start()
             venueClicked("First Image")
 
         }
         binding.secondImage.setOnClickListener {
-            behavior.peekHeight = 1000
+            slideUp.start()
             venueClicked("Second Image")
         }
 
