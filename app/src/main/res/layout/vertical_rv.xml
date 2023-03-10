@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="10dp"
@@ -34,7 +34,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_events"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="1050dp"
             android:orientation="vertical"
             tools:itemCount="4"
@@ -43,9 +43,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         </RelativeLayout>
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

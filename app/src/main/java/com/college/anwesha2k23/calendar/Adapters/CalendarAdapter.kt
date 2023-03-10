@@ -1,6 +1,7 @@
 package com.college.anwesha2k23.calendar.Adapters
 
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,22 +51,20 @@ class EventAdapter(val reallist: ArrayList<EventList>, private val onItemClickLi
 
         fun bind(location: String, event: List<EventData>) {
             tv_location.text = location
-            val verticalAdapter = VerticalAdapter(event, reallist, object : VerticalAdapter.OnItemClickListener {
+            event.sortedBy { it.startTime.split(":").first().toInt()}
+            val margins = CalendarFunctions().cal_margin(event, itemView.context)
+
+            val verticalAdapter = VerticalAdapter(event, reallist,margins, object : VerticalAdapter.OnItemClickListener {
                 override fun onItemClick(verticalItem: EventList) {
                     onItemClickListener.onItemClick(verticalItem)
                 }
             })
 
+
             verticalRecyclerView.layoutManager =
                 LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
             verticalRecyclerView.isNestedScrollingEnabled = false
-
-                val margins = CalendarFunctions().cal_margin(event, itemView.context)
-
-                val decoration = CustomItemDecoration(margins)
-                verticalRecyclerView.addItemDecoration(decoration)
             verticalRecyclerView.adapter = verticalAdapter
-
         }
     }
 
@@ -81,6 +80,7 @@ class EventAdapter(val reallist: ArrayList<EventList>, private val onItemClickLi
 class VerticalAdapter(
     val data: List<EventData>,
     val reallist: ArrayList<EventList>,
+    val margins: ArrayList<Int>,
     private val onItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<VerticalAdapter.ViewHolder>() {
 
@@ -98,6 +98,18 @@ class VerticalAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(sorted_data[position])
+
+        val layoutParams = RecyclerView.LayoutParams(
+            RecyclerView.LayoutParams.MATCH_PARENT,
+            1680
+        )
+        layoutParams.topMargin = margins[position]
+        val displayMetrics = holder.itemView.resources.displayMetrics
+        layoutParams.height = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70f, displayMetrics).toInt()
+
+        holder.itemView.layoutParams = layoutParams
+
+
     }
 
     override fun getItemCount(): Int {
@@ -115,7 +127,7 @@ class VerticalAdapter(
             }
             titleTextView.text = event.title
 
-            itemView.layoutParams.height = CalendarFunctions().retHeight(event, itemView.context)
+//            itemView.layoutParams.height = CalendarFunctions().retHeight(event, itemView.context)
 
             val colors = itemView.resources.getIntArray(R.array.androidcolors)
             val randomColor = colors[Random().nextInt(colors.size)]
