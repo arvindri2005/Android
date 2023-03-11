@@ -41,7 +41,9 @@ class CalendarFunctions() {
 
     fun cal_margin(sortedEvents: List<EventData>, context: Context): ArrayList<Int>{
         val margins = ArrayList<Int>()
-        for (i in 0..sortedEvents.size - 1){
+
+        for (i in sortedEvents.indices){
+
             val eventHeightPerHour = context.resources.getDimension(R.dimen.event_height_per_hour)
             val eventHeightPerMinute = eventHeightPerHour/60
             val timeSlotHeight = eventHeightPerHour
@@ -52,11 +54,13 @@ class CalendarFunctions() {
             val endHour = sortedEvents[i].endTime.split(":").first().toInt()*60 +  (sortedEvents[i].endTime.split(":").last().toInt())
 
             var top = 0;
+
             if (i > 0 && sortedEvents[i].startdate == sortedEvents[i].enddate){
                 val startHourPrev = sortedEvents[i-1].endTime.split(":").first().toInt()*60  + (sortedEvents[i-1].endTime.split(":").last().toInt())
                 top = ((startHour * minuteHeight)- (startHourPrev* minuteHeight)).toInt()
             }else{
                 top = (startHour * minuteHeight).toInt()
+
             }
             val bottom = (endHour * minuteHeight).toInt()
 
@@ -68,7 +72,7 @@ class CalendarFunctions() {
     }
 
     fun Usefull_data(eventList: ArrayList<EventList>): List<EventData>{
-        var neweventList : ArrayList<EventData> = ArrayList()
+        val neweventList : ArrayList<EventData> = ArrayList()
         for(i in eventList){
             neweventList.add(EventData(i.id.toString(),i.name.toString(), getTimeFromDate(i.start_time.toString()), getTimeFromDate(i.end_time.toString()), getDayFromDate(i.start_time.toString()), getDayFromDate(i.end_time.toString()), i.venue.toString()) )
         }

@@ -45,7 +45,6 @@ class HomeFragment : Fragment()  {
         drawerLayout.addDrawerListener(actionBarToggle)
         actionBarToggle.syncState()
 
-
         val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
 
         binding.navBar.setOnClickListener {

@@ -32,6 +32,8 @@ class SignIn : Fragment() {
 
         val intent = Intent(activity, MainActivity::class.java)
 
+
+
         val myDialog = MyDialog(requireContext())
 
         // user login using API

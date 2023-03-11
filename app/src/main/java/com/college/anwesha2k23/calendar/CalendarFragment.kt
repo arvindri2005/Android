@@ -121,8 +121,8 @@ class CalendarFragment : Fragment() {
         binding.deliveryShimmer.visibility = View.VISIBLE
         val filteredList = usefull_list.filter { it.startdate == date.toString() }.toMutableList()
         val event_by_Location = CalendarFunctions().get_events_by_location(filteredList)
-        var eventList: List<List<EventData>> = mapToList(event_by_Location)
-        var locationlist: List<String> = mapToKeys(event_by_Location)
+        val eventList: List<List<EventData>> = mapToList(event_by_Location)
+        val locationlist: List<String> = mapToKeys(event_by_Location)
         adapter.setList(filteredList, eventList, locationlist)
         adapter.notifyDataSetChanged()
         binding.visibleFrag.visibility = View.VISIBLE

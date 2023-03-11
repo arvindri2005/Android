@@ -4,9 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import androidx.core.view.GravityCompat
+import com.college.anwesha2k23.auth.LoginActivity
 import com.college.anwesha2k23.LoginActivity
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.FragmentHomeBinding
+import com.college.anwesha2k23.team.TeamPage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,6 +25,8 @@ class nav_items_functions(val binding: FragmentHomeBinding, val context: Context
                 }
                 R.id.Team -> {
                     Toast.makeText(context, "Team clicked", Toast.LENGTH_SHORT).show()
+                    binding.frameLayout.closeDrawer(GravityCompat.START)
+                    context.startActivity(Intent(context, TeamPage::class.java))
                     true
                 }
                 R.id.Feedback -> {
@@ -72,4 +77,6 @@ class nav_items_functions(val binding: FragmentHomeBinding, val context: Context
         sharedPref.edit().remove(context.getString(R.string.cookies)).apply()
         return false
     }
+
+
 }
