@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".events.SingleEventFragment">
+    tools:context=".events.SingleEventFragment"
+    android:background="@color/white">
+
+    <!--Back Btn-->
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_btn"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <!--Event Name-->
     <TextView
@@ -14,261 +25,265 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="32sp"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/backBtn"
+        app:layout_constraintBottom_toBottomOf="@id/backBtn"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="Event name" />
 
-    <!--Event Poster-->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/eventPosterCard"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginHorizontal="25sp"
-        android:layout_marginTop="5dp"
-        app:cardCornerRadius="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventName">
-
-        <ImageView
-            android:id="@+id/eventPoster"
-            android:scaleType="fitXY"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </androidx.cardview.widget.CardView>
-
-    <!--Event Time and location-->
-    <androidx.cardview.widget.CardView
+    <!--Line 1-->
+    <ImageView
+        android:id="@+id/line1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        app:cardCornerRadius="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/eventPosterCard"
-        app:layout_constraintEnd_toEndOf="@+id/eventPosterCard"
-        app:layout_constraintStart_toStartOf="@+id/eventPosterCard"
-        app:layout_constraintTop_toBottomOf="@id/eventPosterCard">
+        android:layout_height="1dp"
+        android:src="@drawable/single_fragment_line"
+        android:layout_marginTop="9dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventName"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/calendarIcon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/calendar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/eventDate"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="@id/calendarIcon"
-                app:layout_constraintStart_toEndOf="@id/calendarIcon"
-                app:layout_constraintTop_toTopOf="@id/calendarIcon"
-                tools:text="17 March 2023" />
-
-            <ImageView
-                android:id="@+id/locationIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/location"
-                app:layout_constraintBottom_toBottomOf="@id/eventDate"
-                app:layout_constraintStart_toEndOf="@id/eventDate"
-                app:layout_constraintTop_toTopOf="@id/eventDate" />
-
-            <TextView
-                android:id="@+id/eventLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingEnd="10dp"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="@id/locationIcon"
-                app:layout_constraintStart_toEndOf="@id/locationIcon"
-                app:layout_constraintTop_toTopOf="@id/locationIcon"
-                tools:text="Online" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <!--Event Description-->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="21dp"
+        app:layout_constraintBottom_toTopOf="@+id/rulebookBtn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventPosterCard"
-        app:layout_constraintBottom_toTopOf="@id/registerBtn">
+        app:layout_constraintTop_toBottomOf="@id/line1">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
+            <!--Event Poster-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/eventPosterCard"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginHorizontal="55sp"
+                android:layout_marginTop="1dp"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/eventPoster"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/eventDateTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="#313131"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/eventPosterCard"
+                tools:text="Date " />
+
+            <!--Event Date-->
+            <TextView
+                android:id="@+id/eventDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/eventDateTxt"
+                app:layout_constraintStart_toEndOf="@id/eventDateTxt"
+                app:layout_constraintTop_toTopOf="@id/eventDateTxt"
+                tools:text="17- 18 March" />
+
+            <TextView
+                android:id="@+id/eventLocationTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Venue: "
+                android:textColor="#313131"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/eventDateTxt" />
+
+            <!--Event Location-->
+            <TextView
+                android:id="@+id/eventLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/eventLocationTxt"
+                app:layout_constraintStart_toEndOf="@id/eventLocationTxt"
+                app:layout_constraintTop_toTopOf="@id/eventLocationTxt"
+                tools:text="Online" />
+
+            <!--Event Description-->
             <TextView
                 android:id="@+id/eventDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginTop="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="#313131"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/eventLocationTxt"
                 tools:text="This is the test how to event description looks like Please remove it before the project goes live and I don't know what I am typing" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
+            <!--Team Size-->
+            <TextView
+                android:id="@+id/teamSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:textColor="@color/black"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/eventDescription">
+                app:layout_constraintTop_toBottomOf="@id/eventDescription"
+                tools:text="Individual Participant" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/people" />
-
-                <TextView
-                    android:id="@+id/teamSize"
-                    android:textSize="20sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="2dp"
-                    tools:text="Solo" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/registration_price" />
-
-                <TextView
-                    android:id="@+id/registrationFee"
-                    android:layout_width="wrap_content"
-                    android:textSize="20sp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="2dp"
-                    android:paddingEnd="10dp"
-                    tools:text="200" />
-
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/registrationDeadlineIcon"
+            <TextView
+                android:id="@+id/registrationFeeTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:src="@drawable/deadline"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Registration Fee "
+                android:textColor="#313131"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+                app:layout_constraintTop_toBottomOf="@id/teamSize" />
 
+            <!--Registration Fees-->
+            <TextView
+                android:id="@+id/registrationFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/registrationFeeTxt"
+                app:layout_constraintTop_toTopOf="@id/registrationFeeTxt"
+                tools:text="₹ 99" />
+
+            <TextView
+                android:id="@+id/registrationDeadlineTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Registration closes on "
+                android:textColor="#313131"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/registrationFeeTxt" />
+
+            <!--Registration Deadline-->
             <TextView
                 android:id="@+id/registerDeadline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@id/registrationDeadlineIcon"
-                app:layout_constraintStart_toEndOf="@id/registrationDeadlineIcon"
-                app:layout_constraintTop_toTopOf="@id/registrationDeadlineIcon"
-                tools:text="Registration closes on March 5 2023" />
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/registrationDeadlineTxt"
+                app:layout_constraintStart_toEndOf="@id/registrationDeadlineTxt"
+                app:layout_constraintTop_toTopOf="@id/registrationDeadlineTxt"
+                tools:text="Thu March 16 2023" />
 
-            <ImageView
-                android:id="@+id/priceIcon"
+            <TextView
+                android:id="@+id/prizeTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:src="@drawable/price_icon"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Prizes Worth:  "
+                android:textColor="#313131"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/registrationDeadlineIcon" />
+                app:layout_constraintTop_toBottomOf="@id/registrationDeadlineTxt" />
 
+            <!--Prize-->
             <TextView
                 android:id="@+id/prize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@id/priceIcon"
-                app:layout_constraintStart_toEndOf="@id/priceIcon"
-                app:layout_constraintTop_toTopOf="@id/priceIcon"
-                tools:text="Price worth 12000" />
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/prizeTxt"
+                app:layout_constraintStart_toEndOf="@id/prizeTxt"
+                app:layout_constraintTop_toTopOf="@id/prizeTxt"
+                tools:text="₹30000" />
 
-            <ImageView
-                android:id="@+id/organizerIcon"
+            <TextView
+                android:id="@+id/organizerTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:src="@drawable/organizer_icon"
-                app:layout_constraintTop_toBottomOf="@id/priceIcon"
-                app:layout_constraintStart_toStartOf="parent"/>
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Organizes"
+                android:textColor="#313131"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/prizeTxt" />
 
+            <!--organizers-->
             <TextView
                 android:id="@+id/organizer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@id/organizerIcon"
-                app:layout_constraintTop_toTopOf="@id/organizerIcon"
-                tools:text="Arvind -9453254353\nArvind -3525245453"/>
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/organizerTxt"
+                tools:text="Aryan : 7247305110\nAbhilasha: 9262293394" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </ScrollView>
 
-    <!--Vertical Guideline For Button-->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.50" />
-
-    <!--Register Button-->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/registerBtn"
-        android:layout_width="0dp"
-        android:layout_marginHorizontal="4dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/register_btn"
-        android:textColor="@color/white"
-        android:text="Register"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!--Rulebook Button-->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/rulebookBtn"
-        android:layout_marginHorizontal="4dp"
         android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/register_btn"
-        android:textColor="@color/white"
-        android:text="RuleBook"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginHorizontal="40dp"
+        android:background="@drawable/rulebook_btn_bg"
+        android:textColor="#1E1E1E"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="Rule Book"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/registerBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/registerBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:background="@drawable/register_btn_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="50dp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="Register"
+        android:textColor="@color/white"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

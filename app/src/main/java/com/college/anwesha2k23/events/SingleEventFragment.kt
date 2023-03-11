@@ -54,21 +54,23 @@ class SingleEventFragment : Fragment() {
 
             binding.eventName.text = event.name
 
-            val startTime = event.start_time
             val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
-            val outputFormat = SimpleDateFormat("dd MMMM yyyy, HH:mm", Locale.getDefault())
+            val outputFormat = SimpleDateFormat("EEE dd MMMM yyyy, HH:mm", Locale.getDefault())
+            val outputFormat1 = SimpleDateFormat("dd MMMM" , Locale.getDefault())
+            val outputFormat2 = SimpleDateFormat("dd", Locale.getDefault())
             inputFormat.timeZone = TimeZone.getTimeZone("UTC+5:30") // set input timezone to UTC
-            val startDate = inputFormat.parse(startTime!!) // parse input string into date object
             outputFormat.timeZone = TimeZone.getDefault() // set output timezone to default timezone
-            val startTimeString = outputFormat.format(startDate!!) // format date object into output string
-            val startTimeSeparatedStrings = startTimeString.split(",").map { it.trim() }
-            binding.eventDate.text = startTimeSeparatedStrings[0]
+            val startTimeString = outputFormat2.format(inputFormat.parse(event.start_time!!)!!) // format date object into output string
+            val endDateString = outputFormat1.format(inputFormat.parse(event.end_time!!)!!)
+            val startTimeSeparatedStrings = startTimeString.split(",")
+            val endTimeSeparatedString1 = endDateString.split(",")
+            binding.eventDate.text = startTimeSeparatedStrings[0]+" - "+endTimeSeparatedString1[0]
 //            binding.eventStartTime.text = separatedStrings[1]
 
             binding.eventDescription.text = event.description
 
             if (event.is_solo!!){
-                binding.teamSize.text = "Solo Event"
+                binding.teamSize.text = "Individual Participant"
             }
             else{
                 binding.teamSize.text = "${event.min_team_size}-${event.max_team_size} Peoples"
@@ -80,7 +82,7 @@ class SingleEventFragment : Fragment() {
             val endDate = inputFormat.parse(endTime!!)
             val endTimeString = outputFormat.format(endDate!!)
             val endTimeSeparatedString= endTimeString.split(",").map{it.trim()}
-            binding.registerDeadline.text = "Registration ends on ${endTimeSeparatedString[0]}"
+            binding.registerDeadline.text = endTimeSeparatedString[0]
 
             binding.eventLocation.text = event.venue
 
@@ -92,7 +94,7 @@ class SingleEventFragment : Fragment() {
             binding.organizer.text = organizer
 
             binding.prize.text = "Prizes worth ₹${event.prize}"
-//
+
             binding.registerBtn.setOnClickListener {
                 if(event.is_active!!){
                     if(event.is_online!!){

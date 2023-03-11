@@ -19,6 +19,7 @@ import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.FragmentElitePassBinding
 import com.college.anwesha2k23.databinding.FragmentPassesBinding
 import com.college.anwesha2k23.databinding.FragmentProPassBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.Math.abs
 
 
@@ -62,6 +63,17 @@ class PassesFragment : Fragment() {
             val absPosition = abs(position)
             val scaleFactor = if (absPosition > 1) 0f else 1 - absPosition
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNavigationView?.visibility = View.GONE
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNavigationView?.visibility = View.VISIBLE
     }
 
 }

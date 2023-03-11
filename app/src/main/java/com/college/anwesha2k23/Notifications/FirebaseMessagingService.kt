@@ -10,7 +10,7 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.college.anwesha2k23.R
-import com.college.anwesha2k23.splashActivity
+import com.college.anwesha2k23.SplashActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -60,7 +60,7 @@ class FirebaseMessagingService : FirebaseMessagingService() {
 
             notificationManager.notify(1, notificationBuilder.build())
         } else {
-            val intent = Intent(this, splashActivity::class.java).apply {
+            val intent = Intent(this, SplashActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             val pendingIntent = PendingIntent.getActivity(

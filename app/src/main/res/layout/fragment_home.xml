@@ -81,7 +81,8 @@
        <TextView
            android:id="@+id/fest_passes"
            android:layout_width="110dp"
-           android:textColor="@color/black"
+           android:textColor="@color/white"
+           android:textAllCaps="false"
            android:layout_gravity="right"
            android:elevation="10dp"
            android:text="@string/fest_passes"
@@ -98,84 +99,112 @@
 
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/eventBottomSheet"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="30dp"
+        android:layout_height="700dp"
         android:background="@drawable/bottom_sheet_bg">
 
         <View
-            android:id="@+id/view2"
+            android:id="@+id/view1"
             android:layout_width="40dp"
             android:layout_marginTop="10dp"
             android:layout_height="4dp"
-            android:background="@drawable/edittext_rounded"
+            android:background="@drawable/view1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/eventText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/events"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:visibility="visible"
+            android:layout_marginTop="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view2">
+            app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/view2"
+            app:layout_constraintTop_toBottomOf="@id/eventText"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginHorizontal="20dp"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/view2"
+            app:layout_constraintTop_toBottomOf="@id/view2">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/dayOne"
                 android:layout_width="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="5dp"
                 android:layout_height="wrap_content"
-                android:text="Day 1" />
+                android:text="Day 1"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_medium"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/dayTwo"
                 android:layout_width="wrap_content"
-                android:layout_marginHorizontal="5dp"
                 android:layout_height="wrap_content"
-                android:text="Day 2" />
+                android:text="Day 2"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_medium"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/dayThree"
                 android:layout_width="wrap_content"
-                android:layout_marginHorizontal="5dp"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Day 3" />
 
         </com.google.android.material.chip.ChipGroup>
+            
+        <ImageView
+            android:id="@+id/hintImg"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/hint"
+            app:layout_constraintTop_toTopOf="@id/hintTxt"
+            app:layout_constraintBottom_toBottomOf="@id/hintTxt"
+            app:layout_constraintStart_toStartOf="@id/chipGroup"/>
 
         <TextView
-            android:id="@+id/eventText"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="15dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/events"
-            android:textColor="@color/black"
-            android:textSize="34sp"
-            android:visibility="visible"
-            android:layout_marginTop="10dp"
+            android:id="@+id/hintTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/hintMap"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="10sp"
+            android:textColor="#7c7c7c"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="2dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/hintImg"
             app:layout_constraintTop_toBottomOf="@id/chipGroup" />
+
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/eventsList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="135dp"
+            android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/eventText"
-            tools:listitem="@layout/event_design" />
+            app:layout_constraintTop_toBottomOf="@id/hintTxt"
+            tools:listitem="@layout/event_design"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

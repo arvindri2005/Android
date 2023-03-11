@@ -20,7 +20,6 @@
             android:name=".team.TeamPage"
             android:exported="false" />
         <activity
-            android:name=".splashActivity"
             android:name=".SplashActivity"
             android:exported="true"
             tools:ignore="LockedOrientationActivity">

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -20,7 +21,11 @@ import com.college.anwesha2k23.TicketBook.PassesFragment
 import com.college.anwesha2k23.databinding.FragmentHomeBinding
 import com.college.anwesha2k23.events.SingleEventFragment
 import com.college.anwesha2k23.home.functions.nav_items_functions
+import com.college.anwesha2k23.profile.ProfileFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.internal.ViewUtils.dpToPx
+import com.google.android.material.navigation.NavigationView
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -55,8 +60,10 @@ class HomeFragment : Fragment()  {
         val bottomSheet = binding.eventBottomSheet
         val behavior = BottomSheetBehavior.from(bottomSheet)
         behavior.peekHeight = 1000
+        binding.hintImg.visibility = View.GONE
+        binding.hintTxt.visibility = View.GONE
 
-        val slideDown = ValueAnimator.ofInt(1000, 200)
+        val slideDown = ValueAnimator.ofInt(1000, dpToPx(130))
         slideDown.duration = 500
         slideDown.addUpdateListener {
             behavior.peekHeight = it.animatedValue as Int
@@ -70,6 +77,8 @@ class HomeFragment : Fragment()  {
 
         binding.map.setOnClickListener {
             slideDown.start()
+            binding.hintTxt.visibility =View.VISIBLE
+            binding.hintImg.visibility = View.VISIBLE
         }
 
         //Handle click when venues are clicked
@@ -84,14 +93,20 @@ class HomeFragment : Fragment()  {
         }
 
         binding.festPasses.setOnClickListener {
-            loadFragment(PassesFragment())
+            loadPassesFragment(PassesFragment())
         }
+
 
 
         nav_items_functions(binding, requireActivity()).selectingItems()
         eventViewModel= ViewModelProvider(this)[EventsViewModel::class.java]
         return binding.root
 
+    }
+
+    private fun dpToPx(dp: Int): Int {
+        val density = resources.displayMetrics.density
+        return (dp.toFloat() * density + 0.5f).toInt()
     }
 
     private fun venueClicked(venue: String) {
@@ -165,6 +180,13 @@ class HomeFragment : Fragment()  {
     private fun loadFragment(fragment: Fragment) {
         val fragmentManager = requireActivity().supportFragmentManager.beginTransaction()
         fragmentManager.replace(R.id.fragmentContainer, fragment)
+        fragmentManager.commit()
+    }
+
+    private fun loadPassesFragment(fragment: Fragment){
+        val fragmentManager = requireActivity().supportFragmentManager.beginTransaction()
+        fragmentManager.replace(R.id.fragmentContainer, fragment)
+        fragmentManager.addToBackStack(null)
         fragmentManager.commit()
     }
 

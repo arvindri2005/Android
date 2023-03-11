@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.core.view.GravityCompat
-import com.college.anwesha2k23.auth.LoginActivity
 import com.college.anwesha2k23.LoginActivity
 import com.college.anwesha2k23.R
 import com.college.anwesha2k23.databinding.FragmentHomeBinding

@@ -68,7 +68,8 @@
     <string name="user_types_prompt">Choose a User Type</string>
     <string name="elite_pass">https://pmny.in/mJs3IkpvufoA</string>
     <string name="pro_pass">https://pmny.in/LrfJCrtUy8S4</string>
-    <string name="fest_passes">FEST PASSES</string>
+    <string name="fest_passes">Fest Passes</string>
+    <string name="hintMap">Select the location on the map to see the events according to the Zones</string>
 
 
     <string-array name="user_types">
