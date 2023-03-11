@@ -125,7 +125,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:visibility="visible"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view1" />
@@ -134,6 +134,7 @@
             android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="2dp"
+            android:layout_marginTop="7dp"
             android:background="@drawable/view2"
             app:layout_constraintTop_toBottomOf="@id/eventText"
             app:layout_constraintStart_toStartOf="parent"
@@ -141,6 +142,7 @@
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup"
+            android:layout_marginTop="21dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/view2"
@@ -188,6 +190,7 @@
             android:text="@string/hintMap"
             android:fontFamily="@font/poppins_light"
             android:textSize="10sp"
+            android:layout_marginVertical="10dp"
             android:textColor="#7c7c7c"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="2dp"

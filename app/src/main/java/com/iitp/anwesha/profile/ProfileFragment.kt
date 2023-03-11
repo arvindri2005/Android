@@ -4,16 +4,20 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.LinearInterpolator
+import android.view.animation.AnimationUtils
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.iitp.anwesha.databinding.FragmentProfileBinding
+import com.iitp.anwesha.events.ProfileEventsAdapter
 import com.yuyakaido.android.cardstackview.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,6 +27,7 @@ import kotlinx.coroutines.launch
 class ProfileFragment(context : Context) : Fragment(){
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+    private var isEditProfile = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,12 +63,13 @@ class ProfileFragment(context : Context) : Fragment(){
                 val userInfo = response.body()!!
                 Log.d("userinfo: ", "${userInfo.anwesha_id}, ${userInfo.full_name}")
                 requireActivity().runOnUiThread(Runnable {
-                    binding.profileName.text = userInfo.full_name
-                    binding.anweshaId.text = userInfo.anwesha_id
-                    binding.phoneNumber.text = userInfo.phone_number
-                    binding.emailId.text = userInfo.email_id
-                    binding.collegeName.text = userInfo.college_name ?: "XXXXXXXXXXX"
-
+                    binding.profileName.setText(userInfo.full_name.toString())
+                    binding.anweshaId.setText(userInfo.anwesha_id)
+                    binding.anweshaId2.setText(userInfo.anwesha_id)
+                    binding.phoneNumber.setText(userInfo.phone_number)
+                    binding.emailId.setText(userInfo.email_id)
+                    binding.collegeName.setText(userInfo.college_name )
+                    binding.gender.setText(userInfo.gender ?: "LIQUID" )
                     binding.visibleFrag.visibility = View.VISIBLE
                     binding.deliveryShimmer.visibility = View.GONE
                 })
@@ -81,14 +87,81 @@ class ProfileFragment(context : Context) : Fragment(){
             if (response2.isSuccessful) {
                 val eventsInfo = response2.body()!!
                 Log.e("PRINT", eventsInfo.toString())
-                //TODO delete recycler view
                 requireActivity().runOnUiThread(Runnable {
-                    // binding.myEvents.adapter = ProfileEventsAdapter(eventsInfo.solo)
-//                    adapter = CardStackAdapter(eventsInfo.solo)
-//                    setupStackedCards()
+                    binding.rvRegistered.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                     binding.rvRegistered.adapter = ProfileEventsAdapter(eventsInfo.solo)
                 })
             }
 
         }
+
+
+        binding.editProfile.setOnClickListener {
+            val animation =
+                AnimationUtils.loadAnimation(context, com.airbnb.lottie.R.anim.abc_fade_in)
+            it.startAnimation(animation)
+            if(isEditProfile) {
+                setEditable(false, binding.profileName, InputType.TYPE_NULL)
+                setEditable(false, binding.phoneNumber, InputType.TYPE_NULL)
+                setEditable(false, binding.emailId, InputType.TYPE_NULL)
+                setEditable(false, binding.collegeName, InputType.TYPE_NULL)
+                CoroutineScope(Dispatchers.IO).launch {
+                    editProfile()
+                    isEditProfile = !isEditProfile
+
+                }
+                (it as ImageView).setImageDrawable(
+                    ResourcesCompat.getDrawable(
+                        resources,
+                        com.iitp.anwesha.R.drawable.edit_profile_icon,
+                        resources.newTheme()
+                    )
+                )
+
+            }
+            else {
+                (it as ImageView).setImageDrawable(
+                    ResourcesCompat.getDrawable(
+                        resources,
+                        com.iitp.anwesha.R.drawable.edit_profile,
+                        resources.newTheme()
+                    )
+                )
+                setEditable(true, binding.profileName, InputType.TYPE_CLASS_TEXT)
+                setEditable(true, binding.phoneNumber, InputType.TYPE_CLASS_PHONE)
+                setEditable(true, binding.emailId, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
+                setEditable(true, binding.collegeName, InputType.TYPE_CLASS_TEXT)
+                isEditProfile = !isEditProfile
+            }
+        }
     }
+
+    private fun setEditable(editable: Boolean, field: EditText, inputType: Int) {
+        field.isClickable = editable
+        field.isFocusable = editable
+        field.isFocusableInTouchMode = editable
+        field.isCursorVisible = editable
+        field.inputType = inputType
+    }
+
+
+    private suspend fun editProfile() {
+        val name = binding.profileName.text.toString()
+        val phone = binding.phoneNumber.text.toString()
+        val college = binding.collegeName.text.toString()
+
+        val updateProfile = UpdateProfile(phone, name, college)
+
+        val response = UserProfileApi(requireContext()).profileApi.updateProfile(updateProfile)
+
+        requireActivity().runOnUiThread {
+            if (response.isSuccessful) {
+                Toast.makeText(context, "Profile Updated Successfully", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Could not update profile", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
+
 }
