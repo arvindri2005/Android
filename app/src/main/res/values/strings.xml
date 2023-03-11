@@ -6,9 +6,9 @@
 
 
     <string name="anwesha_portal">Anwesha Portal</string>
-    <string name="sign_in_to">Sign in to</string>
+    <string name="sign_in_to">LOGIN</string>
     <string name="hint">xxxxxxxxx</string>
-    <string name="anwesha_id">Anwesha ID</string>
+    <string name="anwesha_id">Email ID</string>
     <string name="dummy_text">xxxxxxxx</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot password ?</string>
@@ -22,14 +22,14 @@
     <string name="event_poster">Event Poster</string>
     <string name="location_of_event">Location of Event</string>
     <string name="events">Events</string>
-    <string name="register_to">Register to</string>
+    <string name="register_to">REGISTER</string>
     <string name="email_id">Email Id</string>
-    <string name="enter_email">Enter Email</string>
-    <string name="contact_number">Contact Number</string>
+    <string name="enter_email">Email ID</string>
+    <string name="contact_number">Phone Number</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="password_is_incorrect">password is incorrect</string>
     <string name="sign_in">Sign in</string>
-    <string name="already_have_an_account">Already have an account</string>
+    <string name="already_have_an_account">Already Registered? </string>
     <string name="anwesha_is_in_progress">Anwesha IIT PATNA </string>
     <string name="aaaaaa">COMING SOON…</string>
     <string name="register_for_campus_ambassador">Register For campus Ambassador</string>
@@ -68,6 +68,7 @@
     <string name="user_types_prompt">Choose a User Type</string>
     <string name="elite_pass">https://pmny.in/mJs3IkpvufoA</string>
     <string name="pro_pass">https://pmny.in/LrfJCrtUy8S4</string>
+    <string name="feedback">https://forms.gle/LD4gSRg9CaxEeAXK7</string>
     <string name="fest_passes">Fest Passes</string>
     <string name="hintMap">Select the location on the map to see the events according to the Zones</string>
 

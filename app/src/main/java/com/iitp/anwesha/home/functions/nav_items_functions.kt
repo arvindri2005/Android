@@ -3,6 +3,7 @@ package com.iitp.anwesha.home.functions
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import com.iitp.anwesha.LoginActivity
@@ -23,17 +24,13 @@ class nav_items_functions(val binding: FragmentHomeBinding, val context: Context
                     true
                 }
                 R.id.Team -> {
-                    Toast.makeText(context, "Team clicked", Toast.LENGTH_SHORT).show()
                     binding.frameLayout.closeDrawer(GravityCompat.START)
                     context.startActivity(Intent(context, TeamPage::class.java))
                     true
                 }
                 R.id.Feedback -> {
-                    Toast.makeText(context, "Feedback clicked", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.FAQ -> {
-                    Toast.makeText(context, "FAQ clicked", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.feedback)))
+                    context.startActivity(intent)
                     true
                 }
                 R.id.Abouts -> {
@@ -41,7 +38,6 @@ class nav_items_functions(val binding: FragmentHomeBinding, val context: Context
                     true
                 }
                 R.id.logout -> {
-                    Toast.makeText(context, "Logout clicked", Toast.LENGTH_SHORT).show()
                     CoroutineScope(Dispatchers.IO).launch {
                         if (signOut()) {
                             (context as Activity).runOnUiThread(Runnable {
@@ -52,6 +48,7 @@ class nav_items_functions(val binding: FragmentHomeBinding, val context: Context
                             (context as Activity).runOnUiThread(Runnable {
                                 val intent = Intent(context, LoginActivity::class.java)
                                 context.startActivity(intent)
+                                context.finish()
                             })
                         }
                     }

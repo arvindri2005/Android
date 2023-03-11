@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import app.rive.runtime.kotlin.RiveAnimationView
 import com.iitp.anwesha.databinding.ActivitySplashBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
@@ -13,7 +14,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 
 class SplashActivity : AppCompatActivity() {
 
-    private val SPLASH_TIME_OUT = 2000L
+    private val SPLASH_TIME_OUT = 3500L
 
     private lateinit var binding: ActivitySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +27,9 @@ class SplashActivity : AppCompatActivity() {
 
         FirebaseAnalytics.getInstance(this);
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
+
+        val riveAnimationView = binding.animationView
+        riveAnimationView.play()
 
         val sharedPref = getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
 

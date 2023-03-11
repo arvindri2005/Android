@@ -1,258 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context=".auth.SignIn">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/signinText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp">
+        android:layout_marginTop="136dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/sign_in_to"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/anweshalogo"
-            android:layout_width="104dp"
-            android:layout_height="81dp"
-            android:contentDescription="@string/anwesha_portal"
-            android:src="@drawable/anwesha_logo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.087"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.052" />
+    <EditText
+        android:id="@+id/AnweshaId"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="35dp"
+        android:paddingHorizontal="10dp"
+        android:background="@drawable/edit_text_bg"
+        android:cursorVisible="true"
+        android:focusable="true"
+        android:fontFamily="@font/inter_bold"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textColorHint="#96A4AF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AnweshaIdText"
+        tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+
+    <TextView
+        android:id="@+id/AnweshaIdText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/anwesha_id"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view10"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/AnweshaPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/password"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/AnweshaIdText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/AnweshaIdText"
+        app:layout_constraintTop_toBottomOf="@+id/AnweshaId" />
+
+
+    <EditText
+        android:id="@+id/AnweshaPassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="35dp"
+        android:background="@drawable/edit_text_bg"
+        android:cursorVisible="true"
+        android:paddingHorizontal="10dp"
+        android:focusable="true"
+        android:fontFamily="@font/inter_bold"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textColorHint="#96A4AF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AnweshaPasswordText"
+        tools:ignore="LabelFor,MissingConstraints,TextFields,SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/Forgotpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingStart="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/forgot_password"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/AnweshaPassword"
+        app:layout_constraintStart_toStartOf="@+id/AnweshaPassword"
+        app:layout_constraintTop_toBottomOf="@+id/AnweshaPassword"
+        tools:ignore="RtlSymmetry" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LoginButton"
+        android:layout_width="350dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="@string/login"
+        android:textColor="@color/black"
+        android:textSize="21sp"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/login_button_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Forgotpassword">
+
 
         <TextView
-            android:id="@+id/signinText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/sign_in_to"
-            android:textColor="#0D3563"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/anweshalogo"
-            app:layout_constraintTop_toBottomOf="@+id/anweshalogo" />
-
-        <TextView
-            android:id="@+id/anweshatext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/anwesha_portal"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Login"
             android:textColor="@color/black"
-            android:textSize="21sp"
-            android:textStyle="bold"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/signinText"
-            app:layout_constraintTop_toBottomOf="@+id/signinText"
-            app:layout_constraintVertical_bias="0.007" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginHorizontal="20dp"
-            app:layout_constraintStart_toStartOf="@+id/AnweshaIdText"
-            app:layout_constraintTop_toBottomOf="@+id/AnweshaIdText"
-            tools:ignore="MissingConstraints">
-
-            <EditText
-                android:id="@+id/AnweshaId"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:cursorVisible="true"
-                android:focusable="true"
-                android:fontFamily="@font/inter_bold"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLines="1"
-                android:textColor="#96A4AF"
-                android:textColorHint="#96A4AF"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.411" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/AnweshaIdText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="84dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/anwesha_id"
-            android:textColor="#7B8A96"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/anweshatext"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/anweshatext"
-            app:layout_constraintTop_toBottomOf="@+id/anweshatext"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/AnweshaPasswordText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/password"
-            android:textColor="#7B8A96"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/AnweshaIdText"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/AnweshaIdText"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="53dp"
-            android:layout_marginHorizontal="20dp"
-            app:layout_constraintStart_toStartOf="@+id/AnweshaPasswordText"
-            app:layout_constraintTop_toBottomOf="@+id/AnweshaPasswordText"
-            app:passwordToggleEnabled="true"
-            tools:ignore="MissingConstraints">
-
-            <EditText
-                android:id="@+id/AnweshaPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:cursorVisible="true"
-                android:focusable="true"
-                android:fontFamily="@font/inter_bold"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLines="1"
-                android:textColor="#96A4AF"
-                android:textColorHint="#96A4AF"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.411"
-                tools:ignore="LabelFor,MissingConstraints,TextFields" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/Forgotpassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/inter_bold"
-            android:paddingStart="10dp"
-            android:paddingBottom="10dp"
-            android:text="@string/forgot_password"
-            android:textColor="#449AFF"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/EmailWarning"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
-            tools:ignore="RtlSymmetry" />
-
-        <Button
-            android:id="@+id/LoginButton"
-            android:layout_width="350dp"
-            android:layout_height="65dp"
-            android:layout_marginTop="183dp"
-            android:layout_marginBottom="253dp"
-            android:backgroundTint="#449AFF"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/login"
-            android:textSize="21sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <TextView
-            android:id="@+id/noaccounttext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="88dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/don_t_have_an_account_yet"
-            android:textColor="#7B8A96"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/AnweshaPasswordText"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
-
-        <TextView
-            android:id="@+id/signupbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_bold"
-            android:paddingHorizontal="10dp"
-            android:paddingBottom="10dp"
-            android:textSize="18sp"
-            android:text="@string/sign_up"
-            android:textColor="#334C6A"
-            app:layout_constraintStart_toStartOf="@+id/noaccounttext"
-            app:layout_constraintTop_toBottomOf="@+id/noaccounttext" />
-
-        <TextView
-            android:id="@+id/coninuewith"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="96dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/or_continue_with"
-            android:textColor="#B5B5B5"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/LoginButton"
-            app:layout_constraintStart_toStartOf="@+id/LoginButton"
-            app:layout_constraintTop_toBottomOf="@+id/LoginButton" />
-
-        <TextView
-            android:id="@+id/EmailWarning"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="@string/invalid_credentails"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
-            app:layout_constraintHorizontal_bias="0.82"
-            app:layout_constraintStart_toEndOf="@+id/AnweshaIdText"
-            app:layout_constraintTop_toTopOf="@+id/AnweshaIdText"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <TextView
-            android:id="@+id/errortext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:text="@string/password_is_incorrect"
-            android:maxWidth="350dp"
-            android:textColor="@color/white"
-            android:background="#FF0000"
-            android:gravity="center_vertical"
-            android:fontFamily="@font/inter_bold"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:drawableLeftCompat="@drawable/warning_logo" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+    <TextView
+        android:id="@+id/noaccounttext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="@string/don_t_have_an_account_yet"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.235"
+        app:layout_constraintStart_toStartOf="@+id/LoginButton"
+        app:layout_constraintTop_toBottomOf="@+id/LoginButton" />
+
+    <TextView
+        android:id="@+id/signupbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/sign_up"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/noaccounttext"
+        app:layout_constraintStart_toEndOf="@+id/noaccounttext"
+        app:layout_constraintTop_toTopOf="@+id/noaccounttext"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/EmailWarning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="@string/invalid_credentails"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/AnweshaId"
+        app:layout_constraintEnd_toEndOf="@+id/AnweshaId" />
+
+    <View
+        android:id="@+id/view10"
+        android:layout_width="220dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signinText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
