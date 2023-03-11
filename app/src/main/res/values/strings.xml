@@ -5,7 +5,6 @@
     <dimen name="event_height_per_hour">70dp</dimen>
 
 
-
     <string name="anwesha_portal">Anwesha Portal</string>
     <string name="sign_in_to">Sign in to</string>
     <string name="hint">xxxxxxxxx</string>
