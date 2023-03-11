@@ -8,6 +8,11 @@
         android:title="@string/sponsors_menu" />
 
     <item
+        android:id="@+id/Abouts"
+        android:icon="@drawable/about_us"
+        android:title="@string/about_us_menu" />
+
+    <item
         android:id="@+id/Team"
         android:icon="@drawable/team"
         android:title="@string/team_menu" />
@@ -15,14 +20,6 @@
         android:id="@+id/Feedback"
         android:icon="@drawable/feedback"
         android:title="@string/feedback_menu" />
-    <item
-        android:id="@+id/Abouts"
-        android:icon="@drawable/about_us"
-        android:title="@string/about_us_menu" />
-    <item
-        android:id="@+id/FAQ"
-        android:icon="@drawable/faq"
-        android:title="@string/faq_menu" />
 
     <item
         android:id="@+id/logout"

@@ -2,10 +2,13 @@ package com.iitp.anwesha.home
 
 import android.animation.ValueAnimator
 import android.content.Context
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -15,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.iitp.anwesha.R
 import com.iitp.anwesha.TicketBook.PassesFragment
 import com.iitp.anwesha.databinding.FragmentHomeBinding
@@ -25,11 +29,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class HomeFragment : Fragment()  {
-    private lateinit var binding : FragmentHomeBinding
+class HomeFragment : Fragment() {
+    private lateinit var binding: FragmentHomeBinding
     private lateinit var eventViewModel: EventsViewModel
     private lateinit var eventRecyclerView: RecyclerView
-    private lateinit var newEventList : ArrayList<EventList>
+    private lateinit var newEventList: ArrayList<EventList>
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarToggle: ActionBarDrawerToggle
     private lateinit var adapter: EventAdapter
@@ -38,17 +42,19 @@ class HomeFragment : Fragment()  {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeBinding.inflate(inflater,container,false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         newEventList = arrayListOf()
         drawerLayout = binding.frameLayout
         actionBarToggle = ActionBarDrawerToggle(activity, drawerLayout, 0, 0)
         drawerLayout.addDrawerListener(actionBarToggle)
         actionBarToggle.syncState()
 
-        val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+        val sharedPref =
+            requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
 
         binding.navBar.setOnClickListener {
-            requireActivity().findViewById<TextView>(R.id.nameText2).text = sharedPref.getString(getString(R.string.user_name), "User")
+            requireActivity().findViewById<TextView>(R.id.nameText2).text =
+                sharedPref.getString(getString(R.string.user_name), "User")
 
             drawerLayout.openDrawer(GravityCompat.START)
         }
@@ -72,19 +78,30 @@ class HomeFragment : Fragment()  {
 
         binding.map.setOnClickListener {
             slideDown.start()
-            binding.hintTxt.visibility =View.VISIBLE
+            binding.hintTxt.visibility = View.VISIBLE
             binding.hintImg.visibility = View.VISIBLE
         }
+
+        val screenHeight = Resources.getSystem().displayMetrics.heightPixels
+        val minScale = screenHeight.toFloat() / binding.map.height
+        binding.map.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CENTER_CROP)
+        binding.map.setMinScale(minScale)
+
+        val markerImageView = binding.firstImage
+        val layoutParams = FrameLayout.LayoutParams(
+            FrameLayout.LayoutParams.WRAP_CONTENT,
+            FrameLayout.LayoutParams.WRAP_CONTENT
+        )
+        layoutParams.leftMargin = 100
+            layoutParams.topMargin = 100
+            markerImageView.layoutParams = layoutParams
+
 
         //Handle click when venues are clicked
         binding.firstImage.setOnClickListener {
             slideUp.start()
             venueClicked("First Image")
 
-        }
-        binding.secondImage.setOnClickListener {
-            slideUp.start()
-            venueClicked("Second Image")
         }
 
         binding.festPasses.setOnClickListener {
@@ -94,7 +111,7 @@ class HomeFragment : Fragment()  {
 
 
         nav_items_functions(binding, requireActivity()).selectingItems()
-        eventViewModel= ViewModelProvider(this)[EventsViewModel::class.java]
+        eventViewModel = ViewModelProvider(this)[EventsViewModel::class.java]
         return binding.root
 
     }
@@ -115,22 +132,22 @@ class HomeFragment : Fragment()  {
         loadEvents()
 
 //      Day wise event loading
-        binding.dayOne.setOnClickListener{
+        binding.dayOne.setOnClickListener {
             loadDayEvents("17")
         }
-        binding.dayTwo.setOnClickListener{
+        binding.dayTwo.setOnClickListener {
             loadDayEvents("18")
         }
-        binding.dayThree.setOnClickListener{
+        binding.dayThree.setOnClickListener {
             loadDayEvents("19")
         }
     }
 
     private fun loadDayEvents(day: String) {
-        val dayEvent  = ArrayList<EventList>()
-        for (i in newEventList){
+        val dayEvent = ArrayList<EventList>()
+        for (i in newEventList) {
             val da = getDayFromDate(i.start_time!!)
-            if(day == da ){
+            if (day == da) {
                 dayEvent.add(i)
             }
         }
@@ -178,14 +195,14 @@ class HomeFragment : Fragment()  {
         fragmentManager.commit()
     }
 
-    private fun loadPassesFragment(fragment: Fragment){
+    private fun loadPassesFragment(fragment: Fragment) {
         val fragmentManager = requireActivity().supportFragmentManager.beginTransaction()
         fragmentManager.replace(R.id.fragmentContainer, fragment)
         fragmentManager.addToBackStack(null)
         fragmentManager.commit()
     }
 
-    private fun loadSingleEventFragment(event: EventList){
+    private fun loadSingleEventFragment(event: EventList) {
         val bundle = Bundle()
         bundle.putString("eventID", event.id)
         val fragment = SingleEventFragment()
@@ -196,8 +213,6 @@ class HomeFragment : Fragment()  {
         fragmentTransaction.commit()
 
     }
-
-
 
 
 //    private fun setAnime() {
