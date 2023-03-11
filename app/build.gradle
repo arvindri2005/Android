@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace 'com.college.anwesha2k23'
+    namespace 'com.iitp.anwesha'
     compileSdk 33
 
     defaultConfig {

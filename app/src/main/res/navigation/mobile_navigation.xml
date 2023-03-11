@@ -7,27 +7,27 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.college.anwesha2k23.home.HomeFragment"
+        android:name="com.iitp.anwesha.home.HomeFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_home"/>
 
 
     <fragment
         android:id="@+id/event"
-        android:name="com.college.anwesha2k23.events.EventsFragment"
+        android:name="com.iitp.anwesha.events.EventsFragment"
         android:label="Events"
         tools:layout="@layout/fragment_events"/>
 
     <fragment
         android:id="@+id/calendar"
-        android:name="com.college.anwesha2k23.calendar.CalendarFragment"
+        android:name="com.iitp.anwesha.calendar.CalendarFragment"
         android:label="Events"
         tools:layout="@layout/fragment_calendar">
     </fragment>
 
     <fragment
         android:id="@+id/profile"
-        android:name="com.college.anwesha2k23.profile.ProfileFragment"
+        android:name="com.iitp.anwesha.profile.ProfileFragment"
         android:label="Events"
         tools:layout="@layout/fragment_profile"/>
 
