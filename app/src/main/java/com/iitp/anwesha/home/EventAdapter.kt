@@ -41,7 +41,9 @@ class EventAdapter( private val context: Context): RecyclerView.Adapter<EventAda
             .load(currentItem.poster)
             .into(holder.eventPoster)
         holder.eventName.text = currentItem.name
-        holder.eventLocation.text = currentItem.venue
+
+        val venue = currentItem.venue!!.split(",")
+        holder.eventLocation.text = venue[0]
 
         val inputString = currentItem.start_time
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
