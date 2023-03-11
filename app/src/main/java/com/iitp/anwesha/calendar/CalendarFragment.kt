@@ -23,18 +23,12 @@ import com.iitp.anwesha.home.EventsViewModel
 
 class CalendarFragment : Fragment() {
     private lateinit var binding: FragmentCalendarBinding
-
     private lateinit var recyclerViewEvents: RecyclerView
     private lateinit var recyclerViewTimeSlots: RecyclerView
-
     private lateinit var eventViewModel: EventsViewModel
     private lateinit var newEventList: ArrayList<EventList>
     private var usefull_list: List<EventData> = emptyList()
     private lateinit var adapter: EventAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +49,7 @@ class CalendarFragment : Fragment() {
         newEventList = arrayListOf()
         recyclerViewEvents.isNestedScrollingEnabled = false
 
-        getEvents("16")
+        getEvents("17")
 
         binding.day1.setOnClickListener {
             ButtonsFunction().selectButton(
@@ -64,7 +58,7 @@ class CalendarFragment : Fragment() {
                 binding.day2,
                 binding.day3
             )
-            getEvent_bydate("16", newEventList)
+            getEvent_bydate("17", newEventList)
         }
         binding.day2.setOnClickListener {
             ButtonsFunction().selectButton(
@@ -73,7 +67,7 @@ class CalendarFragment : Fragment() {
                 binding.day1,
                 binding.day3
             )
-            getEvent_bydate("17", newEventList)
+            getEvent_bydate("18", newEventList)
         }
         binding.day3.setOnClickListener {
             ButtonsFunction().selectButton(
@@ -82,7 +76,7 @@ class CalendarFragment : Fragment() {
                 binding.day2,
                 binding.day1
             )
-            getEvent_bydate("18", newEventList)
+            getEvent_bydate("19", newEventList)
         }
         return view
     }
@@ -105,7 +99,7 @@ class CalendarFragment : Fragment() {
                 Log.d("checker", it.toString())
                 recyclerViewEvents.adapter = adapter
 
-                getEvent_bydate("16", newEventList)
+                getEvent_bydate("17", newEventList)
             } else {
                 Toast.makeText(context, "Error in getting Events", Toast.LENGTH_SHORT).show()
             }

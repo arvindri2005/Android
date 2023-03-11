@@ -21,7 +21,7 @@
             android:name="com.iitp.anwesha.team.TeamPage"
             android:exported="false" />
         <activity
-            android:name="com.iitp.anwesha.SplashActivity"
+            android:name=".SplashActivity"
             android:exported="true"
             tools:ignore="LockedOrientationActivity">
             <meta-data

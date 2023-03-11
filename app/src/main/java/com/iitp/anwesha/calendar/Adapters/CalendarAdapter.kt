@@ -101,12 +101,9 @@ class VerticalAdapter(
             1680
         )
         layoutParams.topMargin = margins[position]
-        val displayMetrics = holder.itemView.resources.displayMetrics
-        layoutParams.height = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70f, displayMetrics).toInt()
+        layoutParams.height = CalendarFunctions().retHeight(sorted_data[position], holder.itemView.context)
 
         holder.itemView.layoutParams = layoutParams
-
-
     }
 
     override fun getItemCount(): Int {
