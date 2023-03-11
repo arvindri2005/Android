@@ -26,8 +26,15 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/map"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background_image">
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/map"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
 
                 <!--Add Your venues here-->
                 <ImageView
@@ -60,7 +67,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <androidx.appcompat.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -99,7 +106,7 @@
 
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/eventBottomSheet"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         android:layout_width="match_parent"
@@ -123,7 +130,7 @@
             android:fontFamily="@font/poppins_bold"
             android:text="@string/events"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:visibility="visible"
             android:layout_marginTop="3dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -142,9 +149,9 @@
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup"
-            android:layout_marginTop="21dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             app:layout_constraintStart_toStartOf="@id/view2"
             app:layout_constraintTop_toBottomOf="@id/view2">
 
@@ -185,15 +192,16 @@
 
         <TextView
             android:id="@+id/hintTxt"
+            android:layout_marginTop="2dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/hintMap"
             android:fontFamily="@font/poppins_light"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:layout_marginVertical="10dp"
             android:textColor="#7c7c7c"
             android:layout_marginEnd="20dp"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/hintImg"
             app:layout_constraintTop_toBottomOf="@id/chipGroup" />

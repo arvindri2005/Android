@@ -43,3 +43,27 @@ data class RegistrationVerificationResponse(
     val message: String,
     val error: String
 )
+
+data class Event(
+    val id: String,
+    val name: String,
+    val organizer: String,
+    val venue: String,
+    val description: String,
+    val start_time: String,
+    val end_time: String,
+    val prize : String,
+    val registration_fee: String,
+    val registration_deadline: String,
+    val video: String,
+    val poster: String,
+    val tags: String,
+    val max_team_size: Int,
+    val min_team_size: Int,
+    val is_active: Boolean,
+    val is_online: Boolean,
+    val registration_link: String,
+    val order: Int,
+    val payment_link: String,
+    val payment_key: String
+)

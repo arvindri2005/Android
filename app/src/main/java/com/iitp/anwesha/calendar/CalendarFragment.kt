@@ -140,7 +140,7 @@ class CalendarFragment : Fragment() {
 
     private fun loadSingleEventFragment(event: EventList?) {
         val bundle = Bundle()
-        bundle.putSerializable("event", event)
+        bundle.putString("eventID", event!!.id)
         val fragment = SingleEventFragment()
         fragment.arguments = bundle
         val fragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
