@@ -18,7 +18,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
             <ScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -133,6 +132,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+<<<<<<< HEAD
+=======
 
             <TextView
                 android:id="@+id/eventText"
@@ -143,17 +144,10 @@
             android:layout_marginTop="2dp"
             app:layout_constraintStart_toStartOf="@id/view2"
             app:layout_constraintTop_toBottomOf="@id/view2">
+>>>>>>> ab92de402d917afb0aee9791486f86c1a859de8b
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/dayOne"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Day 1"
-                android:textSize="12sp"
-                android:fontFamily="@font/poppins_medium"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/dayTwo"
+            <TextView
+                android:id="@+id/eventText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
