@@ -28,6 +28,7 @@ import com.iitp.anwesha.databinding.FragmentHomeBinding
 import com.iitp.anwesha.events.SingleEventFragment
 import com.iitp.anwesha.home.functions.nav_items_functions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.iitp.anwesha.home.functions.MapClickHandle
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -91,28 +92,52 @@ class HomeFragment : Fragment() {
         val sac = binding.sac
         val gym =binding.gym
 
-        val layoutParams = FrameLayout.LayoutParams(
-            120,
-            120
-        )
-        layoutParams.leftMargin =  pxToDp(500f)
-        layoutParams.topMargin = pxToDp(500f)
-            nescafe.layoutParams = layoutParams
+        MapClickHandle(requireContext(), binding).mapClick()
 
-//        layoutParams.leftMargin = 530
-//        layoutParams.topMargin = 497
-//        admin.layoutParams = layoutParams
-//
-//        layoutParams.leftMargin = 721
-//        layoutParams.topMargin = 411
-//        sac.layoutParams = layoutParams
-//
-//        layoutParams.leftMargin = 1064
-//        layoutParams.topMargin = 441
-//        gym.layoutParams = layoutParams
 
         //Handle click when venues are clicked
         binding.nes.setOnClickListener {
+            val layoutParams = FrameLayout.LayoutParams(
+                400,
+                400
+            )
+            layoutParams.leftMargin =  1150
+            layoutParams.topMargin = 950
+            nescafe.layoutParams = layoutParams
+            slideUp.start()
+            venueClicked("First Image")
+        }
+
+        binding.gym.setOnClickListener {
+            val layoutParams4= FrameLayout.LayoutParams(
+                400,
+                400
+            )
+            layoutParams4.leftMargin = 2740
+            layoutParams4.topMargin = 1060
+            gym.layoutParams = layoutParams4
+            slideUp.start()
+            venueClicked("First Image")
+        }
+        binding.admin.setOnClickListener {
+            val layoutParams2 = FrameLayout.LayoutParams(
+                400,
+                400
+            )
+            layoutParams2.leftMargin = 1340
+            layoutParams2.topMargin = 1220
+            admin.layoutParams = layoutParams2
+            slideUp.start()
+            venueClicked("First Image")
+        }
+        binding.sac.setOnClickListener {
+            val layoutParams3 = FrameLayout.LayoutParams(
+                400,
+                400
+            )
+            layoutParams3.leftMargin = 1800
+            layoutParams3.topMargin = 980
+            sac.layoutParams = layoutParams3
             slideUp.start()
             venueClicked("First Image")
         }
@@ -138,7 +163,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun venueClicked(venue: String) {
-
         Toast.makeText(context, "$venue clicked", Toast.LENGTH_SHORT).show()
     }
 

@@ -39,30 +39,30 @@
 
                         <ImageView
                             android:id="@+id/nes"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="300dp"
+                            android:layout_height="300dp"
                             android:src="@drawable/nescafe"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
                             android:id="@+id/admin"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
                             android:src="@drawable/admin"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
                         <ImageView
                             android:id="@+id/sac"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
                             android:src="@drawable/sac"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
                         <ImageView
                             android:id="@+id/gym"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
                             android:src="@drawable/gym"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
