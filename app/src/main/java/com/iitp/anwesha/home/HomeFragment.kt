@@ -243,7 +243,8 @@ class HomeFragment : Fragment() {
 
     private fun loadSingleEventFragment(event: EventList) {
         val bundle = Bundle()
-        bundle.putString("eventID", event.id)
+//        bundle.putString("eventID", event.id)
+        bundle.putSerializable("event", event)
         val fragment = SingleEventFragment()
         fragment.arguments = bundle
         val fragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
