@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.iitp.anwesha.R
 import com.iitp.anwesha.calendar.Adapters.EventAdapter
 import com.iitp.anwesha.calendar.Adapters.TimeAdapter
+import com.iitp.anwesha.calendar.Adapters.cal_event_ev
+import com.iitp.anwesha.calendar.Adapters.locatAdapter
 import com.iitp.anwesha.calendar.DataFiles.EventData
 import com.iitp.anwesha.calendar.Functions.ButtonsFunction
 import com.iitp.anwesha.calendar.Functions.CalendarFunctions
@@ -29,6 +31,7 @@ class CalendarFragment : Fragment() {
     private lateinit var newEventList: ArrayList<EventList>
     private var usefull_list: List<EventData> = emptyList()
     private lateinit var adapter: EventAdapter
+    private lateinit var day_adapter: cal_event_ev
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,15 +42,17 @@ class CalendarFragment : Fragment() {
         binding.deliveryShimmer.startShimmer()
 
         recyclerViewTimeSlots = binding.recyclerViewTimeSlots
-        recyclerViewTimeSlots.layoutManager = LinearLayoutManager(activity)
+        recyclerViewTimeSlots.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewTimeSlots.adapter = TimeAdapter()
 
         recyclerViewEvents = binding.recyclerViewLocations
         recyclerViewEvents.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         eventViewModel = ViewModelProvider(this)[EventsViewModel::class.java]
         newEventList = arrayListOf()
         recyclerViewEvents.isNestedScrollingEnabled = false
+
+        binding.calEventsRv.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         getEvents("17")
 
@@ -56,7 +61,8 @@ class CalendarFragment : Fragment() {
                 binding.day1,
                 requireActivity(),
                 binding.day2,
-                binding.day3
+                binding.day3,
+                binding.scDaysLinear
             )
             getEvent_bydate("17", newEventList)
         }
@@ -65,7 +71,8 @@ class CalendarFragment : Fragment() {
                 binding.day2,
                 requireActivity(),
                 binding.day1,
-                binding.day3
+                binding.day3,
+                binding.scDaysLinear
             )
             getEvent_bydate("18", newEventList)
         }
@@ -74,7 +81,8 @@ class CalendarFragment : Fragment() {
                 binding.day3,
                 requireActivity(),
                 binding.day2,
-                binding.day1
+                binding.day1,
+                binding.scDaysLinear
             )
             getEvent_bydate("19", newEventList)
         }
@@ -88,6 +96,10 @@ class CalendarFragment : Fragment() {
                 binding.visibleFrag.visibility = View.VISIBLE
                 binding.deliveryShimmer.stopShimmer()
                 binding.deliveryShimmer.visibility = View.GONE
+
+                day_adapter = cal_event_ev()
+                binding.calEventsRv.adapter = day_adapter
+
                 adapter = EventAdapter(newEventList, object : EventAdapter.OnItemClickListener {
                     override fun onItemClick(verticalItem: EventList) {
                         Log.d("checker", verticalItem.toString())
@@ -117,6 +129,16 @@ class CalendarFragment : Fragment() {
         val locationlist: List<String> = mapToKeys(event_by_Location)
         adapter.setList(filteredList, eventList, locationlist)
         adapter.notifyDataSetChanged()
+
+        val newadaptv = locatAdapter()
+        binding.recyclerViewLocat.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerViewLocat.isNestedScrollingEnabled = false
+        binding.recyclerViewLocat.adapter = newadaptv
+        newadaptv.setList(locationlist)
+        newadaptv.notifyDataSetChanged()
+
+        day_adapter.setList(filteredList)
+
         binding.visibleFrag.visibility = View.VISIBLE
         binding.deliveryShimmer.visibility = View.GONE
         binding.deliveryShimmer.stopShimmer()

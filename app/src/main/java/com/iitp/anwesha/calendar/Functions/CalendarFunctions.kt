@@ -16,15 +16,15 @@ class CalendarFunctions() {
         Log.d("checker", eventDataByLocationMap.toString())
         return eventDataByLocationMap
     }
+
     fun retHeight(event: EventData, context: Context): Int{
         val eventHeightPerHour = context.resources.getDimension(R.dimen.event_height_per_hour)
         val timeSlotHeight = eventHeightPerHour
 
-        val totalHours = 15
         val hourHeight = timeSlotHeight.toFloat()
 
-        val startHour = event.startTime.split(":").first().toInt() - 9
-        val endHour = event.endTime.split(":").first().toInt() - 9
+        val startHour = event.startTime.split(":").first().toInt() - 4
+        val endHour = event.endTime.split(":").first().toInt() -4
 
         val top = (startHour * hourHeight).toInt()
         val bottom = (endHour * hourHeight).toInt()
@@ -47,13 +47,13 @@ class CalendarFunctions() {
             val minuteHeight = eventHeightPerMinute.toFloat()
 
             val hourHeight = timeSlotHeight.toFloat() // assume each time slot is one hour
-            val startHour = (sortedEvents[i].startTime.split(":").first().toInt()*60) + (sortedEvents[i].startTime.split(":").last().toInt())
-            val endHour = sortedEvents[i].endTime.split(":").first().toInt()*60 +  (sortedEvents[i].endTime.split(":").last().toInt())
+            val startHour = ((sortedEvents[i].startTime.split(":").first().toInt() - 3 )*60) + (sortedEvents[i].startTime.split(":").last().toInt())
+            val endHour = (sortedEvents[i].endTime.split(":").first().toInt() - 3)*60 +  (sortedEvents[i].endTime.split(":").last().toInt())
 
             var top = 0;
 
             if (i > 0 && sortedEvents[i].startdate == sortedEvents[i].enddate){
-                val startHourPrev = sortedEvents[i-1].endTime.split(":").first().toInt()*60  + (sortedEvents[i-1].endTime.split(":").last().toInt())
+                val startHourPrev = (sortedEvents[i-1].endTime.split(":").first().toInt() - 3)*60  + (sortedEvents[i-1].endTime.split(":").last().toInt())
                 top = ((startHour * minuteHeight)- (startHourPrev* minuteHeight)).toInt()
             }else{
                 top = (startHour * minuteHeight).toInt()

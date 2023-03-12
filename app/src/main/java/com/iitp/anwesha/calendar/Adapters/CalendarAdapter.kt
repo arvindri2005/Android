@@ -42,12 +42,10 @@ class EventAdapter(val reallist: ArrayList<EventList>, private val onItemClickLi
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val tv_location = itemView.findViewById<TextView>(R.id.LocationName)
         private val verticalRecyclerView: RecyclerView =
             itemView.findViewById(R.id.rv_events)
 
         fun bind(location: String, event: List<EventData>) {
-            tv_location.text = location
             event.sortedBy { it.startTime.split(":").first().toInt()}
             val margins = CalendarFunctions().cal_margin(event, itemView.context)
 
@@ -59,7 +57,7 @@ class EventAdapter(val reallist: ArrayList<EventList>, private val onItemClickLi
 
 
             verticalRecyclerView.layoutManager =
-                LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
+                LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
             verticalRecyclerView.isNestedScrollingEnabled = false
             verticalRecyclerView.adapter = verticalAdapter
         }
@@ -97,11 +95,11 @@ class VerticalAdapter(
         holder.bind(sorted_data[position])
 
         val layoutParams = RecyclerView.LayoutParams(
-            RecyclerView.LayoutParams.MATCH_PARENT,
-            1680
+            2100,
+            RecyclerView.LayoutParams.MATCH_PARENT
         )
-        layoutParams.topMargin = margins[position]
-        layoutParams.height = CalendarFunctions().retHeight(sorted_data[position], holder.itemView.context)
+        layoutParams.leftMargin = margins[position]
+        layoutParams.width = CalendarFunctions().retHeight(sorted_data[position], holder.itemView.context)
 
         holder.itemView.layoutParams = layoutParams
     }
@@ -128,9 +126,9 @@ class VerticalAdapter(
 
             val view = light
             val view2 = dark
-            view.setBackgroundColor(randomColor)
+//            view.setBackgroundColor(randomColor)
             view2.setBackgroundColor(randomColor)
-            view.alpha = 0.1f
+            view.alpha = 0.5f
         }
     }
 

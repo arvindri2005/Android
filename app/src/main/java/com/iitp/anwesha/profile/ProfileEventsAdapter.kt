@@ -24,7 +24,6 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>): Recycle
 
         holder.eventName.text = currentItem.event_name
         holder.eventStartTime.text = getTimeFromDate(currentItem.event_start_time.toString())
-        holder.eventVenue.text = currentItem.event_venue
         holder.eventDate.text = getDayFromDate(currentItem.event_start_time.toString())
 
     }
@@ -37,7 +36,6 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>): Recycle
 
         val eventName: TextView = binding.eventName
         val eventStartTime: TextView = binding.eventTime
-        val eventVenue: TextView = binding.eventLocation
         val eventDate: TextView = binding.eventDate
 
     }

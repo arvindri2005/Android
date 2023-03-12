@@ -3,7 +3,10 @@ package com.iitp.anwesha.home
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -82,38 +85,51 @@ class HomeFragment : Fragment() {
             binding.hintImg.visibility = View.VISIBLE
         }
 
-        val screenHeight = Resources.getSystem().displayMetrics.heightPixels
-        val minScale = screenHeight.toFloat() / binding.map.height
-        binding.map.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CENTER_CROP)
-        binding.map.setMinScale(minScale)
 
-        val markerImageView = binding.firstImage
+        val nescafe = binding.nes
+        val admin = binding.admin
+        val sac = binding.sac
+        val gym =binding.gym
+
         val layoutParams = FrameLayout.LayoutParams(
-            FrameLayout.LayoutParams.WRAP_CONTENT,
-            FrameLayout.LayoutParams.WRAP_CONTENT
+            120,
+            120
         )
-        layoutParams.leftMargin = 100
-            layoutParams.topMargin = 100
-            markerImageView.layoutParams = layoutParams
+        layoutParams.leftMargin =  pxToDp(500f)
+        layoutParams.topMargin = pxToDp(500f)
+            nescafe.layoutParams = layoutParams
 
+//        layoutParams.leftMargin = 530
+//        layoutParams.topMargin = 497
+//        admin.layoutParams = layoutParams
+//
+//        layoutParams.leftMargin = 721
+//        layoutParams.topMargin = 411
+//        sac.layoutParams = layoutParams
+//
+//        layoutParams.leftMargin = 1064
+//        layoutParams.topMargin = 441
+//        gym.layoutParams = layoutParams
 
         //Handle click when venues are clicked
-        binding.firstImage.setOnClickListener {
+        binding.nes.setOnClickListener {
             slideUp.start()
             venueClicked("First Image")
-
         }
 
         binding.festPasses.setOnClickListener {
             loadPassesFragment(PassesFragment())
         }
 
-
-
         nav_items_functions(binding, requireActivity()).selectingItems()
         eventViewModel = ViewModelProvider(this)[EventsViewModel::class.java]
         return binding.root
 
+    }
+
+    private fun pxToDp(px : Float): Int {
+        val displayMetrics = Resources.getSystem().displayMetrics
+        return px.toInt() / (displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT).toInt()
     }
 
     private fun dpToPx(dp: Int): Int {
