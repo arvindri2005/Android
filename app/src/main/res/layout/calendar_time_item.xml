@@ -4,18 +4,26 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatButton
+    <TextView
         android:id="@+id/time_text_start"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/button_bg_black"
-        android:text="9 AM "
+        android:text="9:00 AM"
+        android:gravity="center"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"
+        android:textColor="#787787"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view18"
+        android:layout_width="0.5dp"
+        android:layout_height="40dp"
+        android:background="#787787"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

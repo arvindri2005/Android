@@ -157,6 +157,9 @@
     <color name="black_overlay">#66000000</color>
     <color name="light_red">#FDEDEB</color>
 
+    <color name="violet_cl">#504ABC</color>
+
+
     <color name="maintheme">#449AFF</color>
 
     <item name="blue" type="color">#FF33B5E5</item>
@@ -170,27 +173,15 @@
     <item name="darkorange" type="color">#FFFF8800</item>
     <item name="darkred" type="color">#FFCC0000</item>
 
+    <item name="cl1" type="color">#7DD0CB</item>
+    <item name="cl2" type="color">#FD7542</item>
+    <item name="cl3" type="color">#FDC100</item>
+
+
     <integer-array name="androidcolors">
-        <item>@color/blue</item>
-        <item>@color/purple</item>
-        <item>@color/green</item>
-        <item>@color/orange</item>
-        <item>@color/red</item>
-        <item>@color/darkblue</item>
-        <item>@color/darkpurple</item>
-        <item>@color/darkgreen</item>
-        <item>@color/darkorange</item>
-        <item>@color/darkred</item>
-        <item>@color/Teal</item>
-        <item>@color/Coral</item>
-        <item>@color/DeepPink</item>
-        <item>@color/DeepSkyBlue</item>
-        <item>@color/SlateBlue</item>
-        <item>@color/SlateGray</item>
-        <item>@color/Azure</item>
-        <item>@color/SaddleBrown</item>
-        <item>@color/SandyBrown</item>
-        <item>@color/PaleGoldenrod</item>
+        <item>@color/cl1</item>
+        <item>@color/cl2</item>
+        <item>@color/cl3</item>
     </integer-array>
 
 </resources>
