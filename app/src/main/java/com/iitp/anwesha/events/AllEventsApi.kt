@@ -14,7 +14,7 @@ import retrofit2.http.POST
 interface AllEventsApi {
 
     @POST("event/registration/solo")
-    suspend fun soloEventRegistration(@Body eventId: String) : Response<SoloRegistration>
+    suspend fun soloEventRegistration(@Body soloRegistration: SoloRegistration) : Response<SoloRegistrationResponse>
 
     @POST("event/registration/team")
     suspend fun teamEventRegistration(@Body teamRegistration: TeamRegistration) : Response<TeamRegistrationResponse>
@@ -28,7 +28,6 @@ class EventsRegistrationApi(val context: Context) {
 
     init {
         val client = OkHttpClient.Builder().addInterceptor(AddCookiesInterceptor(context)).build()
-
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)

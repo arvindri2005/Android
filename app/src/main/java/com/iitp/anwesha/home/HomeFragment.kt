@@ -86,7 +86,6 @@ class HomeFragment : Fragment() {
             binding.hintImg.visibility = View.VISIBLE
         }
 
-
         val nescafe = binding.nes
         val admin = binding.admin
         val sac = binding.sac
@@ -116,6 +115,17 @@ class HomeFragment : Fragment() {
             layoutParams4.leftMargin = 2740
             layoutParams4.topMargin = 1060
             gym.layoutParams = layoutParams4
+            slideUp.start()
+            venueClicked("First Image")
+        }
+        binding.admin.setOnClickListener {
+            val layoutParams2 = FrameLayout.LayoutParams(
+                400,
+                400
+            )
+            layoutParams2.leftMargin = 1340
+            layoutParams2.topMargin = 1220
+            admin.layoutParams = layoutParams2
             slideUp.start()
             venueClicked("First Image")
         }
@@ -244,7 +254,8 @@ class HomeFragment : Fragment() {
 
     private fun loadSingleEventFragment(event: EventList) {
         val bundle = Bundle()
-        bundle.putString("eventID", event.id)
+//        bundle.putString("eventID", event.id)
+        bundle.putSerializable("event", event)
         val fragment = SingleEventFragment()
         fragment.arguments = bundle
         val fragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
