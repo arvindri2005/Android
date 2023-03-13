@@ -54,10 +54,6 @@ class SingleEventFragment : Fragment() {
 
         val event = arguments?.getSerializable("event") as EventList
 
-//        val event = arguments?.let {
-//            it.getString("eventID")
-//        }
-
 
         if(event!=null){
             Glide.with(requireContext())
@@ -79,7 +75,7 @@ class SingleEventFragment : Fragment() {
 //            binding.eventStartTime.text = separatedStrings[1]
 
             binding.eventDescription.text = event.description
-            if (event.max_team_size==event.max_team_size){
+            if (event.is_solo!!){
                 binding.teamSize.text = "Individual Participant"
             }
             else{
@@ -100,12 +96,12 @@ class SingleEventFragment : Fragment() {
 
                     binding.eventLocation.text = event.venue
 
-//            val organizerT = event.organizer.split(",")
-//            var organizer = ""
-//            for (string in organizerT) {
-//                organizer = organizer+string+"\n"
-//            }
-//            binding.organizer.text = organizer
+            val organizerT = event.organizer!!
+            var organizer = ""
+            for (string in organizerT) {
+                organizer = organizer+string[0] + " " +string[1]  +"\n"
+            }
+            binding.organizer.text = organizer
 
 
                     binding.prize.text = "Prizes worth ₹${event.prize}"

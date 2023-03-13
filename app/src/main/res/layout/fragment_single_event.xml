@@ -26,7 +26,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/poppins_bold"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/backBtn"
@@ -50,8 +50,9 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="40dp"
+        android:layout_marginHorizontal="30dp"
         android:layout_marginTop="21dp"
+        android:scrollbarSize="0dp"
         app:layout_constraintBottom_toTopOf="@+id/rulebookBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line1">
@@ -65,7 +66,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/eventPosterCard"
                 android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_height="225dp"
                 android:layout_marginHorizontal="55sp"
                 android:layout_marginTop="1dp"
                 app:cardCornerRadius="10dp"
@@ -88,7 +89,7 @@
                 android:layout_marginTop="25dp"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="#313131"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/eventPosterCard"
                 tools:text="Date " />
@@ -100,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/eventDateTxt"
                 app:layout_constraintStart_toEndOf="@id/eventDateTxt"
                 app:layout_constraintTop_toTopOf="@id/eventDateTxt"
@@ -113,7 +114,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="Venue: "
                 android:textColor="#313131"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/eventDateTxt" />
 
@@ -124,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/eventLocationTxt"
                 app:layout_constraintStart_toEndOf="@id/eventLocationTxt"
                 app:layout_constraintTop_toTopOf="@id/eventLocationTxt"
@@ -137,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="#313131"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/eventLocationTxt"
                 tools:text="This is the test how to event description looks like Please remove it before the project goes live and I don't know what I am typing" />
@@ -150,7 +151,7 @@
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/eventDescription"
                 tools:text="Individual Participant" />
@@ -162,7 +163,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="Registration Fee "
                 android:textColor="#313131"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/teamSize" />
 
@@ -173,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/registrationFeeTxt"
                 app:layout_constraintTop_toTopOf="@id/registrationFeeTxt"
                 tools:text="₹ 99" />
@@ -185,7 +186,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="Registration closes on "
                 android:textColor="#313131"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/registrationFeeTxt" />
 
@@ -196,7 +197,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/registrationDeadlineTxt"
                 app:layout_constraintStart_toEndOf="@id/registrationDeadlineTxt"
                 app:layout_constraintTop_toTopOf="@id/registrationDeadlineTxt"
@@ -209,7 +210,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="Prizes Worth:  "
                 android:textColor="#313131"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/registrationDeadlineTxt" />
 
@@ -220,7 +221,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/prizeTxt"
                 app:layout_constraintStart_toEndOf="@id/prizeTxt"
                 app:layout_constraintTop_toTopOf="@id/prizeTxt"
@@ -234,7 +235,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="Organizes"
                 android:textColor="#313131"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/prizeTxt" />
 
@@ -245,7 +246,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/organizerTxt"
                 tools:text="Aryan : 7247305110\nAbhilasha: 9262293394" />
@@ -260,7 +261,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:layout_marginHorizontal="40dp"
+        android:layout_marginHorizontal="30dp"
         android:background="@drawable/rulebook_btn_bg"
         android:textColor="#1E1E1E"
         android:fontFamily="@font/poppins_semi_bold"
@@ -274,12 +275,12 @@
         android:id="@+id/registerBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
+        android:layout_marginHorizontal="30dp"
         android:background="@drawable/register_btn_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:textAllCaps="false"
         android:fontFamily="@font/poppins_semi_bold"
         android:text="Register"
