@@ -22,9 +22,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
+
                 <androidx.constraintlayout.widget.ConstraintLayout
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
+
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -36,6 +40,7 @@
                             android:layout_height="wrap_content"
                             app:src="@drawable/map"
                             app:zoomEnabled="false" />
+
 
                         <ImageView
                             android:id="@+id/nes"
@@ -116,12 +121,14 @@
         </androidx.appcompat.widget.Toolbar>
 
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/eventBottomSheet"
             android:layout_width="match_parent"
             android:layout_height="700dp"
             android:background="@drawable/bottom_sheet_bg"
             app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
 
             <View
                 android:id="@+id/view1"
@@ -132,6 +139,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
 
             <TextView

@@ -16,7 +16,6 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>): Recycle
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = eventList[position]
-
         holder.eventName.text = currentItem.event_name
         holder.eventStartTime.text = getTimeFromDate(currentItem.event_start_time.toString())
         holder.eventDate.text = getDayFromDate(currentItem.event_start_time.toString())

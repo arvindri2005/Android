@@ -33,9 +33,9 @@ data class TeamRegistration(
 
 data class TeamRegistrationResponse(
     val message: String,
-    val payment_details: PaymentDetails,
+    val payment_url: String,
     val team_id: String,
-//    val error: List<>
+    val error: List<String>
 )
 
 data class RegistrationVerification(
