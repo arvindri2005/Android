@@ -28,6 +28,7 @@
 
             <TextView
                 android:id="@+id/textView3"
+                android:layout_marginHorizontal="35dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -43,6 +44,7 @@
                 android:background="@drawable/edit_text_bg"
                 android:cursorVisible="true"
                 android:focusable="true"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/inter_bold"
                 android:importantForAutofill="no"
                 android:inputType="text"
@@ -52,6 +54,17 @@
                 android:textColorHint="#96A4AF"
                 android:textSize="18sp"
                 tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_marginHorizontal="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="TEAM MEMBERS"
+                android:textSize="16sp" />
+
 
             <TableLayout
                 android:id="@+id/team_members"
