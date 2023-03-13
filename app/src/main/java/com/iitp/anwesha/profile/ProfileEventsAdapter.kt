@@ -16,7 +16,7 @@ import java.util.*
 class ProfileEventsAdapter(private val eventList: List<MyEventDetails>): RecyclerView.Adapter<ProfileEventsAdapter.MyViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(MyEventDesignBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return MyViewHolder(MyeventDesignBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -32,7 +32,7 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>): Recycle
         return eventList.size
     }
 
-    class MyViewHolder( binding: MyEventDesignBinding ):RecyclerView.ViewHolder(binding.root){
+    class MyViewHolder( binding: MyeventDesignBinding ):RecyclerView.ViewHolder(binding.root){
 
         val eventName: TextView = binding.eventName
         val eventStartTime: TextView = binding.eventTime

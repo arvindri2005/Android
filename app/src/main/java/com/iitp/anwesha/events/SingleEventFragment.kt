@@ -57,10 +57,6 @@ class SingleEventFragment : Fragment() {
         if (isAdded) {
             val event = arguments?.getSerializable("event") as EventList
 
-//        val event = arguments?.let {
-//            it.getString("eventID")
-//        }
-
 
             if (event != null) {
                 Glide.with(requireContext())
@@ -105,78 +101,75 @@ class SingleEventFragment : Fragment() {
 
                 binding.eventLocation.text = event.venue
 
-//            val organizerT = event.organizer.split(",")
-//            var organizer = ""
-//            for (string in organizerT) {
-//                organizer = organizer+string+"\n"
-//            }
-//            binding.organizer.text = organizer
+            val organizerT = event.organizer!!
+            var organizer = ""
+            for (string in organizerT) {
+                organizer = organizer+string[0] + " " +string[1]  +"\n"
+            }
+            binding.organizer.text = organizer
 
 
                 binding.prize.text = "Prizes worth ₹${event.prize}"
 
 
-                if (!event.is_active!!) {
-                    binding.registerBtn.visibility = View.GONE
-                }
-                binding.registerBtn.setOnClickListener {
-                    if (event.is_active) {
-                        if (event.is_online!!) {
-                            val intent =
-                                Intent(Intent.ACTION_VIEW, Uri.parse(event.registration_link))
-                            startActivity(intent)
-                        } else {
-                            if (event.is_solo!!) {
-                                CoroutineScope(Dispatchers.IO).launch {
-                                    try {
-                                        val response1 =
-                                            EventsRegistrationApi(requireContext()).allEventsApi.soloEventRegistration(
-                                                SoloRegistration(event.id!!)
-                                            )
-                                        Log.d("response", response1.body().toString())
-                                        if (response1.isSuccessful) {
-                                            val soloRegistration = response1.body()
-                                            requireActivity().runOnUiThread {
-                                                if (soloRegistration!!.payment_url == null) {
-                                                    Toast.makeText(
-                                                        requireContext(),
-                                                        soloRegistration.message,
-                                                        Toast.LENGTH_SHORT
-                                                    ).show()
-                                                } else {
-                                                    val intent = Intent(
-                                                        Intent.ACTION_VIEW,
-                                                        Uri.parse(soloRegistration.payment_url)
-                                                    )
-                                                    val headers = Bundle()
-                                                    val sharedPref =
-                                                        requireActivity().getSharedPreferences(
-                                                            "UserPreferences",
-                                                            Context.MODE_PRIVATE
-                                                        )
-                                                    var cookieString = ""
-                                                    for (cookie in sharedPref.getStringSet(
-                                                        getString(
-                                                            R.string.cookies
-                                                        ), HashSet()
-                                                    )!!) {
-                                                        cookieString += "$cookie; "
-                                                    }
-                                                    headers.putString("Set-Cookie", cookieString)
-                                                    intent.putExtra(Browser.EXTRA_HEADERS, headers)
-                                                    startActivity(intent)
-                                                }
+            if(!event.is_active!!){
+                binding.registerBtn.visibility = View.GONE
+            }
+            binding.registerBtn.setOnClickListener {
+                if(event.is_active){
+                    if(event.is_online!!){
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(event.registration_link))
+                        startActivity(intent)
+                    }
+                    else{
+                        if(event.is_solo!!){
+                            CoroutineScope(Dispatchers.IO).launch {
+                                try {
+
+                                    Log.d("log","128")
+                                    val response1 = EventsRegistrationApi(requireContext()).allEventsApi.soloEventRegistration(SoloRegistration(event.id!!))
+                                    Log.d("response", "130")
+                                    if(response1.isSuccessful){
+                                        Log.d("log","132")
+                                        val soloRegistration = response1.body()!!
+                                        Log.d("rsponse", "134")
+                                        requireActivity().runOnUiThread {
+                                            if(soloRegistration.message==null){
+                                                Toast.makeText(requireContext(), "Already resgisterd", Toast.LENGTH_SHORT).show()
+
+                                                Log.d("log","139")
+                                                return@runOnUiThread
                                             }
-                                        } else {
-                                            Log.d("e", "${response1.errorBody()}")
+                                            else if(soloRegistration.payment_url.isBlank()){
+
+                                                Log.d("log","144")
+                                                Toast.makeText(requireContext(), soloRegistration.message, Toast.LENGTH_SHORT).show()
+                                            }
+                                            else{
+
+                                                Log.d("log","149")
+                                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(soloRegistration.payment_url))
+                                                val headers = Bundle()
+                                                val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+                                                var cookieString = ""
+                                                for(cookie in sharedPref.getStringSet(getString(R.string.cookies), HashSet())!!) {
+                                                    cookieString += "$cookie; "
+                                                }
+                                                headers.putString("Set-Cookie", cookieString)
+                                                intent.putExtra(Browser.EXTRA_HEADERS, headers)
+                                                startActivity(intent)
+                                            }
                                         }
-                                    } catch (e: Exception) {
-                                        Log.d("Error", "$e")
+                                    }
+                                    else{
+                                        Log.d("e", "${response1.errorBody()}")
                                     }
                                 }
-                            } else {
-
+                                catch (e: Exception){
+                                    Log.d("Error", "f")
+                                }
                             }
+                        }
 
                             // call solo or team api depending on event and then redirect to payu
 //                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(event.registration_link))
