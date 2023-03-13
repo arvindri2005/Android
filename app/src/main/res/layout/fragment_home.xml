@@ -11,6 +11,7 @@
             android:id="@+id/animation_view"
             android:layout_width="wrap_content"
             android:layout_marginTop="60dp"
+            android:visibility="invisible"
             android:layout_height="wrap_content"
             android:scaleType="centerInside"
             app:layout_anchor="@+id/eventBottomSheet"
@@ -242,7 +243,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/day1"
                     android:layout_width="60dp"
-                    android:layout_height="25dp"
+                    android:layout_height="30dp"
                     android:textAllCaps="false"
                     android:background="@drawable/home_day_btn_bg"
                     android:fontFamily="@font/poppins_medium"
@@ -253,7 +254,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/day2"
                     android:layout_width="60dp"
-                    android:layout_height="25dp"
+                    android:layout_height="30dp"
                     android:textAllCaps="false"
                     android:background="@drawable/home_day_btn_bg"
                     android:fontFamily="@font/poppins_medium"
@@ -265,7 +266,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/day3"
                     android:layout_width="60dp"
-                    android:layout_height="25dp"
+                    android:layout_height="30dp"
                     android:textAllCaps="false"
                     android:background="@drawable/home_day_btn_bg"
                     android:fontFamily="@font/poppins_medium"
@@ -301,6 +302,20 @@
                 app:layout_constraintStart_toEndOf="@id/hintImg"
                 app:layout_constraintTop_toBottomOf="@id/dayGroup" />
 
+            <TextView
+                android:id="@+id/isEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Oops! No Events found"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/hintTxt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/eventsList"
@@ -311,6 +326,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/hintTxt"
                 tools:listitem="@layout/event_design" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/delivery_shimmer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dayGroup">
+
+                <include
+                    android:id="@+id/include7"
+                    layout="@layout/home_events_shimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dayGroup"/>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

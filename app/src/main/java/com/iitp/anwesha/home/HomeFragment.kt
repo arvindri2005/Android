@@ -50,6 +50,8 @@ class HomeFragment : Fragment() {
         drawerLayout.addDrawerListener(actionBarToggle)
         actionBarToggle.syncState()
 
+
+        binding.deliveryShimmer.startShimmer()
         val sharedPref =
             requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
 
@@ -173,8 +175,15 @@ class HomeFragment : Fragment() {
                 venueEvent.add(i)
             }
         }
-        adapter.setEvents(venueEvent)
-        adapter.notifyDataSetChanged()
+        if(venueEvent.isEmpty()){
+            binding.isEmpty.visibility = View.VISIBLE
+        }
+        else{
+            binding.isEmpty.visibility = View.GONE
+            adapter.setEvents(venueEvent)
+            adapter.notifyDataSetChanged()
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -265,6 +274,10 @@ class HomeFragment : Fragment() {
                         loadSingleEventFragment(event)
                     }
                 })
+
+                binding.deliveryShimmer.visibility = View.GONE
+                binding.animationView.visibility = View.VISIBLE
+                binding.deliveryShimmer.stopShimmer()
             } else {
                 Toast.makeText(context, "Error in getting Events", Toast.LENGTH_SHORT).show()
             }

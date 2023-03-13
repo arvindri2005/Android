@@ -2,7 +2,7 @@ package com.iitp.anwesha.events
 
 data class SoloRegistrationResponse(
     val message: String,
-    val payment_url: String
+    val payment_url: String?=null
 )
 
 
@@ -32,10 +32,10 @@ data class TeamRegistration(
 )
 
 data class TeamRegistrationResponse(
-    val message: String,
-    val payment_url: String,
-    val team_id: String,
-    val error: List<String>
+    val message: String?=null,
+    val payment_url: String?=null,
+    val team_id: String?=null,
+    val error: List<Int>
 )
 
 data class RegistrationVerification(

@@ -81,7 +81,7 @@ class SingleEventFragment : Fragment() {
 //            binding.eventStartTime.text = separatedStrings[1]
 
                 binding.eventDescription.text = event.description
-                if (event.max_team_size == event.max_team_size) {
+                if (event.is_solo!!) {
                     binding.teamSize.text = "Individual Participant"
                 } else {
                     binding.teamSize.text = "${event.min_team_size}-${event.max_team_size} Peoples"
@@ -141,7 +141,7 @@ class SingleEventFragment : Fragment() {
                                                 Log.d("log","139")
                                                 return@runOnUiThread
                                             }
-                                            else if(soloRegistration.payment_url.isBlank()){
+                                            else if(soloRegistration.payment_url==null){
 
                                                 Log.d("log","144")
                                                 Toast.makeText(requireContext(), soloRegistration.message, Toast.LENGTH_SHORT).show()
