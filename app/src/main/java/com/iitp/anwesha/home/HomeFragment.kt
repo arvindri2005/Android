@@ -3,32 +3,29 @@ package com.iitp.anwesha.home
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.iitp.anwesha.R
 import com.iitp.anwesha.TicketBook.PassesFragment
 import com.iitp.anwesha.databinding.FragmentHomeBinding
 import com.iitp.anwesha.events.SingleEventFragment
-import com.iitp.anwesha.home.functions.nav_items_functions
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.iitp.anwesha.home.functions.MapClickHandle
+import com.iitp.anwesha.home.functions.nav_items_functions
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -68,7 +65,7 @@ class HomeFragment : Fragment() {
         binding.hintImg.visibility = View.GONE
         binding.hintTxt.visibility = View.GONE
 
-        val slideDown = ValueAnimator.ofInt(1000, dpToPx(130))
+        val slideDown = ValueAnimator.ofInt(1000, dpToPx(150))
         slideDown.duration = 500
         slideDown.addUpdateListener {
             behavior.peekHeight = it.animatedValue as Int
@@ -81,7 +78,16 @@ class HomeFragment : Fragment() {
         }
 
         binding.map.setOnClickListener {
-            slideDown.start()
+            if(behavior.peekHeight!=dpToPx(150)){
+                slideDown.start()
+            }
+            binding.day1.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+            binding.day2.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+            binding.day3.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+            binding.day1.setBackgroundResource(R.drawable.home_day_btn_bg)
+            binding.day2.setBackgroundResource(R.drawable.home_day_btn_bg)
+            binding.day3.setBackgroundResource(R.drawable.home_day_btn_bg)
+            binding.dayGroup.visibility = View.VISIBLE
             binding.hintTxt.visibility = View.VISIBLE
             binding.hintImg.visibility = View.VISIBLE
         }
@@ -103,8 +109,12 @@ class HomeFragment : Fragment() {
             layoutParams.leftMargin =  1150
             layoutParams.topMargin = 950
             nescafe.layoutParams = layoutParams
-            slideUp.start()
-            venueClicked("First Image")
+            if(behavior.peekHeight!=1000){
+                slideUp.start()
+            }
+            binding.eventText.text ="Events at Nescafe"
+            venueClicked("Nescafe, IIT PATNA")
+
         }
 
         binding.gym.setOnClickListener {
@@ -115,8 +125,11 @@ class HomeFragment : Fragment() {
             layoutParams4.leftMargin = 2740
             layoutParams4.topMargin = 1060
             gym.layoutParams = layoutParams4
-            slideUp.start()
-            venueClicked("First Image")
+            if(behavior.peekHeight!=1000){
+                slideUp.start()
+            }
+            binding.eventText.text ="Events at Gymkhana"
+            venueClicked("Gymkhana, IIT PATNA")
         }
         binding.admin.setOnClickListener {
             val layoutParams2 = FrameLayout.LayoutParams(
@@ -126,19 +139,10 @@ class HomeFragment : Fragment() {
             layoutParams2.leftMargin = 1340
             layoutParams2.topMargin = 1220
             admin.layoutParams = layoutParams2
-            slideUp.start()
-            venueClicked("First Image")
-        }
-        binding.admin.setOnClickListener {
-            val layoutParams2 = FrameLayout.LayoutParams(
-                400,
-                400
-            )
-            layoutParams2.leftMargin = 1340
-            layoutParams2.topMargin = 1220
-            admin.layoutParams = layoutParams2
-            slideUp.start()
-            venueClicked("First Image")
+            if(behavior.peekHeight!=1000){
+                slideUp.start()
+            }
+            binding.eventText.text = "Events at Admin Block"
         }
         binding.sac.setOnClickListener {
             val layoutParams3 = FrameLayout.LayoutParams(
@@ -148,8 +152,11 @@ class HomeFragment : Fragment() {
             layoutParams3.leftMargin = 1800
             layoutParams3.topMargin = 980
             sac.layoutParams = layoutParams3
-            slideUp.start()
-            venueClicked("First Image")
+            if(behavior.peekHeight!=1000){
+                slideUp.start()
+            }
+            binding.eventText.text = "Events at SAC"
+            venueClicked("SAC Main Hall, IIT PATNA")
         }
 
         binding.festPasses.setOnClickListener {
@@ -162,6 +169,9 @@ class HomeFragment : Fragment() {
 
     }
 
+
+
+
     private fun pxToDp(px : Float): Int {
         val displayMetrics = Resources.getSystem().displayMetrics
         return px.toInt() / (displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT).toInt()
@@ -173,7 +183,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun venueClicked(venue: String) {
-        Toast.makeText(context, "$venue clicked", Toast.LENGTH_SHORT).show()
+        binding.dayGroup.visibility = View.GONE
+        binding.hintTxt.visibility = View.GONE
+        binding.hintImg.visibility = View.GONE
+        val venueEvent = ArrayList<EventList>()
+        for(i in newEventList){
+            if (i.venue==venue){
+                venueEvent.add(i)
+            }
+        }
+        adapter.setEvents(venueEvent)
+        adapter.notifyDataSetChanged()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -182,18 +202,51 @@ class HomeFragment : Fragment() {
         loadEvents()
 
 //      Day wise event loading
-        binding.dayOne.setOnClickListener {
+        binding.day1.setOnClickListener {
+            changeBg(1)
             loadDayEvents("17")
         }
-        binding.dayTwo.setOnClickListener {
+        binding.day2.setOnClickListener {
+            changeBg(2)
             loadDayEvents("18")
         }
-        binding.dayThree.setOnClickListener {
+        binding.day3.setOnClickListener {
+            changeBg(3)
             loadDayEvents("19")
         }
     }
 
+    private fun changeBg(day: Int) {
+        when (day){
+            1->{
+                binding.day1.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
+                binding.day2.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+                binding.day3.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+                binding.day1.setBackgroundResource(R.drawable.home_day_btn_selected_bg)
+                binding.day2.setBackgroundResource(R.drawable.home_day_btn_bg)
+                binding.day3.setBackgroundResource(R.drawable.home_day_btn_bg)
+            }
+            2->{
+                binding.day1.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+                binding.day2.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
+                binding.day3.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+                binding.day2.setBackgroundResource(R.drawable.home_day_btn_selected_bg)
+                binding.day1.setBackgroundResource(R.drawable.home_day_btn_bg)
+                binding.day3.setBackgroundResource(R.drawable.home_day_btn_bg)
+            }
+            3->{
+                binding.day1.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+                binding.day2.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+                binding.day3.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
+                binding.day3.setBackgroundResource(R.drawable.home_day_btn_selected_bg)
+                binding.day2.setBackgroundResource(R.drawable.home_day_btn_bg)
+                binding.day1.setBackgroundResource(R.drawable.home_day_btn_bg)
+            }
+        }
+    }
+
     private fun loadDayEvents(day: String) {
+        binding.eventText.text = "Events"
         val dayEvent = ArrayList<EventList>()
         for (i in newEventList) {
             val da = getDayFromDate(i.start_time!!)

@@ -4,19 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.iitp.anwesha.databinding.MyEventDesignBinding
-import com.iitp.anwesha.home.EventList
-import com.iitp.anwesha.profile.MyEventDetails
-import org.w3c.dom.Text
-
+import com.iitp.anwesha.databinding.MyeventDesignBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ProfileEventsAdapter(private val eventList: List<MyEventDetails>): RecyclerView.Adapter<ProfileEventsAdapter.MyViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(MyEventDesignBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return MyViewHolder(MyeventDesignBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -32,7 +27,7 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>): Recycle
         return eventList.size
     }
 
-    class MyViewHolder( binding: MyEventDesignBinding ):RecyclerView.ViewHolder(binding.root){
+    class MyViewHolder( binding: MyeventDesignBinding ):RecyclerView.ViewHolder(binding.root){
 
         val eventName: TextView = binding.eventName
         val eventStartTime: TextView = binding.eventTime

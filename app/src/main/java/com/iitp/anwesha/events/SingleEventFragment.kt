@@ -124,14 +124,29 @@ class SingleEventFragment : Fragment() {
                         if(event.is_solo!!){
                             CoroutineScope(Dispatchers.IO).launch {
                                 try {
+
+                                    Log.d("log","128")
                                     val response1 = EventsRegistrationApi(requireContext()).allEventsApi.soloEventRegistration(SoloRegistration(event.id!!))
-                                    Log.d("response", response1.body().toString())
+                                    Log.d("response", "130")
                                     if(response1.isSuccessful){
-                                        val soloRegistration = response1.body()
+                                        Log.d("log","132")
+                                        val soloRegistration = response1.body()!!
+                                        Log.d("rsponse", "134")
                                         requireActivity().runOnUiThread {
-                                            if(soloRegistration!!.payment_url==null){
-                                                Toast.makeText(requireContext(), soloRegistration.message, Toast.LENGTH_SHORT).show() }
+                                            if(soloRegistration.message==null){
+                                                Toast.makeText(requireContext(), "Already resgisterd", Toast.LENGTH_SHORT).show()
+
+                                                Log.d("log","139")
+                                                return@runOnUiThread
+                                            }
+                                            else if(soloRegistration.payment_url.isBlank()){
+
+                                                Log.d("log","144")
+                                                Toast.makeText(requireContext(), soloRegistration.message, Toast.LENGTH_SHORT).show()
+                                            }
                                             else{
+
+                                                Log.d("log","149")
                                                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(soloRegistration.payment_url))
                                                 val headers = Bundle()
                                                 val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
@@ -150,12 +165,9 @@ class SingleEventFragment : Fragment() {
                                     }
                                 }
                                 catch (e: Exception){
-                                    Log.d("Error", "$e")
+                                    Log.d("Error", "f")
                                 }
                             }
-                        }
-                        else{
-
                         }
 
                         // call solo or team api depending on event and then redirect to payu

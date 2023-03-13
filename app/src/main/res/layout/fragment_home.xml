@@ -82,7 +82,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -132,19 +132,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-<<<<<<< HEAD
-=======
 
-            <TextView
-                android:id="@+id/eventText"
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            app:layout_constraintStart_toStartOf="@id/view2"
-            app:layout_constraintTop_toBottomOf="@id/view2">
->>>>>>> ab92de402d917afb0aee9791486f86c1a859de8b
 
             <TextView
                 android:id="@+id/eventText"
@@ -170,39 +158,51 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/eventText" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/dayGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="21dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@id/view2"
                 app:layout_constraintTop_toBottomOf="@id/view2">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/dayOne"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/day1"
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/home_day_btn_bg"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Day 1"
-                    android:textSize="12sp" />
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/dayTwo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/day2"
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/home_day_btn_bg"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Day 2"
-                    android:textSize="12sp" />
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/dayThree"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/day3"
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/home_day_btn_bg"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Day 3"
-                    android:textSize="12sp" />
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
-            </com.google.android.material.chip.ChipGroup>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
 
             <ImageView
                 android:id="@+id/hintImg"
@@ -210,7 +210,7 @@
                 android:layout_height="24dp"
                 android:src="@drawable/hint"
                 app:layout_constraintBottom_toBottomOf="@id/hintTxt"
-                app:layout_constraintStart_toStartOf="@id/chipGroup"
+                app:layout_constraintStart_toStartOf="@id/dayGroup"
                 app:layout_constraintTop_toTopOf="@id/hintTxt" />
 
             <TextView
@@ -226,14 +226,14 @@
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/hintImg"
-                app:layout_constraintTop_toBottomOf="@id/chipGroup" />
+                app:layout_constraintTop_toBottomOf="@id/dayGroup" />
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/eventsList"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/hintTxt"
                 tools:listitem="@layout/event_design" />
