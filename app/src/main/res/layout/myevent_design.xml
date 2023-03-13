@@ -57,40 +57,16 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Bollywood Night" />
 
-                <TextView
-                    android:id="@+id/venueTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Venue: "
-                    android:textColor="#4f4f4f"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="@id/eventName"
-                    app:layout_constraintTop_toBottomOf="@id/eventName" />
-
-                <TextView
-                    android:id="@+id/eventLocation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@id/venueTxt"
-                    app:layout_constraintStart_toEndOf="@id/venueTxt"
-                    app:layout_constraintTop_toTopOf="@id/venueTxt"
-                    tools:text="Block 9" />
-
 
                 <TextView
                     android:id="@+id/eventDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/black"
                     android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="@id/venueTxt"
-                    app:layout_constraintTop_toBottomOf="@id/venueTxt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/eventName"
                     tools:text="18 March 2023" />
 
                 <TextView

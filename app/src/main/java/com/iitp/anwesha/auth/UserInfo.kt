@@ -14,6 +14,10 @@ data class UserRegisterInfo(
     val user_type: String
 )
 
+data class UserForget(
+    val email: String
+)
+
 data class LoginResponse(
     val success: Boolean,
     val name: String
