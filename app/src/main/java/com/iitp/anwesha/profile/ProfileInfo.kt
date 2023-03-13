@@ -34,6 +34,7 @@ data class UpdateProfile(
     val phone_number : String,
     val full_name : String,
     val college_name : String? = "",
+    val gender: String? = "",
     val age : Int? = 0,
     val user_type : String? = "new_user_type",
     val instagram_id : String? = "new instagram_id",

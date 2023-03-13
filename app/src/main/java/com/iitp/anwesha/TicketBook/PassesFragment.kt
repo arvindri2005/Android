@@ -40,8 +40,12 @@ class PassesFragment : Fragment() {
 
         viewPager.setPageTransformer(PassesPageTransformer())
 
-        val dotsIndicator =binding.dotsIndicator
+        val dotsIndicator = binding.dotsIndicator
         dotsIndicator.setViewPager2(viewPager)
+
+        binding.getBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack(null, 0)
+        }
 
         return view
     }
@@ -57,27 +61,29 @@ class PassesFragment : Fragment() {
             }
         }
     }
+
     private inner class PassesPageTransformer : ViewPager2.PageTransformer {
         override fun transformPage(page: View, position: Float) {
             val absPosition = abs(position)
             val scaleFactor = if (absPosition > 1) 0f else 1 - absPosition
         }
     }
+
     override fun onResume() {
         super.onResume()
-        val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        val bottomNavigationView =
+            activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigationView?.visibility = View.GONE
     }
 
     override fun onPause() {
         super.onPause()
-        val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        val bottomNavigationView =
+            activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigationView?.visibility = View.VISIBLE
     }
 
 }
-
-
 
 class ElitePassFragment : Fragment() {
 
@@ -101,7 +107,10 @@ class ElitePassFragment : Fragment() {
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.show()
             imageView.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(requireActivity().getString(R.string.elite_pass)))
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(requireActivity().getString(R.string.elite_pass))
+                )
                 startActivity(intent)
                 dialog.dismiss()
             }
@@ -125,7 +134,6 @@ class ProPassFragment : Fragment() {
         val riveAnimationView = view.findViewById<RiveAnimationView>(R.id.animation_view)
         riveAnimationView.play()
 
-        // Add OnClickListener to handle clicks on the pass
         val button = binding.cilcker
         button.setOnClickListener {
             val dialog = Dialog(requireContext())
@@ -134,7 +142,10 @@ class ProPassFragment : Fragment() {
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.show()
             imageView.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(requireActivity().getString(R.string.pro_pass)))
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(requireActivity().getString(R.string.pro_pass))
+                )
                 startActivity(intent)
                 dialog.dismiss()
             }
@@ -142,4 +153,3 @@ class ProPassFragment : Fragment() {
         return view
     }
 }
-// Redirect user to another screen or perform

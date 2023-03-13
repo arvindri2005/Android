@@ -63,12 +63,13 @@ class ProfileFragment(context : Context) : Fragment(){
                 Log.d("userinfo: ", "${userInfo.anwesha_id}, ${userInfo.full_name}")
                 requireActivity().runOnUiThread(Runnable {
                     binding.profileName.setText(userInfo.full_name.toString())
-                    binding.anweshaId.setText(userInfo.anwesha_id)
+                    binding.anweshaId.setText(userInfo.anwesha_id.toString().toUpperCase())
                     binding.anweshaId2.setText(userInfo.anwesha_id)
                     binding.phoneNumber.setText(userInfo.phone_number)
                     binding.emailId.setText(userInfo.email_id)
                     binding.collegeName.setText(userInfo.college_name )
-                    binding.gender.setText(userInfo.gender ?: "LIQUID" )
+                    val gender = userInfo.gender ?: "Liquid"
+                    binding.gender.setText(gender.toString())
                     binding.visibleFrag.visibility = View.VISIBLE
                     binding.deliveryShimmer.visibility = View.GONE
                 })
@@ -102,8 +103,8 @@ class ProfileFragment(context : Context) : Fragment(){
             if(isEditProfile) {
                 setEditable(false, binding.profileName, InputType.TYPE_NULL)
                 setEditable(false, binding.phoneNumber, InputType.TYPE_NULL)
-                setEditable(false, binding.emailId, InputType.TYPE_NULL)
                 setEditable(false, binding.collegeName, InputType.TYPE_NULL)
+                setEditable(false, binding.gender, InputType.TYPE_NULL)
                 CoroutineScope(Dispatchers.IO).launch {
                     editProfile()
                     isEditProfile = !isEditProfile
@@ -128,8 +129,8 @@ class ProfileFragment(context : Context) : Fragment(){
                 )
                 setEditable(true, binding.profileName, InputType.TYPE_CLASS_TEXT)
                 setEditable(true, binding.phoneNumber, InputType.TYPE_CLASS_PHONE)
-                setEditable(true, binding.emailId, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
                 setEditable(true, binding.collegeName, InputType.TYPE_CLASS_TEXT)
+                setEditable(true, binding.gender, InputType.TYPE_CLASS_TEXT)
                 isEditProfile = !isEditProfile
             }
         }
@@ -148,8 +149,9 @@ class ProfileFragment(context : Context) : Fragment(){
         val name = binding.profileName.text.toString()
         val phone = binding.phoneNumber.text.toString()
         val college = binding.collegeName.text.toString()
+        val gender = binding.gender.text.toString()
 
-        val updateProfile = UpdateProfile(phone, name, college)
+        val updateProfile = UpdateProfile(phone, name, college, gender)
 
         val response = UserProfileApi(requireContext()).profileApi.updateProfile(updateProfile)
 

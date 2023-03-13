@@ -25,7 +25,7 @@ import java.util.*
 
 
 class SingleEventFragment : Fragment() {
-    private lateinit var binding : FragmentSingleEventBinding
+    private lateinit var binding: FragmentSingleEventBinding
     private lateinit var event: Event
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,13 +36,15 @@ class SingleEventFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        val bottomNavigationView =
+            activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigationView?.visibility = View.GONE
     }
 
     override fun onPause() {
         super.onPause()
-        val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        val bottomNavigationView =
+            activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigationView?.visibility = View.VISIBLE
     }
 
@@ -50,9 +52,9 @@ class SingleEventFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSingleEventBinding.inflate(inflater,container,false)
+        binding = FragmentSingleEventBinding.inflate(inflater, container, false)
 
-        if(isAdded) {
+        if (isAdded) {
             val event = arguments?.getSerializable("event") as EventList
 
 //        val event = arguments?.let {
