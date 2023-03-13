@@ -94,13 +94,6 @@ class HomeFragment : Fragment() {
             binding.hintImg.visibility = View.VISIBLE
         }
 
-
-        val nescafe = binding.nes
-        val admin = binding.admin
-        val sac = binding.sac
-        val gym =binding.gym
-
-
         MapClickHandle(requireContext(), binding).mapClick()
 
 
@@ -122,24 +115,68 @@ class HomeFragment : Fragment() {
             binding.eventText.text ="Events at Gymkhana"
             venueClicked("Gymkhana, IIT PATNA")
         }
-        binding.admin.setOnClickListener {
-
-            if(behavior.peekHeight!=1000){
-                slideUp.start()
-            }
-            binding.eventText.text = "Events at Admin Block"
-        }
-        binding.admin.setOnClickListener {
-
-            slideUp.start()
-            venueClicked("First Image")
-        }
         binding.sac.setOnClickListener {
             if(behavior.peekHeight!=1000){
                 slideUp.start()
             }
             binding.eventText.text = "Events at SAC"
             venueClicked("SAC Main Hall, IIT PATNA")
+        }
+        binding.mainStage.setOnClickListener {
+            if(behavior.peekHeight!=1000){
+                slideUp.start()
+            }
+            binding.eventText.text = "Events at MAIN STAGE"
+            venueClicked("Main Stage, IIT PATNA")
+        }
+        binding.basketball.setOnClickListener {
+            if(behavior.peekHeight!=1000){
+                slideUp.start()
+            }
+            binding.eventText.text = "Events at BASKETBALL COURT"
+            venueClicked("Basketball Court, IIT PATNA")
+        }
+        binding.nsit.setOnClickListener {
+            if(behavior.peekHeight!=1000){
+                slideUp.start()
+            }
+            binding.eventText.text = "Events at NSIT WALL"
+            venueClicked("NSIT Wall, IIT Patna")
+        }
+        binding.foodCourt.setOnClickListener {
+            if(behavior.peekHeight!=1000){
+                slideUp.start()
+            }
+            binding.eventText.text = "Events at FOOD COURT"
+            venueClicked("FOOD COURT, IIT PATNA")
+        }
+        binding.senate.setOnClickListener {
+            if(behavior.peekHeight!=1000){
+                slideUp.start()
+            }
+            binding.eventText.text = "Events at SENATE HALL"
+            venueClicked("Senate Hall, IIT PATNA")
+        }
+        binding.lh2.setOnClickListener {
+            if(behavior.peekHeight!=1000){
+                slideUp.start()
+            }
+            binding.eventText.text = "Events at LECTURE HALL 2"
+            venueClicked("Lecture Hall, IIT PATNA")
+        }
+        binding.lh1.setOnClickListener {
+            if(behavior.peekHeight!=1000){
+                slideUp.start()
+            }
+            binding.eventText.text = "Events at LECTURE HALL 1"
+            venueClicked("Lecture Hall, IIT PATNA")
+        }
+        binding.helipad.setOnClickListener {
+            if(behavior.peekHeight!=1000){
+                slideUp.start()
+            }
+            binding.eventText.text = "Events at HELIPAD"
+            venueClicked("Helipad Stage, IIT PATNA")
         }
 
         binding.festPasses.setOnClickListener {
