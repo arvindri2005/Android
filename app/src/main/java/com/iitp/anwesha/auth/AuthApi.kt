@@ -14,9 +14,11 @@ import retrofit2.http.POST
 
 
 interface AuthApi {
-
     @POST("user/login")
     suspend fun userLogin(@Body userLoginInfo: UserLoginInfo) : Response<LoginResponse>
+
+    @POST("user/forgetpassword")
+    suspend fun userForget(@Body userForgetInfo: UserForget) : Response<LoginResponse>
 
     @POST("user/register")
     suspend fun userRegister(@Body userRegisterInfo: UserRegisterInfo) : Response<RegisterResponse>
@@ -24,7 +26,6 @@ interface AuthApi {
 
 class UserAuthApi(val context: Context) {
     val userAuthApi: AuthApi
-
 
     init {
 

@@ -4,12 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.iitp.anwesha.databinding.EventDesignBinding
 import com.iitp.anwesha.databinding.MyeventDesignBinding
+
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ProfileEventsAdapter(private val eventList: List<MyEventDetails>): RecyclerView.Adapter<ProfileEventsAdapter.MyViewHolder>(){
 
+    private lateinit var binding: EventDesignBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(MyeventDesignBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }

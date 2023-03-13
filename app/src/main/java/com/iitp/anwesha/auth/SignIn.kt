@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.iitp.anwesha.MainActivity
 import com.iitp.anwesha.MyDialog
@@ -32,9 +33,23 @@ class SignIn : Fragment() {
 
         val intent = Intent(activity, MainActivity::class.java)
 
-
-
         val myDialog = MyDialog(requireContext())
+
+        binding.Forgotpassword.setOnClickListener {
+            val email = checkValue(binding.AnweshaId) ?: return@setOnClickListener
+
+            myDialog.showProgressDialog(this@SignIn)
+            CoroutineScope(Dispatchers.IO).launch {
+                val userforget = UserForget(email)
+
+                val response = UserAuthApi(requireContext()).userAuthApi.userForget(userforget)
+
+                Snackbar.make(view, "Forget password email sent to $email", Snackbar.LENGTH_LONG)
+                    .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+
+                myDialog.dismissProgressDialog()
+            }
+        }
 
         // user login using API
         binding.LoginButton.setOnClickListener{

@@ -1,6 +1,15 @@
 package com.iitp.anwesha.auth
 
+import android.content.Intent
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,47 +41,72 @@ class Signup : Fragment() {
 
         val myDialog = MyDialog(requireContext())
 
-        binding.SignupButton.setOnClickListener {
+            binding.SignupButton.setOnClickListener {
+                if(binding.acceptTermButton.isChecked == true) {
+                    val email = checkValue(binding.EmailId) ?: return@setOnClickListener
+                val phone = checkValue(binding.Contactnumber) ?: return@setOnClickListener
+                val password = checkValue(binding.AnweshaPassword) ?: return@setOnClickListener
+                val confirmPassword =
+                    checkValue(binding.ConfirmPassword) ?: return@setOnClickListener
+                val name = checkValue(binding.anweshaFullName) ?: return@setOnClickListener
+                val college = checkValue(binding.anweshaCollegeName) ?: return@setOnClickListener
+                val userType =
+                    checkSpinnerValue(binding.anweshaUserType) ?: return@setOnClickListener
 
-            val email = checkValue(binding.EmailId) ?: return@setOnClickListener
-            val phone = checkValue(binding.Contactnumber) ?: return@setOnClickListener
-            val password = checkValue(binding.AnweshaPassword) ?: return@setOnClickListener
-            val confirmPassword = checkValue(binding.ConfirmPassword) ?: return@setOnClickListener
-            val name = checkValue(binding.anweshaFullName) ?: return@setOnClickListener
-            val college = checkValue(binding.anweshaCollegeName) ?: return@setOnClickListener
-            val userType = checkSpinnerValue(binding.anweshaUserType) ?: return@setOnClickListener
-
-            if(password != confirmPassword) {
-                binding.ConfirmPassword.error = "Password does not match!"
-                return@setOnClickListener
-            }
-            binding.ConfirmPassword.error = null
-
-
-            myDialog.showProgressDialog(this@Signup)
-
-            CoroutineScope(Dispatchers.Main).launch {
-                val registerUser = UserRegisterInfo(email, password, name, phone, college, userType)
-                try {
-                    val response = UserAuthApi(requireContext()).userAuthApi.userRegister(registerUser)
-
-                    if(response.isSuccessful) {
-                        Snackbar.make(view, "You have successfully Registered!", Snackbar.LENGTH_LONG)
-                            .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
-                        loadFragment(SignIn())
-                    }
-
-                    else {
-                        Snackbar.make(view, "Could not register!", Snackbar.LENGTH_LONG)
-                            .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
-                    }
+                if (password != confirmPassword) {
+                    binding.ConfirmPassword.error = "Password does not match!"
+                    return@setOnClickListener
                 }
-                catch(e: Exception) {
-                    myDialog.showErrorAlertDialog("Oops! It seems like an error... ${e.message}")
+                binding.ConfirmPassword.error = null
+
+
+                myDialog.showProgressDialog(this@Signup)
+
+                CoroutineScope(Dispatchers.Main).launch {
+                    val registerUser =
+                        UserRegisterInfo(email, password, name, phone, college, userType)
+                    try {
+                        val response =
+                            UserAuthApi(requireContext()).userAuthApi.userRegister(registerUser)
+
+                        if (response.isSuccessful) {
+                            Snackbar.make(
+                                view,
+                                "You have successfully Registered!",
+                                Snackbar.LENGTH_LONG
+                            )
+                                .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
+                                .show()
+                            loadFragment(SignIn())
+                        } else {
+                            Snackbar.make(view, "Could not register!", Snackbar.LENGTH_LONG)
+                                .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
+                                .show()
+                        }
+                    } catch (e: Exception) {
+                        myDialog.showErrorAlertDialog("Oops! It seems like an error... ${e.message}")
+                    }
+                    myDialog.dismissProgressDialog()
                 }
-                myDialog.dismissProgressDialog()
             }
         }
+
+        val text = "I accept the Terms and conditions."
+        val spannableString = SpannableString(text)
+
+        spannableString.setSpan(UnderlineSpan(), 13, text.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        val clickableSpan = object : ClickableSpan() {
+            override fun onClick(view: View) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://anwesha.live/terms"))
+                view.context.startActivity(intent)
+            }
+        }
+
+        spannableString.setSpan(clickableSpan, 13, text.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        binding.tvAcceptTerms.text = spannableString
+        binding.tvAcceptTerms.movementMethod = LinkMovementMethod.getInstance()
+
 
         return view
     }

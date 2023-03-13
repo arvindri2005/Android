@@ -23,12 +23,19 @@ import com.yuyakaido.android.cardstackview.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class ProfileFragment(context : Context) : Fragment(){
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private var isEditProfile = false
+    private lateinit var fragmentContext: Context
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        fragmentContext = context
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,12 +65,11 @@ class ProfileFragment(context : Context) : Fragment(){
         }
 
         CoroutineScope(Dispatchers.IO).launch {
-
             val response = UserProfileApi(requireContext()).profileApi.getProfile()
             if (response.isSuccessful) {
                 val userInfo = response.body()!!
                 Log.d("userinfo: ", "${userInfo.anwesha_id}, ${userInfo.full_name}")
-                requireActivity().runOnUiThread(Runnable {
+                withContext(Dispatchers.Main) {
                     binding.profileName.setText(userInfo.full_name.toString())
                     binding.anweshaId.setText(userInfo.anwesha_id.toString().toUpperCase())
                     binding.anweshaId2.setText(userInfo.anwesha_id)
@@ -74,29 +80,27 @@ class ProfileFragment(context : Context) : Fragment(){
                     binding.gender.setText(gender.toString())
                     binding.visibleFrag.visibility = View.VISIBLE
                     binding.deliveryShimmer.visibility = View.GONE
-                })
+                }
             } else {
-                requireActivity().runOnUiThread(Runnable {
+                withContext(Dispatchers.Main) {
                     Toast.makeText(
                         context,
                         "error found: ${response.message()}",
                         Toast.LENGTH_SHORT
                     ).show()
-                })
+                }
             }
 
-            val response2 = UserProfileApi(requireContext()).profileApi.getMyEvents()
+            withContext(Dispatchers.Main) {
+            val response2 = UserProfileApi(fragmentContext).profileApi.getMyEvents()
             if (response2.isSuccessful) {
                 val eventsInfo = response2.body()!!
                 Log.e("PRINT", eventsInfo.toString())
-                requireActivity().runOnUiThread(Runnable {
-                    binding.rvRegistered.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                     binding.rvRegistered.adapter = ProfileEventsAdapter(eventsInfo.solo)
-                })
+                    binding.rvRegistered.layoutManager = LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
+                    binding.rvRegistered.adapter = ProfileEventsAdapter(eventsInfo.solo)
+                }
             }
-
         }
-
 
         binding.editProfile.setOnClickListener {
             val animation =

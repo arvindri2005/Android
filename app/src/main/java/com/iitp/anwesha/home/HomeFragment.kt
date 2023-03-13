@@ -104,13 +104,6 @@ class HomeFragment : Fragment() {
 
         //Handle click when venues are clicked
         binding.nes.setOnClickListener {
-            val layoutParams = FrameLayout.LayoutParams(
-                400,
-                400
-            )
-            layoutParams.leftMargin =  1150
-            layoutParams.topMargin = 950
-            nescafe.layoutParams = layoutParams
             if(behavior.peekHeight!=1000){
                 slideUp.start()
             }
@@ -120,13 +113,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.gym.setOnClickListener {
-            val layoutParams4= FrameLayout.LayoutParams(
-                400,
-                400
-            )
-            layoutParams4.leftMargin = 2740
-            layoutParams4.topMargin = 1060
-            gym.layoutParams = layoutParams4
+
             if(behavior.peekHeight!=1000){
                 slideUp.start()
             }
@@ -134,37 +121,18 @@ class HomeFragment : Fragment() {
             venueClicked("Gymkhana, IIT PATNA")
         }
         binding.admin.setOnClickListener {
-            val layoutParams2 = FrameLayout.LayoutParams(
-                400,
-                400
-            )
-            layoutParams2.leftMargin = 1340
-            layoutParams2.topMargin = 1220
-            admin.layoutParams = layoutParams2
+
             if(behavior.peekHeight!=1000){
                 slideUp.start()
             }
             binding.eventText.text = "Events at Admin Block"
         }
         binding.admin.setOnClickListener {
-            val layoutParams2 = FrameLayout.LayoutParams(
-                400,
-                400
-            )
-            layoutParams2.leftMargin = 1340
-            layoutParams2.topMargin = 1220
-            admin.layoutParams = layoutParams2
+
             slideUp.start()
             venueClicked("First Image")
         }
         binding.sac.setOnClickListener {
-            val layoutParams3 = FrameLayout.LayoutParams(
-                400,
-                400
-            )
-            layoutParams3.leftMargin = 1800
-            layoutParams3.topMargin = 980
-            sac.layoutParams = layoutParams3
             if(behavior.peekHeight!=1000){
                 slideUp.start()
             }
