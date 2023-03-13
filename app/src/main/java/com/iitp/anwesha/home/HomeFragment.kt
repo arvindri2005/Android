@@ -92,10 +92,12 @@ class HomeFragment : Fragment() {
             binding.hintImg.visibility = View.VISIBLE
         }
 
+
         val nescafe = binding.nes
         val admin = binding.admin
         val sac = binding.sac
         val gym =binding.gym
+
 
         MapClickHandle(requireContext(), binding).mapClick()
 

@@ -126,6 +126,7 @@ class SingleEventFragment : Fragment() {
                             CoroutineScope(Dispatchers.IO).launch {
                                 try {
 
+
                                     Log.d("log","128")
                                     val response1 = EventsRegistrationApi(requireContext()).allEventsApi.soloEventRegistration(SoloRegistration(event.id!!))
                                     Log.d("response", "130")
@@ -169,6 +170,22 @@ class SingleEventFragment : Fragment() {
                                     Log.d("Error", "f")
                                 }
                             }
+
+                        }
+                        else {
+                            val minTeamMembers = event.min_team_size
+                            val maxTeamMembers = event.max_team_size
+                            val bundle = Bundle()
+                            bundle.putInt("minTeamMembers", minTeamMembers!!)
+                            bundle.putInt("maxTeamMembers", maxTeamMembers!!)
+                            bundle.putString("eventName", event.name)
+                            bundle.putString("eventID", event.id)
+                            val teamEventFragment = TeamEventFragment()
+                            teamEventFragment.arguments = bundle
+                            val fragmentManager = requireActivity().supportFragmentManager.beginTransaction()
+                            fragmentManager.addToBackStack(null)
+                            fragmentManager.replace(R.id.fragmentContainer, teamEventFragment)
+                            fragmentManager.commit()
                         }
 
                             // call solo or team api depending on event and then redirect to payu
