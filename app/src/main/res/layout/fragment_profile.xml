@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="invisible">
+        android:visibility="visible">
 
         <!--        Top-->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -64,13 +64,13 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="36dp"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <EditText
                             android:id="@+id/profile_name"
                             android:layout_width="wrap_content"
-                            android:layout_height="36dp"
+                            android:layout_height="wrap_content"
                             android:hint="Name"
                             android:gravity="center_vertical"
                             android:background="@android:color/transparent"
@@ -85,15 +85,6 @@
                             app:fontFamily="@font/poppins_medium"
                             tools:layout_editor_absoluteX="196dp"
                             tools:layout_editor_absoluteY="46dp" />
-
-                        <ImageView
-                            android:id="@+id/edit_profile"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginHorizontal="10dp"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/edit_profile_icon" />
 
 
                     </LinearLayout>
@@ -117,6 +108,20 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/edit_profile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:paddingHorizontal="10dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout3"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout3"
+                app:srcCompat="@drawable/edit_profile_icon" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -197,14 +202,19 @@
                                     android:textSize="16sp" />
 
 
-                                <TextView
+                                <EditText
                                     android:id="@+id/gender"
+                                    android:background="@android:color/transparent"
                                     android:layout_width="wrap_content"
+                                    android:clickable="false"
+                                    android:cursorVisible="false"
+                                    android:focusable="false"
+                                    android:focusableInTouchMode="false"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/poppins_regular"
                                     android:textColor="#414141"
                                     android:textSize="14sp"
-                                    tools:text="admin@anwesha.live" />
+                                    tools:text="Liquid" />
 
                             </LinearLayout>
 
@@ -405,7 +415,7 @@
         android:id="@+id/delivery_shimmer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

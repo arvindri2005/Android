@@ -144,6 +144,17 @@ class HomeFragment : Fragment() {
             }
             binding.eventText.text = "Events at Admin Block"
         }
+        binding.admin.setOnClickListener {
+            val layoutParams2 = FrameLayout.LayoutParams(
+                400,
+                400
+            )
+            layoutParams2.leftMargin = 1340
+            layoutParams2.topMargin = 1220
+            admin.layoutParams = layoutParams2
+            slideUp.start()
+            venueClicked("First Image")
+        }
         binding.sac.setOnClickListener {
             val layoutParams3 = FrameLayout.LayoutParams(
                 400,

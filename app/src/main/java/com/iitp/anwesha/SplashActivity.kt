@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatDelegate
 import app.rive.runtime.kotlin.RiveAnimationView
 import com.iitp.anwesha.databinding.ActivitySplashBinding
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -22,6 +23,9 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        actionBar?.hide()
 
         FirebaseMessaging.getInstance().subscribeToTopic("notification")
 
