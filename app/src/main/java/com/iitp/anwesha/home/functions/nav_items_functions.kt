@@ -5,14 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
-import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.iitp.anwesha.AboutUsFragment
 import com.iitp.anwesha.LoginActivity
 import com.iitp.anwesha.R
+import com.iitp.anwesha.TeamFragment
 import com.iitp.anwesha.databinding.FragmentHomeBinding
-import com.iitp.anwesha.team.TeamPage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,8 +30,7 @@ class nav_items_functions(
                     true
                 }
                 R.id.Team -> {
-                    binding.frameLayout.closeDrawer(GravityCompat.START)
-                    context.startActivity(Intent(context, TeamPage::class.java))
+                    loadFragment(TeamFragment())
                     true
                 }
                 R.id.Feedback -> {
