@@ -51,7 +51,7 @@ class MyDialog(val context: Context) {
     fun showConfirmationDialog(activity : Context, title : String, array: Array<String>, checkedItem : Int, textView : TextView){
         MaterialAlertDialogBuilder(activity)
             .setTitle(title)
-            .setSingleChoiceItems(array,checkedItem){dialog,which ->
+            .setSingleChoiceItems(array,checkedItem){ _, which ->
                 textView.text = array[which]
             }
             .setPositiveButton("OK",null)

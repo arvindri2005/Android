@@ -60,6 +60,7 @@ class HomeFragment : Fragment() {
 
             drawerLayout.openDrawer(GravityCompat.START)
         }
+
         val bottomSheet = binding.eventBottomSheet
         val behavior = BottomSheetBehavior.from(bottomSheet)
         behavior.peekHeight = 1000
@@ -316,6 +317,8 @@ class HomeFragment : Fragment() {
                 binding.deliveryShimmer.visibility = View.GONE
                 binding.animationView.visibility = View.VISIBLE
                 binding.deliveryShimmer.stopShimmer()
+                binding.animationView.smoothScrollTo(dpToPx(150),0)
+                binding.verticalScroll.smoothScrollTo(0, dpToPx(480))
             } else {
                 Toast.makeText(context, "Error in getting Events", Toast.LENGTH_SHORT).show()
             }
