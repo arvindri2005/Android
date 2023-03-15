@@ -235,10 +235,22 @@
                 app:layout_constraintTop_toBottomOf="@id/view2">
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/allDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/home_day_btn_selected_bg"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="All events"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/day1"
                     android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:textAllCaps="false"
+                    android:layout_marginStart="4dp"
                     android:background="@drawable/home_day_btn_bg"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Day 1"

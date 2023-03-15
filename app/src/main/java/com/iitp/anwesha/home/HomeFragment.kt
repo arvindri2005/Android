@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -37,6 +38,7 @@ class HomeFragment : Fragment() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarToggle: ActionBarDrawerToggle
     private lateinit var adapter: EventAdapter
+    private lateinit var behavior: BottomSheetBehavior<ConstraintLayout>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,34 +64,16 @@ class HomeFragment : Fragment() {
         }
 
         val bottomSheet = binding.eventBottomSheet
-        val behavior = BottomSheetBehavior.from(bottomSheet)
+        behavior = BottomSheetBehavior.from(bottomSheet)
         behavior.peekHeight = 1000
         binding.hintImg.visibility = View.GONE
         binding.hintTxt.visibility = View.GONE
 
-        val slideDown = ValueAnimator.ofInt(1000, dpToPx(150))
-        slideDown.duration = 500
-        slideDown.addUpdateListener {
-            behavior.peekHeight = it.animatedValue as Int
-        }
 
-        val slideUp = ValueAnimator.ofInt(200, 1000)
-        slideUp.duration = 500
-        slideUp.addUpdateListener {
-            behavior.peekHeight = it.animatedValue as Int
-        }
+
 
         binding.map.setOnClickListener {
-            if(behavior.peekHeight!=dpToPx(150)){
-                slideDown.start()
-            }
-            binding.day1.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-            binding.day2.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-            binding.day3.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-            binding.day1.setBackgroundResource(R.drawable.home_day_btn_bg)
-            binding.day2.setBackgroundResource(R.drawable.home_day_btn_bg)
-            binding.day3.setBackgroundResource(R.drawable.home_day_btn_bg)
-            binding.dayGroup.visibility = View.VISIBLE
+            slideDown()
             binding.hintTxt.visibility = View.VISIBLE
             binding.hintImg.visibility = View.VISIBLE
         }
@@ -99,82 +83,58 @@ class HomeFragment : Fragment() {
 
         //Handle click when venues are clicked
         binding.nes.setOnClickListener {
-            if(behavior.peekHeight!=1000){
-                slideUp.start()
-            }
+            slideUp()
             binding.eventText.text ="Events at Nescafe"
             venueClicked("Nescafe, IIT PATNA")
 
         }
-
         binding.gym.setOnClickListener {
-
-            if(behavior.peekHeight!=1000){
-                slideUp.start()
-            }
+            slideUp()
             binding.eventText.text ="Events at Gymkhana"
             venueClicked("Gymkhana, IIT PATNA")
         }
         binding.sac.setOnClickListener {
-            if(behavior.peekHeight!=1000){
-                slideUp.start()
-            }
+            slideUp()
             binding.eventText.text = "Events at SAC"
             venueClicked("SAC Main Hall, IIT PATNA")
         }
         binding.mainStage.setOnClickListener {
-            if(behavior.peekHeight!=1000){
-                slideUp.start()
-            }
+            slideUp()
             binding.eventText.text = "Events at MAIN STAGE"
             venueClicked("Main Stage, IIT PATNA")
         }
         binding.basketball.setOnClickListener {
-            if(behavior.peekHeight!=1000){
-                slideUp.start()
-            }
+            slideUp()
             binding.eventText.text = "Events at BASKETBALL COURT"
             venueClicked("Basketball Court, IIT PATNA")
         }
         binding.nsit.setOnClickListener {
-            if(behavior.peekHeight!=1000){
-                slideUp.start()
-            }
+            slideUp()
             binding.eventText.text = "Events at NSIT WALL"
             venueClicked("NSIT Wall, IIT Patna")
         }
         binding.foodCourt.setOnClickListener {
-            if(behavior.peekHeight!=1000){
-                slideUp.start()
-            }
+            slideUp()
             binding.eventText.text = "Events at FOOD COURT"
             venueClicked("FOOD COURT, IIT PATNA")
         }
         binding.senate.setOnClickListener {
-            if(behavior.peekHeight!=1000){
-                slideUp.start()
-            }
+            slideUp()
             binding.eventText.text = "Events at SENATE HALL"
             venueClicked("Senate Hall, IIT PATNA")
         }
         binding.lh2.setOnClickListener {
-            if(behavior.peekHeight!=1000){
-                slideUp.start()
-            }
+            slideUp()
             binding.eventText.text = "Events at LECTURE HALL 2"
             venueClicked("Lecture Hall, IIT PATNA")
         }
         binding.lh1.setOnClickListener {
-            if(behavior.peekHeight!=1000){
-                slideUp.start()
-            }
+            slideUp()
             binding.eventText.text = "Events at LECTURE HALL 1"
             venueClicked("Lecture Hall, IIT PATNA")
         }
         binding.helipad.setOnClickListener {
-            if(behavior.peekHeight!=1000){
-                slideUp.start()
-            }
+            slideUp()
             binding.eventText.text = "Events at HELIPAD"
             venueClicked("Helipad Stage, IIT PATNA")
         }
@@ -189,12 +149,26 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun slideDown(){
+        val slideDown = ValueAnimator.ofInt(1000, dpToPx(150))
+        slideDown.duration = 500
+        slideDown.addUpdateListener {
+            behavior.peekHeight = it.animatedValue as Int
+        }
+        if(behavior.peekHeight!=dpToPx(150)){
+            slideDown.start()
+        }
+    }
 
-
-
-    private fun pxToDp(px : Float): Int {
-        val displayMetrics = Resources.getSystem().displayMetrics
-        return px.toInt() / (displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT).toInt()
+    private fun slideUp(){
+        val slideUp = ValueAnimator.ofInt(200, 1000)
+        slideUp.duration = 500
+        slideUp.addUpdateListener {
+            behavior.peekHeight = it.animatedValue as Int
+        }
+        if(behavior.peekHeight!=1000){
+            slideUp.start()
+        }
     }
 
     private fun dpToPx(dp: Int): Int {
@@ -203,7 +177,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun venueClicked(venue: String) {
-        binding.dayGroup.visibility = View.GONE
         binding.hintTxt.visibility = View.GONE
         binding.hintImg.visibility = View.GONE
         val venueEvent = ArrayList<EventList>()
@@ -212,17 +185,20 @@ class HomeFragment : Fragment() {
                 venueEvent.add(i)
             }
         }
-        if(venueEvent.isEmpty()){
-            binding.isEmpty.visibility = View.VISIBLE
-        }
-        else{
-            binding.isEmpty.visibility = View.GONE
-            adapter.setEvents(venueEvent)
-            adapter.notifyDataSetChanged()
-        }
+        binding.isEmpty.visibility = View.GONE
+        adapter.setEvents(venueEvent)
+        adapter.notifyDataSetChanged()
+
+        binding.allDay.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+        binding.day1.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+        binding.day2.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+        binding.day3.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+        binding.allDay.setBackgroundResource(R.drawable.home_day_btn_bg)
+        binding.day1.setBackgroundResource(R.drawable.home_day_btn_bg)
+        binding.day2.setBackgroundResource(R.drawable.home_day_btn_bg)
+        binding.day3.setBackgroundResource(R.drawable.home_day_btn_bg)
 
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -231,12 +207,20 @@ class HomeFragment : Fragment() {
         loadEvents()
 
 //      Day wise event loading
+        binding.allDay.setOnClickListener {
+            changeBg(0)
+            slideUp()
+            adapter.setEvents(newEventList)
+            adapter.notifyDataSetChanged()
+        }
         binding.day1.setOnClickListener {
             changeBg(1)
+            slideUp()
             loadDayEvents("17")
         }
         binding.day2.setOnClickListener {
             changeBg(2)
+            slideUp()
             loadDayEvents("18")
         }
         binding.day3.setOnClickListener {
@@ -247,29 +231,45 @@ class HomeFragment : Fragment() {
 
     private fun changeBg(day: Int) {
         when (day){
+            0->{
+                binding.allDay.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
+                binding.day1.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+                binding.day2.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+                binding.day3.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+                binding.allDay.setBackgroundResource(R.drawable.home_day_btn_selected_bg)
+                binding.day1.setBackgroundResource(R.drawable.home_day_btn_bg)
+                binding.day2.setBackgroundResource(R.drawable.home_day_btn_bg)
+                binding.day3.setBackgroundResource(R.drawable.home_day_btn_bg)
+            }
             1->{
+                binding.allDay.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
                 binding.day1.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
                 binding.day2.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
                 binding.day3.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+                binding.allDay.setBackgroundResource(R.drawable.home_day_btn_bg)
                 binding.day1.setBackgroundResource(R.drawable.home_day_btn_selected_bg)
                 binding.day2.setBackgroundResource(R.drawable.home_day_btn_bg)
                 binding.day3.setBackgroundResource(R.drawable.home_day_btn_bg)
             }
             2->{
+                binding.allDay.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
                 binding.day1.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
                 binding.day2.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
                 binding.day3.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-                binding.day2.setBackgroundResource(R.drawable.home_day_btn_selected_bg)
+                binding.allDay.setBackgroundResource(R.drawable.home_day_btn_bg)
                 binding.day1.setBackgroundResource(R.drawable.home_day_btn_bg)
+                binding.day2.setBackgroundResource(R.drawable.home_day_btn_selected_bg)
                 binding.day3.setBackgroundResource(R.drawable.home_day_btn_bg)
             }
             3->{
+                binding.allDay.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
                 binding.day1.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
                 binding.day2.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
                 binding.day3.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
-                binding.day3.setBackgroundResource(R.drawable.home_day_btn_selected_bg)
+                binding.allDay.setBackgroundResource(R.drawable.home_day_btn_bg)
                 binding.day2.setBackgroundResource(R.drawable.home_day_btn_bg)
                 binding.day1.setBackgroundResource(R.drawable.home_day_btn_bg)
+                binding.day3.setBackgroundResource(R.drawable.home_day_btn_selected_bg)
             }
         }
     }
