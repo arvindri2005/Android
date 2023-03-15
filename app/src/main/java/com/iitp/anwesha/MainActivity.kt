@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import com.iitp.anwesha.calendar.CalendarFragment
 import com.iitp.anwesha.databinding.ActivityMainBinding
 import com.iitp.anwesha.home.HomeFragment
-import com.iitp.anwesha.notification.NotificationFragment
 import com.iitp.anwesha.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
@@ -44,14 +43,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-
-    private fun loadNotification() {
-        val fragmentManager = supportFragmentManager.beginTransaction()
-        fragmentManager.replace(R.id.fragmentContainer, NotificationFragment())
-        fragmentManager.addToBackStack(null)
-        fragmentManager.commit()
-    }
 
     private fun loadFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager.beginTransaction()

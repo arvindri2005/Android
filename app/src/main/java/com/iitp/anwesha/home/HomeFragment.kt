@@ -8,7 +8,6 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -61,6 +60,7 @@ class HomeFragment : Fragment() {
 
             drawerLayout.openDrawer(GravityCompat.START)
         }
+
         val bottomSheet = binding.eventBottomSheet
         val behavior = BottomSheetBehavior.from(bottomSheet)
         behavior.peekHeight = 1000
@@ -183,7 +183,7 @@ class HomeFragment : Fragment() {
             loadPassesFragment(PassesFragment())
         }
 
-        nav_items_functions(binding, requireActivity()).selectingItems()
+        nav_items_functions(binding, requireActivity(), requireActivity()).selectingItems()
         eventViewModel = ViewModelProvider(this)[EventsViewModel::class.java]
         return binding.root
 
@@ -222,6 +222,8 @@ class HomeFragment : Fragment() {
         }
 
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -315,6 +317,8 @@ class HomeFragment : Fragment() {
                 binding.deliveryShimmer.visibility = View.GONE
                 binding.animationView.visibility = View.VISIBLE
                 binding.deliveryShimmer.stopShimmer()
+                binding.animationView.smoothScrollTo(dpToPx(150),0)
+                binding.verticalScroll.smoothScrollTo(0, dpToPx(480))
             } else {
                 Toast.makeText(context, "Error in getting Events", Toast.LENGTH_SHORT).show()
             }
@@ -323,8 +327,8 @@ class HomeFragment : Fragment() {
         eventViewModel.makeApiCall(requireContext())
     }
 
-    private fun loadFragment(fragment: Fragment) {
-        val fragmentManager = requireActivity().supportFragmentManager.beginTransaction()
+    fun loadFragment(fragment: Fragment) {
+        val fragmentManager = activity?.supportFragmentManager!!.beginTransaction()
         fragmentManager.replace(R.id.fragmentContainer, fragment)
         fragmentManager.commit()
     }

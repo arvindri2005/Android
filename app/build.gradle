@@ -39,7 +39,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
     implementation 'com.airbnb.android:lottie:5.2.0'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'app.rive:rive-android:4.0.0'

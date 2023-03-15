@@ -5,16 +5,22 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
-import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import com.iitp.anwesha.AboutUsFragment
 import com.iitp.anwesha.LoginActivity
 import com.iitp.anwesha.R
+import com.iitp.anwesha.TeamFragment
 import com.iitp.anwesha.databinding.FragmentHomeBinding
-import com.iitp.anwesha.team.TeamPage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class nav_items_functions(val binding: FragmentHomeBinding, val context: Context) {
+class nav_items_functions(
+    val binding: FragmentHomeBinding,
+    val context: Context,
+    val activity: FragmentActivity
+) {
 
     fun selectingItems() {
         binding.navView.setNavigationItemSelectedListener { menuItem ->
@@ -24,8 +30,7 @@ class nav_items_functions(val binding: FragmentHomeBinding, val context: Context
                     true
                 }
                 R.id.Team -> {
-                    binding.frameLayout.closeDrawer(GravityCompat.START)
-                    context.startActivity(Intent(context, TeamPage::class.java))
+                    loadFragment(TeamFragment())
                     true
                 }
                 R.id.Feedback -> {
@@ -34,7 +39,7 @@ class nav_items_functions(val binding: FragmentHomeBinding, val context: Context
                     true
                 }
                 R.id.Abouts -> {
-                    Toast.makeText(context, "Abouts clicked", Toast.LENGTH_SHORT).show()
+                    loadFragment(AboutUsFragment())
                     true
                 }
                 R.id.logout -> {
@@ -52,7 +57,6 @@ class nav_items_functions(val binding: FragmentHomeBinding, val context: Context
                             })
                         }
                     }
-
                     true
                 }
                 else -> {
@@ -61,6 +65,14 @@ class nav_items_functions(val binding: FragmentHomeBinding, val context: Context
             }
         }
     }
+
+    private fun loadFragment(fragment: Fragment) {
+        val fragmentManager = activity.supportFragmentManager.beginTransaction()
+        fragmentManager.replace(R.id.fragmentContainer, fragment)
+        fragmentManager.addToBackStack(null)
+        fragmentManager.commit()
+    }
+
 
     suspend fun signOut() : Boolean {
         val sharedPref = context.getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
