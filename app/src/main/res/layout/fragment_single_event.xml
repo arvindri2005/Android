@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".events.SingleEventFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".events.SingleEventFragment">
 
     <!--Back Btn-->
     <ImageView
         android:id="@+id/backBtn"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/back_btn"
-        android:padding="10dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="18dp"
+        android:padding="10dp"
+        android:src="@drawable/back_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--Event Name-->
     <TextView
@@ -27,12 +27,12 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/poppins_bold"
-        android:textSize="24sp"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/backBtn"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@id/backBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/backBtn"
         tools:text="Event name" />
 
     <!--Line 1-->
@@ -40,12 +40,12 @@
         android:id="@+id/line1"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:src="@drawable/single_fragment_line"
-        android:layout_marginTop="9dp"
         android:layout_marginHorizontal="20dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="9dp"
+        android:src="@drawable/single_fragment_line"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eventName"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventName" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -261,31 +261,30 @@
         android:id="@+id/rulebookBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginHorizontal="30dp"
+        android:layout_marginHorizontal="10dp"
         android:background="@drawable/rulebook_btn_bg"
-        android:textColor="#1E1E1E"
         android:fontFamily="@font/poppins_semi_bold"
         android:text="Rule Book"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/registerBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="#1E1E1E"
+        app:layout_constraintBottom_toBottomOf="@+id/registerBtn"
+        app:layout_constraintEnd_toStartOf="@+id/registerBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/registerBtn" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/registerBtn"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:background="@drawable/register_btn_bg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="20dp"
-        android:textAllCaps="false"
+        android:background="@drawable/register_btn_bg"
         android:fontFamily="@font/poppins_semi_bold"
         android:text="Register"
-        android:textColor="@color/white"/>
-
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rulebookBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
