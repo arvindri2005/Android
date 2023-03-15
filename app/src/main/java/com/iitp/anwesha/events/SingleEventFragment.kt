@@ -12,11 +12,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.iitp.anwesha.R
 import com.iitp.anwesha.databinding.FragmentSingleEventBinding
 import com.iitp.anwesha.home.EventList
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.iitp.anwesha.profile.UserProfileApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,7 +25,6 @@ import java.util.*
 
 class SingleEventFragment : Fragment() {
     private lateinit var binding: FragmentSingleEventBinding
-    private lateinit var event: Event
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
