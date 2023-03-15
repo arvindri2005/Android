@@ -14,11 +14,11 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import app.rive.runtime.kotlin.RiveAnimationView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.iitp.anwesha.R
 import com.iitp.anwesha.databinding.FragmentElitePassBinding
 import com.iitp.anwesha.databinding.FragmentPassesBinding
 import com.iitp.anwesha.databinding.FragmentProPassBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.Math.abs
 
 
@@ -76,8 +76,8 @@ class PassesFragment : Fragment() {
         bottomNavigationView?.visibility = View.GONE
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroy() {
+        super.onDestroy()
         val bottomNavigationView =
             activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigationView?.visibility = View.VISIBLE

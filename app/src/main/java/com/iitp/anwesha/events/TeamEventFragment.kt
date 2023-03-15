@@ -15,6 +15,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.children
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.iitp.anwesha.R
 import com.iitp.anwesha.databinding.FragmentTeamEventBinding
 import com.iitp.anwesha.databinding.TeamMemberFieldBinding
@@ -58,6 +59,19 @@ class TeamEventFragment : Fragment() {
         binding = FragmentTeamEventBinding.inflate(inflater, container, false)
         return binding.root
     }
+    override fun onResume() {
+        super.onResume()
+        val bottomNavigationView =
+            activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNavigationView?.visibility = View.GONE
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val bottomNavigationView =
+            activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNavigationView?.visibility = View.VISIBLE
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -73,6 +87,10 @@ class TeamEventFragment : Fragment() {
 //            }
             counter++
             binding.teamMembers.addView(teamMember)
+        }
+
+        binding.backBtn.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack(null, 0)
         }
 
         binding.addMembers.setOnClickListener {
