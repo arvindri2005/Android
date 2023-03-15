@@ -1,14 +1,13 @@
 package com.iitp.anwesha.auth
 
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import android.text.style.ForegroundColorSpan
 import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
@@ -16,15 +15,16 @@ import android.view.ViewGroup
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.iitp.anwesha.MyDialog
 import com.iitp.anwesha.R
 import com.iitp.anwesha.checkValue
 import com.iitp.anwesha.databinding.FragmentSignupBinding
-import com.google.android.material.snackbar.BaseTransientBottomBar
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 
 class Signup : Fragment() {
     private lateinit var binding: FragmentSignupBinding
@@ -101,9 +101,14 @@ class Signup : Fragment() {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://anwesha.live/terms"))
                 view.context.startActivity(intent)
             }
+            override fun updateDrawState(textPaint: TextPaint) {
+                textPaint.color = requireContext().resources.getColor(R.color.white)
+                textPaint.isUnderlineText = true
+            }
         }
 
         spannableString.setSpan(clickableSpan, 13, text.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
         binding.tvAcceptTerms.text = spannableString
         binding.tvAcceptTerms.movementMethod = LinkMovementMethod.getInstance()
 

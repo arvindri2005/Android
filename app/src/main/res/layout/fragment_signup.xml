@@ -365,8 +365,7 @@
             android:layout_height="40dp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_accept_terms"
             app:layout_constraintStart_toEndOf="@+id/tv_accept_terms"
-            app:layout_constraintTop_toTopOf="@+id/tv_accept_terms"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="@+id/tv_accept_terms" />
 
 
         <TextView
@@ -404,24 +403,22 @@
             android:layout_marginHorizontal="35dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="253dp"
-            android:background="@drawable/login_button_bg"
+            android:background="@drawable/register_btn_bg"
             android:fontFamily="@font/inter_bold"
             android:text="@string/sign_up"
             android:clickable="false"
             android:textSize="21sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_accept_terms"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintTop_toBottomOf="@+id/tv_accept_terms">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Submit"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

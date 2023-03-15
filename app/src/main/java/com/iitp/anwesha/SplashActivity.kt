@@ -2,16 +2,15 @@ package com.iitp.anwesha
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import app.rive.runtime.kotlin.RiveAnimationView
-import com.iitp.anwesha.databinding.ActivitySplashBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.messaging.FirebaseMessaging
+import com.iitp.anwesha.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
 
