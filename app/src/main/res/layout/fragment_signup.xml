@@ -11,16 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <View
-            android:id="@+id/view10"
-            android:layout_width="220dp"
-            android:layout_height="4dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signupText" />
-
         <TextView
             android:id="@+id/signupText"
             android:layout_width="wrap_content"
@@ -35,66 +25,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/EmailIdText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="35dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/enter_email"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <View
+            android:id="@+id/view10"
+            android:layout_width="220dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout5"
-            app:layout_constraintVertical_bias="0.024" />
-
-        <TextView
-            android:id="@+id/emailIdText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/contact_number"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/EmailIdText"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/EmailIdText"
-            app:layout_constraintTop_toBottomOf="@+id/emailIdTxt" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginHorizontal="35dp"
-            app:layout_constraintStart_toStartOf="@+id/emailIdText"
-            app:layout_constraintTop_toBottomOf="@+id/emailIdText"
-            tools:ignore="MissingConstraints">
-
-            <EditText
-                android:id="@+id/Contactnumber"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/edit_text_bg"
-                android:cursorVisible="true"
-                android:maxLength="10"
-                android:focusable="true"
-                android:fontFamily="@font/inter_bold"
-                android:importantForAutofill="no"
-                android:inputType="number"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textColorHint="#96A4AF"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.411"
-                tools:ignore="LabelFor,MissingConstraints,TextFields" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@+id/signupText" />
 
         <TextView
             android:id="@+id/full_name"
@@ -105,121 +44,161 @@
             android:text="@string/full_name"
             android:textColor="@color/white"
             android:textSize="20sp"
+            android:layout_marginStart="35dp"
             app:layout_constraintEnd_toEndOf="@+id/EmailIdText"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/EmailIdText"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view10" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout5"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginHorizontal="35dp"
+        <EditText
+            android:id="@+id/anwesha_full_name"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_column="2"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/edit_text_bg"
+            android:cursorVisible="true"
+            android:focusable="true"
+            android:fontFamily="@font/inter_bold"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="#96A4AF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/full_name"
             app:layout_constraintTop_toBottomOf="@+id/full_name"
-            tools:ignore="MissingConstraints">
-
-            <EditText
-                android:id="@+id/anwesha_full_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/edit_text_bg"
-                android:cursorVisible="true"
-                android:focusable="true"
-                android:fontFamily="@font/inter_bold"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textColorHint="#96A4AF"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.411"
-                tools:ignore="LabelFor,MissingConstraints,TextFields" />
-        </com.google.android.material.textfield.TextInputLayout>
+            tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck"
+            tools:text="Arvind Meena" />
 
         <TextView
-            android:id="@+id/college_name"
+            android:id="@+id/EmailIdText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/enter_email"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/anwesha_full_name"
+            app:layout_constraintTop_toBottomOf="@+id/anwesha_full_name" />
+
+        <EditText
+            android:id="@+id/emailId"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/edit_text_bg"
+            android:cursorVisible="true"
+            android:focusable="true"
+            android:fontFamily="@font/inter_bold"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:padding="10dp"
+            tools:text="arvindri2005@gmail.com"
+            android:textColor="@color/black"
+            android:textColorHint="#96A4AF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/anwesha_full_name"
+            app:layout_constraintStart_toStartOf="@+id/EmailIdText"
+            app:layout_constraintTop_toBottomOf="@+id/EmailIdText" />
+
+        <TextView
+            android:id="@+id/phoneNoTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="@string/college_name"
+            android:text="@string/contact_number"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/EmailIdText"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/EmailIdText"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+            app:layout_constraintTop_toBottomOf="@+id/emailId" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout6"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginHorizontal="35dp"
+        <EditText
+            android:id="@+id/contactNumber"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/edit_text_bg"
+            android:cursorVisible="true"
+            android:focusable="true"
+            android:padding="10dp"
+            tools:text="1234567890"
+            android:fontFamily="@font/inter_bold"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="#96A4AF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/emailId"
+            app:layout_constraintStart_toStartOf="@+id/phoneNoTxt"
+            app:layout_constraintTop_toBottomOf="@+id/phoneNoTxt" />
+
+        <TextView
+            android:id="@+id/tvIITStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center_vertical"
+            android:text="I am IIT Patna Student"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/contactNumber"
+            app:layout_constraintTop_toBottomOf="@id/contactNumber"
+            tools:ignore="RtlSymmetry" />
+
+        <CheckBox
+            android:id="@+id/iitStudentBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:checked="true"
+            android:buttonTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/tvIITStudent"
+            app:layout_constraintStart_toEndOf="@id/tvIITStudent"
+            app:layout_constraintTop_toBottomOf="@id/tvIITStudent"
+            app:layout_constraintTop_toTopOf="@id/tvIITStudent" />
+
+        <TextView
+            android:id="@+id/college_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/college_name"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/EmailIdText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvIITStudent"
+            app:layout_constraintTop_toBottomOf="@+id/tvIITStudent" />
+
+        <EditText
+            android:id="@+id/anweshaCollegeName"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/edit_text_bg"
+            android:cursorVisible="true"
+            android:focusable="true"
+            android:fontFamily="@font/inter_bold"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:visibility="gone"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="#96A4AF"
+            android:textSize="18sp"
+            android:padding="10dp"
+            tools:text="IIT Patna"
+            app:layout_constraintEnd_toEndOf="@+id/contactNumber"
             app:layout_constraintStart_toStartOf="@+id/college_name"
-            app:layout_constraintTop_toBottomOf="@+id/college_name"
-            tools:ignore="MissingConstraints">
-
-            <EditText
-                android:id="@+id/anwesha_college_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/edit_text_bg"
-                android:cursorVisible="true"
-                android:focusable="true"
-                android:fontFamily="@font/inter_bold"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textColorHint="#96A4AF"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.411"
-                tools:ignore="LabelFor,MissingConstraints,TextFields" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailIdTxt"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginHorizontal="35dp"
-            app:layout_constraintStart_toStartOf="@+id/EmailIdText"
-            app:layout_constraintTop_toBottomOf="@+id/EmailIdText"
-            tools:ignore="MissingConstraints">
-
-            <EditText
-                android:id="@+id/EmailId"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/edit_text_bg"
-                android:cursorVisible="true"
-                android:focusable="true"
-                android:fontFamily="@font/inter_bold"
-                android:importantForAutofill="no"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textColorHint="#96A4AF"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.411"
-                tools:ignore="LabelFor,MissingConstraints,TextFields" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@+id/college_name" />
 
         <TextView
             android:id="@+id/user_type"
@@ -230,11 +209,10 @@
             android:text="@string/user_type"
             android:textColor="@color/white"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/emailIdText"
+            android:visibility="gone"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/emailIdText"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout6" />
-
+            app:layout_constraintStart_toStartOf="@+id/anweshaCollegeName"
+            app:layout_constraintTop_toBottomOf="@+id/anweshaCollegeName" />
 
         <Spinner
             android:id="@+id/anwesha_user_type"
@@ -243,11 +221,10 @@
             android:layout_marginHorizontal="35dp"
             android:entries="@array/user_types"
             android:prompt="@string/user_types_prompt"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/user_type"
             app:layout_constraintStart_toStartOf="@+id/user_type"
-            app:layout_constraintTop_toBottomOf="@id/user_type"
-
-            />
+            app:layout_constraintTop_toBottomOf="@id/user_type" />
 
         <TextView
             android:id="@+id/AnweshaPasswordText"
@@ -258,43 +235,33 @@
             android:text="@string/password"
             android:textColor="@color/white"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/emailIdText"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/emailIdText"
+            app:layout_constraintStart_toStartOf="@+id/anwesha_user_type"
             app:layout_constraintTop_toBottomOf="@+id/anwesha_user_type" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout3"
+            android:id="@+id/anweshaPassword"
             android:layout_width="match_parent"
-            android:layout_height="53dp"
+            android:layout_height="60dp"
             android:layout_marginHorizontal="35dp"
+            android:background="@drawable/edit_text_bg"
             app:layout_constraintStart_toStartOf="@+id/AnweshaPasswordText"
             app:layout_constraintTop_toBottomOf="@+id/AnweshaPasswordText"
-            app:passwordToggleEnabled="true"
-            tools:ignore="MissingConstraints">
+            app:passwordToggleEnabled="true">
 
             <EditText
                 android:id="@+id/AnweshaPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@drawable/edit_text_bg"
                 android:cursorVisible="true"
                 android:focusable="true"
                 android:fontFamily="@font/inter_bold"
                 android:importantForAutofill="no"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="#96A4AF"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.411"
-
-                tools:ignore="LabelFor,MissingConstraints,TextFields" />
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -306,15 +273,13 @@
             android:text="@string/confirm_password"
             android:textColor="@color/white"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/AnweshaPasswordText"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/AnweshaPasswordText"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+            app:layout_constraintTop_toBottomOf="@+id/anweshaPassword" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout4"
             android:layout_width="match_parent"
-            android:layout_height="53dp"
+            android:layout_height="60dp"
             android:layout_marginHorizontal="35dp"
             app:layout_constraintStart_toStartOf="@+id/ConfirmPasswordText"
             app:layout_constraintTop_toBottomOf="@+id/ConfirmPasswordText"
@@ -330,18 +295,11 @@
                 android:focusable="true"
                 android:fontFamily="@font/inter_bold"
                 android:importantForAutofill="no"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="#96A4AF"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.411"
-                tools:ignore="LabelFor,MissingConstraints,TextFields" />
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
