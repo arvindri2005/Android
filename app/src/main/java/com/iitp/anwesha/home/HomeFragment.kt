@@ -59,8 +59,12 @@ class HomeFragment : Fragment() {
         binding.navBar.setOnClickListener {
             requireActivity().findViewById<TextView>(R.id.nameText2).text =
                 sharedPref.getString(getString(R.string.user_name), "User")
-
+            requireActivity().findViewById<TextView>(R.id.textView).text =
+                sharedPref.getString("anwesha_id", "id")
             drawerLayout.openDrawer(GravityCompat.START)
+        }
+        if (sharedPref.getString("user_type", "user_type")=="iitp_student"){
+            binding.festPasses.visibility = View.GONE
         }
 
         val bottomSheet = binding.eventBottomSheet
