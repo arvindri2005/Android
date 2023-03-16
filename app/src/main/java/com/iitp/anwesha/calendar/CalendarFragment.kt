@@ -100,6 +100,12 @@ class CalendarFragment : Fragment() {
                 day_adapter = cal_event_ev()
                 binding.calEventsRv.adapter = day_adapter
 
+                day_adapter.setOnItemClickListener(object : cal_event_ev.OnItemClickListener {
+                    override fun onItemClicked(event: EventList) {          //when any event from the recycler view is clicked
+                        loadSingleEventFragment(event)
+                    }
+                })
+
                 adapter = EventAdapter(newEventList, object : EventAdapter.OnItemClickListener {
                     override fun onItemClick(verticalItem: EventList) {
                         Log.d("checker", verticalItem.toString())
@@ -130,6 +136,7 @@ class CalendarFragment : Fragment() {
         adapter.setList(filteredList, eventList, locationlist)
         adapter.notifyDataSetChanged()
 
+
         val newadaptv = locatAdapter()
         binding.recyclerViewLocat.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         binding.recyclerViewLocat.isNestedScrollingEnabled = false
@@ -137,7 +144,8 @@ class CalendarFragment : Fragment() {
         newadaptv.setList(locationlist)
         newadaptv.notifyDataSetChanged()
 
-        day_adapter.setList(filteredList)
+
+        day_adapter.setList(filteredList, newEventList)
 
         binding.visibleFrag.visibility = View.VISIBLE
         binding.deliveryShimmer.visibility = View.GONE
@@ -168,7 +176,6 @@ class CalendarFragment : Fragment() {
         fragment.arguments = bundle
         val fragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentContainer, fragment)
-        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
 

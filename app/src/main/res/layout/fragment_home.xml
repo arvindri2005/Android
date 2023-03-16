@@ -120,7 +120,7 @@
                         android:id="@+id/lh1"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:src="@drawable/lh1"
+                        android:src="@drawable/tutrioal_block"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

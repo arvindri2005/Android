@@ -6,6 +6,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.iitp.anwesha.calendar.DataFiles.EventData
 import com.iitp.anwesha.databinding.ScRvDesignBinding
+import com.iitp.anwesha.home.EventAdapter
+import com.iitp.anwesha.home.EventList
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -13,7 +15,16 @@ class cal_event_ev(
 ) :
     RecyclerView.Adapter<cal_event_ev.ViewHolder>() {
     var events: MutableList<EventData> = mutableListOf()
+    var event_list: List<EventList> = emptyList()
+    private lateinit var listener: cal_event_ev.OnItemClickListener
 
+    interface OnItemClickListener{
+        fun onItemClicked(event: EventList)
+    }
+
+    fun setOnItemClickListener(mListener: cal_event_ev.OnItemClickListener){
+        listener = mListener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -30,6 +41,13 @@ class cal_event_ev(
 
         holder.eventName.text = events.title.toString()
         holder.eventStartTime.text = events.startTime + " - " + events.endTime
+
+        holder.itemView.setOnClickListener{
+            listener.onItemClicked(getDataFileByString(events.id,
+                event_list as ArrayList<EventList>
+            )!!)
+        }
+
     }
 
     override fun getItemCount() = events.size
@@ -39,20 +57,19 @@ class cal_event_ev(
         val eventStartTime: TextView = binding.eventTime
     }
 
-    fun setList(list: MutableList<EventData>) {
+    fun setList(list: MutableList<EventData>, reallist: List<EventList>) {
         events.clear()
         events = list
+        event_list = reallist
         notifyDataSetChanged()
     }
 
-    fun getTimeFromDate(dateTime: String): String {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
-        dateFormat.timeZone = TimeZone.getTimeZone("UTC+5:30")
-        val date = dateFormat.parse(dateTime)
-        val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-        timeFormat.timeZone = TimeZone.getTimeZone("UTC")
-        return timeFormat.format(date)
+    private fun getDataFileByString(id: String, dataList: ArrayList<EventList>): EventList? {
+        for (data in dataList) {
+            if (data.id == id) {
+                return data
+            }
+        }
+        return null
     }
-
-
 }

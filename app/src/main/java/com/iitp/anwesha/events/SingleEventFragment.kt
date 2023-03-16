@@ -207,8 +207,6 @@ class SingleEventFragment : Fragment() {
 //                        intent.putExtra(Browser.EXTRA_HEADERS, headers)
 //
 //                        startActivity(intent)
-
-
                         }
                     }
                 }
@@ -222,15 +220,6 @@ class SingleEventFragment : Fragment() {
             }
 
         }
-        binding.backBtn.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack(null, 0)
-        }
-
-
-
-
-
-
         binding.backBtn.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack(null, 0)
         }
