@@ -184,7 +184,7 @@
                     android:layout_height="match_parent">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="2100dp"
+                        android:layout_width="1800dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
@@ -194,7 +194,7 @@
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/recyclerViewTimeSlots"
-                                android:layout_width="2100dp"
+                                android:layout_width="1800dp"
                                 android:layout_height="40dp"
                                 android:layout_alignParentLeft="true"
                                 android:orientation="horizontal"

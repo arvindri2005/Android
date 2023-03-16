@@ -115,6 +115,11 @@ class ProfileFragment(context: Context) : Fragment() {
                         LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
                     binding.rvRegistered.adapter =
                         ProfileEventsAdapter(eventsInfo.solo, fragmentContext)
+
+                    binding.rvTeamAdapter.layoutManager =
+                        LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
+                    binding.rvRegistered.adapter =
+                        ProfileTeamsAdapter(eventsInfo.team, fragmentContext)
                 }
             }
         }

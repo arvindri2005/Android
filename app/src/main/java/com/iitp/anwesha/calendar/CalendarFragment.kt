@@ -97,7 +97,7 @@ class CalendarFragment : Fragment() {
                 binding.deliveryShimmer.stopShimmer()
                 binding.deliveryShimmer.visibility = View.GONE
 
-                day_adapter = cal_event_ev()
+                day_adapter = cal_event_ev(requireContext())
                 binding.calEventsRv.adapter = day_adapter
 
                 day_adapter.setOnItemClickListener(object : cal_event_ev.OnItemClickListener {

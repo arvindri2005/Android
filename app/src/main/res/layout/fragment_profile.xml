@@ -413,32 +413,36 @@
                     android:layout_height="1dp"
                     android:layout_marginHorizontal="22dp"
                     android:background="#D9D9D9"
-                    app:layout_constraintBottom_toTopOf="@+id/rv_registered"
+                    android:layout_marginTop="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rg_tv" />
 
-                <!--            rv-->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_registered"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@+id/rg_tv"
-                    tools:layout_editor_absoluteX="1dp"
-                    tools:listitem="@layout/my_solo_event_design" />
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@+id/rg_tv">
 
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_registered"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@+id/rg_tv"
+                        tools:layout_editor_absoluteX="1dp"
+                        tools:listitem="@layout/myevent_design" />
 
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:id="@+id/rv_team_adapter"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    app:layout_constraintTop_toBottomOf="parent"-->
-<!--                    tools:listitem="@layout/myevent_design" />-->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_team_adapter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="parent"
+                        tools:listitem="@layout/myevent_design" />
 
-                
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

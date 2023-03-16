@@ -9,7 +9,7 @@ import com.iitp.anwesha.R
 
 class TimeAdapter : RecyclerView.Adapter<TimeAdapter.ViewHolder>() {
 
-    private val timeSlots = (3..23).map { "$it:00" }
+    private val timeSlots = (6..23).map { "$it:00" }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)

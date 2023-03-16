@@ -28,9 +28,26 @@ data class MyEventDetails(
     val payment_url: String
 )
 
+data class MyTeamDetails(
+    val event_id: String ="",
+    val event_name: String ="",
+    val event_start_time: String ="",
+    val event_end_time: String ="",
+    val event_venue: String = "IITP",
+    val event_tags: String ="",
+    val event_is_active: Boolean = true,
+    val order_id: String = "",
+    val payment_done: Boolean =false,
+    val team_name: String ="",
+    val team_id: String ="",
+    val team_lead: String ="",
+    val team_members: List<String>,
+    val payment_url: String =""
+)
+
 data class MyEvents(
     val solo: List<MyEventDetails>,
-    val team: List<MyEventDetails>
+    val team: List<MyTeamDetails>
 )
 
 data class UpdateProfile(

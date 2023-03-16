@@ -47,13 +47,13 @@ class CalendarFunctions() {
             val minuteHeight = eventHeightPerMinute.toFloat()
 
             val hourHeight = timeSlotHeight.toFloat() // assume each time slot is one hour
-            val startHour = ((sortedEvents[i].startTime.split(":").first().toInt() - 3 )*60) + (sortedEvents[i].startTime.split(":").last().toInt())
-            val endHour = (sortedEvents[i].endTime.split(":").first().toInt() - 3)*60 +  (sortedEvents[i].endTime.split(":").last().toInt())
+            val startHour = ((sortedEvents[i].startTime.split(":").first().toInt() - 6 )*60) + (sortedEvents[i].startTime.split(":").last().toInt())
+            val endHour = (sortedEvents[i].endTime.split(":").first().toInt() - 6)*60 +  (sortedEvents[i].endTime.split(":").last().toInt())
 
             var top = 0;
 
             if (i > 0 && sortedEvents[i].startdate == sortedEvents[i].enddate){
-                val startHourPrev = (sortedEvents[i-1].endTime.split(":").first().toInt() - 3)*60  + (sortedEvents[i-1].endTime.split(":").last().toInt())
+                val startHourPrev = (sortedEvents[i-1].endTime.split(":").first().toInt() - 6)*60  + (sortedEvents[i-1].endTime.split(":").last().toInt())
                 top = ((startHour * minuteHeight)- (startHourPrev* minuteHeight)).toInt()
             }else{
                 top = (startHour * minuteHeight).toInt()
@@ -78,10 +78,9 @@ class CalendarFunctions() {
 
     fun getTimeFromDate(dateTime: String): String {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
-        dateFormat.timeZone = TimeZone.getTimeZone("UTC+5:30")
+        dateFormat.timeZone = TimeZone.getTimeZone("UTC")
         val date = dateFormat.parse(dateTime)
         val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-        timeFormat.timeZone = TimeZone.getTimeZone("UTC")
         return timeFormat.format(date)
     }
 
