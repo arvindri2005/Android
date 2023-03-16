@@ -8,15 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.iitp.anwesha.R
 import com.iitp.anwesha.databinding.FragmentSponsorsBinding
-import com.iitp.anwesha.home.EventList
-import com.iitp.anwesha.home.EventsApi
-import com.iitp.anwesha.home.EventsApiService
-import com.iitp.anwesha.profile.ProfileEventsAdapter
-import com.iitp.anwesha.profile.UserProfileApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -41,8 +35,8 @@ class sponsorsFragment : Fragment() {
         bottomNavigationView?.visibility = View.GONE
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroy() {
+        super.onDestroy()
         val bottomNavigationView =
             activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigationView?.visibility = View.VISIBLE
@@ -67,7 +61,7 @@ class sponsorsFragment : Fragment() {
 
         CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.Main) {
-                val response2 = sponsorapi(requireContext()).sponsorApi.getSponsor()
+                val response2 = SponsorCall(requireContext()).sponsorApi.getSponsor()
                 if (response2.isSuccessful) {
                     val sponsorInfo = response2.body()!!
                     Log.e("PRINT", sponsorInfo.toString())
