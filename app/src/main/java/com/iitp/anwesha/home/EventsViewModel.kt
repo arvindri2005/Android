@@ -23,9 +23,6 @@ class EventsViewModel: ViewModel() {
                 response: Response<MutableList<EventList>>
             ){
                 eventList.postValue(response.body() as ArrayList)
-
-
-
             }
 
             override fun onFailure(call: Call<MutableList<EventList>>, t: Throwable) {

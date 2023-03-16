@@ -30,7 +30,6 @@ interface ProfileApi {
 class UserProfileApi(val context: Context) {
     val profileApi: ProfileApi
     init {
-
         val client = OkHttpClient.Builder().addInterceptor(AddCookiesInterceptor(context)).build()
 
         val retrofit = Retrofit.Builder()

@@ -9,7 +9,7 @@ data class ProfileResponse(
     val age: Int?,
     val is_email_verified: Boolean,
     val gender: String?,
-    val is_profile_completed: Boolean
+    val is_profile_completed: Boolean,
 )
 
 data class MyEventDetails(
