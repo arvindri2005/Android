@@ -2,7 +2,14 @@ package com.iitp.anwesha.auth
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -95,6 +102,28 @@ class SignIn : Fragment() {
         binding.signupbutton.setOnClickListener {
             loadFragment(Signup())
         }
+
+        val text2 = "Having trouble login? Report here"
+        val spannableString2= SpannableString(text2)
+
+        spannableString2.setSpan(UnderlineSpan(), 22, text2.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        val clickableSpan2 = object : ClickableSpan() {
+            override fun onClick(view: View) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(requireContext().getString(R.string.feedback)))
+                requireContext().startActivity(intent)
+            }
+            override fun updateDrawState(textPaint: TextPaint) {
+                textPaint.color = requireContext().resources.getColor(R.color.white)
+                textPaint.isUnderlineText = true
+            }
+        }
+
+        spannableString2.setSpan(clickableSpan2, 22, text2.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        binding.tvAcceptTerms.text = spannableString2
+        binding.tvAcceptTerms.movementMethod = LinkMovementMethod.getInstance()
+
 
         return view
     }

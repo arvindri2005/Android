@@ -161,7 +161,6 @@ class Signup : Fragment() {
         binding.tvAcceptTerms.text = spannableString
         binding.tvAcceptTerms.movementMethod = LinkMovementMethod.getInstance()
 
-
         return view
     }
 

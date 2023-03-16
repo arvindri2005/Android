@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.iitp.anwesha.R
@@ -46,6 +47,8 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>, val cont
                 )
                 context.startActivity(intent)
             }
+        }else{
+            holder.cons.visibility = View.VISIBLE
         }
     }
 
@@ -60,7 +63,7 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>, val cont
         val eventDate: TextView = binding.eventDate
         val eventVenue: TextView = binding.eventVenue
         val eventButton: Button = binding.paymentBtn
-
+        val cons: ConstraintLayout = binding.regSuccess
 
 
     }
@@ -115,6 +118,8 @@ class ProfileTeamsAdapter(private val eventList: List<MyTeamDetails>, val contex
                 )
                 context.startActivity(intent)
             }
+        }else{
+            holder.cons.visibility = View.VISIBLE
         }
         holder.eventId.text = anw_id.toString()
     }
@@ -130,6 +135,8 @@ class ProfileTeamsAdapter(private val eventList: List<MyTeamDetails>, val contex
         val eventDate: TextView = binding.eventDate
         val eventId: TextView = binding.teamIds
         val eventButton: Button = binding.paymentBtn
+        val cons: ConstraintLayout = binding.regSuccess
+
 
     }
 

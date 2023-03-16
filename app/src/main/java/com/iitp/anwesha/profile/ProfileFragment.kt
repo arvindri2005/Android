@@ -1,6 +1,5 @@
 package com.iitp.anwesha.profile
 
-import android.R
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -21,12 +20,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
 import com.iitp.anwesha.databinding.FragmentProfileBinding
-
-import com.yuyakaido.android.cardstackview.*
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -226,10 +220,11 @@ class ProfileFragment(context: Context) : Fragment() {
                 AnimationUtils.loadAnimation(context, com.airbnb.lottie.R.anim.abc_fade_in)
             it.startAnimation(animation)
             if (isEditProfile) {
-                setEditable(false, binding.profileName, InputType.TYPE_NULL)
-                setEditable(false, binding.phoneNumber, InputType.TYPE_NULL)
-                setEditable(false, binding.collegeName, InputType.TYPE_NULL)
-                setEditable(false, binding.gender, InputType.TYPE_NULL)
+                setEditable(false, binding.profileName, InputType.TYPE_NULL,null )
+                setEditable(false, binding.phoneNumber, InputType.TYPE_NULL, null)
+                setEditable(false, binding.collegeName, InputType.TYPE_NULL, null)
+                setEditable(false, binding.gender, InputType.TYPE_NULL, null)
+
                 CoroutineScope(Dispatchers.IO).launch {
                     editProfile()
                     isEditProfile = !isEditProfile
@@ -254,21 +249,23 @@ class ProfileFragment(context: Context) : Fragment() {
                         resources.newTheme()
                     )
                 )
-                setEditable(true, binding.profileName, InputType.TYPE_CLASS_TEXT)
-                setEditable(true, binding.phoneNumber, InputType.TYPE_CLASS_PHONE)
-                setEditable(true, binding.collegeName, InputType.TYPE_CLASS_TEXT)
-                setEditable(true, binding.gender, InputType.TYPE_CLASS_TEXT)
+                val rsr = resources.getDrawable(com.iitp.anwesha.R.drawable.rulebook_btn_bg)
+                setEditable(true, binding.profileName, InputType.TYPE_CLASS_TEXT, rsr)
+                setEditable(true, binding.phoneNumber, InputType.TYPE_CLASS_PHONE, rsr)
+                setEditable(true, binding.collegeName, InputType.TYPE_CLASS_TEXT, rsr)
+                setEditable(true, binding.gender, InputType.TYPE_CLASS_TEXT, rsr)
                 isEditProfile = !isEditProfile
             }
         }
     }
 
-    private fun setEditable(editable: Boolean, field: EditText, inputType: Int) {
+    private fun setEditable(editable: Boolean, field: EditText, inputType: Int, back: Drawable?) {
         field.isClickable = editable
         field.isFocusable = editable
         field.isFocusableInTouchMode = editable
         field.isCursorVisible = editable
         field.inputType = inputType
+        field.background = back
     }
 
     private fun regenerate() {
@@ -292,6 +289,7 @@ class ProfileFragment(context: Context) : Fragment() {
         val phone = binding.phoneNumber.text.toString()
         val college = binding.collegeName.text.toString()
         val gender = binding.gender.text.toString()
+
 
         val updateProfile = UpdateProfile(phone, name, college, gender)
 

@@ -96,47 +96,47 @@ class HomeFragment : Fragment() {
         }
         binding.sac.setOnClickListener {
             slideUp()
-            binding.eventText.text = "Events at SAC"
+            binding.eventText.text = "Events at sac"
             venueClicked("SAC Main Hall, IIT PATNA")
         }
         binding.mainStage.setOnClickListener {
             slideUp()
-            binding.eventText.text = "Events at MAIN STAGE"
+            binding.eventText.text = "Events at main stage"
             venueClicked("Main Stage, IIT PATNA")
         }
         binding.basketball.setOnClickListener {
             slideUp()
-            binding.eventText.text = "Events at BASKETBALL COURT"
+            binding.eventText.text = "Events at basketball court"
             venueClicked("Basketball Court, IIT PATNA")
         }
         binding.nsit.setOnClickListener {
             slideUp()
-            binding.eventText.text = "Events at NSIT WALL"
+            binding.eventText.text = "Events at nsit wall"
             venueClicked("NSIT Wall, IIT Patna")
         }
         binding.foodCourt.setOnClickListener {
             slideUp()
-            binding.eventText.text = "Events at FOOD COURT"
+            binding.eventText.text = "Events at food court"
             venueClicked("FOOD COURT, IIT PATNA")
         }
         binding.senate.setOnClickListener {
             slideUp()
-            binding.eventText.text = "Events at SENATE HALL"
+            binding.eventText.text = "Events at Senate hall"
             venueClicked("Senate Hall, IIT PATNA")
         }
         binding.lh2.setOnClickListener {
             slideUp()
-            binding.eventText.text = "Events at LECTURE HALL 2"
+            binding.eventText.text = "Events at lecture hall"
             venueClicked("Lecture Hall, IIT PATNA")
         }
         binding.lh1.setOnClickListener {
             slideUp()
-            binding.eventText.text = "Events at LECTURE HALL 1"
+            binding.eventText.text = "Events at tutorial block"
             venueClicked("Lecture Hall, IIT PATNA")
         }
         binding.helipad.setOnClickListener {
             slideUp()
-            binding.eventText.text = "Events at HELIPAD"
+            binding.eventText.text = "Events at helipad"
             venueClicked("Helipad Stage, IIT PATNA")
         }
 

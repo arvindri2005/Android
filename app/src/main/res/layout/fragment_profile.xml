@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <!--        Top-->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -83,7 +83,7 @@
                             android:id="@+id/profile_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="Name"
+                            android:paddingHorizontal="5dp"
                             android:gravity="center_vertical"
                             android:background="@android:color/transparent"
                             android:inputType="none"
@@ -109,7 +109,7 @@
                         <TextView
                             android:id="@+id/anwesha_id"
                             android:layout_width="wrap_content"
-                            android:layout_height="27dp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/poppins_regular"
                             android:textColor="#414141"
@@ -187,6 +187,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/poppins_regular"
                                     android:textColor="#414141"
+                                    android:paddingVertical="5dp"
                                     android:textSize="14sp"
                                     android:background="@android:color/transparent"
                                     android:inputType="none"
@@ -219,15 +220,17 @@
                                     android:background="@android:color/transparent"
                                     android:layout_width="wrap_content"
                                     android:clickable="false"
+                                    android:paddingHorizontal="10dp"
+                                    android:maxLength="6"
                                     android:minWidth="100dp"
+                                    android:paddingVertical="5dp"
                                     android:cursorVisible="false"
                                     android:focusable="false"
                                     android:focusableInTouchMode="false"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/poppins_regular"
                                     android:textColor="#414141"
-                                    android:textSize="14sp"
-                                    tools:text="Liquid" />
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
@@ -261,15 +264,17 @@
                                     android:fontFamily="@font/poppins_regular"
                                     android:textColor="#414141"
                                     android:textSize="14sp"
+                                    android:paddingHorizontal="10dp"
+                                    android:paddingVertical="5dp"
                                     android:minWidth="100dp"
                                     android:background="@android:color/transparent"
-                                    android:inputType="none"
+                                    android:inputType="phone"
+                                    android:maxLength="10"
                                     android:clickable="false"
                                     android:cursorVisible="false"
                                     android:focusable="false"
                                     android:focusableInTouchMode="false"
-                                    android:textAlignment="center"
-                                    tools:text="1234567890" />
+                                    android:textAlignment="center" />
 
 
                             </LinearLayout>
@@ -285,7 +290,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/poppins_medium"
-                                    android:text="Institution/Organization"
+                                    android:text="Institution"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -297,6 +302,8 @@
                                     android:fontFamily="@font/poppins_regular"
                                     android:textColor="#414141"
                                     android:textSize="14sp"
+                                    android:paddingVertical="5dp"
+                                    android:paddingHorizontal="10dp"
                                     android:background="@android:color/transparent"
                                     android:inputType="none"
                                     android:clickable="false"
@@ -304,8 +311,7 @@
                                     android:cursorVisible="false"
                                     android:focusable="false"
                                     android:focusableInTouchMode="false"
-                                    android:textAlignment="center"
-                                    tools:text="1234567890" />
+                                    android:textAlignment="center"/>
 
 
                             </LinearLayout>
@@ -572,7 +578,7 @@
         android:id="@+id/delivery_shimmer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

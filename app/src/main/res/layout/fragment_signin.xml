@@ -80,19 +80,19 @@
         android:layout_marginHorizontal="35dp"
         app:layout_constraintStart_toStartOf="@+id/AnweshaPasswordText"
         app:layout_constraintTop_toBottomOf="@+id/AnweshaPasswordText"
-        app:passwordToggleEnabled="true"
-        tools:ignore="MissingConstraints">
+        app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/AnweshaPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="@drawable/edit_text_bg"
             android:cursorVisible="true"
             android:focusable="true"
             android:fontFamily="@font/inter_bold"
             android:importantForAutofill="no"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:maxLines="1"
             android:paddingHorizontal="10dp"
             android:textColor="@color/black"
@@ -101,8 +101,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/AnweshaPasswordText"
-            tools:ignore="LabelFor,MissingConstraints,TextFields,SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/AnweshaPasswordText" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,22 +122,37 @@
         app:layout_constraintTop_toBottomOf="@+id/anweshaPassword"
         tools:ignore="RtlSymmetry" />
 
+    <TextView
+        android:id="@+id/tv_accept_terms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center_vertical"
+        android:text="Having trouble login? Report here"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/anweshaPassword"
+        app:layout_constraintTop_toBottomOf="@+id/Forgotpassword"
+        tools:ignore="RtlSymmetry" />
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/LoginButton"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_marginHorizontal="35dp"
-        android:layout_marginTop="40dp"
         android:background="@drawable/login_button_bg"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/inter_bold"
         android:text="@string/login"
+        android:layout_marginTop="10dp"
         android:textColor="@color/black"
         android:textSize="21sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Forgotpassword">
+        app:layout_constraintTop_toBottomOf="@+id/tv_accept_terms">
 
 
         <TextView
