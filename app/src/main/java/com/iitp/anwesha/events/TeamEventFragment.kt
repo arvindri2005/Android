@@ -78,7 +78,7 @@ class TeamEventFragment : Fragment() {
         binding.teamEventName.text = eventName
 
 
-        for (i in 1..minTeamMembers!!-1) {
+        for (i in 1..minTeamMembers!!) {
 
             val teamMember = layoutInflater.inflate(R.layout.team_member_field, null)
 //            val teamMember = View.inflate(context, R.layout.team_member_field, binding.teamMembers)
@@ -178,7 +178,7 @@ class TeamEventFragment : Fragment() {
                 else {
                     requireActivity().runOnUiThread {
 
-                        Toast.makeText(context, "Invalid details ${response.errorBody()}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Invalid details", Toast.LENGTH_SHORT).show()
 
                     }
                 }

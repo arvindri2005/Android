@@ -422,7 +422,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintTop_toBottomOf="@+id/rg_tv">
+                    app:layout_constraintTop_toBottomOf="@+id/view15">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Solo Events"
+                        android:layout_marginStart="25dp"
+                        android:textSize="18sp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_registered"
@@ -431,6 +441,16 @@
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal"
                         tools:listitem="@layout/my_solo_event_design" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Group Events"
+                        android:layout_marginStart="25dp"
+                        android:textSize="18sp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_team_adapter"

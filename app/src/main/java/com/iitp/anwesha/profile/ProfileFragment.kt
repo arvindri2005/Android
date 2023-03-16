@@ -37,6 +37,7 @@ class ProfileFragment(context: Context) : Fragment() {
     private val binding get() = _binding!!
     private var isEditProfile = false
     private lateinit var fragmentContext: Context
+    private val passes= ArrayList<MyEventDetails>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -111,10 +112,20 @@ class ProfileFragment(context: Context) : Fragment() {
                 if (response2.isSuccessful) {
                     val eventsInfo = response2.body()!!
                     Log.e("PRINT", eventsInfo.toString())
+                    val soloEvents = arrayListOf<MyEventDetails>()
+                    for(i in eventsInfo.solo){
+                        if (i.event_tags!="6"){
+                            soloEvents.add(i)
+                        }
+                        else{
+                            passes.add(i)
+                        }
+
+                    }
                     binding.rvRegistered.layoutManager =
                         LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
                     binding.rvRegistered.adapter =
-                        ProfileEventsAdapter(eventsInfo.solo, fragmentContext)
+                        ProfileEventsAdapter(soloEvents, fragmentContext)
 
                     binding.rvTeamAdapter.layoutManager =
                         LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
