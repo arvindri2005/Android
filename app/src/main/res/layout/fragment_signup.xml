@@ -78,6 +78,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/edit_text_bg"
                 android:cursorVisible="true"
+                android:maxLength="10"
                 android:focusable="true"
                 android:fontFamily="@font/inter_bold"
                 android:importantForAutofill="no"
@@ -351,7 +352,6 @@
             android:layout_marginTop="40dp"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center_vertical"
-            android:paddingBottom="10dp"
             android:text="I accept the Terms and conditions"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -363,6 +363,7 @@
             android:id="@+id/accept_term_button"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:buttonTint="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/tv_accept_terms"
             app:layout_constraintStart_toEndOf="@+id/tv_accept_terms"
             app:layout_constraintTop_toTopOf="@+id/tv_accept_terms" />

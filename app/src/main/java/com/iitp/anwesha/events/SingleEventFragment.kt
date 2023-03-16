@@ -39,8 +39,8 @@ class SingleEventFragment : Fragment() {
         bottomNavigationView?.visibility = View.GONE
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroy() {
+        super.onDestroy()
         val bottomNavigationView =
             activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigationView?.visibility = View.VISIBLE
@@ -224,7 +224,6 @@ class SingleEventFragment : Fragment() {
         }
         binding.backBtn.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack(null, 0)
-
         }
 
 
