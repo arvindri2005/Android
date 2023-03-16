@@ -71,7 +71,10 @@ class SignIn : Fragment() {
                             putString("anwesha_id", response.body()?.anwesha_id)
                             putString("user_type", response.body()?.user_type)
                             putString(getString(R.string.user_name), response.body()?.name)
+                            putString(getString(R.string.anwesha_id), response.body()?.anwesha_id)
+                            putString(getString(R.string.user_type), response.body()?.user_type)
                             putBoolean(getString(R.string.user_login_authentication), true)
+                            putString(getString(R.string.qr_code), response.body()?.qr_code)
                             apply()
                         }
                         startActivity(intent)

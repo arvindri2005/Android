@@ -80,6 +80,7 @@
     <string name="initiatives3txt"><![CDATA[Anwesha values the role our local artisans, craftsmen and others play in our community. Our vision at Anwesha is a fest for everybody - one that embraces the lesser privileged gems of society.\n• The folk culture in Bihar is immense - from Madhubani to Yampuri, Jat-Jatin to bamboo & pottery craft; we would be delighted to accommodate it all in Anwesha 2k23.]]></string>
     <string name="initiatives4"><![CDATA[ENTERING UNEXPLORED DOMAINS: TECH & INNOVATION]]></string>
     <string name="initiatives4txt">• Being a premier technological institute of the nation, technology and innovation run in our blood. Thus we are on a constant quest for cutting edge technology to be integrated into our fest.\n• We are embarking on a journey to bring you the future through exciting concepts like the Metaverse, NFTs, and a festival passport.</string>
+    <string name="qr_code">QR Code</string>
 
 
     <string-array name="user_types">
@@ -88,4 +89,5 @@
         <item>Alumni</item>
         <item>Faculty</item>
     </string-array>
+
 </resources>

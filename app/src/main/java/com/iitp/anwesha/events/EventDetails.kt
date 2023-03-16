@@ -32,10 +32,12 @@ data class TeamRegistration(
 )
 
 data class TeamRegistrationResponse(
+
     val message: String?=null,
     val payment_url: String?=null,
     val team_id: String?=null,
     val error: List<Int>
+
 )
 
 data class RegistrationVerification(
