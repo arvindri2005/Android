@@ -22,7 +22,6 @@ data class MyEventDetails(
     val event_is_active: Boolean,
     val order_id: String,
     val payment_done: Boolean,
-
 )
 
 data class MyEvents(

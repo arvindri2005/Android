@@ -324,12 +324,6 @@ class HomeFragment : Fragment() {
         eventViewModel.makeApiCall(requireContext())
     }
 
-    fun loadFragment(fragment: Fragment) {
-        val fragmentManager = activity?.supportFragmentManager!!.beginTransaction()
-        fragmentManager.replace(R.id.fragmentContainer, fragment)
-        fragmentManager.commit()
-    }
-
     private fun loadPassesFragment(fragment: Fragment) {
         val fragmentManager = requireActivity().supportFragmentManager.beginTransaction()
         fragmentManager.replace(R.id.fragmentContainer, fragment)
@@ -347,7 +341,6 @@ class HomeFragment : Fragment() {
         fragmentTransaction.replace(R.id.fragmentContainer, fragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
-
     }
 
 

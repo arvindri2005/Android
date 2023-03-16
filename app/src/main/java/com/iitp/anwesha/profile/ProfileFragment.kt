@@ -98,7 +98,7 @@ class ProfileFragment(context : Context) : Fragment(){
                 val eventsInfo = response2.body()!!
                 Log.e("PRINT", eventsInfo.toString())
                     binding.rvRegistered.layoutManager = LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
-                    binding.rvRegistered.adapter = ProfileEventsAdapter(eventsInfo.solo)
+                    binding.rvRegistered.adapter = ProfileEventsAdapter(eventsInfo.solo, fragmentContext)
                 }
             }
         }

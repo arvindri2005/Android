@@ -69,27 +69,25 @@ class MapClickHandle(val context: Context, val binding: FragmentHomeBinding) {
             200
         )
 
-        setparama(layoutParams, nescafe, 1200, 1000)
-        setparama(layoutParams1, sac, 1840, 980)
-        setparama(layoutParams2, gym, 2781, 1100)
-        setparama(layoutParams3, basketball, calleft(1080), caltop(516))
-        setparama(layoutParams4, nsit, calleft(806), caltop(523))
-        setparama(layoutParams5, food_court, calleft(730), caltop(477))
-        setparama(layoutParam6, senate, calleft(564), caltop(501))
-        setparama(layoutParams7, lh2, calleft(439), caltop(396))
-        setparama(layoutParams8, lh1, calleft(390), caltop(376))
-        setparama(layoutParams9, helipad, calleft(299), caltop(633))
-        setparama(layoutParams10, main_stage, calleft(458), caltop(532))
-
-
+        setparama(layoutParams, nescafe, dpToPx(492), dpToPx(406))
+        setparama(layoutParams1, sac, dpToPx(792), dpToPx(452))
+        setparama(layoutParams2, gym, dpToPx(1126), dpToPx(455))
+        setparama(layoutParams3, basketball, dpToPx(1080), dpToPx(516))
+        setparama(layoutParams4, nsit, dpToPx(806), dpToPx(523))
+        setparama(layoutParams5, food_court, dpToPx(730), dpToPx(477))
+        setparama(layoutParam6, senate, dpToPx(564), dpToPx(501))
+        setparama(layoutParams7, lh2, dpToPx(439), dpToPx(396))
+        setparama(layoutParams8, lh1, dpToPx(390), dpToPx(376))
+        setparama(layoutParams9, helipad, dpToPx(299), dpToPx(633))
+        setparama(layoutParams10, main_stage, dpToPx(458), dpToPx(532))
     }
 
-    fun caltop(margin : Int) : Int{
-        return (margin.toFloat()*(2.46305f)).toInt()
+
+    private fun dpToPx(dp: Int): Int {
+        val density = context.resources.displayMetrics.density
+        return (dp.toFloat() * density + 0.5f).toInt()
     }
-    fun calleft(margin : Int) : Int{
-        return (margin.toFloat()*(2.4390f)).toInt()
-    }
+
     fun setparama(layoutParams: LayoutParams,image: ImageView,  leftmargin: Int, topmargin: Int){
         layoutParams.leftMargin = leftmargin
         layoutParams.topMargin = topmargin

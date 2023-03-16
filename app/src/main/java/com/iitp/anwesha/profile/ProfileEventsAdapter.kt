@@ -1,28 +1,42 @@
 package com.iitp.anwesha.profile
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.iitp.anwesha.R
 import com.iitp.anwesha.databinding.EventDesignBinding
 import com.iitp.anwesha.databinding.MyeventDesignBinding
 
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ProfileEventsAdapter(private val eventList: List<MyEventDetails>): RecyclerView.Adapter<ProfileEventsAdapter.MyViewHolder>(){
+class ProfileEventsAdapter(private val eventList: List<MyEventDetails>, val context: Context): RecyclerView.Adapter<ProfileEventsAdapter.MyViewHolder>() {
 
     private lateinit var binding: EventDesignBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(MyeventDesignBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return MyViewHolder(
+            MyeventDesignBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
+
+
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = eventList[position]
         holder.eventName.text = currentItem.event_name
         holder.eventStartTime.text = getTimeFromDate(currentItem.event_start_time.toString())
         holder.eventDate.text = getDayFromDate(currentItem.event_start_time.toString())
-
+//        Glide.with(context)
+//            .load(currentItem.).placeholder(R.drawable.sponsor_mock)
+//            .into(holder.eventimage)
     }
 
     override fun getItemCount(): Int {
@@ -34,6 +48,7 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>): Recycle
         val eventName: TextView = binding.eventName
         val eventStartTime: TextView = binding.eventTime
         val eventDate: TextView = binding.eventDate
+        val eventimage: ImageView = binding.eventPoster
 
     }
 
