@@ -118,7 +118,7 @@ class ProfileFragment(context: Context) : Fragment() {
 
                     binding.rvTeamAdapter.layoutManager =
                         LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
-                    binding.rvRegistered.adapter =
+                    binding.rvTeamAdapter.adapter =
                         ProfileTeamsAdapter(eventsInfo.team, fragmentContext)
                 }
             }

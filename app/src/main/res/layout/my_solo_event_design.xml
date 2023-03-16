@@ -8,7 +8,10 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         app:cardCornerRadius="15dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +21,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -41,10 +44,10 @@
                     android:id="@+id/eventDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
                     android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/black"
                     android:textSize="12sp"
-                    android:layout_marginTop="3dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/eventName"
                     tools:text="18 March 2023" />
@@ -66,25 +69,29 @@
                     android:id="@+id/eventVenue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/poppins_semi_bold"
+                    android:text="KK Fest Ground"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/eventDate"
-                    tools:text="KK Fest Ground" />
+                    app:layout_constraintTop_toBottomOf="@id/eventDate" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/paymentBtn"
-                    android:layout_width="150dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="4dp"
-                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
                     android:background="@drawable/rulebook_btn_bg"
+                    android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
                     android:fontFamily="@font/poppins_regular"
+                    android:paddingHorizontal="10dp"
+                    android:text="Continue to Payment"
+                    android:textSize="12sp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/eventVenue"
-                    tools:text="Continue to Payment" />
+                    app:layout_constraintTop_toBottomOf="@+id/eventVenue" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

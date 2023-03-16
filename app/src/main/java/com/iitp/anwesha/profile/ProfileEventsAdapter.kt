@@ -14,9 +14,6 @@ import com.bumptech.glide.Glide
 import com.iitp.anwesha.R
 import com.iitp.anwesha.databinding.EventDesignBinding
 import com.iitp.anwesha.databinding.MyTeamEventDesignBinding
-import com.iitp.anwesha.databinding.MyeventDesignBinding
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import com.iitp.anwesha.databinding.MySoloEventDesignBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -33,8 +30,6 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>, val cont
         )
     }
 
-
-
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = eventList[position]
         holder.eventName.text = currentItem.event_name
@@ -42,11 +37,15 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>, val cont
         holder.eventDate.text = getDayFromDate(currentItem.event_start_time.toString())
         val venue = currentItem.event_venue.split(",")
         holder.eventVenue.text = venue[0]
-        if (currentItem.payment_done){
-            holder.paymentDetails.visibility = View.GONE
-        }
-        else{
-
+        if (currentItem.payment_done == false){
+            holder.eventButton.visibility = View.VISIBLE
+            holder.eventButton.setOnClickListener {
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(currentItem.payment_url.toString())
+                )
+                context.startActivity(intent)
+            }
         }
     }
 
@@ -60,7 +59,8 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>, val cont
         val eventStartTime: TextView = binding.eventTime
         val eventDate: TextView = binding.eventDate
         val eventVenue: TextView = binding.eventVenue
-        val paymentDetails: Button = binding.paymentBtn
+        val eventButton: Button = binding.paymentBtn
+
 
 
     }
