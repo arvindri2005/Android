@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.iitp.anwesha.R
-import com.iitp.anwesha.databinding.MyeventDesignBinding
 import com.iitp.anwesha.databinding.SponsorItemBinding
 import com.iitp.anwesha.profile.MyEventDetails
 import java.text.SimpleDateFormat

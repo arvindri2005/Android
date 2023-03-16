@@ -2,24 +2,20 @@ package com.iitp.anwesha.profile
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.iitp.anwesha.R
-import com.iitp.anwesha.databinding.EventDesignBinding
-import com.iitp.anwesha.databinding.MyeventDesignBinding
-
+import com.iitp.anwesha.databinding.MySoloEventDesignBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ProfileEventsAdapter(private val eventList: List<MyEventDetails>, val context: Context): RecyclerView.Adapter<ProfileEventsAdapter.MyViewHolder>() {
 
-    private lateinit var binding: EventDesignBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
-            MyeventDesignBinding.inflate(
+            MySoloEventDesignBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -34,21 +30,28 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>, val cont
         holder.eventName.text = currentItem.event_name
         holder.eventStartTime.text = getTimeFromDate(currentItem.event_start_time.toString())
         holder.eventDate.text = getDayFromDate(currentItem.event_start_time.toString())
-//        Glide.with(context)
-//            .load(currentItem.).placeholder(R.drawable.sponsor_mock)
-//            .into(holder.eventimage)
+        val venue = currentItem.event_venue.split(",")
+        holder.eventVenue.text = venue[0]
+        if (currentItem.payment_done){
+            holder.paymentDetails.visibility = View.GONE
+        }
+        else{
+
+        }
     }
 
     override fun getItemCount(): Int {
         return eventList.size
     }
 
-    class MyViewHolder( binding: MyeventDesignBinding ):RecyclerView.ViewHolder(binding.root){
+    class MyViewHolder( binding: MySoloEventDesignBinding ):RecyclerView.ViewHolder(binding.root){
 
         val eventName: TextView = binding.eventName
         val eventStartTime: TextView = binding.eventTime
         val eventDate: TextView = binding.eventDate
-        val eventimage: ImageView = binding.eventPoster
+        val eventVenue: TextView = binding.eventVenue
+        val paymentDetails: Button = binding.paymentBtn
+
 
     }
 

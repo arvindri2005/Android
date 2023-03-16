@@ -427,16 +427,16 @@
                     android:layout_marginTop="10dp"
                     app:layout_constraintTop_toBottomOf="@+id/rg_tv"
                     tools:layout_editor_absoluteX="1dp"
-                    tools:listitem="@layout/myevent_design" />
+                    tools:listitem="@layout/my_solo_event_design" />
 
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_team_adapter"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="parent"
-                    tools:listitem="@layout/myevent_design" />
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/rv_team_adapter"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    app:layout_constraintTop_toBottomOf="parent"-->
+<!--                    tools:listitem="@layout/myevent_design" />-->
 
                 
 

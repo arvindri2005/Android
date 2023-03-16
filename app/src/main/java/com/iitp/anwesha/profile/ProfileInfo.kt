@@ -20,11 +20,12 @@ data class MyEventDetails(
     val event_name: String,
     val event_start_time: String,
     val event_end_time: String,
-    val event_venue: String = "IITP",
+    val event_venue: String,
     val event_tags: String,
     val event_is_active: Boolean,
     val order_id: String,
     val payment_done: Boolean,
+    val payment_url: String
 )
 
 data class MyEvents(
