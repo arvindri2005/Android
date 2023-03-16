@@ -12,6 +12,7 @@ import com.iitp.anwesha.LoginActivity
 import com.iitp.anwesha.R
 import com.iitp.anwesha.TeamFragment
 import com.iitp.anwesha.databinding.FragmentHomeBinding
+import com.iitp.anwesha.sponsors.sponsorsFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,7 +27,7 @@ class nav_items_functions(
         binding.navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.sponsor -> {
-                    Toast.makeText(context, "sponsor clicked", Toast.LENGTH_SHORT).show()
+                    loadFragment(sponsorsFragment())
                     true
                 }
                 R.id.Team -> {

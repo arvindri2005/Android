@@ -7,137 +7,137 @@
     android:layout_height="match_parent"
     tools:context=".home.HomeFragment">
 
-        <HorizontalScrollView
-            android:id="@+id/animation_view"
-            android:layout_width="wrap_content"
-            android:fillViewport="true"
-            android:layout_marginTop="60dp"
-            android:visibility="invisible"
-            android:layout_height="wrap_content"
-            android:scaleType="centerInside"
-            app:layout_anchor="@+id/eventBottomSheet"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+    <HorizontalScrollView
+        android:id="@+id/animation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fillViewport="true"
+        android:scaleType="centerInside"
+        android:visibility="invisible"
+        app:layout_anchor="@+id/eventBottomSheet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-            <ScrollView
-                android:id="@+id/verticalScroll"
-                android:fillViewport="true"
+        <ScrollView
+            android:id="@+id/verticalScroll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/map"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/map"/>
+                    <ImageView
+                        android:id="@+id/map"
+                        android:layout_width="2496dp"
+                        android:layout_height="1356dp"
+                        android:src="@drawable/map" />
 
 
-                        <ImageView
-                            android:id="@+id/nes"
-                            android:layout_width="300dp"
-                            android:layout_height="300dp"
-                            android:src="@drawable/nescafe"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                        <ImageView
-                            android:id="@+id/sac"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/sac"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/nes"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:src="@drawable/nescafe"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/gym"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/gym"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/sac"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/sac"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/basketball"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/basketball"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/gym"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/gym"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/nsit"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/nsit"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/basketball"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/basketball"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/food_court"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/food_court"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/nsit"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/nsit"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/senate"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/senate"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/food_court"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/food_court"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/helipad"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/helipad"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/senate"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/senate"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/main_stage"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/main_stage"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/helipad"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/helipad"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/lh1"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/lh1"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/main_stage"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/main_stage"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/lh2"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/lh2"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/lh1"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/lh1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    </FrameLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/lh2"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/lh2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            </ScrollView>
+                </FrameLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </HorizontalScrollView>
+        </ScrollView>
+
+    </HorizontalScrollView>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -181,7 +181,6 @@
         </androidx.appcompat.widget.Toolbar>
 
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/eventBottomSheet"
             android:layout_width="match_parent"
@@ -199,7 +198,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
 
             <TextView
@@ -238,10 +236,10 @@
                     android:id="@+id/allDay"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:textAllCaps="false"
                     android:background="@drawable/home_day_btn_selected_bg"
                     android:fontFamily="@font/poppins_medium"
                     android:text="All events"
+                    android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
@@ -249,11 +247,11 @@
                     android:id="@+id/day1"
                     android:layout_width="60dp"
                     android:layout_height="30dp"
-                    android:textAllCaps="false"
                     android:layout_marginStart="4dp"
                     android:background="@drawable/home_day_btn_bg"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Day 1"
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -261,11 +259,11 @@
                     android:id="@+id/day2"
                     android:layout_width="60dp"
                     android:layout_height="30dp"
-                    android:textAllCaps="false"
+                    android:layout_marginStart="4dp"
                     android:background="@drawable/home_day_btn_bg"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Day 2"
-                    android:layout_marginStart="4dp"
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -273,11 +271,11 @@
                     android:id="@+id/day3"
                     android:layout_width="60dp"
                     android:layout_height="30dp"
-                    android:textAllCaps="false"
+                    android:layout_marginStart="4dp"
                     android:background="@drawable/home_day_btn_bg"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Day 3"
-                    android:layout_marginStart="4dp"
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -313,14 +311,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Oops! No Events found"
                 android:fontFamily="@font/poppins_regular"
-                android:textSize="20sp"
+                android:text="Oops! No Events found"
                 android:textColor="@color/black"
+                android:textSize="20sp"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/hintTxt"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/hintTxt" />
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -348,7 +346,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/dayGroup"/>
+                    app:layout_constraintTop_toBottomOf="@id/dayGroup" />
 
             </com.facebook.shimmer.ShimmerFrameLayout>
 

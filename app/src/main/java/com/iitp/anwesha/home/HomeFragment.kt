@@ -69,9 +69,6 @@ class HomeFragment : Fragment() {
         binding.hintImg.visibility = View.GONE
         binding.hintTxt.visibility = View.GONE
 
-
-
-
         binding.map.setOnClickListener {
             slideDown()
             binding.hintTxt.visibility = View.VISIBLE
