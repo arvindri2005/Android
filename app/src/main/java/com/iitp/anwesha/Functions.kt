@@ -7,7 +7,9 @@ import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.SeekBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
