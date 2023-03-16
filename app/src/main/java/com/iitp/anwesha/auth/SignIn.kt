@@ -68,6 +68,8 @@ class SignIn : Fragment() {
 
                     if(response.body()?.success == true) {
                         with(sharedPref.edit()) {
+                            putString("anwesha_id", response.body()?.anwesha_id)
+                            putString("user_type", response.body()?.user_type)
                             putString(getString(R.string.user_name), response.body()?.name)
                             putBoolean(getString(R.string.user_login_authentication), true)
                             apply()
