@@ -1,8 +1,10 @@
 package com.iitp.anwesha.profile
 
+import android.R
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -11,12 +13,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
 import com.iitp.anwesha.databinding.FragmentProfileBinding
 
 import com.yuyakaido.android.cardstackview.*
@@ -25,9 +29,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.reflect.Type
 
 
-class ProfileFragment(context : Context) : Fragment(){
+class ProfileFragment(context: Context) : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private var isEditProfile = false
@@ -59,10 +64,15 @@ class ProfileFragment(context : Context) : Fragment(){
 
         binding.copyId.setOnClickListener {
             val text = binding.anweshaId.text.toString()
-            val clipboard = requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clipboard =
+                requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clip = ClipData.newPlainText("Anwesha ID", text)
             clipboard.setPrimaryClip(clip)
             Toast.makeText(requireContext(), "$text copied to clipboard", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btRegenerate.setOnClickListener {
+            regenerate()
         }
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -76,11 +86,15 @@ class ProfileFragment(context : Context) : Fragment(){
                     binding.anweshaId2.setText(userInfo.anwesha_id)
                     binding.phoneNumber.setText(userInfo.phone_number)
                     binding.emailId.setText(userInfo.email_id)
-                    binding.collegeName.setText(userInfo.college_name )
+                    binding.collegeName.setText(userInfo.college_name)
                     val gender = userInfo.gender ?: "Liquid"
                     binding.gender.setText(gender.toString())
+                    Glide.with(fragmentContext)
+                        .load(userInfo.qr_code).placeholder(com.iitp.anwesha.R.drawable.qr_mock_bg)
+                        .into(binding.imageView)
                     binding.visibleFrag.visibility = View.VISIBLE
                     binding.deliveryShimmer.visibility = View.GONE
+
                 }
             } else {
                 withContext(Dispatchers.Main) {
@@ -93,12 +107,14 @@ class ProfileFragment(context : Context) : Fragment(){
             }
 
             withContext(Dispatchers.Main) {
-            val response2 = UserProfileApi(fragmentContext).profileApi.getMyEvents()
-            if (response2.isSuccessful) {
-                val eventsInfo = response2.body()!!
-                Log.e("PRINT", eventsInfo.toString())
-                    binding.rvRegistered.layoutManager = LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
-                    binding.rvRegistered.adapter = ProfileEventsAdapter(eventsInfo.solo, fragmentContext)
+                val response2 = UserProfileApi(fragmentContext).profileApi.getMyEvents()
+                if (response2.isSuccessful) {
+                    val eventsInfo = response2.body()!!
+                    Log.e("PRINT", eventsInfo.toString())
+                    binding.rvRegistered.layoutManager =
+                        LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
+                    binding.rvRegistered.adapter =
+                        ProfileEventsAdapter(eventsInfo.solo, fragmentContext)
                 }
             }
         }
@@ -107,7 +123,7 @@ class ProfileFragment(context : Context) : Fragment(){
             val animation =
                 AnimationUtils.loadAnimation(context, com.airbnb.lottie.R.anim.abc_fade_in)
             it.startAnimation(animation)
-            if(isEditProfile) {
+            if (isEditProfile) {
                 setEditable(false, binding.profileName, InputType.TYPE_NULL)
                 setEditable(false, binding.phoneNumber, InputType.TYPE_NULL)
                 setEditable(false, binding.collegeName, InputType.TYPE_NULL)
@@ -124,11 +140,11 @@ class ProfileFragment(context : Context) : Fragment(){
                         resources.newTheme()
                     )
                 )
-                val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val inputMethodManager =
+                    requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
 
-            }
-            else {
+            } else {
                 (it as ImageView).setImageDrawable(
                     ResourcesCompat.getDrawable(
                         resources,
@@ -153,6 +169,21 @@ class ProfileFragment(context : Context) : Fragment(){
         field.inputType = inputType
     }
 
+    private fun regenerate() {
+        binding.progressBar2.visibility = View.VISIBLE
+        CoroutineScope(Dispatchers.IO).launch {
+            withContext(Dispatchers.Main) {
+                val response = QrGetApi(fragmentContext).qrApi.getQr()
+                if (response.isSuccessful) {
+                    val newqr = response.body()
+                    Glide.with(fragmentContext)
+                        .load(newqr!!.qr_code)
+                        .into(binding.imageView)
+                    binding.progressBar2.visibility = View.GONE
+                }
+            }
+        }
+    }
 
     private suspend fun editProfile() {
         val name = binding.profileName.text.toString()

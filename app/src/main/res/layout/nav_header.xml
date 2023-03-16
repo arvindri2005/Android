@@ -8,54 +8,77 @@
     android:layout_height="wrap_content"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/headerImage"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="20dp"
-        android:contentDescription="@string/todo"
-        android:src="@drawable/profile_mock"
-        app:civ_border_width="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/nameText2"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/poppins_medium"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="23sp"
+        android:layout_marginVertical="10dp"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="21dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
-        app:layout_constraintStart_toEndOf="@+id/headerImage"
-        app:layout_constraintTop_toTopOf="@+id/headerImage"
-        tools:text="@string/user_name" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:textColor="#414141"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/headerImage"
-        app:layout_constraintStart_toStartOf="@+id/nameText2"
-        app:layout_constraintTop_toBottomOf="@+id/nameText2"
-        tools:text="Anwesha ID" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/headerImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/profile_mock"
+            app:civ_border_width="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/headerImage"
+            app:layout_constraintStart_toEndOf="@+id/headerImage"
+            app:layout_constraintTop_toTopOf="@+id/headerImage">
+
+            <TextView
+                android:id="@+id/nameText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.119"
+                app:layout_constraintStart_toEndOf="@+id/headerImage"
+                app:layout_constraintTop_toTopOf="@+id/headerImage"
+                tools:text="@string/user_name" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="#414141"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/headerImage"
+                app:layout_constraintStart_toStartOf="@+id/nameText2"
+                app:layout_constraintTop_toBottomOf="@+id/nameText2"
+                tools:text="Anwesha ID" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginTop="10dp"
         android:background="#E0E0E0"
+        android:layout_marginVertical="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerImage"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
         tools:layout_editor_absoluteX="18dp" />
 
 
