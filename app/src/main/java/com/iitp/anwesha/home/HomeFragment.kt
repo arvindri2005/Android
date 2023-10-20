@@ -2,9 +2,7 @@ package com.iitp.anwesha.home
 
 import android.animation.ValueAnimator
 import android.content.Context
-import android.content.res.Resources
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +22,7 @@ import com.iitp.anwesha.R
 import com.iitp.anwesha.TicketBook.PassesFragment
 import com.iitp.anwesha.databinding.FragmentHomeBinding
 import com.iitp.anwesha.events.SingleEventFragment
-import com.iitp.anwesha.home.functions.MapClickHandle
+//import com.iitp.anwesha.home.functions.MapClickHandle
 import com.iitp.anwesha.home.functions.nav_items_functions
 import java.text.SimpleDateFormat
 import java.util.*
@@ -51,6 +49,10 @@ class HomeFragment : Fragment() {
         drawerLayout.addDrawerListener(actionBarToggle)
         actionBarToggle.syncState()
 
+        binding.composeView.setContent {
+            Map(requireContext(),binding).AnweshaMap()
+        }
+
 
         binding.deliveryShimmer.startShimmer()
         val sharedPref =
@@ -73,72 +75,72 @@ class HomeFragment : Fragment() {
         binding.hintImg.visibility = View.GONE
         binding.hintTxt.visibility = View.GONE
 
-        binding.map.setOnClickListener {
-            slideDown()
-            binding.hintTxt.visibility = View.VISIBLE
-            binding.hintImg.visibility = View.VISIBLE
-        }
-
-        MapClickHandle(requireContext(), binding).mapClick()
-
-
-        //Handle click when venues are clicked
-        binding.nes.setOnClickListener {
-            slideUp()
-            binding.eventText.text ="Events at Nescafe"
-            venueClicked("Nescafe, IIT PATNA")
-
-        }
-        binding.gym.setOnClickListener {
-            slideUp()
-            binding.eventText.text ="Events at Gymkhana"
-            venueClicked("Gymkhana, IIT PATNA")
-        }
-        binding.sac.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at sac"
-            venueClicked("SAC Main Hall, IIT PATNA")
-        }
-        binding.mainStage.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at main stage"
-            venueClicked("Main Stage, IIT PATNA")
-        }
-        binding.basketball.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at basketball court"
-            venueClicked("Basketball Court, IIT PATNA")
-        }
-        binding.nsit.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at nsit wall"
-            venueClicked("NSIT Wall, IIT Patna")
-        }
-        binding.foodCourt.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at food court"
-            venueClicked("FOOD COURT, IIT PATNA")
-        }
-        binding.senate.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at Senate hall"
-            venueClicked("Senate Hall, IIT PATNA")
-        }
-        binding.lh2.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at lecture hall"
-            venueClicked("Lecture Hall, IIT PATNA")
-        }
-        binding.lh1.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at tutorial block"
-            venueClicked("Lecture Hall, IIT PATNA")
-        }
-        binding.helipad.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at helipad"
-            venueClicked("Helipad Stage, IIT PATNA")
-        }
+//        binding.map.setOnClickListener {
+//            slideDown()
+//            binding.hintTxt.visibility = View.VISIBLE
+//            binding.hintImg.visibility = View.VISIBLE
+//        }
+//
+//        MapClickHandle(requireContext(), binding).mapClick()
+//
+//
+//        //Handle click when venues are clicked
+//        binding.nes.setOnClickListener {
+//            slideUp()
+//            binding.eventText.text ="Events at Nescafe"
+//            venueClicked("Nescafe, IIT PATNA")
+//
+//        }
+//        binding.gym.setOnClickListener {
+//            slideUp()
+//            binding.eventText.text ="Events at Gymkhana"
+//            venueClicked("Gymkhana, IIT PATNA")
+//        }
+//        binding.sac.setOnClickListener {
+//            slideUp()
+//            binding.eventText.text = "Events at sac"
+//            venueClicked("SAC Main Hall, IIT PATNA")
+//        }
+//        binding.mainStage.setOnClickListener {
+//            slideUp()
+//            binding.eventText.text = "Events at main stage"
+//            venueClicked("Main Stage, IIT PATNA")
+//        }
+//        binding.basketball.setOnClickListener {
+//            slideUp()
+//            binding.eventText.text = "Events at basketball court"
+//            venueClicked("Basketball Court, IIT PATNA")
+//        }
+//        binding.nsit.setOnClickListener {
+//            slideUp()
+//            binding.eventText.text = "Events at nsit wall"
+//            venueClicked("NSIT Wall, IIT Patna")
+//        }
+//        binding.foodCourt.setOnClickListener {
+//            slideUp()
+//            binding.eventText.text = "Events at food court"
+//            venueClicked("FOOD COURT, IIT PATNA")
+//        }
+//        binding.senate.setOnClickListener {
+//            slideUp()
+//            binding.eventText.text = "Events at Senate hall"
+//            venueClicked("Senate Hall, IIT PATNA")
+//        }
+//        binding.lh2.setOnClickListener {
+//            slideUp()
+//            binding.eventText.text = "Events at lecture hall"
+//            venueClicked("Lecture Hall, IIT PATNA")
+//        }
+//        binding.lh1.setOnClickListener {
+//            slideUp()
+//            binding.eventText.text = "Events at tutorial block"
+//            venueClicked("Lecture Hall, IIT PATNA")
+//        }
+//        binding.helipad.setOnClickListener {
+//            slideUp()
+//            binding.eventText.text = "Events at helipad"
+//            venueClicked("Helipad Stage, IIT PATNA")
+//        }
 
         binding.festPasses.setOnClickListener {
             loadPassesFragment(PassesFragment())
@@ -150,7 +152,7 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun slideDown(){
+    fun slideDown(){
         val slideDown = ValueAnimator.ofInt(1000, dpToPx(150))
         slideDown.duration = 500
         slideDown.addUpdateListener {
@@ -177,7 +179,7 @@ class HomeFragment : Fragment() {
         return (dp.toFloat() * density + 0.5f).toInt()
     }
 
-    private fun venueClicked(venue: String) {
+    fun venueClicked(venue: String) {
         binding.hintTxt.visibility = View.GONE
         binding.hintImg.visibility = View.GONE
         val venueEvent = ArrayList<EventList>()
@@ -316,10 +318,10 @@ class HomeFragment : Fragment() {
                 })
 
                 binding.deliveryShimmer.visibility = View.GONE
-                binding.animationView.visibility = View.VISIBLE
+//                binding.animationView.visibility = View.VISIBLE
                 binding.deliveryShimmer.stopShimmer()
-                binding.animationView.smoothScrollTo(dpToPx(150),0)
-                binding.verticalScroll.smoothScrollTo(0, dpToPx(480))
+//                binding.animationView.smoothScrollTo(dpToPx(150),0)
+//                binding.verticalScroll.smoothScrollTo(0, dpToPx(480))
             } else {
                 Toast.makeText(context, "Error in getting Events", Toast.LENGTH_SHORT).show()
             }
@@ -348,9 +350,7 @@ class HomeFragment : Fragment() {
     }
 
 
-//    private fun setAnime() {
-//        binding.animationView.setAnimation(R.raw.map_replace)
-//        binding.animationView.repeatCount = LottieDrawable.INFINITE
-//        binding.animationView.playAnimation()
-//    }
+
 }
+
+
