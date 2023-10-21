@@ -2,15 +2,35 @@ package com.iitp.anwesha.home
 
 import android.animation.ValueAnimator
 import android.content.Context
-import android.content.res.Resources
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.rememberTransformableState
+import androidx.compose.foundation.gestures.transformable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -24,7 +44,7 @@ import com.iitp.anwesha.R
 import com.iitp.anwesha.TicketBook.PassesFragment
 import com.iitp.anwesha.databinding.FragmentHomeBinding
 import com.iitp.anwesha.events.SingleEventFragment
-import com.iitp.anwesha.home.functions.MapClickHandle
+//import com.iitp.anwesha.home.functions.MapClickHandle
 import com.iitp.anwesha.home.functions.nav_items_functions
 import java.text.SimpleDateFormat
 import java.util.*
@@ -51,6 +71,10 @@ class HomeFragment : Fragment() {
         drawerLayout.addDrawerListener(actionBarToggle)
         actionBarToggle.syncState()
 
+        binding.composeView.setContent {
+            AnweshaMap()
+        }
+
 
         binding.deliveryShimmer.startShimmer()
         val sharedPref =
@@ -73,73 +97,6 @@ class HomeFragment : Fragment() {
         binding.hintImg.visibility = View.GONE
         binding.hintTxt.visibility = View.GONE
 
-        binding.map.setOnClickListener {
-            slideDown()
-            binding.hintTxt.visibility = View.VISIBLE
-            binding.hintImg.visibility = View.VISIBLE
-        }
-
-        MapClickHandle(requireContext(), binding).mapClick()
-
-
-        //Handle click when venues are clicked
-        binding.nes.setOnClickListener {
-            slideUp()
-            binding.eventText.text ="Events at Nescafe"
-            venueClicked("Nescafe, IIT PATNA")
-
-        }
-        binding.gym.setOnClickListener {
-            slideUp()
-            binding.eventText.text ="Events at Gymkhana"
-            venueClicked("Gymkhana, IIT PATNA")
-        }
-        binding.sac.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at sac"
-            venueClicked("SAC Main Hall, IIT PATNA")
-        }
-        binding.mainStage.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at main stage"
-            venueClicked("Main Stage, IIT PATNA")
-        }
-        binding.basketball.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at basketball court"
-            venueClicked("Basketball Court, IIT PATNA")
-        }
-        binding.nsit.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at nsit wall"
-            venueClicked("NSIT Wall, IIT Patna")
-        }
-        binding.foodCourt.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at food court"
-            venueClicked("FOOD COURT, IIT PATNA")
-        }
-        binding.senate.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at Senate hall"
-            venueClicked("Senate Hall, IIT PATNA")
-        }
-        binding.lh2.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at lecture hall"
-            venueClicked("Lecture Hall, IIT PATNA")
-        }
-        binding.lh1.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at tutorial block"
-            venueClicked("Lecture Hall, IIT PATNA")
-        }
-        binding.helipad.setOnClickListener {
-            slideUp()
-            binding.eventText.text = "Events at helipad"
-            venueClicked("Helipad Stage, IIT PATNA")
-        }
-
         binding.festPasses.setOnClickListener {
             loadPassesFragment(PassesFragment())
         }
@@ -148,6 +105,95 @@ class HomeFragment : Fragment() {
         eventViewModel = ViewModelProvider(this)[EventsViewModel::class.java]
         return binding.root
 
+    }
+    @Composable
+    fun AnweshaMap() {
+        var scale  by remember {
+            mutableStateOf(2f) }
+
+        var offset  by remember {
+            mutableStateOf(Offset.Zero) }
+
+        BoxWithConstraints(modifier = Modifier
+            .clickable {
+                slideDown()
+            }
+            .fillMaxWidth()
+            //Set the Aspect Ratio Of map
+            .aspectRatio(2496f/1356f)
+        ) {
+            val state = rememberTransformableState{zoomChange, panChange, rotationChange ->
+                scale = (scale* zoomChange).coerceIn(1f,5f)
+                val extraHeight = (scale-1)*constraints.maxHeight
+                val extraWidth = (scale-1)*constraints.maxWidth
+
+                val maxX=extraHeight/2
+                val maxY=extraWidth/2
+
+
+                offset = Offset(
+                    x = (offset.x + scale*panChange.x).coerceIn(-maxX, + maxX),
+                    y = (offset.y + scale*panChange.y).coerceIn(-maxY, + maxY)
+                )
+
+            }
+
+            Box(modifier = Modifier
+                .graphicsLayer {
+                    scaleX = scale
+                    scaleY = scale
+                    translationX = offset.x
+                    translationY = offset.y
+                }
+                .transformable(state)){
+
+                Image(painter = painterResource(id = R.drawable.map), contentDescription ="Anwesha Map")
+
+                //Nescafe
+                Pointer(id = R.drawable.nescafe, Modifier.padding(70.dp, 80.dp, 0.dp, 0.dp),"Nescafe, IIT PATNA","Nescafe")
+                //Sac
+                Pointer(id = R.drawable.sac, Modifier.padding(115.dp, 78.dp, 0.dp, 0.dp),"SAC Main Hall, IIT PATNA","SAC")
+                //gym
+                Pointer(id = R.drawable.gym, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp), "Gymkhana, IIT PATNA", "Gymkhana")
+                //basketball
+                Pointer(id = R.drawable.basketball, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"Basketball Court, IIT PATNA","Basketball Court")
+                //nsit
+                Pointer(id = R.drawable.nsit, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
+                //food_court
+                Pointer(id = R.drawable.food_court, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
+                //senate
+                Pointer(id = R.drawable.senate, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
+                //helipad
+                Pointer(id = R.drawable.helipad, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
+                //main_stage
+                Pointer(id = R.drawable.main_stage, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
+                //lh1
+                Pointer(id = R.drawable.lh1, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
+                //lh2
+                Pointer(id = R.drawable.lh2, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
+
+            }
+
+        }
+
+
+
+
+
+    }
+    @Composable
+    fun Pointer(id: Int , modifier: Modifier = Modifier,venue:String,shortVenue: String){
+        Box(modifier = modifier){
+            Image(painter = painterResource(id = id) , contentDescription =null,
+                modifier= Modifier
+                    .size(20.dp, 20.dp)
+                    .clickable {
+                        slideUp()
+                        binding.eventText.text = "Events at $shortVenue"
+                        venueClicked(venue)
+                    }
+            )
+        }
     }
 
     private fun slideDown(){
@@ -316,10 +362,10 @@ class HomeFragment : Fragment() {
                 })
 
                 binding.deliveryShimmer.visibility = View.GONE
-                binding.animationView.visibility = View.VISIBLE
+//                binding.animationView.visibility = View.VISIBLE
                 binding.deliveryShimmer.stopShimmer()
-                binding.animationView.smoothScrollTo(dpToPx(150),0)
-                binding.verticalScroll.smoothScrollTo(0, dpToPx(480))
+//                binding.animationView.smoothScrollTo(dpToPx(150),0)
+//                binding.verticalScroll.smoothScrollTo(0, dpToPx(480))
             } else {
                 Toast.makeText(context, "Error in getting Events", Toast.LENGTH_SHORT).show()
             }
@@ -347,10 +393,6 @@ class HomeFragment : Fragment() {
         fragmentTransaction.commit()
     }
 
-
-//    private fun setAnime() {
-//        binding.animationView.setAnimation(R.raw.map_replace)
-//        binding.animationView.repeatCount = LottieDrawable.INFINITE
-//        binding.animationView.playAnimation()
-//    }
 }
+
+
