@@ -19,8 +19,10 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:elevation="4dp"
+
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+
 
 
             />
@@ -39,7 +41,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
+            android:paddingStart="22dp"
 
             android:orientation="horizontal">
             <androidx.cardview.widget.CardView
@@ -58,7 +60,8 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="140dp"
-                        android:src="@color/c15"
+                        android:contentDescription="@string/anweshateam"
+                        android:src="@drawable/yashveer"
                         android:layout_gravity="center">
 
                     </ImageView>
@@ -68,7 +71,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:paddingTop="4dp"
-                        android:text="XYZ"
+                        android:text="Yashveer"
                         android:layout_gravity="center">
 
                     </TextView>
@@ -77,7 +80,7 @@
                         android:layout_height="wrap_content"
 
                         android:textColor="@color/black"
-                        android:text="Fest Coordinator"
+                        android:text="@string/fest_coordinator"
                         android:layout_gravity="center">
 
                     </TextView>
@@ -102,7 +105,8 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="140dp"
-                        android:src="@color/c15"
+                        android:contentDescription="@string/anweshateam"
+                        android:src="@drawable/abhilasha"
                         android:layout_gravity="center">
 
                     </ImageView>
@@ -112,7 +116,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:paddingTop="4dp"
-                        android:text="XYZ"
+                        android:text="Abhilasha"
                         android:layout_gravity="center">
 
                     </TextView>
@@ -121,7 +125,7 @@
                         android:layout_height="wrap_content"
 
                         android:textColor="@color/black"
-                        android:text="Fest Coordinator"
+                        android:text="@string/fest_coordinator"
                         android:layout_gravity="center">
 
                     </TextView>
@@ -148,7 +152,7 @@
             android:scrollbarSize="0dp"
             android:layout_marginBottom="@+id/a1">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
@@ -166,17 +170,19 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
-                            android:layout_gravity="center">
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/ankur_mpr">
 
                         </ImageView>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Ankur"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -185,7 +191,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -209,7 +215,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/anudeep_mpr"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -219,7 +226,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Anudeep"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -228,7 +235,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -251,7 +258,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/gaurang_mpr"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -261,7 +269,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Gaurang"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -270,7 +278,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -293,7 +301,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/kanishka_mpr"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -303,7 +312,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Kanishka"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -312,7 +321,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -336,7 +345,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/ankita_mpr"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -346,7 +356,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Ankita"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -355,7 +365,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -385,7 +395,7 @@
             android:scrollbarSize="0dp"
             android:layout_marginBottom="@+id/a1">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
@@ -403,7 +413,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/divyanshee_events"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -413,7 +424,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Divyanshree"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -422,7 +433,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -446,7 +457,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/nikita_events"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -456,7 +468,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Nikita"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -465,7 +477,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -489,7 +501,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/shivendra_events"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -499,7 +512,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Shivendra"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -508,7 +521,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -531,7 +544,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/yash_events"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -541,7 +555,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Yash"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -550,7 +564,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -559,48 +573,7 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="140dp"
-                    android:layout_height="190dp"
-                    android:layout_margin="20dp"
-                    app:cardCornerRadius="@dimen/team_page_card_radius"
-                    app:cardElevation="@dimen/team_page_card_elevation">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="140dp"
-                            android:src="@color/c15"
-                            android:layout_gravity="center">
-
-                        </ImageView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"
-                            android:paddingTop="4dp"
-                            android:text="XYZ"
-                            android:layout_gravity="center">
-
-                        </TextView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:textColor="@color/black"
-                            android:text="Coordinator"
-                            android:layout_gravity="center">
-
-                        </TextView>
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
         </HorizontalScrollView>
@@ -622,7 +595,7 @@
             android:scrollbarSize="0dp"
             android:layout_marginBottom="@+id/a1">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
@@ -640,7 +613,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/harsh_rsp"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -650,7 +624,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Harsh"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -659,7 +633,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -683,7 +657,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/khushi_rsp"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -693,7 +668,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Khushi"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -702,7 +677,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -726,7 +701,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/swabnam_rsp"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -736,7 +712,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Swabnam"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -745,7 +721,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -754,48 +730,6 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="140dp"
-                    android:layout_height="190dp"
-                    android:layout_margin="20dp"
-                    app:cardCornerRadius="@dimen/team_page_card_radius"
-                    app:cardElevation="@dimen/team_page_card_elevation">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="140dp"
-                            android:src="@color/c15"
-                            android:layout_gravity="center">
-
-                        </ImageView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"
-                            android:paddingTop="4dp"
-                            android:text="XYZ"
-                            android:layout_gravity="center">
-
-                        </TextView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:textColor="@color/black"
-                            android:text="Coordinator"
-                            android:layout_gravity="center">
-
-                        </TextView>
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
         </HorizontalScrollView>
@@ -817,7 +751,7 @@
             android:scrollbarSize="0dp"
             android:layout_marginBottom="@+id/a1">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
@@ -835,7 +769,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/aditi_hospi"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -845,7 +780,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Aditi"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -854,7 +789,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -878,7 +813,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/aditya_hospi"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -888,7 +824,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Aditya"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -897,7 +833,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -921,17 +857,19 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
-                            android:layout_gravity="center">
+                            android:contentDescription="@string/anweshateam"
+                            android:layout_gravity="center"
+                            android:src="@drawable/aruj_hospi">
 
                         </ImageView>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Aruj"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -940,7 +878,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -963,7 +901,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/devendra_hospi"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -973,7 +912,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Devendra"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -982,7 +921,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1011,7 +950,7 @@
             android:scrollbarSize="0dp"
             android:layout_marginBottom="@+id/a1">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
@@ -1029,7 +968,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/ankit_tv"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -1039,7 +979,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Ankit"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1048,7 +988,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1072,7 +1012,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/akradeep_tv"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -1082,7 +1023,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Akradeep"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1091,7 +1032,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1115,7 +1056,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/diptadip_tv"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -1125,7 +1067,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Diptadip"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1134,7 +1076,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1158,7 +1100,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/surya_tv"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -1168,7 +1111,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Surya"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1177,7 +1120,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1206,7 +1149,7 @@
             android:scrollbarSize="0dp"
             android:layout_marginBottom="@+id/a1">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
@@ -1224,7 +1167,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:src="@drawable/anurag"
+                            android:contentDescription="@string/anweshateam"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -1234,7 +1178,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Anurag"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1243,7 +1187,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1267,7 +1211,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:src="@drawable/aritra"
+                            android:contentDescription="@string/anweshateam"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -1277,7 +1222,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Aritra"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1286,7 +1231,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1310,7 +1255,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:src="@drawable/arvind"
+                            android:contentDescription="@string/anweshateam"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -1320,7 +1266,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Arvind"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1329,7 +1275,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1353,7 +1299,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:src="@drawable/vaibhav"
+                            android:contentDescription="@string/anweshateam"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -1363,7 +1310,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Vaibhav"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1372,7 +1319,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1401,7 +1348,7 @@
             android:scrollbarSize="0dp"
             android:layout_marginBottom="@+id/a1">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
@@ -1419,7 +1366,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/aviral_spons"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -1429,7 +1377,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Aviral"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1438,7 +1386,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1462,7 +1410,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/ritvik_spons"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -1472,7 +1421,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Ritvik"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1481,7 +1430,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1505,7 +1454,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/suryansh_spons"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -1515,7 +1465,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Suryansh"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1524,7 +1474,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1553,7 +1503,7 @@
             android:scrollbarSize="0dp"
             android:layout_marginBottom="@+id/a1">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
@@ -1571,7 +1521,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/dhrutisundar_cnd"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -1581,7 +1532,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1590,7 +1541,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1614,7 +1565,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/varesh_cnd"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -1624,7 +1576,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Varesh"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1633,7 +1585,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1657,7 +1609,8 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:src="@color/c15"
+                            android:contentDescription="@string/anweshateam"
+                            android:src="@drawable/vikramaditya_cnd"
                             android:layout_gravity="center">
 
                         </ImageView>
@@ -1667,7 +1620,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:paddingTop="4dp"
-                            android:text="XYZ"
+                            android:text="Vikramaditya"
                             android:layout_gravity="center">
 
                         </TextView>
@@ -1676,7 +1629,7 @@
                             android:layout_height="wrap_content"
 
                             android:textColor="@color/black"
-                            android:text="Coordinator"
+                            android:text="@string/coordinator"
                             android:layout_gravity="center">
 
                         </TextView>
