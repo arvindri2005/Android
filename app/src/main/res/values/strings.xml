@@ -81,6 +81,10 @@
     <string name="initiatives4"><![CDATA[ENTERING UNEXPLORED DOMAINS: TECH & INNOVATION]]></string>
     <string name="initiatives4txt">• Being a premier technological institute of the nation, technology and innovation run in our blood. Thus we are on a constant quest for cutting edge technology to be integrated into our fest.\n• We are embarking on a journey to bring you the future through exciting concepts like the Metaverse, NFTs, and a festival passport.</string>
     <string name="qr_code">QR Code</string>
+    <string name="meet_the_passionate_minds_behind_the_magic_of_our_college_fest_together_we_make_unforgettable_memories_happen">Meet the passionate minds behind the magic of our college fest. Together, we make unforgettable memories happen.</string>
+    <string name="coordinator">Coordinator</string>
+    <string name="fest_coordinator">Fest Coordinator</string>
+    <string name="anwesha_team">anweshateam</string>
 
 
     <string-array name="user_types">
