@@ -20,7 +20,7 @@ import java.io.IOException
 
 
 
-const val BASE_URL = "https://backend.anwesha.live/"
+const val BASE_URL = "https://anweshabackend.xyz/"
 class MyDialog(val context: Context) {
 
     private val builder = MaterialAlertDialogBuilder(context)

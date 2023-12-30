@@ -22,7 +22,7 @@ class sponsorAdapter (private val sponsorList: List<SponsorResponse>,val context
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = sponsorList[position]
         holder.sponsorName.text = currentItem.sponsor_name
-        val link = "https://backend.anwesha.live/" + currentItem.sponsor_logo.toString()
+        val link = "https://anweshabackend.xyz/" + currentItem.sponsor_logo.toString()
         Glide.with(context)
             .load(link).placeholder(R.drawable.sponsor_mock)
             .into(holder.sponsorImage)

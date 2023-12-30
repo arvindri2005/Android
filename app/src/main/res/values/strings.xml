@@ -3,8 +3,6 @@
     <string name="home">Home</string>
     <string name="profile">Profile</string>
     <dimen name="event_height_per_hour">100dp</dimen>
-
-
     <string name="anwesha_portal">Anwesha Portal</string>
     <string name="sign_in_to">LOGIN</string>
     <string name="hint">xxxxxxxxx</string>
@@ -59,12 +57,11 @@
     <string name="campuss_ambassador_menu">CAMPUSS AMBASSADOR</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!--    <string name="BASE_URL">https://backend.anwesha.live/</string>-->
+    <string name="BASE_URL">https://anweshabackend.xyz/</string>
     <string name="user_login_authentication">Is User Logged In</string>
     <string name="cookies">Cookies</string>
+    <string name="anweshateam">Anwesha Team</string>
     <string name="user_type">User Type</string>
-
-
     <string name="user_types_prompt">Choose a User Type</string>
     <string name="elite_pass">https://pmny.in/mJs3IkpvufoA</string>
     <string name="pro_pass">https://pmny.in/LrfJCrtUy8S4</string>
@@ -85,13 +82,10 @@
     <string name="coordinator">Coordinator</string>
     <string name="fest_coordinator">Fest Coordinator</string>
     <string name="anwesha_team">anweshateam</string>
-
-
     <string-array name="user_types">
         <item>Student</item>
         <item>Not a Student</item>
         <item>Alumni</item>
         <item>Faculty</item>
     </string-array>
-
 </resources>
