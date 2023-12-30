@@ -24,7 +24,7 @@ class ExampleUnitTest {
 //        val data = "{\n  \"password\" : \"Yourpassword\",\n  \"phone_number\":  \"123456789\" ,\n  \"email_id\"  : \"divitajmera15@gmail.com\",\n  \"full_name\" : \"Your full_name\" ,\n  \"college_name\" : \" Your college_name\" ,\n  \"refferal_code\" : \"181fvdf\"}"
 //        val body = data.toRequestBody(mediaType)
 //        val request = Request.Builder()
-//            .url("https://backend.anwesha.live/campasambassador/register")
+//            .url("https://anweshabackend.xyz/campasambassador/register")
 //            .post(body)
 //            .addHeader("Content-Type", "application/json")
 //            .build()
