@@ -31,52 +31,52 @@ private lateinit var binding: FragmentTeamBinding
         binding = FragmentTeamBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.backBtn.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack(null, 0)
-        }
-
-        binding.linkedinButtonArv.setOnClickListener {
-            val intent = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("https://www.linkedin.com/in/arvindri2005/")
-            )
-            startActivity(intent)
-        }
-        binding.linkedinButtonPrv.setOnClickListener {
-            val intent = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("https://www.linkedin.com/in/praveen-kumar2004/")
-            )
-            startActivity(intent)
-        }
-        binding.linkedinButtonDvt.setOnClickListener {
-            val intent = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("https://www.linkedin.com/in/divit-ajmera")
-            )
-            startActivity(intent)
-        }
-        binding.gmailButtonArv.setOnClickListener {
-            val clipboard =
-                requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("Anwesha ID", "arvindri2005@gmail.com")
-            clipboard.setPrimaryClip(clip)
-            Toast.makeText(requireContext(), "Email copied to clipboard", Toast.LENGTH_SHORT).show()
-        }
-        binding.gmailButtonPrv.setOnClickListener {
-            val clipboard =
-                requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("Anwesha ID", "praveen1142004@gmail.com")
-            clipboard.setPrimaryClip(clip)
-            Toast.makeText(requireContext(), "Email copied to clipboard", Toast.LENGTH_SHORT).show()
-        }
-        binding.gmailButtonDvt.setOnClickListener {
-            val clipboard =
-                requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("Anwesha ID", "abc@gmail.com")
-            clipboard.setPrimaryClip(clip)
-            Toast.makeText(requireContext(), "Email copied to clipboard", Toast.LENGTH_SHORT).show()
-        }
+//        binding.backBtn.setOnClickListener {
+//            requireActivity().supportFragmentManager.popBackStack(null, 0)
+//        }
+//
+//        binding.linkedinButtonArv.setOnClickListener {
+//            val intent = Intent(
+//                Intent.ACTION_VIEW,
+//                Uri.parse("https://www.linkedin.com/in/arvindri2005/")
+//            )
+//            startActivity(intent)
+//        }
+//        binding.linkedinButtonPrv.setOnClickListener {
+//            val intent = Intent(
+//                Intent.ACTION_VIEW,
+//                Uri.parse("https://www.linkedin.com/in/praveen-kumar2004/")
+//            )
+//            startActivity(intent)
+//        }
+//        binding.linkedinButtonDvt.setOnClickListener {
+//            val intent = Intent(
+//                Intent.ACTION_VIEW,
+//                Uri.parse("https://www.linkedin.com/in/divit-ajmera")
+//            )
+//            startActivity(intent)
+//        }
+//        binding.gmailButtonArv.setOnClickListener {
+//            val clipboard =
+//                requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+//            val clip = ClipData.newPlainText("Anwesha ID", "arvindri2005@gmail.com")
+//            clipboard.setPrimaryClip(clip)
+//            Toast.makeText(requireContext(), "Email copied to clipboard", Toast.LENGTH_SHORT).show()
+//        }
+//        binding.gmailButtonPrv.setOnClickListener {
+//            val clipboard =
+//                requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+//            val clip = ClipData.newPlainText("Anwesha ID", "praveen1142004@gmail.com")
+//            clipboard.setPrimaryClip(clip)
+//            Toast.makeText(requireContext(), "Email copied to clipboard", Toast.LENGTH_SHORT).show()
+//        }
+//        binding.gmailButtonDvt.setOnClickListener {
+//            val clipboard =
+//                requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+//            val clip = ClipData.newPlainText("Anwesha ID", "abc@gmail.com")
+//            clipboard.setPrimaryClip(clip)
+//            Toast.makeText(requireContext(), "Email copied to clipboard", Toast.LENGTH_SHORT).show()
+//        }
 
 
         return view
