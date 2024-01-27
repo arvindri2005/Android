@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.atom.atompaynetzsdk.PayActivity
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.iitp.anwesha.R
@@ -25,6 +26,7 @@ import java.util.*
 
 class SingleEventFragment : Fragment() {
     private lateinit var binding: FragmentSingleEventBinding
+    private lateinit var eventId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,8 +85,7 @@ class SingleEventFragment : Fragment() {
                 binding.teamSize.text = "${event.min_team_size}-${event.max_team_size} Peoples"
             }
 
-
-
+            eventId = event.id.toString()
             binding.registrationFee.text = "₹" + event.registration_fee
 
             if (event.registration_deadline==null){
@@ -122,54 +123,9 @@ class SingleEventFragment : Fragment() {
                         startActivity(intent)
                     }
                     else{
-                        if(event.is_solo!!){
-                            CoroutineScope(Dispatchers.IO).launch {
-                                try {
+                        if(event.is_solo){
 
-
-                                    Log.d("log","128")
-                                    val response1 = EventsRegistrationApi(requireContext()).allEventsApi.soloEventRegistration(SoloRegistration(event.id!!))
-                                    Log.d("response", "130")
-                                    if(response1.isSuccessful){
-                                        Log.d("log","132")
-                                        val soloRegistration = response1.body()!!
-                                        Log.d("rsponse", "134")
-                                        requireActivity().runOnUiThread {
-                                            if(soloRegistration.message==null){
-                                                Toast.makeText(requireContext(), "Already resgisterd", Toast.LENGTH_SHORT).show()
-
-                                                Log.d("log","139")
-                                                return@runOnUiThread
-                                            }
-                                            else if(soloRegistration.payment_url==null){
-
-                                                Log.d("log","144")
-                                                Toast.makeText(requireContext(), soloRegistration.message, Toast.LENGTH_SHORT).show()
-                                            }
-                                            else{
-
-                                                Log.d("log","149")
-                                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(soloRegistration.payment_url))
-                                                val headers = Bundle()
-                                                val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
-                                                var cookieString = ""
-                                                for(cookie in sharedPref.getStringSet(getString(R.string.cookies), HashSet())!!) {
-                                                    cookieString += "$cookie; "
-                                                }
-                                                headers.putString("Set-Cookie", cookieString)
-                                                intent.putExtra(Browser.EXTRA_HEADERS, headers)
-                                                startActivity(intent)
-                                            }
-                                        }
-                                    }
-                                    else{
-                                        Log.d("e", "${response1.errorBody()}")
-                                    }
-                                }
-                                catch (e: Exception){
-                                    Log.d("Error", "f")
-                                }
-                            }
+                            pay(event.registration_fee!!)
 
                         }
                         else {
@@ -180,6 +136,7 @@ class SingleEventFragment : Fragment() {
                             bundle.putInt("maxTeamMembers", maxTeamMembers!!)
                             bundle.putString("eventName", event.name)
                             bundle.putString("eventID", event.id)
+                            bundle.putString("eventFee", event.registration_fee!!)
                             val teamEventFragment = TeamEventFragment()
                             teamEventFragment.arguments = bundle
                             val fragmentManager = requireActivity().supportFragmentManager.beginTransaction()
@@ -188,28 +145,9 @@ class SingleEventFragment : Fragment() {
                             fragmentManager.commit()
                         }
 
-                            // call solo or team api depending on event and then redirect to payu
-//                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(event.registration_link))
-//
-//                        val headers = Bundle()
-//
-//                        val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
-//
-//                        var cookieString: String = ""
-//
-//                        for(cookie in sharedPref.getStringSet(getString(R.string.cookies), HashSet())!!) {
-//                            cookieString += "$cookie; "
-//
-//                        }
-//
-//                        headers.putString("Set-Cookie", cookieString)
-//
-//                        intent.putExtra(Browser.EXTRA_HEADERS, headers)
-//
-//                        startActivity(intent)
-                        }
                     }
                 }
+            }
 
             if (event.video!!.isEmpty()) {
                 binding.rulebookBtn.visibility = View.GONE
@@ -226,5 +164,72 @@ class SingleEventFragment : Fragment() {
 
         return binding.root
     }
+
+    private fun pay(price: String){
+        Toast.makeText(requireContext(), "test", Toast.LENGTH_SHORT).show()
+        val newPayIntent = Intent(requireContext(), PayActivity::class.java)
+        newPayIntent.putExtra("merchantId", "564719")
+        newPayIntent.putExtra("password", "b5d2bc5e")
+        newPayIntent.putExtra("prodid", "STUDENT")
+        newPayIntent.putExtra("txncurr", "INR")
+        newPayIntent.putExtra("custacc", "100000036600")
+        newPayIntent.putExtra("amt", price)
+        newPayIntent.putExtra("txnid", "txnfeb2023")
+        newPayIntent.putExtra("signature_request", "KEY1234567234")
+        newPayIntent.putExtra("signature_response", "KEYRESP123657234")
+        newPayIntent.putExtra("enc_request", "1E67285F56177ADD96D6453F90482D12")
+        newPayIntent.putExtra("salt_request", "1E67285F56177ADD96D6453F90482D12")
+        newPayIntent.putExtra("salt_response", "66F34D46E547C535047F3465E640F32B")
+        newPayIntent.putExtra("enc_response", "66F34D46E547C535047F3465E640F32B")
+        newPayIntent.putExtra("isLive", true)
+        newPayIntent.putExtra("custFirstName", "test user")
+        newPayIntent.putExtra("customerEmailID", "test@gmail.com")
+        newPayIntent.putExtra("customerMobileNo", "8888888888")
+        newPayIntent.putExtra("udf1", "udf1")
+        newPayIntent.putExtra("udf2", "udf2")
+        newPayIntent.putExtra("udf3", "udf3")
+        newPayIntent.putExtra("udf4", "udf4")
+        newPayIntent.putExtra("udf5", "udf5")
+        startActivityForResult(newPayIntent, 1)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        println("resultCode = $resultCode")
+        println("onActivityResult data = $data")
+        if (data != null && resultCode != 2) {
+            println("ArrayList data = " + data.extras!!.getString("response"))
+            if (resultCode == 1) {
+                Toast.makeText(requireContext(), "Transaction Successful! \n" + data.extras!!.getString("response"), Toast.LENGTH_LONG).show()
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        Log.d("log","128")
+                        val response1 = EventsRegistrationApi(requireContext()).allEventsApi.soloEventRegistration(SoloRegistration(eventId))
+                        Log.d("response", "130")
+                        if(response1.isSuccessful){
+                            requireActivity().runOnUiThread {
+                                Toast.makeText(requireContext(), "Registered Successfully", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        else{
+                            Log.d("e", "${response1.errorBody()}")
+                        }
+                    }
+                    catch (e: Exception){
+                        Log.d("Error", e.toString())
+                    }
+                }
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Transaction Failed! \n" + data.extras!!.getString("response"),
+                    Toast.LENGTH_LONG)
+                    .show()
+            }
+        } else {
+            Toast.makeText(requireContext(), "Transaction Cancelled!", Toast.LENGTH_LONG).show()
+        }
+    } // onActivityResult
 
 }
