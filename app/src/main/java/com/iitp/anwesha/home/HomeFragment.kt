@@ -1,8 +1,10 @@
 package com.iitp.anwesha.home
 
+//import com.iitp.anwesha.home.functions.MapClickHandle
 import android.animation.ValueAnimator
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +12,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.rememberTransformableState
 import androidx.compose.foundation.gestures.transformable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.aspectRatio
@@ -27,9 +29,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -44,10 +46,9 @@ import com.iitp.anwesha.R
 import com.iitp.anwesha.TicketBook.PassesFragment
 import com.iitp.anwesha.databinding.FragmentHomeBinding
 import com.iitp.anwesha.events.SingleEventFragment
-//import com.iitp.anwesha.home.functions.MapClickHandle
 import com.iitp.anwesha.home.functions.nav_items_functions
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 
 class HomeFragment : Fragment() {
@@ -70,6 +71,7 @@ class HomeFragment : Fragment() {
         actionBarToggle = ActionBarDrawerToggle(activity, drawerLayout, 0, 0)
         drawerLayout.addDrawerListener(actionBarToggle)
         actionBarToggle.syncState()
+        binding.allDay.isChecked = true
 
         binding.composeView.setContent {
             AnweshaMap()
@@ -106,16 +108,22 @@ class HomeFragment : Fragment() {
         return binding.root
 
     }
+    @Preview
     @Composable
     fun AnweshaMap() {
         var scale  by remember {
-            mutableStateOf(2f) }
+            mutableStateOf(1f) }
 
         var offset  by remember {
             mutableStateOf(Offset.Zero) }
 
+        val interactionSource = remember { MutableInteractionSource() }
+
         BoxWithConstraints(modifier = Modifier
-            .clickable {
+            .clickable(
+                interactionSource = interactionSource,
+                indication = null
+            ) {
                 slideDown()
             }
             .fillMaxWidth()
@@ -132,7 +140,7 @@ class HomeFragment : Fragment() {
 
 
                 offset = Offset(
-                    x = (offset.x + scale*panChange.x).coerceIn(-maxX, + maxX),
+                    x = (offset.x + scale*panChange.x).coerceIn(-maxX*2, + maxX*2),
                     y = (offset.y + scale*panChange.y).coerceIn(-maxY, + maxY)
                 )
 
@@ -150,13 +158,13 @@ class HomeFragment : Fragment() {
                 Image(painter = painterResource(id = R.drawable.map), contentDescription ="Anwesha Map")
 
                 //Nescafe
-                Pointer(id = R.drawable.nescafe, Modifier.padding(70.dp, 80.dp, 0.dp, 0.dp),"Nescafe, IIT PATNA","Nescafe")
+                Pointer(id = R.drawable.nescafe, Modifier.padding(53.dp, 50.dp, 0.dp, 0.dp),"Nescafe, IIT PATNA","Nescafe")
                 //Sac
-                Pointer(id = R.drawable.sac, Modifier.padding(115.dp, 78.dp, 0.dp, 0.dp),"SAC Main Hall, IIT PATNA","SAC")
+                Pointer(id = R.drawable.sac, Modifier.padding(105.dp, 60.dp, 0.dp, 0.dp),"SAC Main Hall, IIT PATNA","SAC")
                 //gym
-                Pointer(id = R.drawable.gym, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp), "Gymkhana, IIT PATNA", "Gymkhana")
+                Pointer(id = R.drawable.gym, Modifier.padding(160.dp, 60.dp, 0.dp, 0.dp), "Gymkhana, IIT PATNA", "Gymkhana")
                 //basketball
-                Pointer(id = R.drawable.basketball, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"Basketball Court, IIT PATNA","Basketball Court")
+                Pointer(id = R.drawable.basketball, Modifier.padding(150.dp, 70.dp, 0.dp, 0.dp),"Basketball Court, IIT PATNA","Basketball Court")
                 //nsit
                 Pointer(id = R.drawable.nsit, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
                 //food_court
@@ -255,69 +263,21 @@ class HomeFragment : Fragment() {
 
 //      Day wise event loading
         binding.allDay.setOnClickListener {
-            changeBg(0)
             slideUp()
             adapter.setEvents(newEventList)
             adapter.notifyDataSetChanged()
         }
         binding.day1.setOnClickListener {
-            changeBg(1)
             slideUp()
             loadDayEvents("02")
         }
         binding.day2.setOnClickListener {
-            changeBg(2)
             slideUp()
             loadDayEvents("03")
         }
         binding.day3.setOnClickListener {
-            changeBg(3)
+            slideUp()
             loadDayEvents("04")
-        }
-    }
-
-    private fun changeBg(day: Int) {
-        when (day){
-            0->{
-                binding.allDay.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
-                binding.day1.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-                binding.day2.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-                binding.day3.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-                binding.allDay.setBackgroundResource(R.drawable.home_day_btn_selected_bg)
-                binding.day1.setBackgroundResource(R.drawable.home_day_btn_bg)
-                binding.day2.setBackgroundResource(R.drawable.home_day_btn_bg)
-                binding.day3.setBackgroundResource(R.drawable.home_day_btn_bg)
-            }
-            1->{
-                binding.allDay.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-                binding.day1.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
-                binding.day2.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-                binding.day3.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-                binding.allDay.setBackgroundResource(R.drawable.home_day_btn_bg)
-                binding.day1.setBackgroundResource(R.drawable.home_day_btn_selected_bg)
-                binding.day2.setBackgroundResource(R.drawable.home_day_btn_bg)
-                binding.day3.setBackgroundResource(R.drawable.home_day_btn_bg)
-            }
-            2->{
-                binding.allDay.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-                binding.day1.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-                binding.day2.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
-                binding.day3.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-                binding.allDay.setBackgroundResource(R.drawable.home_day_btn_bg)
-                binding.day1.setBackgroundResource(R.drawable.home_day_btn_bg)
-                binding.day2.setBackgroundResource(R.drawable.home_day_btn_selected_bg)
-                binding.day3.setBackgroundResource(R.drawable.home_day_btn_bg)
-            }
-            3->{
-                binding.allDay.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-                binding.day1.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-                binding.day2.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
-                binding.day3.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
-                binding.allDay.setBackgroundResource(R.drawable.home_day_btn_bg)
-                binding.day2.setBackgroundResource(R.drawable.home_day_btn_bg)
-                binding.day1.setBackgroundResource(R.drawable.home_day_btn_bg)
-                binding.day3.setBackgroundResource(R.drawable.home_day_btn_selected_bg)
-            }
         }
     }
 
