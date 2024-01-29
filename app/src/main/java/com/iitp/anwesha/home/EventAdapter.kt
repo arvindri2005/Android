@@ -36,7 +36,6 @@ class EventAdapter( private val context: Context): RecyclerView.Adapter<EventAda
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = eventList[position]
-        val animation = AnimationUtils.loadAnimation(holder.itemView.context, android.R.anim.slide_in_left)
         Glide.with(context)
             .load(currentItem.poster)
             .into(holder.eventPoster)
@@ -56,7 +55,6 @@ class EventAdapter( private val context: Context): RecyclerView.Adapter<EventAda
         val separatedStrings = outputString.split(",").map { it.trim() }
         holder.eventDate.text = separatedStrings[0]
         holder.eventTime.text = separatedStrings[1]
-        holder.itemView.startAnimation(animation)
         holder.itemView.setOnClickListener{
             listener.onItemClicked(currentItem)
         }
