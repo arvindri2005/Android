@@ -53,14 +53,14 @@ class Signup : Fragment() {
         binding.iitStudentBtn.setOnClickListener {
             if (binding.iitStudentBtn.isChecked){
                 binding.collegeName.visibility = View.GONE
-                binding.anweshaCollegeName.visibility = View.GONE
+                binding.anweshaCollege.visibility = View.GONE
                 binding.anweshaUserType.visibility = View.GONE
                 binding.userType.visibility = View.GONE
 
             }
             else{
                 binding.collegeName.visibility = View.VISIBLE
-                binding.anweshaCollegeName.visibility = View.VISIBLE
+                binding.anweshaCollege.visibility = View.VISIBLE
                 binding.anweshaUserType.visibility = View.VISIBLE
                 binding.userType.visibility = View.VISIBLE
             }
@@ -71,7 +71,7 @@ class Signup : Fragment() {
             binding.SignupButton.setOnClickListener {
                 if(binding.acceptTermButton.isChecked) {
                     name = checkValue(binding.anweshaFullName)?.trimEnd() ?: return@setOnClickListener
-                    email = checkValue(binding.emailId)?.trimEnd() ?: return@setOnClickListener
+                    email = checkValue(binding.anweshaEmailId)?.trimEnd() ?: return@setOnClickListener
                     if(binding.iitStudentBtn.isChecked){
                         if (!isValidIITPEmail(email)){
                             Snackbar.make(view, "Please enter institute email address", Snackbar.LENGTH_LONG)
@@ -88,13 +88,13 @@ class Signup : Fragment() {
                         }
                     }
 
-                    phone = checkValue(binding.contactNumber) ?: return@setOnClickListener
+                    phone = checkValue(binding.anweshaPhoneNum) ?: return@setOnClickListener
                     password = checkValue(binding.AnweshaPassword) ?: return@setOnClickListener
                     cPassword = checkValue(binding.ConfirmPassword) ?: return@setOnClickListener
 
 
                     if (!binding.iitStudentBtn.isChecked){
-                        college = checkValue(binding.anweshaCollegeName)?.trimEnd() ?: return@setOnClickListener
+                        college = checkValue(binding.anweshaCollege)?.trimEnd() ?: return@setOnClickListener
                         userType = checkSpinnerValue(binding.anweshaUserType) ?: return@setOnClickListener
                     }
 
