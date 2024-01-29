@@ -54,7 +54,7 @@ class CalendarFragment : Fragment() {
 
         binding.calEventsRv.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        getEvents("17")
+        getEvents("02")
 
         binding.day1.setOnClickListener {
             ButtonsFunction().selectButton(
@@ -64,7 +64,7 @@ class CalendarFragment : Fragment() {
                 binding.day3,
                 binding.scDaysLinear
             )
-            getEvent_bydate("17", newEventList)
+            getEvent_bydate("02", newEventList)
         }
         binding.day2.setOnClickListener {
             ButtonsFunction().selectButton(
@@ -74,7 +74,7 @@ class CalendarFragment : Fragment() {
                 binding.day3,
                 binding.scDaysLinear
             )
-            getEvent_bydate("18", newEventList)
+            getEvent_bydate("03", newEventList)
         }
         binding.day3.setOnClickListener {
             ButtonsFunction().selectButton(
@@ -84,7 +84,7 @@ class CalendarFragment : Fragment() {
                 binding.day1,
                 binding.scDaysLinear
             )
-            getEvent_bydate("19", newEventList)
+            getEvent_bydate("04", newEventList)
         }
         return view
     }
@@ -117,7 +117,7 @@ class CalendarFragment : Fragment() {
                 Log.d("checker", it.toString())
                 recyclerViewEvents.adapter = adapter
 
-                getEvent_bydate("17", newEventList)
+                getEvent_bydate(date, newEventList)
             } else {
                 Toast.makeText(context, "Error in getting Events", Toast.LENGTH_SHORT).show()
             }

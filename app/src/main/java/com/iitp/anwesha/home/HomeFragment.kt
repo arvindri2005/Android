@@ -263,16 +263,16 @@ class HomeFragment : Fragment() {
         binding.day1.setOnClickListener {
             changeBg(1)
             slideUp()
-            loadDayEvents("17")
+            loadDayEvents("02")
         }
         binding.day2.setOnClickListener {
             changeBg(2)
             slideUp()
-            loadDayEvents("18")
+            loadDayEvents("03")
         }
         binding.day3.setOnClickListener {
             changeBg(3)
-            loadDayEvents("19")
+            loadDayEvents("04")
         }
     }
 
