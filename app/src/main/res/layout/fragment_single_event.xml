@@ -278,11 +278,11 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/register_btn_bg"
+        android:background="@drawable/rulebook_btn_bg"
         android:fontFamily="@font/poppins_semi_bold"
         android:text="Register"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/rulebookBtn" />
