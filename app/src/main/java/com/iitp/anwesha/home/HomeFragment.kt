@@ -4,7 +4,6 @@ package com.iitp.anwesha.home
 import android.animation.ValueAnimator
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +42,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.iitp.anwesha.R
-import com.iitp.anwesha.TicketBook.PassesFragment
+import com.iitp.anwesha.tickets.PassesFragment
 import com.iitp.anwesha.databinding.FragmentHomeBinding
 import com.iitp.anwesha.events.SingleEventFragment
 import com.iitp.anwesha.home.functions.nav_items_functions
@@ -79,8 +78,7 @@ class HomeFragment : Fragment() {
 
 
         binding.deliveryShimmer.startShimmer()
-        val sharedPref =
-            requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+        val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
 
         binding.navBar.setOnClickListener {
             requireActivity().findViewById<TextView>(R.id.nameText2).text =
@@ -97,7 +95,7 @@ class HomeFragment : Fragment() {
         binding.hintTxt.visibility = View.GONE
 
         binding.festPasses.setOnClickListener {
-            loadPassesFragment(PassesFragment())
+            loadPassesFragment(sharedPref.getString(getString(R.string.user_type),"student")!!)
         }
 
         nav_items_functions(binding, requireActivity(), requireActivity()).selectingItems()
@@ -331,9 +329,11 @@ class HomeFragment : Fragment() {
         eventViewModel.makeApiCall(requireContext())
     }
 
-    private fun loadPassesFragment(fragment: Fragment) {
+    private fun loadPassesFragment(userType: String) {
+        val bundle = Bundle()
+        bundle.putString("userType", userType)
         val fragmentManager = requireActivity().supportFragmentManager.beginTransaction()
-        fragmentManager.replace(R.id.fragmentContainer, fragment)
+        fragmentManager.replace(R.id.fragmentContainer, PassesFragment())
         fragmentManager.addToBackStack(null)
         fragmentManager.commit()
     }

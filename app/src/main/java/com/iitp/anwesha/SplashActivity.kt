@@ -23,7 +23,7 @@ import kotlinx.coroutines.withContext
 
 class SplashActivity : AppCompatActivity() {
 
-    private val SPLASH_TIME_OUT = 2000L
+    private val SPLASH_TIME_OUT = 1000L
 
     private lateinit var binding: ActivitySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
