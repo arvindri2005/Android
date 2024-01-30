@@ -14,6 +14,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
@@ -46,6 +67,13 @@ class Signup : Fragment() {
             loadFragment(SignIn())
         }
 
+        binding.confirmPassword.setContent {
+            ConfirmPasswordInput()
+        }
+        binding.password.setContent {
+            PasswordInput()
+        }
+
         val myDialog = MyDialog(requireContext())
 
         college = "IIT Patna"
@@ -65,8 +93,6 @@ class Signup : Fragment() {
                 binding.userType.visibility = View.VISIBLE
             }
         }
-
-
 
             binding.SignupButton.setOnClickListener {
                 if(binding.acceptTermButton.isChecked) {
@@ -89,9 +115,6 @@ class Signup : Fragment() {
                     }
 
                     phone = checkValue(binding.anweshaPhoneNum) ?: return@setOnClickListener
-                    password = checkValue(binding.AnweshaPassword) ?: return@setOnClickListener
-                    cPassword = checkValue(binding.ConfirmPassword) ?: return@setOnClickListener
-
 
                     if (!binding.iitStudentBtn.isChecked){
                         college = checkValue(binding.anweshaCollege)?.trimEnd() ?: return@setOnClickListener
@@ -104,7 +127,6 @@ class Signup : Fragment() {
                             .show()
                         return@setOnClickListener
                     }
-                    binding.ConfirmPassword.error = null
                     myDialog.showProgressDialog(this@Signup)
 
                     CoroutineScope(Dispatchers.Main).launch {
@@ -115,13 +137,24 @@ class Signup : Fragment() {
                                 UserAuthApi(requireContext()).userAuthApi.userRegister(registerUser)
 
                             if (response.isSuccessful) {
-                                Snackbar.make(
-                                    view,
-                                    "You have successfully Registered!",
-                                    Snackbar.LENGTH_LONG
-                                )
-                                    .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
-                                    .show()
+                                if(binding.iitStudentBtn.isChecked){
+                                    Snackbar.make(
+                                        view,
+                                        "Please Verify your email through slick",
+                                        Snackbar.LENGTH_LONG
+                                    )
+                                        .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
+                                        .show()
+                                }
+                                else{
+                                    Snackbar.make(
+                                        view,
+                                        "You have successfully Registered!",
+                                        Snackbar.LENGTH_LONG
+                                    )
+                                        .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
+                                        .show()
+                                }
                                 loadFragment(SignIn())
                             } else {
                                 Snackbar.make(view, "Could not register!", Snackbar.LENGTH_LONG)
@@ -147,7 +180,7 @@ class Signup : Fragment() {
 
             val clickableSpan = object : ClickableSpan() {
                 override fun onClick(view: View) {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://anwesha.live/terms"))
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://anwesha.iitp.ac.in/terms"))
                     view.context.startActivity(intent)
                 }
                 override fun updateDrawState(textPaint: TextPaint) {
@@ -170,12 +203,12 @@ class Signup : Fragment() {
         fragmentTransaction.commit()
     }
 
-    fun isValidEmail(email: String): Boolean {
+    private fun isValidEmail(email: String): Boolean {
         val emailRegex = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
         return emailRegex.matches(email)
     }
 
-    fun isValidIITPEmail(email: String): Boolean {
+    private fun isValidIITPEmail(email: String): Boolean {
         val emailRegex = Regex("^\\w+@iitp\\.ac\\.in\$")
         return emailRegex.matches(email)
     }
@@ -198,4 +231,108 @@ class Signup : Fragment() {
         return value
 
     }
+
+    @Preview
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun ConfirmPasswordInput() {
+        val password = remember { mutableStateOf("") }
+        val passwordVisibility = remember{ mutableStateOf(false) }
+        OutlinedTextField(
+            value =password.value ,
+            onValueChange ={input->
+                password.value = input
+                cPassword = input
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(5.dp))
+                .background(Color.White),
+            colors = TextFieldDefaults.textFieldColors(
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                containerColor = Color.Transparent,
+                textColor = Color.Black
+            ),
+            shape = RoundedCornerShape(10.dp),
+            placeholder = {
+                Text(text = "Confirm Password",
+                    style = TextStyle(
+                        color = Color.Black,
+                    )
+                )
+            },
+            trailingIcon = {
+                IconButton(onClick = {
+                    passwordVisibility.value = !passwordVisibility.value
+                }) {
+                    Icon(painter = painterResource(
+                        id = if (!passwordVisibility.value) {
+                            R.drawable.icon_hide
+                        } else {
+                            R.drawable.icon_hide
+                        }
+                    ),
+                        contentDescription = null )
+                }
+            },
+            visualTransformation = if(passwordVisibility.value){
+                VisualTransformation.None
+            }else{
+                PasswordVisualTransformation()
+            },
+            maxLines = 1,
+            singleLine = true,
+        )
+    }
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun PasswordInput() {
+        val password1 = remember { mutableStateOf("") }
+        val passwordVisibility = remember{ mutableStateOf(false) }
+        OutlinedTextField(
+            value =password1.value ,
+            onValueChange ={input->
+                password1.value = input
+                password = input
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(5.dp))
+                .background(Color.White),
+            colors = TextFieldDefaults.textFieldColors(
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                containerColor = Color.Transparent,
+                textColor = Color.Black
+            ),
+            shape = RoundedCornerShape(10.dp),
+            placeholder = {
+                Text(text = "Password")
+            },
+            trailingIcon = {
+                IconButton(onClick = {
+                    passwordVisibility.value = !passwordVisibility.value
+                }) {
+                    Icon(painter = painterResource(
+                        id = if (!passwordVisibility.value) {
+                            R.drawable.icon_hide
+                        } else {
+                            R.drawable.icon_hide
+                        }
+                    ),
+                        contentDescription = null )
+                }
+            },
+            visualTransformation = if(passwordVisibility.value){
+                VisualTransformation.None
+            }else{
+                PasswordVisualTransformation()
+            },
+            maxLines = 1,
+            singleLine = true,
+        )
+    }
 }
+
+
