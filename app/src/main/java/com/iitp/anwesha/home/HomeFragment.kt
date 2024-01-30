@@ -89,9 +89,6 @@ class HomeFragment : Fragment() {
                 sharedPref.getString("anwesha_id", "id")
             drawerLayout.openDrawer(GravityCompat.START)
         }
-        if (sharedPref.getString("user_type", "user_type")=="iitp_student"){
-            binding.festPasses.visibility = View.GONE
-        }
 
         val bottomSheet = binding.eventBottomSheet
         behavior = BottomSheetBehavior.from(bottomSheet)

@@ -8,7 +8,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class EventsViewModel: ViewModel() {
-    var eventList: MutableLiveData<ArrayList<EventList>> = MutableLiveData()
+    private var eventList: MutableLiveData<ArrayList<EventList>> = MutableLiveData()
 
     fun getEventListObserver(): MutableLiveData<ArrayList<EventList>>{
         return eventList
@@ -22,13 +22,31 @@ class EventsViewModel: ViewModel() {
                 call: Call<MutableList<EventList>>,
                 response: Response<MutableList<EventList>>
             ){
-                eventList.postValue(response.body() as ArrayList)
+                filterEvents(response.body() as ArrayList)
             }
 
             override fun onFailure(call: Call<MutableList<EventList>>, t: Throwable) {
 
             }
         })
+    }
+
+    fun filterEvents(eventList1: ArrayList<EventList>){
+        val filteredList = ArrayList<EventList>()
+        for (event in eventList1){
+            if (!(event.id == "EVTe96c6"
+                || event.id == "EVT8e600"
+                || event.id == "EVT7a8a7"
+                || event.id == "EVT691bc"
+                || event.id == "EVTcac95"
+                || event.id == "EVTcf525"
+                || event.id == "EVT49870"
+                || event.id == "EVT66e40"
+                || event.id == "EVT68cb3")){
+                filteredList.add(event)
+            }
+        }
+        eventList.postValue(filteredList)
     }
 
 }
