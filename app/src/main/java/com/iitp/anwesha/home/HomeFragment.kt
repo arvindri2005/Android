@@ -155,25 +155,21 @@ class HomeFragment : Fragment() {
                 //Nescafe
                 Pointer(id = R.drawable.nescafe, Modifier.padding(53.dp, 50.dp, 0.dp, 0.dp),"Nescafe, IIT PATNA","Nescafe")
                 //Sac
-                Pointer(id = R.drawable.sac, Modifier.padding(105.dp, 60.dp, 0.dp, 0.dp),"SAC Main Hall, IIT PATNA","SAC")
+                Pointer(id = R.drawable.sac, Modifier.padding(105.dp, 60.dp, 0.dp, 0.dp),"Open Air Theatre","SAC")
                 //gym
                 Pointer(id = R.drawable.gym, Modifier.padding(160.dp, 60.dp, 0.dp, 0.dp), "Gymkhana, IIT PATNA", "Gymkhana")
                 //basketball
-                Pointer(id = R.drawable.basketball, Modifier.padding(150.dp, 70.dp, 0.dp, 0.dp),"Basketball Court, IIT PATNA","Basketball Court")
+                Pointer(id = R.drawable.basketball, Modifier.padding(150.dp, 70.dp, 0.dp, 0.dp),"Basketball Court","Basketball Court")
                 //nsit
-                Pointer(id = R.drawable.nsit, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
-                //food_court
-                Pointer(id = R.drawable.food_court, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
+                Pointer(id = R.drawable.nsit, Modifier.padding(110.dp, 80.dp, 0.dp, 0.dp),"NSIT Wall","NSIT Wall")
                 //senate
-                Pointer(id = R.drawable.senate, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
+                Pointer(id = R.drawable.senate, Modifier.padding(70.dp, 65.dp, 0.dp, 0.dp),"Senate Hall","Senate Hall")
                 //helipad
-                Pointer(id = R.drawable.helipad, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
+                Pointer(id = R.drawable.helipad, Modifier.padding(25.dp, 88.dp, 0.dp, 0.dp),"test","Helipad")
                 //main_stage
-                Pointer(id = R.drawable.main_stage, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
+                Pointer(id = R.drawable.main_stage, Modifier.padding(48.dp, 76.dp, 0.dp, 0.dp),"Main Fest Ground","Main Stage")
                 //lh1
-                Pointer(id = R.drawable.lh1, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
-                //lh2
-                Pointer(id = R.drawable.lh2, Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),"test","test")
+                Pointer(id = R.drawable.lh1, Modifier.padding(25.dp, 60.dp, 0.dp, 0.dp),"Block 9","Block 9")
 
             }
 
