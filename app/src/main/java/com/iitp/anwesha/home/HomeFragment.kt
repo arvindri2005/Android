@@ -4,6 +4,7 @@ package com.iitp.anwesha.home
 import android.animation.ValueAnimator
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -327,16 +328,18 @@ class HomeFragment : Fragment() {
 
     private fun loadPassesFragment(userType: String) {
         val bundle = Bundle()
-        bundle.putString("userType", userType)
-        val fragmentManager = requireActivity().supportFragmentManager.beginTransaction()
-        fragmentManager.replace(R.id.fragmentContainer, PassesFragment())
+        val fragment = PassesFragment()
+        val passPrice = eventViewModel.getPassPrice().value
+        bundle.putSerializable("passData", PassesData(userType, passPrice!!))
+        fragment.arguments = bundle
+        val fragmentManager = activity?.supportFragmentManager!!.beginTransaction()
+        fragmentManager.replace(R.id.fragmentContainer, fragment)
         fragmentManager.addToBackStack(null)
         fragmentManager.commit()
     }
 
     private fun loadSingleEventFragment(event: EventList) {
         val bundle = Bundle()
-//        bundle.putString("eventID", event.id)
         bundle.putSerializable("event", event)
         val fragment = SingleEventFragment()
         fragment.arguments = bundle

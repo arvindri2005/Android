@@ -28,6 +28,7 @@ import com.iitp.anwesha.events.EventsRegistrationApi
 import com.iitp.anwesha.events.SoloRegistration
 import com.iitp.anwesha.events.generateTransactionId
 import com.iitp.anwesha.home.EventList
+import com.iitp.anwesha.home.PassesData
 import com.iitp.anwesha.profile.UserProfileApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -56,7 +57,10 @@ class PassesFragment : Fragment() {
         val binding = FragmentPassesBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        val userType = arguments?.getString("eventID").toString()
+        val passesData = arguments?.getSerializable("passData") as PassesData
+        val userType = passesData.studentType
+        val passPrice = passesData.passPrice
+        Log.d(TAG, "Pass Price: $passPrice")
 
         eventId = if(userType=="iitp_student"){
                 "EVTe96c6" //General Pronite Pass for iitp
@@ -102,7 +106,9 @@ class PassesFragment : Fragment() {
                     }
                 }
                 else{
-                    pay("1599")
+
+                    pay(passPrice.split(".")[0])
+
                 }
             }
 
