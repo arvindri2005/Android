@@ -8,8 +8,8 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.iitp.anwesha" />
-                  <option name="mobileSdkAppId" value="1:165753342134:android:a032dd212106a8220abe17" />
+                  <option name="appId" value="com.college.anwesha2k23" />
+                  <option name="mobileSdkAppId" value="1:165753342134:android:6492095c220221b60abe17" />
                   <option name="projectId" value="anwesha-23" />
                   <option name="projectNumber" value="165753342134" />
                 </ConnectionSetting>

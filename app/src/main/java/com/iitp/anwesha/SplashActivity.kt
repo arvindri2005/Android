@@ -1,16 +1,12 @@
 package com.iitp.anwesha
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import com.bumptech.glide.Glide
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.messaging.FirebaseMessaging
@@ -19,7 +15,8 @@ import com.iitp.anwesha.profile.UserProfileApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+
+private const val TAG = "SplashActivity"
 
 class SplashActivity : AppCompatActivity() {
 
@@ -45,10 +42,18 @@ class SplashActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             CoroutineScope(Dispatchers.IO).launch {
-                val response = UserProfileApi(this@SplashActivity).profileApi.getProfile()
-                if (response.isSuccessful) {
-                    moveToMainActivity()
-                } else {
+
+                try{
+                    val response = UserProfileApi(this@SplashActivity).profileApi.getProfile()
+                    if (response.isSuccessful) {
+                        moveToMainActivity()
+                    } else {
+                        moveToLoginActivity()
+                    }
+                }
+
+                catch (e:Exception){
+                    Log.d(TAG, "onCreate: ${e.message}")
                     moveToLoginActivity()
                 }
             }
