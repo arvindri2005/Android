@@ -1,5 +1,6 @@
 package com.iitp.anwesha.events
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -60,6 +61,7 @@ class SingleEventFragment : Fragment() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -126,7 +128,12 @@ class SingleEventFragment : Fragment() {
             }
 
             eventId = event.id.toString()
-            binding.registrationFee.text = "₹" + event.registration_fee
+            if (event.registration_fee == "0") {
+                binding.registrationFee.text = "Free"
+            }
+            else{
+                binding.registrationFee.text = "₹" + event.registration_fee
+            }
 
             if (event.registration_deadline==null){
                 binding.registerDeadline.visibility = View.GONE
@@ -152,7 +159,14 @@ class SingleEventFragment : Fragment() {
             binding.organizer.text = organizer
 
 
-            binding.prize.text = "Prizes worth ₹${event.prize}"
+            if(event.prize=="0"){
+                binding.prizeTxt.visibility = View.GONE
+                binding.prize.visibility = View.GONE
+            }
+            else{
+                binding.prize.text = "Prizes worth ₹${event.prize}"
+            }
+
 
 
             if(!event.is_active!!){
