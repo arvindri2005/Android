@@ -4,11 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -49,7 +47,7 @@ class SplashActivity : AppCompatActivity() {
         }, SPLASH_TIME_OUT)
     }
 
-    private fun apiCall(view: FrameLayout) {
+    private fun apiCall(view: ConstraintLayout) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = UserProfileApi(this@SplashActivity).profileApi.getProfile()
@@ -60,7 +58,7 @@ class SplashActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    val snackBar = Snackbar.make(view, "No Internet Connection", Snackbar.LENGTH_LONG)
+                    val snackBar = Snackbar.make(view, "No Internet Connection", 500000)
                     snackBar.setAction("Retry") {
                         apiCall(view) // Retry network call when "Retry" is clicked
                     }
