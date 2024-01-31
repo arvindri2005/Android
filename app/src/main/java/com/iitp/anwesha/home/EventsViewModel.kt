@@ -9,9 +9,13 @@ import retrofit2.Response
 
 class EventsViewModel: ViewModel() {
     private var eventList: MutableLiveData<ArrayList<EventList>> = MutableLiveData()
-
+    private var passPrice: MutableLiveData<String> = MutableLiveData()
     fun getEventListObserver(): MutableLiveData<ArrayList<EventList>>{
         return eventList
+    }
+
+    fun getPassPrice(): MutableLiveData<String>{
+        return passPrice
     }
 
     fun makeApiCall(context: Context){
@@ -44,6 +48,9 @@ class EventsViewModel: ViewModel() {
                 || event.id == "EVT66e40"
                 || event.id == "EVT68cb3")){
                 filteredList.add(event)
+            }
+            if(event.id == "EVT7a8a7"){
+                passPrice.value = event.registration_fee as String
             }
         }
         eventList.postValue(filteredList)
