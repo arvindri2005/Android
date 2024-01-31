@@ -15,20 +15,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.iitp.anwesha.databinding.FragmentProfileBinding
-
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.reflect.Type
-import java.util.HashSet
 
+private const val TAG = "ProfileFragment"
 
 class ProfileFragment(context: Context) : Fragment() {
     private var _binding: FragmentProfileBinding? = null
@@ -109,20 +109,16 @@ class ProfileFragment(context: Context) : Fragment() {
             withContext(Dispatchers.Main) {
                 val response2 = UserProfileApi(fragmentContext).profileApi.getMyEvents()
                 if (response2.isSuccessful) {
+
                     val eventsInfo = response2.body()!!
-                    Log.e("PRINT", eventsInfo.toString())
+                    Log.e(TAG, eventsInfo.toString())
+
                     val soloEvents = arrayListOf<MyEventDetails>()
                     var l =1
-                    for(i in eventsInfo.solo){
-                        if (i.event_tags=="6"){
-                            if (l==1){
-                                if(i.event_name=="Fest Entry *Day 3"){
-                                    binding.passId1.text = "Pro Pass"
-                                }
-                                else{
-                                    binding.passId1.text = "Elite Pass"
-                                }
 
+                    for(i in eventsInfo.solo){
+                        if (i.event_id == "EVTe96c6"|| i.event_id == "EVT7a8a7"){
+                            if (l==1){
                                 if(!i.payment_done){
                                     binding.paymentBtn1.visibility = View.VISIBLE
                                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(i.payment_url))
@@ -141,39 +137,12 @@ class ProfileFragment(context: Context) : Fragment() {
                                 l++
                                 binding.pass1.visibility = View.VISIBLE
                             }
-                            else{
-                                if(i.event_name=="Fest Entry *Day 3"){
-                                    binding.passId2.text = "Pro Pass"
-                                }
-                                else{
-                                    binding.passId2.text = "Elite Pass"
-                                }
-                                if(!i.payment_done){
-                                    binding.paymentBtn2.visibility = View.VISIBLE
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(i.payment_url))
-                                    val headers = Bundle()
-                                    val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
-                                    var cookieString = ""
-                                    for(cookie in sharedPref.getStringSet(getString(com.iitp.anwesha.R.string.cookies), HashSet())!!) {
-                                        cookieString += "$cookie; "
-                                    }
-                                    headers.putString("Set-Cookie", cookieString)
-                                    intent.putExtra(Browser.EXTRA_HEADERS, headers)
-                                    binding.paymentBtn2.setOnClickListener {
-                                        startActivity(intent)
-                                    }
-                                }
-                                l++
-                                binding.pass2.visibility = View.VISIBLE
-                            }
                         }
                         else{
                             soloEvents.add(i)
-
-
                         }
-
                     }
+
                     binding.rvRegistered.layoutManager =
                         LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
                     binding.rvRegistered.adapter =
@@ -186,8 +155,6 @@ class ProfileFragment(context: Context) : Fragment() {
                 }
             }
         }
-
-
         var l=1
         for(i in passes){
             if(l==1){
@@ -258,7 +225,6 @@ class ProfileFragment(context: Context) : Fragment() {
             }
         }
     }
-
     private fun setEditable(editable: Boolean, field: EditText, inputType: Int, back: Drawable?) {
         field.isClickable = editable
         field.isFocusable = editable
