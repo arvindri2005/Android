@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.profile->{
-                loadFragment(ProfileFragment(this@MainActivity))
+                loadFragment(ProfileFragment())
                 true
             }
                 else->{
@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         fragmentManager.commit()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (binding.bottomNavigation.selectedItemId != R.id.home) {
             binding.bottomNavigation.selectedItemId = R.id.home

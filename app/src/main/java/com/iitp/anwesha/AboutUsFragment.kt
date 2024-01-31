@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.iitp.anwesha.databinding.FragmentAboutUsBinding
-import com.iitp.anwesha.databinding.FragmentSingleEventBinding
 
 
 class AboutUsFragment : Fragment() {
@@ -38,7 +37,7 @@ class AboutUsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentAboutUsBinding.inflate(inflater, container, false)
 

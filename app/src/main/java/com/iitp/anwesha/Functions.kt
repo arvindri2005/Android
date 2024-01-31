@@ -76,7 +76,7 @@ class MyDialog(val context: Context) {
 
 }
 
- fun checkValue(input: TextInputLayout): String? {
+fun checkValue(input: TextInputLayout): String? {
     val value = input.editText?.text.toString()
     if(value.isBlank()) {
         input.error = "Required Field!"

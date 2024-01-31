@@ -7,17 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.iitp.anwesha.R
-import com.iitp.anwesha.databinding.EventDesignBinding
-import com.iitp.anwesha.databinding.MyTeamEventDesignBinding
 import com.iitp.anwesha.databinding.MySoloEventDesignBinding
+import com.iitp.anwesha.databinding.MyTeamEventDesignBinding
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
+import java.util.TimeZone
 
 class ProfileEventsAdapter(private val eventList: List<MyEventDetails>, val context: Context): RecyclerView.Adapter<ProfileEventsAdapter.MyViewHolder>() {
 
@@ -34,16 +31,16 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>, val cont
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = eventList[position]
         holder.eventName.text = currentItem.event_name
-        holder.eventStartTime.text = getTimeFromDate(currentItem.event_start_time.toString())
-        holder.eventDate.text = getDayFromDate(currentItem.event_start_time.toString())
+        holder.eventStartTime.text = getTimeFromDate(currentItem.event_start_time)
+        holder.eventDate.text = getDayFromDate(currentItem.event_start_time)
         val venue = currentItem.event_venue.split(",")
         holder.eventVenue.text = venue[0]
-        if (currentItem.payment_done == false){
+        if (!currentItem.payment_done){
             holder.eventButton.visibility = View.VISIBLE
             holder.eventButton.setOnClickListener {
                 val intent = Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse(currentItem.payment_url.toString())
+                    Uri.parse(currentItem.payment_url)
                 )
                 context.startActivity(intent)
             }
@@ -68,27 +65,26 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>, val cont
 
     }
 
-    fun getTimeFromDate(dateTime: String): String {
+    private fun getTimeFromDate(dateTime: String): String {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
         dateFormat.timeZone = TimeZone.getTimeZone("UTC+5:30")
         val date = dateFormat.parse(dateTime)
         val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
         timeFormat.timeZone = TimeZone.getTimeZone("UTC")
-        return timeFormat.format(date)
+        return timeFormat.format(date!!)
     }
 
-    fun getDayFromDate(dateString: String): String {
+    private fun getDayFromDate(dateString: String): String {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
         val date = inputFormat.parse(dateString)
         val outputFormat = SimpleDateFormat("dd MMMM", Locale.getDefault())
-        return outputFormat.format(date)
+        return outputFormat.format(date!!)
     }
 
 }
 
 class ProfileTeamsAdapter(private val eventList: List<MyTeamDetails>, val context: Context): RecyclerView.Adapter<ProfileTeamsAdapter.MyViewHolder>() {
 
-    private lateinit var binding: EventDesignBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
             MyTeamEventDesignBinding.inflate(
@@ -102,26 +98,26 @@ class ProfileTeamsAdapter(private val eventList: List<MyTeamDetails>, val contex
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = eventList[position]
         holder.eventName.text = currentItem.event_name
-        holder.eventStartTime.text = getTimeFromDate(currentItem.event_start_time.toString())
-        holder.eventDate.text = getDayFromDate(currentItem.event_start_time.toString())
+        holder.eventStartTime.text = getTimeFromDate(currentItem.event_start_time)
+        holder.eventDate.text = getDayFromDate(currentItem.event_start_time)
 
-        var anw_id =""
+        var anwId =""
         for (i in currentItem.team_members){
-            anw_id = anw_id + i + ", "
+            anwId = "$anwId$i, "
         }
-        if (currentItem.payment_done == false){
+        if (!currentItem.payment_done){
             holder.eventButton.visibility = View.VISIBLE
             holder.eventButton.setOnClickListener {
                 val intent = Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse(currentItem.payment_url.toString())
+                    Uri.parse(currentItem.payment_url)
                 )
                 context.startActivity(intent)
             }
         }else{
             holder.cons.visibility = View.VISIBLE
         }
-        holder.eventId.text = anw_id.toString()
+        holder.eventId.text = anwId
     }
 
     override fun getItemCount(): Int {
@@ -140,20 +136,20 @@ class ProfileTeamsAdapter(private val eventList: List<MyTeamDetails>, val contex
 
     }
 
-    fun getTimeFromDate(dateTime: String): String {
+    private fun getTimeFromDate(dateTime: String): String {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
         dateFormat.timeZone = TimeZone.getTimeZone("UTC+5:30")
         val date = dateFormat.parse(dateTime)
         val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
         timeFormat.timeZone = TimeZone.getTimeZone("UTC")
-        return timeFormat.format(date)
+        return timeFormat.format(date!!)
     }
 
-    fun getDayFromDate(dateString: String): String {
+    private fun getDayFromDate(dateString: String): String {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
         val date = inputFormat.parse(dateString)
         val outputFormat = SimpleDateFormat("dd MMMM", Locale.getDefault())
-        return outputFormat.format(date)
+        return outputFormat.format(date!!)
     }
 
 }

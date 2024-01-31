@@ -15,11 +15,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class sponsorsFragment : Fragment() {
+class SponsorsFragment : Fragment() {
     private lateinit var binding: FragmentSponsorsBinding
     private lateinit var fragmentContext: Context
 
@@ -50,14 +47,6 @@ class sponsorsFragment : Fragment() {
         val view = binding.root
 
         binding.deliveryShimmer.startShimmer()
-//        val testlink = "https://as2.ftcdn.net/v2/jpg/01/33/48/03/1000_F_133480376_PWlsZ1Bdr2SVnTRpb8jCtY59CyEBdoUt.jpg"
-//        val ls1 = SponsorResponse(1, "spacex", "", "", testlink, "", "", "", "")
-//        val ls2 = SponsorResponse(1, "spacex", "", "", testlink, "", "", "", "")
-//        val ls3 = SponsorResponse(1, "spacex", "", "", testlink, "", "", "", "")
-//        val ls4 = SponsorResponse(1, "spacex", "", "", testlink, "", "", "", "")
-//        val ls5 = SponsorResponse(1, "spacex", "", "", testlink, "", "", "", "")
-
-//        val testlist: List<SponsorResponse> = listOf(ls1, ls2, ls3, ls4, ls5)
 
         CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.Main) {
@@ -68,16 +57,12 @@ class sponsorsFragment : Fragment() {
                     binding.recyclerView.layoutManager =
                         GridLayoutManager(fragmentContext, 2)
                     sponsorInfo.sortedBy { it.id }
-                    binding.recyclerView.adapter = sponsorAdapter(sponsorInfo, fragmentContext)
+                    binding.recyclerView.adapter = SponsorAdapter(sponsorInfo, fragmentContext)
                     binding.visibleFrag.visibility  =View.VISIBLE
                     binding.deliveryShimmer.visibility  =View.GONE
                 }
             }
         }
-
-//        binding.recyclerView.layoutManager =
-//            GridLayoutManager(fragmentContext, 2)
-//        binding.recyclerView.adapter = sponsorAdapter(testlist, fragmentContext)
 
         binding.backBtn.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack(null, 0)

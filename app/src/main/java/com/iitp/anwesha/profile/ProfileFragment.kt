@@ -1,5 +1,6 @@
 package com.iitp.anwesha.profile
 
+import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -27,10 +28,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Locale
 
 private const val TAG = "ProfileFragment"
 
-class ProfileFragment(context: Context) : Fragment() {
+class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private var isEditProfile = false
@@ -58,6 +60,7 @@ class ProfileFragment(context: Context) : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -76,85 +79,94 @@ class ProfileFragment(context: Context) : Fragment() {
 
 
         CoroutineScope(Dispatchers.IO).launch {
-            val response = UserProfileApi(requireContext()).profileApi.getProfile()
-            if (response.isSuccessful) {
-                val userInfo = response.body()!!
-                Log.d("userinfo: ", "${userInfo.anwesha_id}, ${userInfo.full_name}")
-                withContext(Dispatchers.Main) {
-                    binding.profileName.setText(userInfo.full_name.toString())
-                    binding.anweshaId.setText(userInfo.anwesha_id.toString().toUpperCase())
-                    binding.anweshaId2.setText(userInfo.anwesha_id)
-                    binding.phoneNumber.setText(userInfo.phone_number)
-                    binding.emailId.setText(userInfo.email_id)
-                    binding.collegeName.setText(userInfo.college_name)
-                    val gender = userInfo.gender ?: "Liquid"
-                    binding.gender.setText(gender.toString())
-                    Glide.with(fragmentContext)
-                        .load(userInfo.qr_code).placeholder(com.iitp.anwesha.R.drawable.qr_mock_bg)
-                        .into(binding.imageView)
-                    binding.visibleFrag.visibility = View.VISIBLE
-                    binding.deliveryShimmer.visibility = View.GONE
+            try {
+                val response = UserProfileApi(requireContext()).profileApi.getProfile()
+                if (response.isSuccessful) {
+                    val userInfo = response.body()!!
+                    Log.d("userinfo: ", "${userInfo.anwesha_id}, ${userInfo.full_name}")
+                    withContext(Dispatchers.Main) {
+                        binding.profileName.setText(userInfo.full_name)
+                        binding.anweshaId.text = userInfo.anwesha_id.uppercase(Locale.ROOT)
+                        binding.anweshaId2.text = userInfo.anwesha_id
+                        binding.phoneNumber.setText(userInfo.phone_number)
+                        binding.emailId.setText(userInfo.email_id)
+                        binding.collegeName.setText(userInfo.college_name)
+                        val gender = userInfo.gender ?: "Liquid"
+                        binding.gender.setText(gender)
+                        Glide.with(fragmentContext)
+                            .load(userInfo.qr_code).placeholder(com.iitp.anwesha.R.drawable.qr_mock_bg)
+                            .into(binding.imageView)
+                        binding.visibleFrag.visibility = View.VISIBLE
+                        binding.deliveryShimmer.visibility = View.GONE
 
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            context,
+                            "error found: ${response.message()}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
-            } else {
+
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(
-                        context,
-                        "error found: ${response.message()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
+                    val response2 = UserProfileApi(fragmentContext).profileApi.getMyEvents()
+                    if (response2.isSuccessful) {
 
-            withContext(Dispatchers.Main) {
-                val response2 = UserProfileApi(fragmentContext).profileApi.getMyEvents()
-                if (response2.isSuccessful) {
+                        val eventsInfo = response2.body()!!
+                        Log.e(TAG, eventsInfo.toString())
 
-                    val eventsInfo = response2.body()!!
-                    Log.e(TAG, eventsInfo.toString())
+                        val soloEvents = arrayListOf<MyEventDetails>()
+                        var l =1
 
-                    val soloEvents = arrayListOf<MyEventDetails>()
-                    var l =1
-
-                    for(i in eventsInfo.solo){
-                        if (i.event_id == "EVTe96c6"|| i.event_id == "EVT7a8a7"){
-                            if (l==1){
-                                if(!i.payment_done){
-                                    binding.paymentBtn1.visibility = View.VISIBLE
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(i.payment_url))
-                                    val headers = Bundle()
-                                    val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
-                                    var cookieString = ""
-                                    for(cookie in sharedPref.getStringSet(getString(com.iitp.anwesha.R.string.cookies), HashSet())!!) {
-                                        cookieString += "$cookie; "
+                        for(i in eventsInfo.solo){
+                            if (i.event_id == "EVTe96c6"|| i.event_id == "EVT7a8a7"){
+                                if (l==1){
+                                    if(!i.payment_done){
+                                        binding.paymentBtn1.visibility = View.VISIBLE
+                                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(i.payment_url))
+                                        val headers = Bundle()
+                                        val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+                                        var cookieString = ""
+                                        for(cookie in sharedPref.getStringSet(getString(com.iitp.anwesha.R.string.cookies), HashSet())!!) {
+                                            cookieString += "$cookie; "
+                                        }
+                                        headers.putString("Set-Cookie", cookieString)
+                                        intent.putExtra(Browser.EXTRA_HEADERS, headers)
+                                        binding.paymentBtn1.setOnClickListener {
+                                            startActivity(intent)
+                                        }
                                     }
-                                    headers.putString("Set-Cookie", cookieString)
-                                    intent.putExtra(Browser.EXTRA_HEADERS, headers)
-                                    binding.paymentBtn1.setOnClickListener {
-                                        startActivity(intent)
-                                    }
+                                    l++
+                                    binding.pass1.visibility = View.VISIBLE
                                 }
-                                l++
-                                binding.pass1.visibility = View.VISIBLE
+                            }
+                            else{
+                                soloEvents.add(i)
                             }
                         }
-                        else{
-                            soloEvents.add(i)
-                        }
+
+                        binding.rvRegistered.layoutManager =
+                            LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
+                        binding.rvRegistered.adapter =
+                            ProfileEventsAdapter(soloEvents, fragmentContext)
+
+                        binding.rvTeamAdapter.layoutManager =
+                            LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
+                        binding.rvTeamAdapter.adapter =
+                            ProfileTeamsAdapter(eventsInfo.team, fragmentContext)
                     }
-
-                    binding.rvRegistered.layoutManager =
-                        LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
-                    binding.rvRegistered.adapter =
-                        ProfileEventsAdapter(soloEvents, fragmentContext)
-
-                    binding.rvTeamAdapter.layoutManager =
-                        LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
-                    binding.rvTeamAdapter.adapter =
-                        ProfileTeamsAdapter(eventsInfo.team, fragmentContext)
                 }
             }
+            catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show()
+                }
+            }
+
         }
+
         var l=1
         for(i in passes){
             if(l==1){
@@ -176,9 +188,6 @@ class ProfileFragment(context: Context) : Fragment() {
                 }
                 l++
                 binding.pass1.visibility = View.VISIBLE
-            }
-            else{
-
             }
         }
 
@@ -238,14 +247,21 @@ class ProfileFragment(context: Context) : Fragment() {
         binding.progressBar2.visibility = View.VISIBLE
         CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.Main) {
-                val response = QrGetApi(fragmentContext).qrApi.getQr()
-                if (response.isSuccessful) {
-                    val newqr = response.body()
-                    Glide.with(fragmentContext)
-                        .load(newqr!!.qr_code)
-                        .into(binding.imageView)
+                try {
+                    val response = QrGetApi(fragmentContext).qrApi.getQr()
+                    if (response.isSuccessful) {
+                        val newQr = response.body()
+                        Glide.with(fragmentContext)
+                            .load(newQr!!.qr_code)
+                            .into(binding.imageView)
+                        binding.progressBar2.visibility = View.GONE
+                    }
+                }
+                catch (e: Exception) {
+                    Toast.makeText(fragmentContext, "Oops some error Occurred", Toast.LENGTH_SHORT).show()
                     binding.progressBar2.visibility = View.GONE
                 }
+
             }
         }
     }
@@ -259,12 +275,19 @@ class ProfileFragment(context: Context) : Fragment() {
 
         val updateProfile = UpdateProfile(phone, name, college, gender)
 
-        val response = UserProfileApi(requireContext()).profileApi.updateProfile(updateProfile)
+        try {
+            val response = UserProfileApi(requireContext()).profileApi.updateProfile(updateProfile)
 
-        requireActivity().runOnUiThread {
-            if (response.isSuccessful) {
-                Toast.makeText(context, "Profile Updated Successfully", Toast.LENGTH_SHORT).show()
-            } else {
+            requireActivity().runOnUiThread {
+                if (response.isSuccessful) {
+                    Toast.makeText(context, "Profile Updated Successfully", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, "Could not update profile", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        catch (e: Exception) {
+            requireActivity().runOnUiThread {
                 Toast.makeText(context, "Could not update profile", Toast.LENGTH_SHORT).show()
             }
         }

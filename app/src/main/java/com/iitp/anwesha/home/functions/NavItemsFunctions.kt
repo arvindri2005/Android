@@ -12,7 +12,7 @@ import com.iitp.anwesha.LoginActivity
 import com.iitp.anwesha.R
 import com.iitp.anwesha.TeamFragment
 import com.iitp.anwesha.databinding.FragmentHomeBinding
-import com.iitp.anwesha.sponsors.sponsorsFragment
+import com.iitp.anwesha.sponsors.SponsorsFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,7 +27,7 @@ class NavItemsFunctions(
         binding.navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.sponsor -> {
-                    loadFragment(sponsorsFragment())
+                    loadFragment(SponsorsFragment())
                     true
                 }
                 R.id.Team -> {

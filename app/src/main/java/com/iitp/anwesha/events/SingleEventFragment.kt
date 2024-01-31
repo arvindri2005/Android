@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import com.atom.atompaynetzsdk.PayActivity
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.iitp.anwesha.R
 import com.iitp.anwesha.databinding.FragmentSingleEventBinding
 import com.iitp.anwesha.home.EventList
@@ -300,6 +302,11 @@ class SingleEventFragment : Fragment() {
 
             catch (e: Exception){
                 Log.d(TAG, e.toString())
+                requireActivity().runOnUiThread {
+                    Snackbar.make(requireView(), "Oops Some problem Occurred", Snackbar.LENGTH_LONG)
+                        .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+                }
+
             }
         }
     }

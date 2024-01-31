@@ -18,6 +18,8 @@ import androidx.viewpager2.widget.ViewPager2
 import app.rive.runtime.kotlin.RiveAnimationView
 import com.atom.atompaynetzsdk.PayActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.iitp.anwesha.R
 import com.iitp.anwesha.databinding.FragmentElitePassBinding
 import com.iitp.anwesha.databinding.FragmentPassesBinding
@@ -197,6 +199,10 @@ class PassesFragment : Fragment() {
             }
             catch (e: Exception){
                 Log.d(TAG, e.toString())
+                requireActivity().runOnUiThread {
+                    Snackbar.make(requireView(), "Oops Some problem Occurred", Snackbar.LENGTH_LONG)
+                        .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+                }
             }
         }
     }

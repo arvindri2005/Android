@@ -17,6 +17,8 @@ import android.widget.Toast
 import androidx.core.view.children
 import com.atom.atompaynetzsdk.PayActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.iitp.anwesha.R
 import com.iitp.anwesha.databinding.FragmentTeamEventBinding
 import com.iitp.anwesha.databinding.TeamMemberFieldBinding
@@ -278,6 +280,10 @@ class TeamEventFragment : Fragment() {
 
             catch (e: Exception){
                 Log.d(TAG, e.toString())
+                requireActivity().runOnUiThread {
+                    Snackbar.make(requireView(), "Oops Some problem Occurred", Snackbar.LENGTH_LONG)
+                        .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+                }
             }
         }
     }

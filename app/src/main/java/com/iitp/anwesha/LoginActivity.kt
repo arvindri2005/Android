@@ -20,11 +20,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showFragment() {
-        val fram = supportFragmentManager.beginTransaction()
-        fram.replace(
+        val fragment = supportFragmentManager.beginTransaction()
+        fragment.replace(
             R.id.login_container, SignIn()
         )
-        fram.commit()
+        fragment.commit()
     }
 
 }

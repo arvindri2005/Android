@@ -13,15 +13,14 @@ import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.iitp.anwesha.MainActivity
 import com.iitp.anwesha.MyDialog
 import com.iitp.anwesha.R
-import com.iitp.anwesha.checkValue
 import com.iitp.anwesha.databinding.FragmentSigninBinding
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
+import com.iitp.anwesha.checkValue
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
