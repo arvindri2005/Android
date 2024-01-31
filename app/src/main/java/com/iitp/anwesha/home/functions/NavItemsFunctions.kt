@@ -17,7 +17,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class nav_items_functions(
+class NavItemsFunctions(
     val binding: FragmentHomeBinding,
     val context: Context,
     val activity: FragmentActivity
@@ -46,16 +46,17 @@ class nav_items_functions(
                 R.id.logout -> {
                     CoroutineScope(Dispatchers.IO).launch {
                         if (signOut()) {
-                            (context as Activity).runOnUiThread(Runnable {
-                                Toast.makeText(context, "Could Not logout", Toast.LENGTH_SHORT).show()
-                            })
+                            (context as Activity).runOnUiThread {
+                                Toast.makeText(context, "Could Not logout", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
                         }
                         else {
-                            (context as Activity).runOnUiThread(Runnable {
+                            (context as Activity).runOnUiThread {
                                 val intent = Intent(context, LoginActivity::class.java)
                                 context.startActivity(intent)
                                 context.finish()
-                            })
+                            }
                         }
                     }
                     true
@@ -75,7 +76,7 @@ class nav_items_functions(
     }
 
 
-    suspend fun signOut() : Boolean {
+    private suspend fun signOut() : Boolean {
         val sharedPref = context.getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
         val response = UserLogout(context).logoutApi.logout()
 

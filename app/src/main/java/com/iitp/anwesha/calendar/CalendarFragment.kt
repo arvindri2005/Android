@@ -1,37 +1,39 @@
 package com.iitp.anwesha.calendar
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.iitp.anwesha.R
-import com.iitp.anwesha.calendar.Adapters.EventAdapter
-import com.iitp.anwesha.calendar.Adapters.TimeAdapter
-import com.iitp.anwesha.calendar.Adapters.cal_event_ev
-import com.iitp.anwesha.calendar.Adapters.locatAdapter
-import com.iitp.anwesha.calendar.DataFiles.EventData
-import com.iitp.anwesha.calendar.Functions.ButtonsFunction
-import com.iitp.anwesha.calendar.Functions.CalendarFunctions
+import com.iitp.anwesha.calendar.adapters.CalEventEv
+import com.iitp.anwesha.calendar.adapters.EventAdapter
+import com.iitp.anwesha.calendar.adapters.LocationAdapter
+import com.iitp.anwesha.calendar.adapters.TimeAdapter
+import com.iitp.anwesha.calendar.dataFiles.EventData
+import com.iitp.anwesha.calendar.functions.ButtonsFunction
+import com.iitp.anwesha.calendar.functions.CalendarFunctions
 import com.iitp.anwesha.databinding.FragmentCalendarBinding
 import com.iitp.anwesha.events.SingleEventFragment
 import com.iitp.anwesha.home.EventList
 import com.iitp.anwesha.home.EventsViewModel
 
+private const val TAG = "CalendarFragment"
 class CalendarFragment : Fragment() {
     private lateinit var binding: FragmentCalendarBinding
     private lateinit var recyclerViewEvents: RecyclerView
     private lateinit var recyclerViewTimeSlots: RecyclerView
     private lateinit var eventViewModel: EventsViewModel
     private lateinit var newEventList: ArrayList<EventList>
-    private var usefull_list: List<EventData> = emptyList()
+    private var usefulList: List<EventData> = emptyList()
     private lateinit var adapter: EventAdapter
-    private lateinit var day_adapter: cal_event_ev
+    private lateinit var dayAdapter: CalEventEv
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +56,7 @@ class CalendarFragment : Fragment() {
 
         binding.calEventsRv.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        getEvents("02")
+        getEvents()
 
         binding.day1.setOnClickListener {
             ButtonsFunction().selectButton(
@@ -64,7 +66,7 @@ class CalendarFragment : Fragment() {
                 binding.day3,
                 binding.scDaysLinear
             )
-            getEvent_bydate("02", newEventList)
+            eventByDate("02")
         }
         binding.day2.setOnClickListener {
             ButtonsFunction().selectButton(
@@ -74,7 +76,7 @@ class CalendarFragment : Fragment() {
                 binding.day3,
                 binding.scDaysLinear
             )
-            getEvent_bydate("03", newEventList)
+            eventByDate("03")
         }
         binding.day3.setOnClickListener {
             ButtonsFunction().selectButton(
@@ -84,12 +86,12 @@ class CalendarFragment : Fragment() {
                 binding.day1,
                 binding.scDaysLinear
             )
-            getEvent_bydate("04", newEventList)
+            eventByDate("04")
         }
         return view
     }
 
-    private fun getEvents(date: String) {
+    private fun getEvents() {
         eventViewModel.getEventListObserver().observe(viewLifecycleOwner) {
             if (it != null) {
                 newEventList = it
@@ -97,10 +99,10 @@ class CalendarFragment : Fragment() {
                 binding.deliveryShimmer.stopShimmer()
                 binding.deliveryShimmer.visibility = View.GONE
 
-                day_adapter = cal_event_ev(requireContext())
-                binding.calEventsRv.adapter = day_adapter
+                dayAdapter = CalEventEv(requireContext())
+                binding.calEventsRv.adapter = dayAdapter
 
-                day_adapter.setOnItemClickListener(object : cal_event_ev.OnItemClickListener {
+                dayAdapter.setOnItemClickListener(object : CalEventEv.OnItemClickListener {
                     override fun onItemClicked(event: EventList) {          //when any event from the recycler view is clicked
                         loadSingleEventFragment(event)
                     }
@@ -108,16 +110,16 @@ class CalendarFragment : Fragment() {
 
                 adapter = EventAdapter(newEventList, object : EventAdapter.OnItemClickListener {
                     override fun onItemClick(verticalItem: EventList) {
-                        Log.d("checker", verticalItem.toString())
+                        Log.d(TAG, verticalItem.toString())
                         loadSingleEventFragment(verticalItem)
                     }
                 })
 
-                usefull_list = CalendarFunctions().Usefull_data(newEventList)
-                Log.d("checker", it.toString())
+                usefulList = CalendarFunctions().usefulData(newEventList)
+                Log.d(TAG, it.toString())
                 recyclerViewEvents.adapter = adapter
 
-                getEvent_bydate(date, newEventList)
+                eventByDate("02")
             } else {
                 Toast.makeText(context, "Error in getting Events", Toast.LENGTH_SHORT).show()
             }
@@ -126,33 +128,34 @@ class CalendarFragment : Fragment() {
         eventViewModel.makeApiCall(requireContext())
     }
 
-    fun getEvent_bydate(date: String, reallist: ArrayList<EventList>) {
+    @SuppressLint("NotifyDataSetChanged")
+    private fun eventByDate(date: String) {
         binding.deliveryShimmer.startShimmer()
         binding.deliveryShimmer.visibility = View.VISIBLE
-        val filteredList = usefull_list.filter { it.startdate == date.toString() }.toMutableList()
-        val event_by_Location = CalendarFunctions().get_events_by_location(filteredList)
-        val eventList: List<List<EventData>> = mapToList(event_by_Location)
-        val locationlist: List<String> = mapToKeys(event_by_Location)
-        adapter.setList(filteredList, eventList, locationlist)
+        val filteredList = usefulList.filter { it.startdate == date }.toMutableList()
+        val eventByLocation = CalendarFunctions().getEventsByLocation(filteredList)
+        val eventList: List<List<EventData>> = mapToList(eventByLocation)
+        val locationList: List<String> = mapToKeys(eventByLocation)
+        adapter.setList(filteredList, eventList, locationList)
         adapter.notifyDataSetChanged()
 
 
-        val newadaptv = locatAdapter()
+        val newAdapterV = LocationAdapter()
         binding.recyclerViewLocat.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         binding.recyclerViewLocat.isNestedScrollingEnabled = false
-        binding.recyclerViewLocat.adapter = newadaptv
-        newadaptv.setList(locationlist)
-        newadaptv.notifyDataSetChanged()
+        binding.recyclerViewLocat.adapter = newAdapterV
+        newAdapterV.setList(locationList)
+        newAdapterV.notifyDataSetChanged()
 
 
-        day_adapter.setList(filteredList, newEventList)
+        dayAdapter.setList(filteredList, newEventList)
 
         binding.visibleFrag.visibility = View.VISIBLE
         binding.deliveryShimmer.visibility = View.GONE
         binding.deliveryShimmer.stopShimmer()
     }
 
-    fun mapToList(map: Map<String, List<EventData>>): List<List<EventData>> {
+    private fun mapToList(map: Map<String, List<EventData>>): List<List<EventData>> {
         val result = mutableListOf<List<EventData>>()
         for ((_, value) in map) {
             result.add(value)
@@ -160,9 +163,9 @@ class CalendarFragment : Fragment() {
         return result
     }
 
-    fun mapToKeys(map: Map<String, List<EventData>>): List<String> {
+    private fun mapToKeys(map: Map<String, List<EventData>>): List<String> {
         val result = mutableListOf<String>()
-        for ((key, value) in map) {
+        for ((key, _) in map) {
             result.add(key)
         }
         return result
@@ -170,7 +173,6 @@ class CalendarFragment : Fragment() {
 
     private fun loadSingleEventFragment(event: EventList?) {
         val bundle = Bundle()
-//        bundle.putString("eventID", event!!.id)
         bundle.putSerializable("event", event)
         val fragment = SingleEventFragment()
         fragment.arguments = bundle

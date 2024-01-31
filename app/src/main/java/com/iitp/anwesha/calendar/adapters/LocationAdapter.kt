@@ -1,6 +1,6 @@
-package com.iitp.anwesha.calendar.Adapters
+package com.iitp.anwesha.calendar.adapters
 
-import android.util.Log
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.iitp.anwesha.R
 
-class locatAdapter() :
-    RecyclerView.Adapter<locatAdapter.ViewHolder>() {
-    var locationlist: List<String> = emptyList()
+class LocationAdapter :
+    RecyclerView.Adapter<LocationAdapter.ViewHolder>() {
+    private var locationList: List<String> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -19,23 +19,24 @@ class locatAdapter() :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val location: String = locationlist[position]
+        val location: String = locationList[position]
         holder.bind(location)
     }
 
-    override fun getItemCount() = locationlist.size
+    override fun getItemCount() = locationList.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val tv_location = itemView.findViewById<TextView>(R.id.LocationName)
+        private val tvLocation = itemView.findViewById<TextView>(R.id.LocationName)
 
         fun bind(location: String) {
-            tv_location.text = location
+            tvLocation.text = location
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setList(ls2: List<String>) {
-        locationlist = ls2
+        locationList = ls2
         notifyDataSetChanged()
     }
 

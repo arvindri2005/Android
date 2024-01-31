@@ -46,15 +46,24 @@ class SignIn : Fragment() {
             val email = checkValue(binding.AnweshaId) ?: return@setOnClickListener
 
             myDialog.showProgressDialog(this@SignIn)
+
             CoroutineScope(Dispatchers.IO).launch {
-                val userforget = UserForget(email)
 
-                val response = UserAuthApi(requireContext()).userAuthApi.userForget(userforget)
+                try {
 
-                Snackbar.make(view, "Forget password email sent to $email", Snackbar.LENGTH_LONG)
-                    .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+                    UserAuthApi(requireContext()).userAuthApi.userForget(UserForget(email))
+                    Snackbar.make(view, "Forget password email sent", Snackbar.LENGTH_LONG)
+                        .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+                    myDialog.dismissProgressDialog()
 
-                myDialog.dismissProgressDialog()
+                }
+                catch (e: Exception) {
+
+                    Snackbar.make(view, "No Internet Connection", Snackbar.LENGTH_LONG)
+                        .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+                    myDialog.dismissProgressDialog()
+
+                }
             }
         }
 
@@ -68,8 +77,7 @@ class SignIn : Fragment() {
             CoroutineScope(Dispatchers.IO).launch {
                 val userLogin = UserLoginInfo(email, password)
 
-//                try {
-
+                try {
 
                     val response = UserAuthApi(requireContext()).userAuthApi.userLogin(userLogin)
 
@@ -92,7 +100,17 @@ class SignIn : Fragment() {
                         Snackbar.make(view, "Could not verify the user!", Snackbar.LENGTH_LONG)
                             .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
                     }
-                myDialog.dismissProgressDialog()
+
+                    myDialog.dismissProgressDialog()
+
+                }
+                catch (e: Exception) {
+
+                    Snackbar.make(view, "No Internet Connection", Snackbar.LENGTH_LONG)
+                        .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+                    myDialog.dismissProgressDialog()
+
+                }
             }
 
 

@@ -76,8 +76,11 @@ class Signup : Fragment() {
 
         val myDialog = MyDialog(requireContext())
 
-        college = "IIT Patna"
-        userType = "iitp_student"
+        if(binding.iitStudentBtn.isChecked){
+            college = "IIT Patna"
+            userType = "iitp_student"
+        }
+
         binding.iitStudentBtn.setOnClickListener {
             if (binding.iitStudentBtn.isChecked){
                 binding.collegeName.visibility = View.GONE
@@ -96,8 +99,10 @@ class Signup : Fragment() {
 
             binding.SignupButton.setOnClickListener {
                 if(binding.acceptTermButton.isChecked) {
+
                     name = checkValue(binding.anweshaFullName)?.trimEnd() ?: return@setOnClickListener
                     email = checkValue(binding.anweshaEmailId)?.trimEnd() ?: return@setOnClickListener
+
                     if(binding.iitStudentBtn.isChecked){
                         if (!isValidIITPEmail(email)){
                             Snackbar.make(view, "Please enter institute email address", Snackbar.LENGTH_LONG)
@@ -106,6 +111,7 @@ class Signup : Fragment() {
                             return@setOnClickListener
                         }
                     }
+
                     else{
                         if(!isValidEmail(email)){
                             Snackbar.make(view, "Please enter valid email address", Snackbar.LENGTH_LONG)
@@ -127,11 +133,13 @@ class Signup : Fragment() {
                             .show()
                         return@setOnClickListener
                     }
+
                     myDialog.showProgressDialog(this@Signup)
 
                     CoroutineScope(Dispatchers.Main).launch {
-                        val registerUser =
-                            UserRegisterInfo(email, password, name, phone, college, userType)
+
+                        val registerUser = UserRegisterInfo(email, password, name, phone, college, userType)
+
                         try {
                             val response =
                                 UserAuthApi(requireContext()).userAuthApi.userRegister(registerUser)
@@ -161,10 +169,12 @@ class Signup : Fragment() {
                                     .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
                                     .show()
                             }
-                        } catch (e: Exception) {
-                            myDialog.showErrorAlertDialog("Oops! It seems like an error... ${e.message}")
                         }
-                        myDialog.dismissProgressDialog()
+                        catch (e: Exception) {
+                            Snackbar.make(view, "No Internet Connection", Snackbar.LENGTH_LONG)
+                                .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+                            myDialog.dismissProgressDialog()
+                        }
                     }
                 }
                 else{

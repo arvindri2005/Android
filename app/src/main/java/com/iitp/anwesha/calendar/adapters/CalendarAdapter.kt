@@ -1,7 +1,7 @@
-package com.iitp.anwesha.calendar.Adapters
+package com.iitp.anwesha.calendar.adapters
 
+import android.annotation.SuppressLint
 import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,17 +9,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.iitp.anwesha.R
-import com.iitp.anwesha.calendar.DataFiles.EventData
-import com.iitp.anwesha.calendar.Functions.CalendarFunctions
+import com.iitp.anwesha.calendar.dataFiles.EventData
+import com.iitp.anwesha.calendar.functions.CalendarFunctions
 import com.iitp.anwesha.home.EventList
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.Random
 
-class EventAdapter(val reallist: ArrayList<EventList>, private val onItemClickListener: OnItemClickListener) :
+class EventAdapter(val realList: ArrayList<EventList>, private val onItemClickListener: OnItemClickListener) :
     RecyclerView.Adapter<EventAdapter.ViewHolder>() {
     var events: MutableList<EventData> = mutableListOf()
-    var eventList: List<List<EventData>> = emptyList()
-    var locationlist: List<String> = emptyList()
+    private var eventList: List<List<EventData>> = emptyList()
+    private var locationList: List<String> = emptyList()
 
     interface OnItemClickListener {
         fun onItemClick(verticalItem: EventList)
@@ -32,10 +31,9 @@ class EventAdapter(val reallist: ArrayList<EventList>, private val onItemClickLi
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val location: String = locationlist[position]
         val events: List<EventData> = eventList[position]
         Log.d("checker", events.toString())
-        holder.bind(location, events)
+        holder.bind(events)
     }
 
     override fun getItemCount() = eventList.size
@@ -45,11 +43,11 @@ class EventAdapter(val reallist: ArrayList<EventList>, private val onItemClickLi
         private val verticalRecyclerView: RecyclerView =
             itemView.findViewById(R.id.rv_events)
 
-        fun bind(location: String, event: List<EventData>) {
+        fun bind(event: List<EventData>) {
             event.sortedBy { it.startTime.split(":").first().toInt()}
-            val margins = CalendarFunctions().cal_margin(event, itemView.context)
+            val margins = CalendarFunctions().calMargin(event, itemView.context)
 
-            val verticalAdapter = VerticalAdapter(event, reallist,margins, object : VerticalAdapter.OnItemClickListener {
+            val verticalAdapter = VerticalAdapter(event, realList,margins, object : VerticalAdapter.OnItemClickListener {
                 override fun onItemClick(verticalItem: EventList) {
                     onItemClickListener.onItemClick(verticalItem)
                 }
@@ -63,23 +61,24 @@ class EventAdapter(val reallist: ArrayList<EventList>, private val onItemClickLi
         }
     }
 
-    fun setList(list: MutableList<EventData>, ls1: List<List<EventData>>,ls2: List<String>) {
+    @SuppressLint("NotifyDataSetChanged")
+    fun setList(list: MutableList<EventData>, ls1: List<List<EventData>>, ls2: List<String>) {
         events.clear()
         events = list
         eventList = ls1
-        locationlist = ls2
+        locationList = ls2
         notifyDataSetChanged()
     }
 
 }
 class VerticalAdapter(
     val data: List<EventData>,
-    val reallist: ArrayList<EventList>,
-    val margins: ArrayList<Int>,
+    val realList: ArrayList<EventList>,
+    private val margins: ArrayList<Int>,
     private val onItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<VerticalAdapter.ViewHolder>() {
 
-    var sorted_data: List<EventData> = data.sortedBy { it.startTime.split(":").first().toInt() }
+    private var sortedData: List<EventData> = data.sortedBy { it.startTime.split(":").first().toInt() }
 
     interface OnItemClickListener {
         fun onItemClick(verticalItem: EventList)
@@ -92,20 +91,20 @@ class VerticalAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(sorted_data[position])
+        holder.bind(sortedData[position])
 
         val layoutParams = RecyclerView.LayoutParams(
             2100,
             RecyclerView.LayoutParams.MATCH_PARENT
         )
         layoutParams.leftMargin = margins[position]
-        layoutParams.width = CalendarFunctions().retHeight(sorted_data[position], holder.itemView.context)
+        layoutParams.width = CalendarFunctions().retHeight(sortedData[position], holder.itemView.context)
 
         holder.itemView.layoutParams = layoutParams
     }
 
     override fun getItemCount(): Int {
-        return sorted_data.size
+        return sortedData.size
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -115,18 +114,15 @@ class VerticalAdapter(
 
         fun bind(event: EventData) {
             itemView.setOnClickListener {
-                onItemClickListener.onItemClick(getDataFileByString(event.id, reallist)!!)
+                onItemClickListener.onItemClick(getDataFileByString(event.id, realList)!!)
             }
             titleTextView.text = event.title
-
-//            itemView.layoutParams.height = CalendarFunctions().retHeight(event, itemView.context)
 
             val colors = itemView.resources.getIntArray(R.array.androidcolors)
             val randomColor = colors[Random().nextInt(colors.size)]
 
             val view = light
             val view2 = dark
-//            view.setBackgroundColor(randomColor)
             view2.setBackgroundColor(randomColor)
             view.alpha = 0.5f
         }

@@ -5,8 +5,12 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.messaging.FirebaseMessaging
@@ -41,24 +45,33 @@ class SplashActivity : AppCompatActivity() {
 //        riveAnimationView.play()
 
         Handler(Looper.getMainLooper()).postDelayed({
-            CoroutineScope(Dispatchers.IO).launch {
-
-                try{
-                    val response = UserProfileApi(this@SplashActivity).profileApi.getProfile()
-                    if (response.isSuccessful) {
-                        moveToMainActivity()
-                    } else {
-                        moveToLoginActivity()
-                    }
-                }
-
-                catch (e:Exception){
-                    Log.d(TAG, "onCreate: ${e.message}")
-                    moveToLoginActivity()
-                }
-            }
+            apiCall(view)
         }, SPLASH_TIME_OUT)
     }
+
+    private fun apiCall(view: FrameLayout) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = UserProfileApi(this@SplashActivity).profileApi.getProfile()
+                if (response.isSuccessful) {
+                    moveToMainActivity()
+                } else {
+                    moveToLoginActivity()
+                }
+            } catch (e: Exception) {
+                runOnUiThread {
+                    val snackBar = Snackbar.make(view, "No Internet Connection", Snackbar.LENGTH_LONG)
+                    snackBar.setAction("Retry") {
+                        apiCall(view) // Retry network call when "Retry" is clicked
+                    }
+                    snackBar.setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
+                    snackBar.show()
+                }
+            }
+        }
+    }
+
+
 
     private fun moveToLoginActivity() {
         val intent = Intent(this, LoginActivity::class.java)

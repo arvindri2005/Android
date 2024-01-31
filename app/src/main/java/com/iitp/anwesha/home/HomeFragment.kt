@@ -45,7 +45,7 @@ import com.iitp.anwesha.R
 import com.iitp.anwesha.tickets.PassesFragment
 import com.iitp.anwesha.databinding.FragmentHomeBinding
 import com.iitp.anwesha.events.SingleEventFragment
-import com.iitp.anwesha.home.functions.nav_items_functions
+import com.iitp.anwesha.home.functions.NavItemsFunctions
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -98,7 +98,7 @@ class HomeFragment : Fragment() {
             loadPassesFragment(sharedPref.getString(getString(R.string.user_type),"student")!!)
         }
 
-        nav_items_functions(binding, requireActivity(), requireActivity()).selectingItems()
+        NavItemsFunctions(binding, requireActivity(), requireActivity()).selectingItems()
         eventViewModel = ViewModelProvider(this)[EventsViewModel::class.java]
         return binding.root
 

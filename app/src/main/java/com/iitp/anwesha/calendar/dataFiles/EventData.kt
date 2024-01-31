@@ -1,4 +1,4 @@
-package com.iitp.anwesha.calendar.DataFiles
+package com.iitp.anwesha.calendar.dataFiles
 
 data class EventData(
     val id: String,

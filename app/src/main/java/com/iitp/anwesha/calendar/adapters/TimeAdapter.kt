@@ -1,4 +1,4 @@
-package com.iitp.anwesha.calendar.Adapters
+package com.iitp.anwesha.calendar.adapters
 
 import android.view.LayoutInflater
 import android.view.View

@@ -73,7 +73,7 @@
                     android:background="#504ABC"
                     android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
-                    android:text="17"
+                    android:text="02"
                     android:textColor="@color/white" />
 
                 <TextView
@@ -83,7 +83,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
-                    android:text="18"
+                    android:text="03"
                     android:textColor="#504ABC" />
 
                 <TextView
@@ -92,7 +92,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
-                    android:text="19"
+                    android:text="04"
                     android:textColor="#504ABC" />
 
             </LinearLayout>
