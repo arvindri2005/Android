@@ -13,6 +13,28 @@ import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
 import com.iitp.anwesha.MainActivity
 import com.iitp.anwesha.MyDialog
@@ -27,6 +49,7 @@ import kotlinx.coroutines.launch
 
 class SignIn : Fragment() {
     private lateinit var binding: FragmentSigninBinding
+    private lateinit var password: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +63,10 @@ class SignIn : Fragment() {
         val intent = Intent(activity, MainActivity::class.java)
 
         val myDialog = MyDialog(requireContext())
+
+        binding.password.setContent {
+            PasswordInput()
+        }
 
         binding.Forgotpassword.setOnClickListener {
             val email = checkValue(binding.AnweshaId) ?: return@setOnClickListener
@@ -70,7 +97,6 @@ class SignIn : Fragment() {
         binding.LoginButton.setOnClickListener{
 
             val email = checkValue(binding.AnweshaId) ?: return@setOnClickListener
-            val password = checkValue(binding.AnweshaPassword) ?: return@setOnClickListener
 
             myDialog.showProgressDialog(this@SignIn)
             CoroutineScope(Dispatchers.IO).launch {
@@ -138,8 +164,6 @@ class SignIn : Fragment() {
 
         spannableString2.setSpan(clickableSpan2, 22, text2.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-        binding.tvAcceptTerms.text = spannableString2
-        binding.tvAcceptTerms.movementMethod = LinkMovementMethod.getInstance()
 
 
         return view
@@ -150,5 +174,55 @@ class SignIn : Fragment() {
         fragmentTransaction.replace(R.id.login_container, fragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun PasswordInput() {
+        val password1 = remember { mutableStateOf("") }
+        val passwordVisibility = remember{ mutableStateOf(false) }
+        OutlinedTextField(
+            value =password1.value ,
+            onValueChange ={input->
+                password1.value = input
+                password = input
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(5.dp))
+                .background(Color.White),
+            colors = TextFieldDefaults.textFieldColors(
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                containerColor = Color.Transparent,
+                textColor = Color.Black
+            ),
+            shape = RoundedCornerShape(10.dp),
+            trailingIcon = {
+                IconButton(onClick = {
+                    passwordVisibility.value = !passwordVisibility.value
+                }) {
+                    Icon(painter = painterResource(
+                        id = if (!passwordVisibility.value) {
+                            R.drawable.icon_hide
+                        } else {
+                            R.drawable.icon_hide
+                        }
+                    ),
+                        contentDescription = null )
+                }
+            },
+            visualTransformation = if(passwordVisibility.value){
+                VisualTransformation.None
+            }else{
+                PasswordVisualTransformation()
+            },
+            textStyle = TextStyle(
+                color = Color.Black,
+                fontSize = 14.sp
+            ),
+            maxLines = 1,
+            singleLine = true,
+        )
     }
 }

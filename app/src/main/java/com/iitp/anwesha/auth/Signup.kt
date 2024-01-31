@@ -164,10 +164,12 @@ class Signup : Fragment() {
                                         .show()
                                 }
                                 loadFragment(SignIn())
+                                myDialog.dismissProgressDialog()
                             } else {
-                                Snackbar.make(view, "Could not register!", Snackbar.LENGTH_LONG)
+                                Snackbar.make(view,"User with same email or number already exists", Snackbar.LENGTH_LONG)
                                     .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
                                     .show()
+                                myDialog.dismissProgressDialog()
                             }
                         }
                         catch (e: Exception) {
@@ -265,13 +267,6 @@ class Signup : Fragment() {
                 textColor = Color.Black
             ),
             shape = RoundedCornerShape(10.dp),
-            placeholder = {
-                Text(text = "Confirm Password",
-                    style = TextStyle(
-                        color = Color.Black,
-                    )
-                )
-            },
             trailingIcon = {
                 IconButton(onClick = {
                     passwordVisibility.value = !passwordVisibility.value
@@ -317,9 +312,6 @@ class Signup : Fragment() {
                 textColor = Color.Black
             ),
             shape = RoundedCornerShape(10.dp),
-            placeholder = {
-                Text(text = "Password")
-            },
             trailingIcon = {
                 IconButton(onClick = {
                     passwordVisibility.value = !passwordVisibility.value
