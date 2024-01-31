@@ -37,7 +37,6 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private var isEditProfile = false
     private lateinit var fragmentContext: Context
-    private val passes= ArrayList<MyEventDetails>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -118,29 +117,13 @@ class ProfileFragment : Fragment() {
                         Log.e(TAG, eventsInfo.toString())
 
                         val soloEvents = arrayListOf<MyEventDetails>()
-                        var l =1
+
 
                         for(i in eventsInfo.solo){
                             if (i.event_id == "EVTe96c6"|| i.event_id == "EVT7a8a7"){
-                                if (l==1){
-                                    if(!i.payment_done){
-                                        binding.paymentBtn1.visibility = View.VISIBLE
-                                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(i.payment_url))
-                                        val headers = Bundle()
-                                        val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
-                                        var cookieString = ""
-                                        for(cookie in sharedPref.getStringSet(getString(com.iitp.anwesha.R.string.cookies), HashSet())!!) {
-                                            cookieString += "$cookie; "
-                                        }
-                                        headers.putString("Set-Cookie", cookieString)
-                                        intent.putExtra(Browser.EXTRA_HEADERS, headers)
-                                        binding.paymentBtn1.setOnClickListener {
-                                            startActivity(intent)
-                                        }
-                                    }
-                                    l++
-                                    binding.pass1.visibility = View.VISIBLE
-                                }
+                                binding.passId1.text = i.event_name
+                                binding.pass1.visibility = View.VISIBLE
+
                             }
                             else{
                                 soloEvents.add(i)
@@ -165,30 +148,6 @@ class ProfileFragment : Fragment() {
                 }
             }
 
-        }
-
-        var l=1
-        for(i in passes){
-            if(l==1){
-                binding.passId1.text = i.event_name
-                if(!i.payment_done){
-                    binding.paymentBtn1.visibility = View.VISIBLE
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(i.payment_url))
-                    val headers = Bundle()
-                    val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
-                    var cookieString = ""
-                    for(cookie in sharedPref.getStringSet(getString(com.iitp.anwesha.R.string.cookies), HashSet())!!) {
-                        cookieString += "$cookie; "
-                    }
-                    headers.putString("Set-Cookie", cookieString)
-                    intent.putExtra(Browser.EXTRA_HEADERS, headers)
-                    binding.paymentBtn1.setOnClickListener {
-                        startActivity(intent)
-                    }
-                }
-                l++
-                binding.pass1.visibility = View.VISIBLE
-            }
         }
 
         binding.editProfile.setOnClickListener {
