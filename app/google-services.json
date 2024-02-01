@@ -33,35 +33,6 @@
           ]
         }
       }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:165753342134:android:a032dd212106a8220abe17",
-        "android_client_info": {
-          "package_name": "com.iitp.anwesha"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "165753342134-3iv0n9dq30fbp091lhg85ltr2q8phesh.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCQkrGxMSnB12kRdzLhrAGELiP7nHNTnSE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "165753342134-3iv0n9dq30fbp091lhg85ltr2q8phesh.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
     }
   ],
   "configuration_version": "1"

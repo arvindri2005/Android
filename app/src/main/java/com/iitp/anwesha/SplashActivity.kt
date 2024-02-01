@@ -1,9 +1,12 @@
 package com.iitp.anwesha
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -39,13 +42,13 @@ class SplashActivity : AppCompatActivity() {
         FirebaseAnalytics.getInstance(this);
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
 
-//        val riveAnimationView = binding.animationView
-//        riveAnimationView.play()
 
         Handler(Looper.getMainLooper()).postDelayed({
             apiCall(view)
         }, SPLASH_TIME_OUT)
     }
+
+
 
     private fun apiCall(view: ConstraintLayout) {
         CoroutineScope(Dispatchers.IO).launch {
