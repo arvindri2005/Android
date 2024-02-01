@@ -164,7 +164,11 @@ class SignIn : Fragment() {
 
         spannableString2.setSpan(clickableSpan2, 22, text2.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-
+        binding.problem.text = spannableString2
+        binding.problem.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(requireContext().getString(R.string.feedback)))
+            requireContext().startActivity(intent)
+        }
 
         return view
     }

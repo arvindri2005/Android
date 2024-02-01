@@ -202,6 +202,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/problem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@id/signupbutton"
+                    app:layout_constraintTop_toBottomOf="@id/signupbutton"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
