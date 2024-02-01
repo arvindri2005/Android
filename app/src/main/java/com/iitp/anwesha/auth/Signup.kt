@@ -166,16 +166,21 @@ class Signup : Fragment() {
                                 loadFragment(SignIn())
                                 myDialog.dismissProgressDialog()
                             } else {
-                                Snackbar.make(view,"User with same email or number already exists", Snackbar.LENGTH_LONG)
-                                    .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
-                                    .show()
-                                myDialog.dismissProgressDialog()
+                                requireActivity().runOnUiThread {
+                                    Snackbar.make(view,"User with same email or number already exists", Snackbar.LENGTH_LONG)
+                                        .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
+                                        .show()
+                                    myDialog.dismissProgressDialog()
+                                }
                             }
                         }
                         catch (e: Exception) {
-                            Snackbar.make(view, "No Internet Connection", Snackbar.LENGTH_LONG)
-                                .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
-                            myDialog.dismissProgressDialog()
+
+                            requireActivity().runOnUiThread {
+                                Snackbar.make(view, "No Internet Connection", Snackbar.LENGTH_LONG)
+                                    .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+                                myDialog.dismissProgressDialog()
+                            }
                         }
                     }
                 }
