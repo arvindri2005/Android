@@ -197,7 +197,7 @@
                             android:layout_height="50dp"
                             android:layout_marginStart="10dp"
                             android:buttonTint="@color/white"
-                            android:checked="false"
+                            android:checked="true"
                             app:layout_constraintBottom_toBottomOf="@+id/tvIITStudent"
                             app:layout_constraintStart_toEndOf="@id/tvIITStudent"
                             app:layout_constraintTop_toTopOf="@id/tvIITStudent" />
@@ -212,6 +212,7 @@
                         android:layout_marginTop="1dp"
                         android:fontFamily="@font/poppins_regular"
                         android:text="@string/college_name"
+                        android:visibility="gone"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="@id/full_name"
@@ -222,6 +223,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_column="2"
+                        android:visibility="gone"
                         android:background="@drawable/edit_text_bg"
                         android:cursorVisible="true"
                         android:focusable="true"
@@ -247,6 +249,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="@string/user_type"
                         android:textColor="@color/white"
+                        android:visibility="gone"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="@id/full_name"
                         app:layout_constraintTop_toBottomOf="@id/anwesha_college" />
@@ -258,6 +261,7 @@
                         android:background="@drawable/edit_text_bg"
                         android:entries="@array/user_types"
                         android:prompt="@string/user_types_prompt"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="@+id/anwesha_full_name"
                         app:layout_constraintStart_toStartOf="@id/full_name"
                         app:layout_constraintTop_toBottomOf="@id/user_type" />

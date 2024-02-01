@@ -49,7 +49,7 @@ import kotlinx.coroutines.launch
 
 class SignIn : Fragment() {
     private lateinit var binding: FragmentSigninBinding
-    private lateinit var password: String
+    private  var password: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -16,6 +16,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -75,11 +76,9 @@ class Signup : Fragment() {
         }
 
         val myDialog = MyDialog(requireContext())
-
-        if(binding.iitStudentBtn.isChecked){
-            college = "IIT Patna"
-            userType = "iitp_student"
-        }
+        binding.iitStudentBtn.isChecked = true
+        college = "IIT Patna"
+        userType = "iitp_student"
 
         binding.iitStudentBtn.setOnClickListener {
             if (binding.iitStudentBtn.isChecked){
@@ -263,6 +262,7 @@ class Signup : Fragment() {
             },
             modifier = Modifier
                 .fillMaxWidth()
+                .height(50.dp)
                 .clip(RoundedCornerShape(5.dp))
                 .background(Color.White),
             colors = TextFieldDefaults.textFieldColors(
@@ -309,7 +309,8 @@ class Signup : Fragment() {
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(5.dp))
-                .background(Color.White),
+                .background(Color.White)
+                .height(50.dp),
             colors = TextFieldDefaults.textFieldColors(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,

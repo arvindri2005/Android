@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Browser
+import android.text.Editable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -35,6 +36,7 @@ private const val ARG_PARAM2 = "maxTeamMembers"
 private const val ARG_PARAM3 = "eventName"
 private const val ARG_PARAM4 = "eventID"
 private const val ARG_PARAM5 = "eventFee"
+private const val ARG_PARAM6 = "anweshaId"
 private const val TAG = "TeamEventFragment"
 
 
@@ -51,7 +53,7 @@ class TeamEventFragment : Fragment() {
     private lateinit var name: String
     private lateinit var email: String
     private lateinit var phone: String
-    private lateinit var anweshaId: String
+    private var anweshaId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +64,7 @@ class TeamEventFragment : Fragment() {
             eventName = it.getString(ARG_PARAM3)
             eventID = it.getString(ARG_PARAM4)
             eventFee= it.getString(ARG_PARAM5)
+            anweshaId = it.getString(ARG_PARAM6)
 
         }
     }
@@ -124,11 +127,24 @@ class TeamEventFragment : Fragment() {
 
         for (i in 1..minTeamMembers!!) {
 
-            val teamMember = layoutInflater.inflate(R.layout.team_member_field, null)
-            teamMember.findViewById<ImageView>(R.id.delete_team_member).visibility = View.INVISIBLE
-            teamMember.findViewById<TextView>(R.id.team_member_index).text = counter.toString()
-            counter++
-            binding.teamMembers.addView(teamMember)
+            if(i==1){
+                val teamMember = layoutInflater.inflate(R.layout.team_member_field, null)
+                teamMember.findViewById<ImageView>(R.id.delete_team_member).visibility = View.INVISIBLE
+                teamMember.findViewById<TextView>(R.id.team_member_index).text = counter.toString()
+                counter++
+                teamMember.findViewById<EditText>(R.id.team_member_id).setText(anweshaId)
+                teamMember.findViewById<EditText>(R.id.team_member_id).isEnabled = false
+                binding.teamMembers.addView(teamMember)
+            }
+            else{
+                val teamMember = layoutInflater.inflate(R.layout.team_member_field, null)
+                teamMember.findViewById<ImageView>(R.id.delete_team_member).visibility = View.INVISIBLE
+                teamMember.findViewById<TextView>(R.id.team_member_index).text = counter.toString()
+                counter++
+                binding.teamMembers.addView(teamMember)
+            }
+
+
 
         }
 
@@ -186,7 +202,7 @@ class TeamEventFragment : Fragment() {
         val transactionId = generateTransactionId()
         Log.d(TAG, "Transaction id: $transactionId")
 
-        Toast.makeText(requireContext(), "test", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Please Wait", Toast.LENGTH_SHORT).show()
 
         val newPayIntent = Intent(requireContext(), PayActivity::class.java)
         newPayIntent.putExtra("merchantId", "564719")

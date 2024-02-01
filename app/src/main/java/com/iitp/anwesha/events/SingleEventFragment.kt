@@ -191,6 +191,7 @@ class SingleEventFragment : Fragment() {
                         bundle.putString("eventName", event.name)
                         bundle.putString("eventID", event.id)
                         bundle.putString("eventFee", event.registration_fee!!)
+                        bundle.putString("anweshaId", anweshaId)
 
                         Log.d(TAG, "Starting Team Event Registration")
                         val teamEventFragment = TeamEventFragment()

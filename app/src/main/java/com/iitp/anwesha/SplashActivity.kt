@@ -54,10 +54,12 @@ class SplashActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = UserProfileApi(this@SplashActivity).profileApi.getProfile()
-                if (response.isSuccessful) {
-                    moveToMainActivity()
-                } else {
-                    moveToLoginActivity()
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        moveToMainActivity()
+                    } else {
+                        moveToLoginActivity()
+                    }
                 }
             } catch (e: Exception) {
                 runOnUiThread {

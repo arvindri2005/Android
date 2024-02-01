@@ -35,18 +35,6 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>, val cont
         holder.eventDate.text = getDayFromDate(currentItem.event_start_time)
         val venue = currentItem.event_venue.split(",")
         holder.eventVenue.text = venue[0]
-        if (!currentItem.payment_done){
-            holder.eventButton.visibility = View.VISIBLE
-            holder.eventButton.setOnClickListener {
-                val intent = Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse(currentItem.payment_url)
-                )
-                context.startActivity(intent)
-            }
-        }else{
-            holder.cons.visibility = View.VISIBLE
-        }
     }
 
     override fun getItemCount(): Int {
@@ -59,8 +47,6 @@ class ProfileEventsAdapter(private val eventList: List<MyEventDetails>, val cont
         val eventStartTime: TextView = binding.eventTime
         val eventDate: TextView = binding.eventDate
         val eventVenue: TextView = binding.eventVenue
-        val eventButton: Button = binding.paymentBtn
-        val cons: ConstraintLayout = binding.regSuccess
 
 
     }
@@ -105,19 +91,6 @@ class ProfileTeamsAdapter(private val eventList: List<MyTeamDetails>, val contex
         for (i in currentItem.team_members){
             anwId = "$anwId$i, "
         }
-        if (!currentItem.payment_done){
-            holder.eventButton.visibility = View.VISIBLE
-            holder.eventButton.setOnClickListener {
-                val intent = Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse(currentItem.payment_url)
-                )
-                context.startActivity(intent)
-            }
-        }else{
-            holder.cons.visibility = View.VISIBLE
-        }
-        holder.eventId.text = anwId
     }
 
     override fun getItemCount(): Int {
@@ -129,9 +102,6 @@ class ProfileTeamsAdapter(private val eventList: List<MyTeamDetails>, val contex
         val eventName: TextView = binding.eventName
         val eventStartTime: TextView = binding.eventTime
         val eventDate: TextView = binding.eventDate
-        val eventId: TextView = binding.teamIds
-        val eventButton: Button = binding.paymentBtn
-        val cons: ConstraintLayout = binding.regSuccess
 
 
     }

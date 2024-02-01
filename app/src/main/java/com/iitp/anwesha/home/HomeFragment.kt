@@ -108,7 +108,7 @@ class HomeFragment : Fragment() {
     @Composable
     fun AnweshaMap() {
         var scale  by remember {
-            mutableStateOf(1f) }
+            mutableStateOf(2f) }
 
         var offset  by remember {
             mutableStateOf(Offset.Zero) }
@@ -205,6 +205,8 @@ class HomeFragment : Fragment() {
         if(behavior.peekHeight!=dpToPx(150)){
             slideDown.start()
         }
+        binding.hintImg.visibility = View.VISIBLE
+        binding.hintTxt.visibility = View.VISIBLE
     }
 
     private fun slideUp(){
@@ -216,6 +218,8 @@ class HomeFragment : Fragment() {
         if(behavior.peekHeight!=1000){
             slideUp.start()
         }
+        binding.hintImg.visibility = View.GONE
+        binding.hintTxt.visibility = View.GONE
     }
 
     private fun dpToPx(dp: Int): Int {

@@ -4,11 +4,8 @@ import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.Intent
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Bundle
-import android.provider.Browser
 import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
@@ -64,7 +61,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.copyId.setOnClickListener {
-            val text = binding.anweshaId.text.toString()
+            val text = binding.anweshaId2.text.toString()
             val clipboard =
                 requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clip = ClipData.newPlainText("Anwesha ID", text)
@@ -77,6 +74,7 @@ class ProfileFragment : Fragment() {
         }
 
 
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = UserProfileApi(requireContext()).profileApi.getProfile()
@@ -85,8 +83,7 @@ class ProfileFragment : Fragment() {
                     Log.d("userinfo: ", "${userInfo.anwesha_id}, ${userInfo.full_name}")
                     withContext(Dispatchers.Main) {
                         binding.profileName.setText(userInfo.full_name)
-                        binding.anweshaId.text = userInfo.anwesha_id.uppercase(Locale.ROOT)
-                        binding.anweshaId2.text = userInfo.anwesha_id
+                        binding.anweshaId2.text = userInfo.anwesha_id.uppercase(Locale.ROOT)
                         binding.phoneNumber.setText(userInfo.phone_number)
                         binding.emailId.setText(userInfo.email_id)
                         binding.collegeName.setText(userInfo.college_name)
@@ -118,12 +115,13 @@ class ProfileFragment : Fragment() {
 
                         val soloEvents = arrayListOf<MyEventDetails>()
 
+                        var passPurchased = true
 
                         for(i in eventsInfo.solo){
                             if (i.event_id == "EVTe96c6"|| i.event_id == "EVT7a8a7"){
                                 binding.passId1.text = i.event_name
                                 binding.pass1.visibility = View.VISIBLE
-
+                                passPurchased = false
                             }
                             else{
                                 soloEvents.add(i)
@@ -131,7 +129,7 @@ class ProfileFragment : Fragment() {
                         }
 
                         binding.rvRegistered.layoutManager =
-                            LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
+                            LinearLayoutManager(fragmentContext, LinearLayoutManager.VERTICAL, false)
                         binding.rvRegistered.adapter =
                             ProfileEventsAdapter(soloEvents, fragmentContext)
 
@@ -139,6 +137,13 @@ class ProfileFragment : Fragment() {
                             LinearLayoutManager(fragmentContext, LinearLayoutManager.HORIZONTAL, false)
                         binding.rvTeamAdapter.adapter =
                             ProfileTeamsAdapter(eventsInfo.team, fragmentContext)
+
+                        if(soloEvents.isEmpty()&&eventsInfo.team.isEmpty()&&passPurchased){
+                            binding.noEvents.visibility = View.VISIBLE
+                        }
+                        else{
+                            binding.noEvents.visibility = View.GONE
+                        }
                     }
                 }
             }
