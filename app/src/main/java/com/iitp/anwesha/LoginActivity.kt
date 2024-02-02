@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.iitp.anwesha.auth.SignIn
 import com.iitp.anwesha.databinding.ActivityLoginBinding
 
@@ -16,6 +17,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         val view = binding.root
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
             requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1)

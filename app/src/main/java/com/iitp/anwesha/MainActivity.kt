@@ -2,6 +2,7 @@ package com.iitp.anwesha
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.iitp.anwesha.calendar.CalendarFragment
 import com.iitp.anwesha.databinding.ActivityMainBinding
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         loadFragment(HomeFragment())
         binding.bottomNavigation.setOnItemSelectedListener {
             when(it.itemId){
